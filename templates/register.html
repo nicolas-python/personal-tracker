@@ -1,14 +1,17 @@
+<!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
-    <title>Personal Tracker</title>
+    <title>Registrieren - Personal Tracker</title>
 </head>
 
 <body>
 
     <h1>Personal Tracker</h1>
+    <h2>Registrieren</h2>
 
-    <form action="/login" method="POST">
+    <form>
 
         <label for="username">Einlogname:</label>
         <input type="text" id="username" name="username">
@@ -16,11 +19,13 @@
         <label for="password">Passwort:</label>
         <input type="password" id="password" name="password">
 
-        <button type="submit">Einloggen</button>
+        <label for="password_confirm">Passwort wiederholen:</label>
+        <input type="password" id="password_confirm" name="password_confirm">
 
-        <button type="button" onclick="window.location.href='/register'">Registrieren</button>
+        <button type="submit">Registrieren</button>
 
     </form>
 
 </body>
+
 </html>
