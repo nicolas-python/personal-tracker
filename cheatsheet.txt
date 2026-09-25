@@ -1,0 +1,24 @@
+Projektstruktur
+
+fitness_app.py
+database.py
+requirements.txt
+README.md
+
+api
+    -fitness_api.py                 #Schnittstelle zwischen Website und Datenbank, verarbeitet Daten und ermöglicht den Austausch per JSON
+                                    #REST-API – ermöglicht unabhängig Datenaustausch und kann später automatisiert getestet werden
+database
+    -personal_tracker.db
+
+templates
+    -login.html
+    -register.html
+    -dashboard.html
+    -fitness.html
+
+static
+    -css
+        -style.css
+    js
+        -fitness.js
