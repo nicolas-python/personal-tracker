@@ -12,7 +12,7 @@ database
     -personal_tracker.db
 
 templates                          #templates = HTML-Vorlagen
-    -login.html
+    -login.html                    #<input type="password"> = Browser zeigt die Eingabe als •••••• an – schützt aber nicht die Speicherung in der Datenbank!
     -register.html
     -dashboard.html
     -fitness.html
