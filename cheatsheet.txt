@@ -11,7 +11,7 @@ api
 database
     -personal_tracker.db
 
-templates
+templates                          #templates = HTML-Vorlagen
     -login.html
     -register.html
     -dashboard.html
@@ -22,3 +22,4 @@ static
         -style.css
     js
         -fitness.js
+
