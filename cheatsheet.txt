@@ -23,3 +23,13 @@ static
     js
         -fitness.js
 
+flask elemente:
+
+request = Zugriff auf die vom Browser gesendeten Daten
+request.form = Zugriff auf Daten aus einem HTML-Formular
+
+Datenbank:
+Passwort-Hashing = Passwort wird einseitig in einen Hash umgewandelt und nicht als Klartext gespeichert.
+                   Dadurch kann das ursprüngliche Passwort aus dem Hash nicht einfach zurückgerechnet werden.
+                   Beim Login wird das eingegebene Passwort mit dem gespeicherten Hash geprüft.
+
