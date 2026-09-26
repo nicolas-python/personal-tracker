@@ -27,6 +27,8 @@ flask elemente:
 
 request = Zugriff auf die vom Browser gesendeten Daten
 request.form = Zugriff auf Daten aus einem HTML-Formular
+flash = Nachricht für die nächste Seite speichern
+redirect = Browser zu einer anderen Route schicken
 
 Datenbank:
 Passwort-Hashing = Passwort wird einseitig in einen Hash umgewandelt und nicht als Klartext gespeichert.
@@ -36,4 +38,6 @@ Passwort-Hashing = Passwort wird einseitig in einen Hash umgewandelt und nicht a
 HTML :
 {% if ... %} = Jinja2-Syntax =  Mit Jinja kan man innerhalb der HTML-Datei Python-ähnliche Logik benutzen
 {% for ... %} = Wiederhole etwas für mehrere Werte
+
+rel="stylesheet" = Diese verlinkte Datei ist ein Stylesheet, eine CSS-Datei die das Aussehen dieser HTML-Seite bestimmt.
 

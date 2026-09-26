@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrieren - Personal Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
@@ -13,7 +14,14 @@
 
     {% with messages = get_flashed_messages() %}    <!-- Jinja2-Syntax -->
         {% for message in messages %}
-            <p>{{ message }}</p>
+            <div class="popup">                     <!-- Fenster 1(Hintergrund) -->
+                <div class="popup-content">         <!-- Fenster 2(Text/Button) -->
+                    <p>{{ message }}</p>
+                     <button type="button" onclick="window.location.href='/'">
+                        OK
+                    </button>
+                </div>
+            </div>
         {% endfor %}                                <!-- Beendet die for-Schleife -->
     {% endwith %}                                   <!-- Beendet den with-Block -->
 
