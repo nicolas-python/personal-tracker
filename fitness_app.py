@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from database import add_user
+from database import create_database, add_user
 
 app = Flask(__name__)
 
@@ -24,4 +24,5 @@ def login():
 
 
 if __name__ == "__main__":
+    create_database()
     app.run(debug=True)
