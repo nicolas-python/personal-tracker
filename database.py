@@ -5,7 +5,6 @@ DATABASE = "database/personal_tracker.db"
 
 def create_database():
     connection = sqlite3.connect(DATABASE)
-
     cursor = connection.cursor()
 
     cursor.execute("""
@@ -19,9 +18,9 @@ def create_database():
     connection.commit()
     connection.close()
 
+
 def add_user(username, password):
     connection = sqlite3.connect(DATABASE)
-
     cursor = connection.cursor()
 
     cursor.execute("""
@@ -32,18 +31,28 @@ def add_user(username, password):
     connection.commit()
     connection.close()
 
-def show_users():
-    connection = sqlite3.connect(DATABASE)
 
+def login_user(username, password):
+    connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
 
+    cursor.execute("""
+        SELECT * FROM users
+        WHERE username = ? AND password_hash = ?
+    """, (username, password))
+
+    user = cursor.fetchone()
+    connection.close()
+    return user is not None
+
+
+def show_users():
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
     cursor.execute("SELECT * FROM users")
-
     users = cursor.fetchall()
-
     for user in users:
         print(user)
-
     connection.close()
 
 create_database()
