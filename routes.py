@@ -16,16 +16,16 @@ def register():
         password = request.form["password"]
         password_confirm = request.form["password_confirm"]
 
-        if password != password_confirm:
-            flash("Die Passwörter stimmen nicht überein", "error")
-            return render_template("register.html")
-
         if not username or not password or not password_confirm:
             flash("Bitte alle Felder ausfüllen", "error")
             return render_template("register.html")
 
+        if password != password_confirm:
+            flash("Die Passwörter stimmen nicht überein", "error")
+            return render_template("register.html")
+
         add_user(username, password)
-        flash("Registrierung erfolgreich!")     #flash = Flask-Funktion, mit der man eine kurze Nachricht über einen Seitenwechsel hinweg speichern und anzeigen kann
+        flash("Registrierung erfolgreich!", "success")     #flash = Flask-Funktion, mit der man eine kurze Nachricht über einen Seitenwechsel hinweg speichern und anzeigen kann
 
     return render_template("register.html")
 
