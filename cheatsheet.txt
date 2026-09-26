@@ -33,3 +33,7 @@ Passwort-Hashing = Passwort wird einseitig in einen Hash umgewandelt und nicht a
                    Dadurch kann das ursprüngliche Passwort aus dem Hash nicht einfach zurückgerechnet werden.
                    Beim Login wird das eingegebene Passwort mit dem gespeicherten Hash geprüft.
 
+HTML :
+{% if ... %} = Jinja2-Syntax =  Mit Jinja kan man innerhalb der HTML-Datei Python-ähnliche Logik benutzen
+{% for ... %} = Wiederhole etwas für mehrere Werte
+
