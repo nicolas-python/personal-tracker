@@ -14,6 +14,15 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        password_confirm = request.form["password_confirm"]
+
+        if password != password_confirm:
+            flash("Die Passwörter stimmen nicht überein", "error")
+            return render_template("register.html")
+
+        if not username or not password or not password_confirm:
+            flash("Bitte alle Felder ausfüllen", "error")
+            return render_template("register.html")
 
         add_user(username, password)
         flash("Registrierung erfolgreich!")     #flash = Flask-Funktion, mit der man eine kurze Nachricht über einen Seitenwechsel hinweg speichern und anzeigen kann
@@ -24,6 +33,10 @@ def register():
 def login():
     username = request.form["username"]
     password = request.form["password"]
+
+    if not username or not password:
+        flash("Bitte Benutzername und Passwort eingeben", "error")
+        return render_template("login.html")
 
     if login_user(username, password):
         flash("Login erfolgreich!", "success")              #flash(Nachricht, Kategorie) = Kategorie gibt an, um welche Art von Nachricht es sich handelt
