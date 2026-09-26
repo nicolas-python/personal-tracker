@@ -2,11 +2,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Personal Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
     <h1>Personal Tracker</h1>
+
+{% with messages = get_flashed_messages() %}    <!-- Jinja2-Syntax -->
+    {% for message in messages %}
+        <div class="popup">                     <!-- Fenster 1 (Hintergrund) -->
+            <div class="popup-content">         <!-- Fenster 2 (Text + Button) -->
+                <p>{{ message }}</p>
+                <button type="button" onclick="window.location.href='selection'">OK</button>
+            </div>
+        </div>
+    {% endfor %}
+{% endwith %}
 
     <form action="/login" method="POST">
 
