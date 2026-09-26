@@ -1,4 +1,4 @@
-                                        /* register.html */
+/* -------------------------------------------register.html---------------------------------------------- */
 /* Popup Hintergrund */
 .popup
 {
@@ -21,4 +21,23 @@
     padding: 30px;
     border-radius: 10px;
     text-align: center;
+}
+/* -------------------------------------------selection.html------------------------------------------- */
+.selection-container
+{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.selection-box
+{
+    width: 250px;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

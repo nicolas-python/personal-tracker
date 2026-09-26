@@ -38,6 +38,16 @@ def selection():
     return render_template("selection.html")
 
 
+@app.route("/fitness")
+def fitness():
+    return render_template("fitness.html")
+
+
+@app.route("/nutrition")
+def nutrition():
+    return render_template("nutrition.html")
+
+
 
 if __name__ == "__main__":
     create_database()
