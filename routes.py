@@ -26,10 +26,16 @@ def login():
     password = request.form["password"]
 
     if login_user(username, password):
-        return "Login wurde abgeschickt"
+        flash("Login erfolgreich!", "success")              #flash(Nachricht, Kategorie) = Kategorie gibt an, um welche Art von Nachricht es sich handelt
 
     else:
-        return "Login Fehlgeschlagen: Passwort oder Benutzername falsch"
+        flash("Login fehlgeschlagen: Passwort oder Benutzername falsch", "error")
+
+    return render_template("login.html")
+
+@app.route("/selection")
+def selection():
+    return render_template("selection.html")
 
 
 
