@@ -55,6 +55,10 @@ def selection():
 def fitness():
     return render_template("fitness.html")
 
+@app.route("/create-workout")
+def create_workout():
+    return render_template("create_workout.html")
+
 
 @app.route("/nutrition")
 def nutrition():
