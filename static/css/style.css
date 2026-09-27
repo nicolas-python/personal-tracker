@@ -41,3 +41,13 @@
     justify-content: center;
     align-items: center;
 }
+/* -------------------------------------------create_workout.html------------------------------------------- */
+.exercise
+{
+    margin-top: 20px;
+}
+
+.addExercise
+{
+    margin-top: 20px;
+}

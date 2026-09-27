@@ -4,14 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Trainingsplan erstellen - Personal Tracker</title>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/fitness.js') }}"></script>
 </head>
 
 <body>
 
     <h1>Trainingsplan erstellen</h1>
+        <label for="workout_name">Name des Trainingsplans:</label>
+        <input type="text" id="workout_name" name="workout_name">
 
+        <div id="exercises">
+            <div class="exercise">
+                <label for="exercise1">Übung 1:</label>
+
+                <select id="exercise1" name="exercise1">
+                    <option value="">Übung auswählen</option>
+                    <option value="bench_press">Bankdrücken</option>
+                    <option value="squat">Kniebeugen</option>
+                    <option value="pull_up">Klimmzüge</option>
+                    <option value="deadlift">Kreuzheben</option>
+                </select>
+            </div>
+        </div>
+            <button class="addExercise" type="button" onclick="addExercise()">+ Übung hinzufügen</button>
 </body>
 
 </html>
