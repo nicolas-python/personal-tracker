@@ -55,10 +55,14 @@ def selection():
 def fitness():
     return render_template("fitness.html")
 
-@app.route("/create-workout")
+@app.route("/create-workout", methods=["GET", "POST"])
 def create_workout():
-    return render_template("create_workout.html")
+    if request.method == "POST":
+        workout_name = request.form["workout_name"]
 
+        print("Trainingsplan:", workout_name)
+
+    return render_template("create_workout.html", saved=True)
 
 @app.route("/nutrition")
 def nutrition():

@@ -56,6 +56,13 @@
 {
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 20px;
+    padding: 20px;                          /*padding = Abstand innen*/
+    margin-top: 25px;
+}
+
+.saveWorkout
+{
+    display: flex;
+    justify-content: flex-end;          /*justify-content = Anordnung auf der Hauptachse*/
     margin-top: 25px;
 }
