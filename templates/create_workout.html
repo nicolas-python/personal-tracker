@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>Trainingsplan erstellen - Personal Tracker</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="{{ url_for('static', filename='js/fitness.js') }}"></script>
 </head>
 
 <body>
@@ -14,20 +13,84 @@
         <label for="workout_name">Name des Trainingsplans:</label>
         <input type="text" id="workout_name" name="workout_name">
 
-        <div id="exercises">
-            <div class="exercise">
-                <label for="exercise1">Übung 1:</label>
+    <!--Rücken -->
+    <div class="muscle-group" id="backExercises">
+        <h2>Rücken</h2>
 
-                <select id="exercise1" name="exercise1">
-                    <option value="">Übung auswählen</option>
-                    <option value="bench_press">Bankdrücken</option>
-                    <option value="squat">Kniebeugen</option>
-                    <option value="pull_up">Klimmzüge</option>
-                    <option value="deadlift">Kreuzheben</option>
-                </select>
-            </div>
+        <div class="exercise">
+            <label for="backExercise1">Übung 1:</label>
+
+            <select id="backExercise1" name="backExercise1">
+                <option value="">Übung auswählen</option></select>
         </div>
-            <button class="addExercise" type="button" onclick="addExercise()">+ Übung hinzufügen</button>
+
+        <button class="addExercise" type="button" onclick="addBackExercise()"> + Übung hinzufügen</button>
+    </div>
+
+    <!--Brust -->
+    <div class="muscle-group" id="chestExercises">
+        <h2>Brust</h2>
+
+        <div class="exercise">
+            <label for="chestExercise1">Übung 1:</label>
+
+            <select id="chestExercise1" name="chestExercise1">
+                <option value="">Übung auswählen</option>
+            </select>
+        </div>
+
+            <button class="addExercise" type="button" onclick="addChestExercise()">+ Übung hinzufügen</button>
+    </div>
+
+    <!--Arme -->
+    <div class="muscle-group" id="armsExercises">
+        <h2>Arme</h2>
+
+        <div class="exercise">
+            <label for="armExercise1">Übung 1:</label>
+
+            <select id="armExercise1" name="armExercise1">
+                <option value="">Übung auswählen</option>
+            </select>
+        </div>
+
+            <button class="addExercise" type="button" onclick="addArmsExercise()">+ Übung hinzufügen</button>
+    </div>
+
+    <!--Schultern -->
+    <div class="muscle-group" id="shoulderExercises">
+        <h2>Schultern</h2>
+
+        <div class="exercise">
+            <label for="shoulderExercise1">Übung 1:</label>
+
+            <select id="shoulderExercise1" name="shoulderExercise1">
+                <option value="">Übung auswählen</option>
+            </select>
+        </div>
+
+        <button class="addExercise" type="button" onclick="addShoulderExercise()">+ Übung hinzufügen</button>
+    </div>
+
+    <!--Beine -->
+    <div class="muscle-group" id="legsExercises">
+        <h2>Beine</h2>
+
+        <div class="exercise">
+            <label for="legExercise1">Übung 1:</label>
+
+            <select id="legExercise1" name="legExercise1">
+                <option value="">Übung auswählen</option>
+            </select>
+        </div>
+
+        <button class="addExercise" type="button" onclick="addLegsExercise()">+ Übung hinzufügen</button>
+    </div>
+
+<script src="{{ url_for('static', filename='js/fitness.js') }}"></script>   <!-- JavaScript wird erst hier geladen, damit die HTML-Elemente bereits existieren,
+                                                                                 bevor JavaScript versucht, sie zu finden und zu verändern
+                                                                                 Wird das Script vorher geladen, findet JavaScript die HTML-Elemente nicht
+                                                                                 und die Funktionen funktionieren nicht-->
 </body>
 
 </html>
