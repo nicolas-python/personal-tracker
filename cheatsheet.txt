@@ -36,8 +36,23 @@ Passwort-Hashing = Passwort wird einseitig in einen Hash umgewandelt und nicht a
                    Beim Login wird das eingegebene Passwort mit dem gespeicherten Hash geprüft.
 
 HTML :
+class = Kennzeichnet HTML-Elemente für CSS/JavaScript
+id = Eindeutiger Name eines HTML-Elements
+
 {% if ... %} = Jinja2-Syntax =  Mit Jinja kan man innerhalb der HTML-Datei Python-ähnliche Logik benutzen
 {% for ... %} = Wiederhole etwas für mehrere Werte
 
 rel="stylesheet" = Diese verlinkte Datei ist ein Stylesheet, eine CSS-Datei die das Aussehen dieser HTML-Seite bestimmt.
+
+CSS :
+padding = Abstand zwischen Inhalt und Rand eines Elements (innen)
+margin = Abstand außerhalb eines Elements
+display: flex = Macht ein Element zu einem Flex-Container und ermöglicht flexible Anordnung der Inhalte
+justify-content = Anordnung der Elemente auf der Hauptachse z. B. flex-start = links, center = Mitte, flex-end = rechts
+align-items = Anordnung der Elemente auf der anderen Achse z. B. center = mittig
+flex-direction = Bestimmt die Richtung der Hauptachse  z.b row = waagerecht, column = senkrecht
+gap = Abstand zwischen mehreren Elementen innerhalb eines Containers
+border = Erstellt einen Rand um ein Element
+border-radius = Macht Ecken eines Elements rund
+
 

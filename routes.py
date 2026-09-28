@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash
-from database import create_database, add_user, login_user
+from database import create_database, add_user, login_user, save_workout
 
 app = Flask(__name__)
 app.secret_key = "geheimer-schluessel"         #flash verlangt einen secret_key, um zu funktionieren
@@ -62,7 +62,9 @@ def create_workout():
 
         print("Trainingsplan:", workout_name)
 
-    return render_template("create_workout.html", saved=True)
+        return render_template("create_workout.html", saved=True)
+
+    return render_template("create_workout.html")
 
 @app.route("/nutrition")
 def nutrition():
