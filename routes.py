@@ -61,6 +61,7 @@ def create_workout():
         workout_name = request.form["workout_name"]
 
         print("Trainingsplan:", workout_name)
+        flash("Trainingsplan gespeichert!", "success")
 
         return render_template("create_workout.html", saved=True)
 
