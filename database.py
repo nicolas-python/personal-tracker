@@ -54,7 +54,7 @@ def login_user(username, password):
 
     user = cursor.fetchone()
     connection.close()
-    return user is not None
+    return user
 
 def save_workout(user_id, workout_name):
     connection = sqlite3.connect(DATABASE)
@@ -68,9 +68,19 @@ def save_workout(user_id, workout_name):
     connection.commit()
     connection.close()
 
+def get_workouts(user_id):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
 
+    cursor.execute("""
+        SELECT id, name
+        FROM workouts
+        WHERE user_id = ?
+    """, (user_id,))
 
-
+    workouts = cursor.fetchall()
+    connection.close()
+    return workouts
 
 
 

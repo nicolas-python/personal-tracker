@@ -10,6 +10,14 @@
 
     <h1>Meine Trainingspläne</h1>
 
+{% for workout in workouts %}
+
+    <div class="workout">
+        Workout {{ loop.index }} = {{ workout[1] }}
+    </div>
+
+{% endfor %}
+
 </body>
 
 </html>

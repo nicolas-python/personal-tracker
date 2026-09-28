@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, flash
-from database import create_database, add_user, login_user, save_workout
+from flask import Flask, render_template, request, flash, session
+from database import create_database, add_user, login_user, save_workout, get_workouts
 
 app = Flask(__name__)
 app.secret_key = "geheimer-schluessel"         #flash verlangt einen secret_key, um zu funktionieren
@@ -38,7 +38,9 @@ def login():
         flash("Bitte Benutzername und Passwort eingeben", "error")
         return render_template("login.html")
 
-    if login_user(username, password):
+    user = login_user(username, password)
+    if user:
+        session["user_id"] = user[0]
         flash("Login erfolgreich!", "success")              #flash(Nachricht, Kategorie) = Kategorie gibt an, um welche Art von Nachricht es sich handelt
 
     else:
@@ -59,17 +61,19 @@ def fitness():
 def create_workout():
     if request.method == "POST":
         workout_name = request.form["workout_name"]
+        save_workout(session["user_id"], workout_name)
 
-        print("Trainingsplan:", workout_name)
         flash("Trainingsplan gespeichert!", "success")
-
         return render_template("create_workout.html", saved=True)
 
     return render_template("create_workout.html")
 
 @app.route("/my_workouts")
 def my_workouts():
-    return render_template("my_workouts.html")
+    workouts = get_workouts(session["user_id"])
+    print("Workouts:", workouts)
+
+    return render_template("my_workouts.html", workouts=workouts)           #workouts=workouts= Python-Übergabe an HTML
 
 @app.route("/nutrition")
 def nutrition():
