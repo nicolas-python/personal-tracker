@@ -67,6 +67,10 @@ def create_workout():
 
     return render_template("create_workout.html")
 
+@app.route("/my_workouts")
+def my_workouts():
+    return render_template("my_workouts.html")
+
 @app.route("/nutrition")
 def nutrition():
     return render_template("nutrition.html")
