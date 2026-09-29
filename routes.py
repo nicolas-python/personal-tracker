@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session
-from database import create_database, add_user, login_user, save_workout, get_workouts
+from database import create_database, add_user, login_user, save_workout, get_workouts, get_workout_exercises
 
 app = Flask(__name__)
 app.secret_key = "geheimer-schluessel"         #flash verlangt einen secret_key, um zu funktionieren
@@ -61,8 +61,18 @@ def fitness():
 def create_workout():
     if request.method == "POST":
         workout_name = request.form["workout_name"]
-        save_workout(session["user_id"], workout_name)
+        exercises = []
 
+        for key in request.form:
+            if key != "workout_name":
+                exercise = request.form[key]
+
+                if exercise:
+                    exercises.append(exercise)
+
+        save_workout(session["user_id"], workout_name, exercises)
+
+        print("Exercises:", exercises)
         flash("Trainingsplan gespeichert!", "success")
         return render_template("create_workout.html", saved=True)
 
@@ -71,9 +81,13 @@ def create_workout():
 @app.route("/my_workouts")
 def my_workouts():
     workouts = get_workouts(session["user_id"])
-    print("Workouts:", workouts)
+    workout_exercises = {}
 
-    return render_template("my_workouts.html", workouts=workouts)           #workouts=workouts= Python-Übergabe an HTML
+    for workout in workouts:
+        workout_id = workout[0]
+        workout_exercises[workout_id] = get_workout_exercises(workout_id)
+
+    return render_template("my_workouts.html",workouts=workouts,workout_exercises=workout_exercises)           #workouts=workouts= Python-Übergabe an HTML
 
 @app.route("/nutrition")
 def nutrition():
