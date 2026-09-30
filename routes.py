@@ -64,11 +64,16 @@ def create_workout():
         exercises = []
 
         for key in request.form:
-            if key != "workout_name":
+            if "Exercise" in key and request.form[key]:
                 exercise = request.form[key]
 
-                if exercise:
-                    exercises.append(exercise)
+                sets = request.form[key.replace("Exercise", "Sets")]
+                reps = request.form[key.replace("Exercise", "Reps")]
+                weight = request.form[key.replace("Exercise", "Weight")]
+
+                print(exercise, sets, reps, weight)
+                exercises.append((exercise, sets, reps, weight))
+                print("Exercises:", exercises)
 
         print("Formular:", request.form)
         save_workout(session["user_id"], workout_name, exercises)

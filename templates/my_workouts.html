@@ -18,7 +18,13 @@
             <div class="exercises">
                 {% for exercise in workout_exercises[workout[0]] %}
                 <div>
-                    {{ exercise[0] }}
+                    <div class="exercise">
+                        <strong>{{ exercise[0] }}:</strong>
+
+                        <div>Sätze: {{ exercise[1] }}</div>
+                        <div>Wiederholungen: {{ exercise[2] }}</div>
+                        <div>Gewicht: {{ exercise[3] }} kg</div>
+                    </div>
                 </div>
                 {% endfor %}
             </div>

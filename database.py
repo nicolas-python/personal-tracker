@@ -32,6 +32,9 @@ def create_database():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             workout_id INTEGER NOT NULL,
             exercise_name TEXT NOT NULL,
+            sets INTEGER NOT NULL,
+            reps INTEGER NOT NULL,
+            weight REAL NOT NULL,
             FOREIGN KEY(workout_id) REFERENCES workouts(id)
         )
     """)
@@ -70,19 +73,19 @@ def save_workout(user_id, workout_name, exercises):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
 
-    #workout speichern
+    #workout name und user id speichern
     cursor.execute("""
         INSERT INTO workouts (user_id, name)
         VALUES (?, ?)
     """, (user_id, workout_name))
 
-    #id speichern
+    #Übungen speichern
     workout_id = cursor.lastrowid
-    for exercise in exercises:
+    for exercise, sets, reps, weight in exercises:
         cursor.execute("""
-            INSERT INTO workout_exercises (workout_id, exercise_name)
-            VALUES (?, ?)
-            """,(workout_id, exercise))
+        INSERT INTO workout_exercises (workout_id,exercise_name,sets,reps,weight)
+        VALUES (?, ?, ?, ?, ?)
+            """,(workout_id, exercise, sets, reps, weight))
 
     connection.commit()
     connection.close()
@@ -106,7 +109,7 @@ def get_workout_exercises(workout_id):
     cursor = connection.cursor()
 
     cursor.execute("""
-        SELECT exercise_name
+        SELECT exercise_name, sets, reps, weight
         FROM workout_exercises
         WHERE workout_id = ?
     """, (workout_id,))
@@ -115,17 +118,4 @@ def get_workout_exercises(workout_id):
     connection.close()
     return exercises
 
-
-
-
-def show_users():
-    connection = sqlite3.connect(DATABASE)
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM users")
-    users = cursor.fetchall()
-    for user in users:
-        print(user)
-    connection.close()
-
 create_database()
-show_users()
