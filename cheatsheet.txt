@@ -41,6 +41,8 @@ HTML :
 class = Kennzeichnet HTML-Elemente für CSS/JavaScript
 id = Eindeutiger Name eines HTML-Elements
 loop.index = aktuelle Nummer im Durchlauf
+setsInput.type = "number" ist der HTML-Eingabetyp und erlaubt Zahleneingaben
+step = "0.5" = bestimmt die Schrittweite bei einer Zahleneingabe
 
 {% if ... %} = Jinja2-Syntax =  Mit Jinja kan man innerhalb der HTML-Datei Python-ähnliche Logik benutzen
 {% for ... %} = Wiederhole etwas für mehrere Werte

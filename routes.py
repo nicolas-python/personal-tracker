@@ -70,9 +70,9 @@ def create_workout():
                 if exercise:
                     exercises.append(exercise)
 
+        print("Formular:", request.form)
         save_workout(session["user_id"], workout_name, exercises)
 
-        print("Exercises:", exercises)
         flash("Trainingsplan gespeichert!", "success")
         return render_template("create_workout.html", saved=True)
 
