@@ -80,8 +80,8 @@ def create_workout():
 
     return render_template("create_workout.html")
 
-@app.route("/my_workouts")
-def my_workouts():
+@app.route("/workouts")
+def workouts():
     workouts = get_workouts(session["user_id"])
     workout_exercises = {}
 
@@ -89,7 +89,7 @@ def my_workouts():
         workout_id = workout[0]
         workout_exercises[workout_id] = get_workout_exercises(workout_id)
 
-    return render_template("my_workouts.html",workouts=workouts,workout_exercises=workout_exercises)           #workouts=workouts= Python-Übergabe an HTML
+    return render_template("workouts.html",workouts=workouts,workout_exercises=workout_exercises)           #workouts=workouts= Python-Übergabe an HTML
 
 @app.route("/nutrition")
 def nutrition():
