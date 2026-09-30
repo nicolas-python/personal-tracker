@@ -71,11 +71,8 @@ def create_workout():
                 reps = request.form[key.replace("Exercise", "Reps")]
                 weight = request.form[key.replace("Exercise", "Weight")]
 
-                print(exercise, sets, reps, weight)
                 exercises.append((exercise, sets, reps, weight))
-                print("Exercises:", exercises)
 
-        print("Formular:", request.form)
         save_workout(session["user_id"], workout_name, exercises)
 
         flash("Trainingsplan gespeichert!", "success")
