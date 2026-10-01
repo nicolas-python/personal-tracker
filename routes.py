@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session
-from database import create_database, add_user, login_user, save_workout, get_workouts, get_workout_exercises
+from database import create_database, add_user, login_user, save_workout, get_workouts, get_workout_exercises, get_workout
 
 app = Flask(__name__)
 app.secret_key = "geheimer-schluessel"         #flash verlangt einen secret_key, um zu funktionieren
@@ -76,7 +76,7 @@ def create_workout():
         save_workout(session["user_id"], workout_name, exercises)
 
         flash("Trainingsplan gespeichert!", "success")
-        return render_template("create_workout.html", saved=True)
+        return render_template("create_workout.html", exercises=[], saved=True)
 
     return render_template("create_workout.html")
 
@@ -89,7 +89,15 @@ def workouts():
         workout_id = workout[0]
         workout_exercises[workout_id] = get_workout_exercises(workout_id)
 
-    return render_template("workouts.html",workouts=workouts,workout_exercises=workout_exercises)           #workouts=workouts= Python-Übergabe an HTML
+    return render_template("workouts.html",workouts=workouts,workout_exercises=workout_exercises)
+
+@app.route("/edit-workout/<int:workout_id>")
+def edit_workout(workout_id):
+
+    workout = get_workout(workout_id)
+    exercises = get_workout_exercises(workout_id)
+
+    return render_template("create_workout.html",workout=workout,exercises=exercises)
 
 @app.route("/nutrition")
 def nutrition():

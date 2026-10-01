@@ -104,6 +104,20 @@ def get_workouts(user_id):
     connection.close()
     return workouts
 
+def get_workout(workout_id):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT id, name
+        FROM workouts
+        WHERE id = ?
+    """, (workout_id,))
+
+    workout = cursor.fetchone()
+    connection.close()
+    return workout
+
 def get_workout_exercises(workout_id):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()

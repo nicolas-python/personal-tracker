@@ -30,7 +30,8 @@
                 </div>
                 {% endfor %}
             </div>
-
+        <div class="workout-actions"><a href="{{ url_for('edit_workout', workout_id=workout[0]) }}">✏️</a>
+        </div>
         </div>
     {% endfor %}
 </body>

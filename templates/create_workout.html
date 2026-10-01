@@ -23,7 +23,7 @@
 
     <h1>Trainingsplan erstellen</h1>
         <label for="workout_name">Name des Trainingsplans:</label>
-        <input type="text" id="workout_name" name="workout_name">
+        <input type="text" id="workout_name" name="workout_name" value="{{ workout[1] if workout else '' }}">
 
     <!--Rücken -->
     <div class="backWorkout">
@@ -150,6 +150,9 @@
         <button class="addExercise" type="button" onclick="addLegsExercise()">+ Übung hinzufügen</button>
     </div>
 
+<script>
+    const savedExercises = {{ exercises | tojson }};
+</script>
 <script src="{{ url_for('static', filename='js/fitness.js') }}"></script>   <!-- JavaScript wird erst hier geladen, damit die HTML-Elemente bereits existieren,
                                                                                  bevor JavaScript versucht, sie zu finden und zu verändern
                                                                                  Wird das Script vorher geladen, findet JavaScript die HTML-Elemente nicht

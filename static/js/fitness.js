@@ -430,3 +430,130 @@ function addLegsExercise()
 
     legsExercises.appendChild(exercise);
 }
+
+//-------------------------------------------bearbeitung workout-------------------------------------------
+function loadSavedExercises()
+{
+    if (savedExercises.length === 0)
+    {
+        return;
+    }
+
+    let counts = {back: 1, chest: 1, arms: 1, shoulder: 1, legs: 1};
+    for (const exerciseData of savedExercises)
+    {
+        const exerciseName = exerciseData[0];
+        const sets = exerciseData[1];
+        const reps = exerciseData[2];
+        const weight = exerciseData[3];
+
+        let category;
+        if (exercises.back.includes(exerciseName))
+        {
+            category = "back";
+        }
+        else if (exercises.chest.includes(exerciseName))
+        {
+            category = "chest";
+        }
+        else if (exercises.arms.includes(exerciseName))
+        {
+            category = "arms";
+        }
+        else if (exercises.shoulder.includes(exerciseName))
+        {
+            category = "shoulder";
+        }
+        else if (exercises.legs.includes(exerciseName))
+        {
+            category = "legs";
+        }
+
+        if (category === "back")
+        {
+            const number = counts.back;
+
+            document.getElementById("backExercise" + number).value = exerciseName;
+            document.getElementById("backSets" + number).value = sets;
+            document.getElementById("backReps" + number).value = reps;
+            document.getElementById("backWeight" + number).value = weight;
+
+            counts.back++;
+
+            if (counts.back <= savedExercises.length)
+            {
+                addBackExercise();
+            }
+        }
+
+        else if (category === "chest")
+        {
+            const number = counts.chest;
+
+            document.getElementById("chestExercise" + number).value = exerciseName;
+            document.getElementById("chestSets" + number).value = sets;
+            document.getElementById("chestReps" + number).value = reps;
+            document.getElementById("chestWeight" + number).value = weight;
+
+            counts.chest++;
+
+            if (counts.chest <= savedExercises.length)
+            {
+                addChestExercise();
+            }
+        }
+
+        else if (category === "arms")
+        {
+            const number = counts.arms;
+
+            document.getElementById("armsExercise" + number).value = exerciseName;
+            document.getElementById("armSets" + number).value = sets;
+            document.getElementById("armReps" + number).value = reps;
+            document.getElementById("armWeight" + number).value = weight;
+
+            counts.arms++;
+
+            if (counts.arms <= savedExercises.length)
+            {
+                addArmsExercise();
+            }
+        }
+
+        else if (category === "shoulder")
+        {
+            const number = counts.shoulder;
+
+            document.getElementById("shoulderExercise" + number).value = exerciseName;
+            document.getElementById("shoulderSets" + number).value = sets;
+            document.getElementById("shoulderReps" + number).value = reps;
+            document.getElementById("shoulderWeight" + number).value = weight;
+
+            counts.shoulder++;
+
+            if (counts.shoulder <= savedExercises.length)
+            {
+                addShoulderExercise();
+            }
+        }
+
+        else if (category === "legs")
+        {
+            const number = counts.legs;
+
+            document.getElementById("legsExercise" + number).value = exerciseName;
+            document.getElementById("legSets" + number).value = sets;
+            document.getElementById("legReps" + number).value = reps;
+            document.getElementById("legWeight" + number).value = weight;
+
+            counts.legs++;
+
+            if (counts.legs <= savedExercises.length)
+            {
+                addLegsExercise();
+            }
+        }
+    }
+}
+
+loadSavedExercises();

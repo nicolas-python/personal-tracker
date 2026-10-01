@@ -23,6 +23,14 @@ static
     js
         -fitness.js
 
+
+js:
+++  =  um 1 erhöhen
+-- = um 1 verringern
+includes() = prüft, ob ein Wert in einer Liste vorhanden ist
+=== = vergleicht, ob zwei Werte exakt gleich sind
+
+
 flask elemente:
 
 request = Zugriff auf die vom Browser gesendeten Daten
