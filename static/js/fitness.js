@@ -116,7 +116,6 @@ function addBackExercise()
     weightInput.type = "number";
     weightInput.id = "backWeight" + (exerciseCount + 1);
     weightInput.name = "backWeight" + (exerciseCount + 1);
-    exercise.appendChild(deleteButton);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -132,7 +131,8 @@ function addBackExercise()
     exercise.appendChild(weightLabel);
     exercise.appendChild(weightInput);
 
-    backExercises.appendChild(exercise);
+    exercise.appendChild(deleteButton);
+    backExercises.insertBefore(exercise, backExercises.querySelector(".addExercise"));
 }
 
 
@@ -193,7 +193,6 @@ function addChestExercise()
     weightInput.type = "number";
     weightInput.id = "chestWeight" + (exerciseCount + 1);
     weightInput.name = "chestWeight" + (exerciseCount + 1);
-    exercise.appendChild(deleteButton);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -209,7 +208,8 @@ function addChestExercise()
     exercise.appendChild(weightLabel);
     exercise.appendChild(weightInput);
 
-    chestExercises.appendChild(exercise);
+    exercise.appendChild(deleteButton);
+    chestExercises.insertBefore(exercise, chestExercises.querySelector(".addExercise"));
 }
 
 function addArmsExercise()
@@ -269,7 +269,6 @@ function addArmsExercise()
     weightInput.type = "number";
     weightInput.id = "armWeight" + (exerciseCount + 1);
     weightInput.name = "armWeight" + (exerciseCount + 1);
-    exercise.appendChild(deleteButton);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -285,7 +284,8 @@ function addArmsExercise()
     exercise.appendChild(weightLabel);
     exercise.appendChild(weightInput);
 
-    armsExercises.appendChild(exercise);
+    exercise.appendChild(deleteButton);
+    armsExercises.insertBefore(exercise, armsExercises.querySelector(".addExercise"));
 }
 
 function addShoulderExercise()
@@ -345,7 +345,6 @@ function addShoulderExercise()
     weightInput.type = "number";
     weightInput.id = "shoulderWeight" + (exerciseCount + 1);
     weightInput.name = "shoulderWeight" + (exerciseCount + 1);
-    exercise.appendChild(deleteButton);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -361,7 +360,8 @@ function addShoulderExercise()
     exercise.appendChild(weightLabel);
     exercise.appendChild(weightInput);
 
-    shoulderExercises.appendChild(exercise);
+    exercise.appendChild(deleteButton);
+    shoulderExercises.insertBefore(exercise, shoulderExercises.querySelector(".addExercise"));
 }
 
 function addLegsExercise()
@@ -421,7 +421,6 @@ function addLegsExercise()
     weightInput.type = "number";
     weightInput.id = "legWeight" + (exerciseCount + 1);
     weightInput.name = "legWeight" + (exerciseCount + 1);
-    exercise.appendChild(deleteButton);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -438,7 +437,8 @@ function addLegsExercise()
     exercise.appendChild(weightLabel);
     exercise.appendChild(weightInput);
 
-    legsExercises.appendChild(exercise);
+    exercise.appendChild(deleteButton);
+    legsExercises.insertBefore(exercise, legsExercises.querySelector(".addExercise"));
 }
 
 function deleteExercise(exercise)

@@ -29,7 +29,8 @@ js:
 -- = um 1 verringern
 includes() = prüft, ob ein Wert in einer Liste vorhanden ist
 === = vergleicht, ob zwei Werte exakt gleich sind
-
+insertBefore() = setzt ein neues Element vor ein anderes Element
+querySelector() = sucht ein HTML-Element, das zu diesem Suchmuster passt
 
 flask elemente:
 
