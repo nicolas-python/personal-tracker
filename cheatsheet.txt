@@ -33,7 +33,6 @@ insertBefore() = setzt ein neues Element vor ein anderes Element
 querySelector() = sucht ein HTML-Element, das zu diesem Suchmuster passt
 
 flask elemente:
-
 request = Zugriff auf die vom Browser gesendeten Daten
 request.form = Zugriff auf Daten aus einem HTML-Formular
 flash = Nachricht für die nächste Seite speichern
@@ -52,7 +51,11 @@ id = Eindeutiger Name eines HTML-Elements
 loop.index = aktuelle Nummer im Durchlauf
 setsInput.type = "number" ist der HTML-Eingabetyp und erlaubt Zahleneingaben
 step = "0.5" = bestimmt die Schrittweite bei einer Zahleneingabe
+JSON.parse() = Lies diesen Text und mach daraus echte JavaScript-Daten
 
+Jinja/Jinja2
+Jinja = Template-Sprache von Flask, mit der HTML dynamisch erzeugt werden kann
+tojson = wandelt Python-Daten in JavaScript-kompatible Daten um
 {% if ... %} = Jinja2-Syntax =  Mit Jinja kan man innerhalb der HTML-Datei Python-ähnliche Logik benutzen
 {% for ... %} = Wiederhole etwas für mehrere Werte
 

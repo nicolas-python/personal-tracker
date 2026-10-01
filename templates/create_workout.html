@@ -33,125 +33,35 @@
     <!--Rücken -->
     <div class="muscle-group" id="backExercises">
         <h2>Rücken</h2>
-
-        <div class="exercise">
-            <label for="backExercise1">Übung 1:</label>
-
-            <select id="backExercise1" name="backExercise1">
-                <option value="">Übung auswählen</option>
-            </select>
-
-            <label for="backSets1">Sätze:</label>
-            <input type="number" id="backSets1" name="backSets1" min="1">
-
-            <label for="backReps1">Wiederholungen:</label>
-            <input type="number" id="backReps1" name="backReps1" min="1">
-
-            <label for="backWeight1">Gewicht:</label>
-            <input type="number" id="backWeight1" name="backWeight1" min="0" step="0.5">
-        </div>
-
-        <button class="addExercise" type="button" onclick="addBackExercise()"> + Übung hinzufügen</button>
+            <button class="addExercise" type="button" onclick="addBackExercise()"> + Übung hinzufügen</button>
     </div>
 
     <!--Brust -->
     <div class="muscle-group" id="chestExercises">
         <h2>Brust</h2>
-
-        <div class="exercise">
-            <label for="chestExercise1">Übung 1:</label>
-
-            <select id="chestExercise1" name="chestExercise1">
-                <option value="">Übung auswählen</option>
-            </select>
-
-            <label for="chestSets1">Sätze:</label>
-            <input type="number" id="chestSets1" name="chestSets1" min="1">
-
-            <label for="chestReps1">Wiederholungen:</label>
-            <input type="number" id="chestReps1" name="chestReps1" min="1">
-
-            <label for="chestWeight1">Gewicht:</label>
-            <input type="number" id="chestWeight1" name="chestWeight1" min="0" step="0.5">
-        </div>
-
             <button class="addExercise" type="button" onclick="addChestExercise()">+ Übung hinzufügen</button>
     </div>
 
     <!--Arme -->
     <div class="muscle-group" id="armsExercises">
         <h2>Arme</h2>
-
-        <div class="exercise">
-            <label for="armExercise1">Übung 1:</label>
-
-            <select id="armExercise1" name="armExercise1">
-                <option value="">Übung auswählen</option>
-            </select>
-
-            <label for="armSets1">Sätze:</label>
-            <input type="number" id="armSets1" name="armSets1" min="1">
-
-            <label for="armReps1">Wiederholungen:</label>
-            <input type="number" id="armReps1" name="armReps1" min="1">
-
-            <label for="armWeight1">Gewicht:</label>
-            <input type="number" id="armWeight1" name="armWeight1" min="0" step="0.5">
-        </div>
-
             <button class="addExercise" type="button" onclick="addArmsExercise()">+ Übung hinzufügen</button>
     </div>
 
     <!--Schultern -->
     <div class="muscle-group" id="shoulderExercises">
         <h2>Schultern</h2>
-
-        <div class="exercise">
-            <label for="shoulderExercise1">Übung 1:</label>
-
-            <select id="shoulderExercise1" name="shoulderExercise1">
-                <option value="">Übung auswählen</option>
-            </select>
-
-            <label for="shoulderSets1">Sätze:</label>
-            <input type="number" id="shoulderSets1" name="shoulderSets1" min="1">
-
-            <label for="shoulderReps1">Wiederholungen:</label>
-            <input type="number" id="shoulderReps1" name="shoulderReps1" min="1">
-
-            <label for="shoulderWeight1">Gewicht:</label>
-            <input type="number" id="shoulderWeight1" name="shoulderWeight1" min="0" step="0.5">
-        </div>
-
-        <button class="addExercise" type="button" onclick="addShoulderExercise()">+ Übung hinzufügen</button>
+            <button class="addExercise" type="button" onclick="addShoulderExercise()">+ Übung hinzufügen</button>
     </div>
 
     <!--Beine -->
     <div class="muscle-group" id="legsExercises">
         <h2>Beine</h2>
-
-        <div class="exercise">
-            <label for="legExercise1">Übung 1:</label>
-
-            <select id="legExercise1" name="legExercise1">
-                <option value="">Übung auswählen</option>
-            </select>
-
-            <label for="legSets1">Sätze:</label>
-            <input type="number" id="legSets1" name="legSets1" min="1">
-
-            <label for="legReps1">Wiederholungen:</label>
-            <input type="number" id="legReps1" name="legReps1" min="1">
-
-            <label for="legWeight1">Gewicht:</label>
-            <input type="number" id="legWeight1" name="legWeight1" min="0" step="0.5">
-        </div>
-
-        <button class="addExercise" type="button" onclick="addLegsExercise()">+ Übung hinzufügen</button>
+            <button class="addExercise" type="button" onclick="addLegsExercise()">+ Übung hinzufügen</button>
     </div>
 
 <script>
-    const savedExercises = {{ exercises | tojson }};
+    const savedExercises = JSON.parse('{{ exercises | tojson }}');          <!-- Python-Daten werden zuerst in JSON umgewandelt (tojson) und danach von JavaScript wieder als Daten eingelesen (JSON.parse) -->
 </script>
 <script src="{{ url_for('static', filename='js/fitness.js') }}"></script>   <!-- JavaScript wird erst hier geladen, damit die HTML-Elemente bereits existieren,
                                                                                  bevor JavaScript versucht, sie zu finden und zu verändern

@@ -78,7 +78,7 @@ def create_workout():
         flash("Trainingsplan gespeichert!", "success")
         return render_template("create_workout.html", exercises=[], saved=True)
 
-    return render_template("create_workout.html")
+    return render_template("create_workout.html", exercises=[])
 
 @app.route("/workouts")
 def workouts():

@@ -585,5 +585,10 @@ function loadSavedExercises()
         }
     }
 }
+addBackExercise();
+addChestExercise()
+addArmsExercise()
+addShoulderExercise()
+addLegsExercise()
 
 loadSavedExercises();
