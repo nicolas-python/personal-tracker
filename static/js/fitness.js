@@ -66,6 +66,7 @@ function addBackExercise()
 
     const exercise = document.createElement("div");
     exercise.className = "exercise";
+    const deleteButton = createDeleteButton(exercise);
 
     const label = document.createElement("label");
     label.textContent = "Übung " + (exerciseCount + 1) + ":";
@@ -115,6 +116,7 @@ function addBackExercise()
     weightInput.type = "number";
     weightInput.id = "backWeight" + (exerciseCount + 1);
     weightInput.name = "backWeight" + (exerciseCount + 1);
+    exercise.appendChild(deleteButton);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -141,6 +143,7 @@ function addChestExercise()
 
     const exercise = document.createElement("div");
     exercise.className = "exercise";
+    const deleteButton = createDeleteButton(exercise);
 
     const label = document.createElement("label");
     label.textContent = "Übung " + (exerciseCount + 1) + ":";
@@ -190,6 +193,7 @@ function addChestExercise()
     weightInput.type = "number";
     weightInput.id = "chestWeight" + (exerciseCount + 1);
     weightInput.name = "chestWeight" + (exerciseCount + 1);
+    exercise.appendChild(deleteButton);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -215,6 +219,7 @@ function addArmsExercise()
 
     const exercise = document.createElement("div");
     exercise.className = "exercise";
+    const deleteButton = createDeleteButton(exercise);
 
     const label = document.createElement("label");
     label.textContent = "Übung " + (exerciseCount + 1) + ":";
@@ -264,6 +269,7 @@ function addArmsExercise()
     weightInput.type = "number";
     weightInput.id = "armWeight" + (exerciseCount + 1);
     weightInput.name = "armWeight" + (exerciseCount + 1);
+    exercise.appendChild(deleteButton);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -289,6 +295,7 @@ function addShoulderExercise()
 
     const exercise = document.createElement("div");
     exercise.className = "exercise";
+    const deleteButton = createDeleteButton(exercise);
 
     const label = document.createElement("label");
     label.textContent = "Übung " + (exerciseCount + 1) + ":";
@@ -338,6 +345,7 @@ function addShoulderExercise()
     weightInput.type = "number";
     weightInput.id = "shoulderWeight" + (exerciseCount + 1);
     weightInput.name = "shoulderWeight" + (exerciseCount + 1);
+    exercise.appendChild(deleteButton);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -363,6 +371,7 @@ function addLegsExercise()
 
     const exercise = document.createElement("div");
     exercise.className = "exercise";
+    const deleteButton = createDeleteButton(exercise);
 
     const label = document.createElement("label");
     label.textContent = "Übung " + (exerciseCount + 1) + ":";
@@ -412,6 +421,7 @@ function addLegsExercise()
     weightInput.type = "number";
     weightInput.id = "legWeight" + (exerciseCount + 1);
     weightInput.name = "legWeight" + (exerciseCount + 1);
+    exercise.appendChild(deleteButton);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -429,6 +439,26 @@ function addLegsExercise()
     exercise.appendChild(weightInput);
 
     legsExercises.appendChild(exercise);
+}
+
+function deleteExercise(exercise)
+{
+    exercise.remove();
+}
+
+function createDeleteButton(exercise)
+{
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.textContent = "Löschen";
+    deleteButton.className = "deleteButton";
+
+    deleteButton.onclick = function()
+    {
+        deleteExercise(exercise);
+    };
+
+    return deleteButton;
 }
 
 //-------------------------------------------bearbeitung workout-------------------------------------------
