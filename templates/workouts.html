@@ -21,9 +21,11 @@
                     <div class="exercise">
                         <strong>{{ exercise[0] }}:</strong>
 
-                        <div>Sätze: {{ exercise[1] }}</div>
-                        <div>Wiederholungen: {{ exercise[2] }}</div>
-                        <div>Gewicht: {{ exercise[3] }} kg</div>
+                            <div>Sätze: {{ exercise[1] }}</div>
+                            <div>Wiederholungen: {{ exercise[2] }}</div>
+                        {% if exercise[3]|float > 0 %}
+                            <div>Gewicht: {{ exercise[3] }} kg</div>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
