@@ -9,8 +9,23 @@
 
 <body>
 
-    <h1>Trainingsplan starten</h1>
+    <h1>{{ workout[1] }}</h1>
+    <button type="button">Trainingsplan starten</button>
+    <div id="timer">00:00</div>
 
+        <div id="current-exercise">
+                <h2>Übung 1</h2>
+                <h3>{{ exercises[0][0] }}</h3>
+                <!-- [0] = erste Übung, [0] = Name der Übung
+                     exercises[0][0] = Bankdrücken
+                     exercises[0][1] = 3 Sätze
+                     exercises[0][2] = 15 Wiederholungen
+                     exercises[0][3] = 80 kg -->
+                <p>{{ exercises[0][1] }} Sätze × {{ exercises[0][2] }} Wiederholungen - {{ exercises[0][3] }} kg</p>
+                <button type="button">Starten</button>
+                <p>Fortschritt: 1 von {{ exercises[0][1] }}</p>
+
+        </div>
 </body>
 
 </html>

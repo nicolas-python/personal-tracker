@@ -101,7 +101,10 @@ def edit_workout(workout_id):
 
 @app.route("/start-workout/<int:workout_id>")               #id
 def start_workout(workout_id):
-    return render_template("start_workout.html")
+    workout = get_workout(workout_id)
+    exercises = get_workout_exercises(workout_id)
+
+    return render_template("start_workout.html", workout=workout, exercises=exercises)
 
 
 @app.route("/nutrition")
