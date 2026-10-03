@@ -64,16 +64,17 @@ startButton.addEventListener("click", function()
 
                                         //Fortschirttanzeige
 let progress = 1;
-
+const maxProgress = Number("{{ exercises[0][1] }}");
 const nextButton = document.getElementById("nextExercise");
 const progressDisplay = document.getElementById("progress");
 
 nextButton.addEventListener("click", function()
 {
-
-    progress++;
-
-    progressDisplay.textContent = progress;
+    if (progress < maxProgress)
+    {
+        progress++;
+        progressDisplay.textContent = progress;
+    }
 
 });
 </script>

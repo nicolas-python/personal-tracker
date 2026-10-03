@@ -24,7 +24,7 @@ static
         -fitness.js
 
 
-js:
+JavaScript:
 ++  =  um 1 erhöhen
 -- = um 1 verringern
 includes() = prüft, ob ein Wert in einer Liste vorhanden ist
@@ -32,6 +32,8 @@ includes() = prüft, ob ein Wert in einer Liste vorhanden ist
 !== = ist nicht gleich
 insertBefore() = setzt ein neues Element vor ein anderes Element
 querySelector() = sucht ein HTML-Element, das zu diesem Suchmuster passt
+Number() = macht aus dem String z.b "3" wieder die Zahl 3
+const = speichert den Wert in einer Variable
 
 flask elemente:
 request = Zugriff auf die vom Browser gesendeten Daten
@@ -39,7 +41,6 @@ request.form = Zugriff auf Daten aus einem HTML-Formular
 flash = Nachricht für die nächste Seite speichern
 redirect = Browser zu einer anderen Route schicken
 session = merkt sich welcher Benutzer gerade eingeloggt ist
-
 
 Datenbank:
 Passwort-Hashing = Passwort wird einseitig in einen Hash umgewandelt und nicht als Klartext gespeichert.
