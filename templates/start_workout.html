@@ -10,7 +10,7 @@
 <body>
 
     <h1>{{ workout[1] }}</h1>
-    <button type="button">Trainingsplan starten</button>
+    <button id="startWorkout" type="button">Trainingsplan starten</button>
     <div id="timer">00:00</div>
 
         <div id="current-exercise">
@@ -26,6 +26,41 @@
                 <p>Fortschritt: 1 von {{ exercises[0][1] }}</p>
 
         </div>
+
+<script>
+let seconds = 0;
+let timer = null;
+
+const startButton = document.getElementById("startWorkout");
+const timerDisplay = document.getElementById("timer");
+
+startButton.addEventListener("click", function()
+{
+//nur 1 timer
+    if (timer !== null)
+    {
+        return;
+    }
+
+    timer = setInterval(function()
+    {
+        seconds++;
+
+        //minuten berechnen
+        const minutes = Math.floor(seconds / 60);
+
+        //sekunden innerhalb der aktuellen Minute berechnen
+        const remainingSeconds = seconds % 60;
+
+        //optic MM:SS
+        const formattedMinutes = String(minutes).padStart(2, "0");    //String(minutes) macht die Zahl zum String
+        const formattedSeconds = String(remainingSeconds).padStart(2, "0"); //padStart ergänzt bei Bedarf 0 vorne
+
+        //timer auf der Seite aktualisieren
+        timerDisplay.textContent = formattedMinutes + ":" + formattedSeconds;
+    }, 1000);
+});
+</script>
 </body>
 
 </html>

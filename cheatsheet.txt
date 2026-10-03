@@ -29,6 +29,7 @@ js:
 -- = um 1 verringern
 includes() = prüft, ob ein Wert in einer Liste vorhanden ist
 === = vergleicht, ob zwei Werte exakt gleich sind
+!== = ist nicht gleich
 insertBefore() = setzt ein neues Element vor ein anderes Element
 querySelector() = sucht ein HTML-Element, das zu diesem Suchmuster passt
 
@@ -72,3 +73,5 @@ flex-direction = Bestimmt die Richtung der Hauptachse  z.b row = waagerecht, col
 gap = Abstand zwischen mehreren Elementen innerhalb eines Containers
 border = Erstellt einen Rand um ein Element
 border-radius = Macht Ecken eines Elements rund
+# = bedeutet ID
+. = classe
