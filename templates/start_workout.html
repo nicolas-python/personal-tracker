@@ -22,12 +22,13 @@
                      exercises[0][2] = 15 Wiederholungen
                      exercises[0][3] = 80 kg -->
                 <p>{{ exercises[0][1] }} Sätze × {{ exercises[0][2] }} Wiederholungen - {{ exercises[0][3] }} kg</p>
-                <button type="button">Starten</button>
-                <p>Fortschritt: 1 von {{ exercises[0][1] }}</p>
+                <button id="nextExercise" type="button">Next</button>
+                <p>Fortschritt: <span id="progress">1</span> von {{ exercises[0][1] }}</p>
 
         </div>
 
 <script>
+                                    // Timer
 let seconds = 0;
 let timer = null;
 
@@ -59,6 +60,21 @@ startButton.addEventListener("click", function()
         //timer auf der Seite aktualisieren
         timerDisplay.textContent = formattedMinutes + ":" + formattedSeconds;
     }, 1000);
+});
+
+                                        //Fortschirttanzeige
+let progress = 1;
+
+const nextButton = document.getElementById("nextExercise");
+const progressDisplay = document.getElementById("progress");
+
+nextButton.addEventListener("click", function()
+{
+
+    progress++;
+
+    progressDisplay.textContent = progress;
+
 });
 </script>
 </body>
