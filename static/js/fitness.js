@@ -481,6 +481,11 @@ function loadSavedExercises()
 
         if (category === "back")
         {
+             if (counts.back === 1)
+                {
+                    addBackExercise();
+                }
+
             const number = counts.back;
 
             document.getElementById("backExercise" + number).value = exerciseName;
@@ -490,7 +495,7 @@ function loadSavedExercises()
 
             counts.back++;
 
-            if (counts.back <= savedExercises.length)
+            if (counts.back <= savedExercises.filter(exercise => exercises.back.includes(exercise[0])).length)
             {
                 addBackExercise();
             }
@@ -498,6 +503,11 @@ function loadSavedExercises()
 
         else if (category === "chest")
         {
+            if (counts.chest === 1)
+                {
+                    addChestExercise();
+                }
+
             const number = counts.chest;
 
             document.getElementById("chestExercise" + number).value = exerciseName;
@@ -507,7 +517,7 @@ function loadSavedExercises()
 
             counts.chest++;
 
-            if (counts.chest <= savedExercises.length)
+            if (counts.chest <= savedExercises.filter(exercise => exercises.chest.includes(exercise[0])).length)
             {
                 addChestExercise();
             }
@@ -515,6 +525,11 @@ function loadSavedExercises()
 
         else if (category === "arms")
         {
+            if (counts.arms === 1)
+                {
+                    addArmsExercise();
+                }
+
             const number = counts.arms;
 
             document.getElementById("armsExercise" + number).value = exerciseName;
@@ -524,7 +539,7 @@ function loadSavedExercises()
 
             counts.arms++;
 
-            if (counts.arms <= savedExercises.length)
+            if (counts.arms <= savedExercises.filter(exercise => exercises.arms.includes(exercise[0])).length)
             {
                 addArmsExercise();
             }
@@ -532,6 +547,11 @@ function loadSavedExercises()
 
         else if (category === "shoulder")
         {
+            if (counts.shoulder === 1)
+                {
+                    addShoulderExercise();
+                }
+
             const number = counts.shoulder;
 
             document.getElementById("shoulderExercise" + number).value = exerciseName;
@@ -541,7 +561,7 @@ function loadSavedExercises()
 
             counts.shoulder++;
 
-            if (counts.shoulder <= savedExercises.length)
+            if (counts.shoulder <= savedExercises.filter(exercise => exercises.shoulder.includes(exercise[0])).length)
             {
                 addShoulderExercise();
             }
@@ -549,6 +569,11 @@ function loadSavedExercises()
 
         else if (category === "legs")
         {
+            if (counts.legs === 1)
+                {
+                    addLegsExercise();
+                }
+
             const number = counts.legs;
 
             document.getElementById("legsExercise" + number).value = exerciseName;
@@ -558,17 +583,12 @@ function loadSavedExercises()
 
             counts.legs++;
 
-            if (counts.legs <= savedExercises.length)
+            if (counts.legs <= savedExercises.filter(exercise => exercises.legs.includes(exercise[0])).length)
             {
                 addLegsExercise();
             }
         }
     }
 }
-addBackExercise();
-addChestExercise()
-addArmsExercise()
-addShoulderExercise()
-addLegsExercise()
 
 loadSavedExercises();

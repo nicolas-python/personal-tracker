@@ -35,6 +35,9 @@ querySelector() = sucht ein HTML-Element, das zu diesem Suchmuster passt
 Number() = macht aus dem String z.b "3" wieder die Zahl 3
 const = speichert den Wert in einer Variable
 document = JavaScript-Zugriff auf die HTML-Seite
+=> = Arrow Function = Kurzschreibweise für eine Funktion, z.b exercise => exercise[0] =Nimm "exercise" als Eingabe und führe den Ausdruck rechts davon aus
+.filter = geht durch jedes Element eines Arrays und prüft eine Bedingung
+.includes = prüft, ob ein bestimmter Wert in einem Array enthalten ist
 
 
 flask elemente:
