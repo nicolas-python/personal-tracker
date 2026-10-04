@@ -34,6 +34,8 @@ insertBefore() = setzt ein neues Element vor ein anderes Element
 querySelector() = sucht ein HTML-Element, das zu diesem Suchmuster passt
 Number() = macht aus dem String z.b "3" wieder die Zahl 3
 const = speichert den Wert in einer Variable
+document = JavaScript-Zugriff auf die HTML-Seite
+
 
 flask elemente:
 request = Zugriff auf die vom Browser gesendeten Daten

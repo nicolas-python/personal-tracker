@@ -14,14 +14,14 @@
     <div id="timer">00:00</div>
 
         <div id="current-exercise">
-                <h2>Übung 1</h2>
-                <h3>{{ exercises[0][0] }}</h3>
+                <h2 id="exerciseNumber">Übung 1</h2>
+                <h3 id="exerciseName">{{ exercises[0][0] }}</h3>
                 <!-- [0] = erste Übung, [0] = Name der Übung
                      exercises[0][0] = Bankdrücken
                      exercises[0][1] = 3 Sätze
                      exercises[0][2] = 15 Wiederholungen
                      exercises[0][3] = 80 kg -->
-                <p>{{ exercises[0][1] }} Sätze × {{ exercises[0][2] }} Wiederholungen - {{ exercises[0][3] }} kg</p>
+                <p id="exerciseDetails">{{ exercises[0][1] }} Sätze × {{ exercises[0][2] }} Wiederholungen - {{ exercises[0][3] }} kg</p>
                 <button id="nextExercise" type="button">Next</button>
                 <p>Fortschritt: <span id="progress">1</span> von {{ exercises[0][1] }}</p>
 
@@ -64,17 +64,35 @@ startButton.addEventListener("click", function()
 
                                         //Fortschirttanzeige
 let progress = 1;
-const maxProgress = Number("{{ exercises[0][1] }}");
+let currentExercise = 0
+let maxProgress = Number("{{ exercises[0][1] }}");
+
+const exercises = JSON.parse('{{ exercises | tojson }}');
 const nextButton = document.getElementById("nextExercise");
 const progressDisplay = document.getElementById("progress");
+
+const exerciseNumber = document.getElementById("exerciseNumber");
+const exerciseName = document.getElementById("exerciseName");
+const exerciseDetails = document.getElementById("exerciseDetails");
 
 nextButton.addEventListener("click", function()
 {
     if (progress < maxProgress)
-    {
-        progress++;
-        progressDisplay.textContent = progress;
-    }
+        {
+            progress++;
+            progressDisplay.textContent = progress;
+        }
+    else
+        {
+            currentExercise++;
+            progress = 1;
+            maxProgress = exercises[currentExercise][1];
+            progressDisplay.textContent = progress;
+
+            exerciseNumber.textContent = "Übung " + (currentExercise + 1);
+            exerciseName.textContent = exercises[currentExercise][0];
+            exerciseDetails.textContent = exercises[currentExercise][1] + " Sätze × " + exercises[currentExercise][2] + " Wiederholungen - " + exercises[currentExercise][3] + " kg";
+        }
 
 });
 </script>
