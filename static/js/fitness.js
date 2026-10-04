@@ -38,26 +38,6 @@ const exercises = {
     ]
 
 };
-
-function fillExerciseSelect(selectId, exerciseList)
-{
-
-    const select = document.getElementById(selectId);
-    for (const exerciseName of exerciseList)
-    {
-        const option = document.createElement("option");
-
-        option.textContent = exerciseName;
-        option.value = exerciseName;
-        select.appendChild(option);
-    }
-}
-fillExerciseSelect("backExercise1", exercises.back);
-fillExerciseSelect("chestExercise1", exercises.chest);
-fillExerciseSelect("armExercise1", exercises.arms);
-fillExerciseSelect("shoulderExercise1", exercises.shoulder);
-fillExerciseSelect("legExercise1", exercises.legs);
-
 //-------------------------------------------create_workout.html-------------------------------------------
 function addBackExercise()
 {
@@ -464,6 +444,7 @@ function createDeleteButton(exercise)
 //-------------------------------------------bearbeitung workout-------------------------------------------
 function loadSavedExercises()
 {
+    console.log("Gespeicherte Übungen:", savedExercises);
     if (savedExercises.length === 0)
     {
         return;
