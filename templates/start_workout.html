@@ -64,7 +64,7 @@ startButton.addEventListener("click", function()
 
                                         //Fortschirttanzeige
 let progress = 1;
-let currentExercise = 0
+let currentExercise = 0;
 let maxProgress = Number("{{ exercises[0][1] }}");
 
 const exercises = JSON.parse('{{ exercises | tojson }}');
@@ -84,16 +84,23 @@ nextButton.addEventListener("click", function()
         }
     else
         {
-            currentExercise++;
-            progress = 1;
-            maxProgress = exercises[currentExercise][1];
-            progressDisplay.textContent = progress;
+            if (currentExercise < exercises.length - 1)             //letze übung feststellen (exercises.length = insgesamt übungen -1 = vorletze übung)
+                {
+                    currentExercise++;
+                    progress = 1;
+                    maxProgress = exercises[currentExercise][1];
+                    progressDisplay.textContent = progress;
 
-            exerciseNumber.textContent = "Übung " + (currentExercise + 1);
-            exerciseName.textContent = exercises[currentExercise][0];
-            exerciseDetails.textContent = exercises[currentExercise][1] + " Sätze × " + exercises[currentExercise][2] + " Wiederholungen - " + exercises[currentExercise][3] + " kg";
+                    exerciseNumber.textContent = "Übung " + (currentExercise + 1);
+                    exerciseName.textContent = exercises[currentExercise][0];
+                    exerciseDetails.textContent = exercises[currentExercise][1] + " Sätze × " + exercises[currentExercise][2] + " Wiederholungen - " + exercises[currentExercise][3] + " kg";
+                }
+
+            else
+                {
+                    window.location.href = "/fitness";
+                }
         }
-
 });
 </script>
 </body>
