@@ -221,34 +221,34 @@ function addArmsExercise()
     //Sätze Arme
     const setsLabel = document.createElement("label");
     setsLabel.textContent = "Sätze:";
-    setsLabel.htmlFor = "armSets" + (exerciseCount + 1);
+    setsLabel.htmlFor = "armsSets" + (exerciseCount + 1);
 
     const setsInput = document.createElement("input");
     setsInput.type = "number";
-    setsInput.id = "armSets" + (exerciseCount + 1);
-    setsInput.name = "armSets" + (exerciseCount + 1);
+    setsInput.id = "armsSets" + (exerciseCount + 1);
+    setsInput.name = "armsSets" + (exerciseCount + 1);
     setsInput.min = "1";
 
     //Wiederholungen Arme
     const repsLabel = document.createElement("label");
     repsLabel.textContent = "Wiederholungen:";
-    repsLabel.htmlFor = "armReps" + (exerciseCount + 1);
+    repsLabel.htmlFor = "armsReps" + (exerciseCount + 1);
 
     const repsInput = document.createElement("input");
     repsInput.type = "number";
-    repsInput.id = "armReps" + (exerciseCount + 1);
-    repsInput.name = "armReps" + (exerciseCount + 1);
+    repsInput.id = "armsReps" + (exerciseCount + 1);
+    repsInput.name = "armsReps" + (exerciseCount + 1);
     repsInput.min = "1";
 
     //Gewicht Arme
     const weightLabel = document.createElement("label");
     weightLabel.textContent = "Gewicht:";
-    weightLabel.htmlFor = "armWeight" + (exerciseCount + 1);
+    weightLabel.htmlFor = "armsWeight" + (exerciseCount + 1);
 
     const weightInput = document.createElement("input");
     weightInput.type = "number";
-    weightInput.id = "armWeight" + (exerciseCount + 1);
-    weightInput.name = "armWeight" + (exerciseCount + 1);
+    weightInput.id = "armsWeight" + (exerciseCount + 1);
+    weightInput.name = "armsWeight" + (exerciseCount + 1);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -373,34 +373,34 @@ function addLegsExercise()
     //Sätze Beine
     const setsLabel = document.createElement("label");
     setsLabel.textContent = "Sätze:";
-    setsLabel.htmlFor = "legSets" + (exerciseCount + 1);
+    setsLabel.htmlFor = "legsSets" + (exerciseCount + 1);
 
     const setsInput = document.createElement("input");
     setsInput.type = "number";
-    setsInput.id = "legSets" + (exerciseCount + 1);
-    setsInput.name = "legSets" + (exerciseCount + 1);
+    setsInput.id = "legsSets" + (exerciseCount + 1);
+    setsInput.name = "legsSets" + (exerciseCount + 1);
     setsInput.min = "1";
 
     //Wiederholungen Beine
     const repsLabel = document.createElement("label");
     repsLabel.textContent = "Wiederholungen:";
-    repsLabel.htmlFor = "legReps" + (exerciseCount + 1);
+    repsLabel.htmlFor = "legsReps" + (exerciseCount + 1);
 
     const repsInput = document.createElement("input");
     repsInput.type = "number";
-    repsInput.id = "legReps" + (exerciseCount + 1);
-    repsInput.name = "legReps" + (exerciseCount + 1);
+    repsInput.id = "legsReps" + (exerciseCount + 1);
+    repsInput.name = "legsReps" + (exerciseCount + 1);
     repsInput.min = "1";
 
     //Gewicht Beine
     const weightLabel = document.createElement("label");
     weightLabel.textContent = "Gewicht:";
-    weightLabel.htmlFor = "legWeight" + (exerciseCount + 1);
+    weightLabel.htmlFor = "legsWeight" + (exerciseCount + 1);
 
     const weightInput = document.createElement("input");
     weightInput.type = "number";
-    weightInput.id = "legWeight" + (exerciseCount + 1);
-    weightInput.name = "legWeight" + (exerciseCount + 1);
+    weightInput.id = "legsWeight" + (exerciseCount + 1);
+    weightInput.name = "legsWeight" + (exerciseCount + 1);
     weightInput.min = "0";
     weightInput.step = "0.5";
 
@@ -444,7 +444,6 @@ function createDeleteButton(exercise)
 //-------------------------------------------bearbeitung workout-------------------------------------------
 function loadSavedExercises()
 {
-    console.log("Gespeicherte Übungen:", savedExercises);
     if (savedExercises.length === 0)
     {
         return;
@@ -519,9 +518,9 @@ function loadSavedExercises()
             const number = counts.arms;
 
             document.getElementById("armsExercise" + number).value = exerciseName;
-            document.getElementById("armSets" + number).value = sets;
-            document.getElementById("armReps" + number).value = reps;
-            document.getElementById("armWeight" + number).value = weight;
+            document.getElementById("armsSets" + number).value = sets;
+            document.getElementById("armsReps" + number).value = reps;
+            document.getElementById("armsWeight" + number).value = weight;
 
             counts.arms++;
 
@@ -553,9 +552,9 @@ function loadSavedExercises()
             const number = counts.legs;
 
             document.getElementById("legsExercise" + number).value = exerciseName;
-            document.getElementById("legSets" + number).value = sets;
-            document.getElementById("legReps" + number).value = reps;
-            document.getElementById("legWeight" + number).value = weight;
+            document.getElementById("legsSets" + number).value = sets;
+            document.getElementById("legsReps" + number).value = reps;
+            document.getElementById("legsWeight" + number).value = weight;
 
             counts.legs++;
 

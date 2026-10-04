@@ -90,6 +90,24 @@ def save_workout(user_id, workout_name, exercises):
     connection.commit()
     connection.close()
 
+def update_workout(workout_id, workout_name, exercises):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    #trainingsplannamen aktualisieren
+    cursor.execute("""UPDATE workouts SET name = ?WHERE id = ?""", (workout_name, workout_id))
+
+    #alte übungen dieses Trainingsplans löschen
+    cursor.execute("""DELETE FROM workout_exercises WHERE workout_id = ? """, (workout_id,))
+
+    #neue übungen speichern
+    for exercise, sets, reps, weight in exercises:
+        cursor.execute("""INSERT INTO workout_exercises (workout_id, exercise_name, sets, reps, weight) VALUES (?, ?, ?, ?, ?) """,
+                       (workout_id, exercise, sets, reps, weight))
+
+    connection.commit()
+    connection.close()
+
 def get_workouts(user_id):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()

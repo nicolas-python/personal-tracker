@@ -19,7 +19,7 @@
     {% endfor %}
 {% endwith %}
 
-<form method="POST" action="/create-workout">
+<form method="POST" action="{{ '/edit-workout/' + workout[0]|string if workout else '/create-workout' }}">
 
     <h1>Trainingsplan erstellen</h1>
         <label for="workout_name">Name des Trainingsplans:</label>

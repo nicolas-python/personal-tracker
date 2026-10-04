@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session
-from database import create_database, add_user, login_user, save_workout, get_workouts, get_workout_exercises, get_workout
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout
 
 app = Flask(__name__)
 app.secret_key = "geheimer-schluessel"         #flash verlangt einen secret_key, um zu funktionieren
@@ -91,13 +91,35 @@ def workouts():
 
     return render_template("workouts.html",workouts=workouts,workout_exercises=workout_exercises)
 
-@app.route("/edit-workout/<int:workout_id>")
+@app.route("/edit-workout/<int:workout_id>", methods=["GET", "POST"])
 def edit_workout(workout_id):
+    if request.method == "POST":
+        workout_name = request.form["workout_name"]
+        exercises = []
+
+        for key in request.form:
+            if "Exercise" in key and request.form[key]:
+                exercise = request.form[key]
+
+                sets = request.form[key.replace("Exercise", "Sets")]
+                reps = request.form[key.replace("Exercise", "Reps")]
+                weight = request.form[key.replace("Exercise", "Weight")]
+
+                exercises.append((exercise, sets, reps, weight))
+
+        update_workout(workout_id, workout_name, exercises)
+
+        flash("Trainingsplan aktualisiert!", "success")
+
+        workout = get_workout(workout_id)
+        exercises = get_workout_exercises(workout_id)
+
+        return render_template("create_workout.html", workout=workout, exercises=exercises)
 
     workout = get_workout(workout_id)
     exercises = get_workout_exercises(workout_id)
 
-    return render_template("create_workout.html",workout=workout,exercises=exercises)
+    return render_template("create_workout.html", workout=workout, exercises=exercises)
 
 @app.route("/start-workout/<int:workout_id>")               #id
 def start_workout(workout_id):
