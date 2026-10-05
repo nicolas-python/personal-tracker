@@ -29,7 +29,7 @@
                 <div id="workoutProgress">
                     <div id="workoutProgressBar"></div>
                 </div>
-                <p id="workoutProgressText">0 von {{ exercises|length }} Übungen abgeschlossen</p>
+                <p id="workoutProgressText">0 Sätze abgeschlossen</p>
         </div>
 
 <script>
@@ -73,6 +73,14 @@ let currentExercise = 0;
 let maxProgress = Number("{{ exercises[0][1] }}");
 
 const exercises = JSON.parse('{{ exercises | tojson }}');
+
+let completedSets = 0;
+let totalSets = 0;
+    for (const exercise of exercises)
+    {
+        totalSets += exercise[1];
+    }
+
 const nextButton = document.getElementById("nextExercise");
 const progressDisplay = document.getElementById("progress");
 
@@ -82,6 +90,9 @@ const exerciseDetails = document.getElementById("exerciseDetails");
 
 nextButton.addEventListener("click", function()
 {
+    completedSets++;
+    updateWorkoutProgress();
+
     if (progress < maxProgress)
         {
             progress++;
@@ -91,9 +102,7 @@ nextButton.addEventListener("click", function()
         {
             if (currentExercise < exercises.length - 1)             //letze übung feststellen (exercises.length = insgesamt übungen -1 = vorletze übung)
                 {
-                    completedExercises++;
                     updateWorkoutProgress();
-
                     currentExercise++;
                     progress = 1;
                     maxProgress = exercises[currentExercise][1];
@@ -111,18 +120,18 @@ nextButton.addEventListener("click", function()
         }
 });
                                         // Fortschritts balken
-let completedExercises = 0;
 
 const workoutProgressBar = document.getElementById("workoutProgressBar");
 const workoutProgressText = document.getElementById("workoutProgressText");
 
 function updateWorkoutProgress()
 {
-    const percentage = (completedExercises / exercises.length) * 100;
+    const percentage = (completedSets / totalSets) * 100;
 
     workoutProgressBar.style.width = percentage + "%";
-    workoutProgressText.textContent = completedExercises + " von " + exercises.length + " Übungen abgeschlossen";
+    workoutProgressText.textContent = completedSets + " von " + totalSets + " Sätzen abgeschlossen";
 }
+updateWorkoutProgress();
 
 </script>
 </body>
