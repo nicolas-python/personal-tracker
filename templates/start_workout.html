@@ -30,6 +30,17 @@
                     <div id="workoutProgressBar"></div>
                 </div>
                 <p id="workoutProgressText">0 Sätze abgeschlossen</p>
+
+            <div id="workoutFinishedPopup">
+                <div id="workoutFinishedContent">
+                    <h2>Workout geschafft!</h2>
+
+                    <p>Trainingszeit: <span id="finalTimer">00:00</span></p>
+                    <p>Sätze: <span id="finalSets">0</span></p>
+
+                    <button id="finishWorkout" type="button">Zurück</button>
+                </div>
+            </div>
         </div>
 
 <script>
@@ -90,6 +101,11 @@ const exerciseNumber = document.getElementById("exerciseNumber");
 const exerciseName = document.getElementById("exerciseName");
 const exerciseDetails = document.getElementById("exerciseDetails");
 
+const workoutFinishedPopup = document.getElementById("workoutFinishedPopup");
+const finalTimer = document.getElementById("finalTimer");
+const finalSets = document.getElementById("finalSets");
+const finishWorkout = document.getElementById("finishWorkout");
+
 nextButton.addEventListener("click", function()
 {
     completedSets++;
@@ -104,7 +120,6 @@ nextButton.addEventListener("click", function()
         {
             if (currentExercise < exercises.length - 1)             //letze übung feststellen (exercises.length = insgesamt übungen -1 = vorletze übung)
                 {
-                    updateWorkoutProgress();
                     currentExercise++;
                     progress = 1;
                     maxProgress = exercises[currentExercise][1];
@@ -117,9 +132,21 @@ nextButton.addEventListener("click", function()
 
             else
                 {
-                    window.location.href = "/fitness";
+                    clearInterval(timer);
+
+                    finalTimer.textContent = timerDisplay.textContent;
+                    finalSets.textContent = completedSets;
+
+                    workoutProgressBar.style.width = "100%";
+
+                    workoutFinishedPopup.style.display = "flex";
                 }
         }
+});
+
+finishWorkout.addEventListener("click", function()
+{
+    window.location.href = "/fitness";
 });
                                         // Fortschritts balken
 

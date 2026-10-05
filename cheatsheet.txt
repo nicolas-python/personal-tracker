@@ -75,6 +75,7 @@ margin = Abstand außerhalb eines Elements
 display: flex = Macht ein Element zu einem Flex-Container und ermöglicht flexible Anordnung der Inhalte
 justify-content = Anordnung der Elemente auf der Hauptachse z. B. flex-start = links, center = Mitte, flex-end = rechts
 align-items = Anordnung der Elemente auf der anderen Achse z. B. center = mittig
+z-index: 1000 = bestimmt die Ebenenreihenfolge von Elementen, höhere Werte liegen vor niedrigeren Werten
 flex-direction = Bestimmt die Richtung der Hauptachse  z.b row = waagerecht, column = senkrecht
 gap = Abstand zwischen mehreren Elementen innerhalb eines Containers
 border = Erstellt einen Rand um ein Element
