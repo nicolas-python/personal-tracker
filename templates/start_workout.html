@@ -25,6 +25,11 @@
                 <button id="nextExercise" type="button">Next</button>
                 <p>Fortschritt: <span id="progress">1</span> von {{ exercises[0][1] }}</p>
 
+                <h3>Workout-Fortschritt</h3>
+                <div id="workoutProgress">
+                    <div id="workoutProgressBar"></div>
+                </div>
+                <p id="workoutProgressText">0 von {{ exercises|length }} Übungen abgeschlossen</p>
         </div>
 
 <script>
@@ -86,6 +91,9 @@ nextButton.addEventListener("click", function()
         {
             if (currentExercise < exercises.length - 1)             //letze übung feststellen (exercises.length = insgesamt übungen -1 = vorletze übung)
                 {
+                    completedExercises++;
+                    updateWorkoutProgress();
+
                     currentExercise++;
                     progress = 1;
                     maxProgress = exercises[currentExercise][1];
@@ -102,6 +110,20 @@ nextButton.addEventListener("click", function()
                 }
         }
 });
+                                        // Fortschritts balken
+let completedExercises = 0;
+
+const workoutProgressBar = document.getElementById("workoutProgressBar");
+const workoutProgressText = document.getElementById("workoutProgressText");
+
+function updateWorkoutProgress()
+{
+    const percentage = (completedExercises / exercises.length) * 100;
+
+    workoutProgressBar.style.width = percentage + "%";
+    workoutProgressText.textContent = completedExercises + " von " + exercises.length + " Übungen abgeschlossen";
+}
+
 </script>
 </body>
 
