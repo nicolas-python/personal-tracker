@@ -47,6 +47,8 @@ startButton.addEventListener("click", function()
     {
         return;
     }
+    startButton.classList.add("workout-started");
+    timerDisplay.classList.add("timer-active");
 
     timer = setInterval(function()
     {

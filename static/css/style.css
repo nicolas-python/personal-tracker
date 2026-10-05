@@ -108,6 +108,18 @@
 {
     margin-top: 15px;
 }
+
+.workout-started
+{
+    background-color: green;
+}
+
+.timer-active
+{
+    font-weight: bold;
+    font-size: 24px;
+}
+
 /*Fortschrittsbalken*/
 #workoutProgress
 {
