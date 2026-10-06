@@ -85,3 +85,6 @@ border-radius = Macht Ecken eines Elements rund
 
 Raspberry:
 Tailscale = separat auf Raspberry installiert = eigenes Systemprogramm für sicheren Netzwerkzugriff -> ermöglicht Zugriff auf die Website über andere Netzwerke
+
+Zufälligen Secret Key erzeugen:
+python3 -c "import secrets; print(secrets.token_hex(32))" = erzeugt einen zufälligen 64-stelligen Hex-Schlüssel
