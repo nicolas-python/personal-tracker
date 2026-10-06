@@ -82,3 +82,6 @@ border = Erstellt einen Rand um ein Element
 border-radius = Macht Ecken eines Elements rund
 # = bedeutet ID
 . = classe
+
+Raspberry:
+Tailscale = separat auf Raspberry installiert = eigenes Systemprogramm für sicheren Netzwerkzugriff -> ermöglicht Zugriff auf die Website über andere Netzwerke
