@@ -1,4 +1,5 @@
 import sqlite3
+from werkzeug.security import generate_password_hash, check_password_hash
 
 DATABASE = "database/personal_tracker.db"
 
@@ -47,10 +48,12 @@ def add_user(username, password):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
 
+    password_hash = generate_password_hash(password)
+
     cursor.execute("""
         INSERT INTO users (username, password_hash)
         VALUES (?, ?)
-    """, (username, password))
+    """, (username, password_hash))
 
     connection.commit()
     connection.close()
@@ -62,12 +65,16 @@ def login_user(username, password):
 
     cursor.execute("""
         SELECT * FROM users
-        WHERE username = ? AND password_hash = ?
-    """, (username, password))
+        WHERE username = ?
+    """, (username,))
 
     user = cursor.fetchone()
     connection.close()
-    return user
+
+    if user and check_password_hash(user[2], password):
+        return user
+
+    return None
 
 def save_workout(user_id, workout_name, exercises):
     connection = sqlite3.connect(DATABASE)
