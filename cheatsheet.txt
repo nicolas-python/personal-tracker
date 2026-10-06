@@ -86,5 +86,18 @@ border-radius = Macht Ecken eines Elements rund
 Raspberry:
 Tailscale = separat auf Raspberry installiert = eigenes Systemprogramm für sicheren Netzwerkzugriff -> ermöglicht Zugriff auf die Website über andere Netzwerke
 
+Funnel beenden:
+sudo tailscale funnel --https=443 off = beendet den öffentlichen Zugriff auf die Website
+
+Flask-Autostart beenden:
+sudo systemctl disable --now personal-tracker = stoppt Flask und deaktiviert den automatischen Start
+
 Zufälligen Secret Key erzeugen:
 python3 -c "import secrets; print(secrets.token_hex(32))" = erzeugt einen zufälligen 64-stelligen Hex-Schlüssel
+
+password_hash:
+method="pbkdf2:sha256" =  legt die Hash-Methode für das Passwort fest
+                          -verwendet PBKDF2 mit SHA-256
+                          -Passwort wird nicht im Klartext gespeichert
+                          -PBKDF2 = Schlüsselableitungsverfahren
+                          -SHA-256 = Hashfunktion

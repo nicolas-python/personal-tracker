@@ -48,7 +48,7 @@ def add_user(username, password):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
 
-    password_hash = generate_password_hash(password)
+    password_hash = generate_password_hash(password, method="pbkdf2:sha256")  # PBKDF2 = Schlüsselableitungsverfahren SHA-256 = Hashfunktion
 
     cursor.execute("""
         INSERT INTO users (username, password_hash)
