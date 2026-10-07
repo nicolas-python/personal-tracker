@@ -1,3 +1,10 @@
+/* -------------------------------------------Allgemein---------------------------------------------- */
+.backButton
+{
+    display: block;
+    margin-top: 0;
+}
+
 /* -------------------------------------------register.html---------------------------------------------- */
 /* Popup Hintergrund */
 .popup
@@ -41,6 +48,7 @@
     justify-content: center;
     align-items: center;
 }
+
 /* -------------------------------------------create_workout.html------------------------------------------- */
 .exercise
 {
@@ -99,7 +107,8 @@
     min-width: 180px;
 }
 
-.workout:hover .exercises
+.workout:hover ,
+.exercises
 {
     display: block;
 }
