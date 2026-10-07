@@ -161,3 +161,65 @@
     text-align: center;
 }
 
+/* -------------------------------------------Handy-------------------------------------------*/
+@media (max-width: 600px)
+{
+
+    body
+    {
+        font-size: 14px;
+    }
+
+    .container
+    {
+        width: 95%;
+    }
+
+    /*-------------------------------------------selection.html Handy-------------------------------------------*/
+    .selection-container
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .selection-box
+    {
+        width: 90%;
+        height: 150px;
+    }
+
+    /*-------------------------------------------create_workout.html Handy-------------------------------------------*/
+    .exercise
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 20px;
+    }
+
+    .exercise select,
+    .exercise input
+    {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .muscle-group
+    {
+        padding: 10px;
+    }
+
+    .saveWorkout
+    {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /*-------------------------------------------workouts.html Handy------------------------------------------- */
+    .workout:hover .exercises
+    {
+        display: block;
+    }
+
+}
+

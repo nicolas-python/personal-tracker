@@ -85,6 +85,8 @@ border-radius = Macht Ecken eines Elements rund
 
 Raspberry:
 Tailscale = separat auf Raspberry installiert = eigenes Systemprogramm für sicheren Netzwerkzugriff -> ermöglicht Zugriff auf die Website über andere Netzwerke
+sudo systemctl restart personal-tracker = startet die Flask-Anwendung neu und lädt den neuen Code
+sudo systemctl status personal-tracker = zeigt, ob die Flask-Anwendung erfolgreich läuft
 
 Funnel beenden:
 sudo tailscale funnel --https=443 off = beendet den öffentlichen Zugriff auf die Website
