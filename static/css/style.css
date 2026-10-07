@@ -107,8 +107,7 @@
     min-width: 180px;
 }
 
-.workout:hover ,
-.exercises
+.workout:hover > .exercises                 /* > = wählt direktes Kind aus */
 {
     display: block;
 }
@@ -225,7 +224,7 @@
     }
 
     /*-------------------------------------------workouts.html Handy------------------------------------------- */
-    .workout:hover .exercises
+    .workout:hover > .exercises
     {
         display: block;
     }
