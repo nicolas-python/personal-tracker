@@ -70,18 +70,96 @@ rel="stylesheet" = Diese verlinkte Datei ist ein Stylesheet, eine CSS-Datei die 
 
 
 CSS :
+. = wählt eine CSS-Klasse aus
+# = wählt eine ID aus
+:hover = CSS-Regel wird angewendet, wenn die Maus über einem Element ist
+overflow-y: auto = Fügt bei Bedarf einen vertikalen Scrollbalken hinzu
+cursor: pointer = Mauszeiger wird beim Darüberfahren zur Hand
+
+form[action="/login"] = wählt das form-Element mit action="/login"
+@media (max-width: 600px) = CSS-Regeln gelten nur für Bildschirmbreiten bis 600px  wird für die Handy-Ansicht verwendet
+
+DISPLAY :
+display: flex = Macht ein Element zu einem Flex-Container und ermöglicht flexible Anordnung der Inhalte
+display: grid = Macht ein Element zu einem Grid-Container und ermöglicht Anordnung in Zeilen und Spalten
+display: block = Element wird als Block dargestellt und beginnt eine neue Zeile
+display: inline-block = Element bleibt in der Zeile, kann aber Breite und Höhe besitzen
+display: none = Element wird nicht angezeigt
+
+
+WIDTH / HEIGHT :
+
+width = Bestimmt die Breite eines Elements
+
+width: 100% = Element nutzt die gesamte verfügbare Breite
+width: auto = Breite wird automatisch anhand des Inhalts bestimmt
+
+height = Bestimmt die Höhe eines Elements
+min-width = Legt die minimale Breite eines Elements fest
+
+
+ABSTÄNDE :
+
 padding = Abstand zwischen Inhalt und Rand eines Elements (innen)
 margin = Abstand außerhalb eines Elements
-display: flex = Macht ein Element zu einem Flex-Container und ermöglicht flexible Anordnung der Inhalte
-justify-content = Anordnung der Elemente auf der Hauptachse z. B. flex-start = links, center = Mitte, flex-end = rechts
-align-items = Anordnung der Elemente auf der anderen Achse z. B. center = mittig
-z-index: 1000 = bestimmt die Ebenenreihenfolge von Elementen, höhere Werte liegen vor niedrigeren Werten
-flex-direction = Bestimmt die Richtung der Hauptachse  z.b row = waagerecht, column = senkrecht
 gap = Abstand zwischen mehreren Elementen innerhalb eines Containers
+
+
+FLEX :
+
+justify-content = Anordnung der Elemente auf der Hauptachse
+    z. B. flex-start = links, center = Mitte, flex-end = rechts
+
+align-items = Anordnung der Elemente auf der anderen Achse
+    z. B. center = mittig
+
+align-self = Richtet ein einzelnes Element innerhalb seines Containers aus
+flex-direction = Bestimmt die Richtung der Hauptachse
+    z. B. row = waagerecht, column = senkrecht
+
+
+GRID :
+grid-template-columns = Bestimmt die Breite und Anzahl der Grid-Spalten
+max-content = Spalte wird nur so breit wie ihr Inhalt
+1fr = nimmt den verbleibenden verfügbaren Platz ein
+
+
+POSITION :
+
+position: relative = Element bleibt im normalen Seitenfluss und kann relativ positioniert werden
+position: absolute = Element wird aus dem normalen Seitenfluss genommen
+position: fixed = Element bleibt an einer festen Position im Browserfenster
+
+top = Abstand von oben
+left = Abstand von links
+right = Abstand von rechts
+bottom = Abstand von unten
+
+
+EBENEN :
+
+z-index: 1000 = bestimmt die Ebenenreihenfolge von Elementen
+                höhere Werte liegen vor niedrigeren Werten
+
+
+GRÖSSE / TEXT :
+
+font-size = Bestimmt die Schriftgröße
+
+
+RAND / FORM :
+
 border = Erstellt einen Rand um ein Element
 border-radius = Macht Ecken eines Elements rund
-# = bedeutet ID
-. = classe
+box-sizing: border-box = width und height enthalten auch padding und border
+
+
+FARBEN / HINTERGRUND :
+
+background-color = Legt die Hintergrundfarbe eines Elements fest
+color = Legt die Textfarbe fest
+background = Legt den Hintergrund eines Elements fest
+
 
 Raspberry:
 Tailscale = separat auf Raspberry installiert = eigenes Systemprogramm für sicheren Netzwerkzugriff -> ermöglicht Zugriff auf die Website über andere Netzwerke
@@ -92,13 +170,19 @@ Funnel beenden:
 sudo tailscale funnel --https=443 off = beendet den öffentlichen Zugriff auf die Website
 
 Funnel starten:
-sudo tailscale funnel 5001 -> Prüfen = sudo tailscale funnel status
+sudo tailscale funnel 5001 = Starten
+
+Funnel Prüfen
+sudo tailscale funnel status = Prüfen
 
 Flask-Autostart beenden:
 sudo systemctl disable --now personal-tracker = stoppt Flask und deaktiviert den automatischen Start
 
 Flask-Autostart
-sudo systemctl enable --now personal-tracker -> Prüfen = sudo systemctl status personal-tracker
+sudo systemctl enable --now personal-tracker
+
+Flask-Autostart Prüfen
+sudo systemctl status personal-tracker = Prüfen
 
 Zufälligen Secret Key erzeugen:
 python3 -c "import secrets; print(secrets.token_hex(32))" = erzeugt einen zufälligen 64-stelligen Hex-Schlüssel

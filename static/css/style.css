@@ -172,7 +172,6 @@
 /* -------------------------------------------Handy-------------------------------------------*/
 @media (max-width: 600px)
 {
-
     body
     {
         font-size: 14px;
@@ -181,6 +180,69 @@
     .container
     {
         width: 95%;
+    }
+
+    /*------------------------------------------login.html handy------------------------------------------------------*/
+    form[action="/login"]                                   /* form = Formular | grid = Elemente in einem Raster anordnen */
+    {
+        display: grid;                                      /* form = Formular | grid = Elemente in einem Raster anordnen */
+        grid-template-columns: max-content 1fr;             /* max-content =erste Spalte wird nur so breit wie nötig für ihren Inhalt , 1fr= zweite Spalte bekommt den verbleibenden Platz */
+        gap: 10px;
+    }
+
+    form[action="/login"] label
+    {
+        align-self: center;
+    }
+
+    form[action="/login"] input
+    {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    form[action="/login"] button
+    {
+        font-size: 15px;
+        padding: 10px 15px;
+    }
+    /*-------------------------------------------register.html Handy-------------------------------------------*/
+    form[action="/register"]
+    {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 10px;
+    }
+
+    form[action="/register"] label
+    {
+        align-self: center;
+    }
+
+    form[action="/register"] input
+    {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    form[action="/register"] button
+    {
+        font-size: 15px;
+        padding: 10px 15px;
+    }
+
+    /*-------------------------------------------Popups Handy-------------------------------------------*/
+    .popup-content
+    {
+        width: 80%;
+        padding: 25px;
+        font-size: 18px;
+    }
+
+    .popup-content button
+    {
+        font-size: 18px;
+        padding: 12px 20px;
     }
 
     /*-------------------------------------------selection.html Handy-------------------------------------------*/
