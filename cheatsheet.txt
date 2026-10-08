@@ -170,7 +170,7 @@ Funnel beenden:
 sudo tailscale funnel --https=443 off = beendet den öffentlichen Zugriff auf die Website
 
 Funnel starten:
-sudo tailscale funnel 5001 = Starten
+sudo tailscale funnel --bg 5001 = Starten (bg = background)
 
 Funnel Prüfen
 sudo tailscale funnel status = Prüfen

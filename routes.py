@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, session
 from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
+import sqlite3
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")       #liest die Umgebungsvariable SECRET_KEY aus
@@ -26,8 +27,12 @@ def register():
             flash("Die Passwörter stimmen nicht überein", "error")
             return render_template("register.html")
 
-        add_user(username, password)
-        flash("Registrierung erfolgreich!", "success")     #flash = Flask-Funktion, mit der man eine kurze Nachricht über einen Seitenwechsel hinweg speichern und anzeigen kann
+        try:
+            add_user(username, password)
+            flash("Registrierung erfolgreich!","success")  # flash = Flask-Funktion, mit der man eine kurze Nachricht über einen Seitenwechsel hinweg speichern und anzeigen kann
+
+        except sqlite3.IntegrityError:
+            flash("Der Benutzername ist bereits vergeben", "error")
 
     return render_template("register.html")
 
