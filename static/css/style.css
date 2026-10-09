@@ -111,6 +111,33 @@
 {
     display: block;
 }
+
+.workout-header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-workout-button
+{
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.delete-workout-button:hover
+{
+    background-color: #b02a37;
+}
 /* -------------------------------------------start_workouts------------------------------------------- */
 #timer
 {

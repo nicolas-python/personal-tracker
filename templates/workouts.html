@@ -16,7 +16,12 @@
     {% for workout in workouts %}
 
         <div class="workout">
-            Workout {{ loop.index }} = {{ workout[1] }}
+
+            <div class="workout-header">
+                <span>Workout {{ loop.index }} = {{ workout[1] }}</span>
+                <button class="delete-workout-button" type="button" onclick="confirmDelete('{{ workout[0] }}', '{{ workout[1] | e }}')">X</button>
+            </div>
+
             <div class="exercises">
                 {% for exercise in workout_exercises[workout[0]] %}
                 <div>
@@ -38,6 +43,25 @@
         </div>
         </div>
     {% endfor %}
-</body>
 
+
+
+<script>
+    function confirmDelete(workoutId, workoutName)
+    {
+        const confirmed = confirm('Möchtest du den Trainingsplan "' + workoutName + '" wirklich löschen?');
+
+        if (confirmed)
+        {
+            const form = document.createElement("form");
+
+            form.method = "POST";
+            form.action = "/delete-workout/" + workoutId;
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    }
+</script>
+</body>
 </html>

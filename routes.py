@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, flash, session
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout
+from flask import Flask, render_template, request, flash, session, redirect, url_for
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout ,delete_workout
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 
@@ -128,6 +128,22 @@ def edit_workout(workout_id):
 
     return render_template("create_workout.html", workout=workout, exercises=exercises)
 
+@app.route("/delete-workout/<int:workout_id>", methods=["POST"])
+def delete_workout_route(workout_id):
+    # Prüfen, ob ein Benutzer angemeldet ist
+    if "user_id" not in session:
+        flash("Bitte melde dich zuerst an.", "error")
+        return redirect(url_for("home"))                                    #url_for() sucht anhand des Funktionsnamens die passende URL heraus
+
+    #trainingsplan löschen wen er dem Benutzer gehört
+    deleted = delete_workout(workout_id, session["user_id"])
+
+    if deleted:
+        flash("Trainingsplan erfolgreich gelöscht!", "success")
+    else:
+        flash("Trainingsplan nicht gefunden.", "error")
+
+    return redirect(url_for("workouts"))                                    #redirect() schickt den Browser anschließend zu dieser URL
 @app.route("/start-workout/<int:workout_id>")               #id
 def start_workout(workout_id):
     workout = get_workout(workout_id)

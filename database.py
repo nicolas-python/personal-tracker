@@ -97,6 +97,45 @@ def save_workout(user_id, workout_name, exercises):
     connection.commit()
     connection.close()
 
+def delete_workout(workout_id, user_id):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    #Tangemeldeten Benutzer
+    cursor.execute("""
+        SELECT id
+        FROM workouts
+        WHERE id = ?
+        AND user_id = ?
+        """, (workout_id, user_id))
+
+    workout = cursor.fetchone()
+
+    #falls der Plan nicht existiert oder einem anderen Benutzer gehört
+    if workout is None:
+        connection.close()
+        return False
+
+    #Zuerst alle Übungen des Trainingsplans löschen
+    cursor.execute("""
+        DELETE
+        FROM workout_exercises
+        WHERE workout_id = ?
+        """, (workout_id,))
+
+    #Trainingsplan löschen
+    cursor.execute("""
+        DELETE
+        FROM workouts
+        WHERE id = ?
+        AND user_id = ?
+        """, (workout_id, user_id))
+
+    connection.commit()
+    connection.close()
+
+    return True
+
 def update_workout(workout_id, workout_name, exercises):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
