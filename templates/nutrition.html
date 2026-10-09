@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ernährung - Personal Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>Ernährung</h1>
+
+    <button class="backButton" type="button"
+            onclick="window.location.href='/selection'">
+        Zurück
+    </button>
+
+<!---------------------------------------------Tagesübersicht--------------------------------------------->
+
+    <div class="nutrition-container">
+
+        <h2>Heute</h2>
+
+        <label for="nutritionDate">Datum:</label>
+        <input type="date" id="nutritionDate" name="date">
+
+        <p id="nutritionDateText"></p>
+
+    </div>
+
+
+<!---------------------------------------------Kalorien und Protein------------------------------------>
+<!---------------------------------------------Frühstück----------------------------------------------->
+<!---------------------------------------------Mittagessen--------------------------------------------->
+<!---------------------------------------------Lebensmittel hinzufügen--------------------------------->
+    <script>
+        //Datumseingabe und Textanzeige aus dem HTML holen
+        const nutritionDate = document.getElementById("nutritionDate");
+        const nutritionDateText = document.getElementById("nutritionDateText");
+
+        //aktuelles Datum erstellen
+        const today = new Date();                                       //Date ist eine eingebaute Funktion von JavaScript die das aktuelle Uhrzeit des Systems abfragt
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, "0");
+        const day = String(today.getDate()).padStart(2, "0");
+
+        nutritionDate.value = `${year}-${month}-${day}`;                //Template Literal
+
+        //Ausgewähltes Datum auf Deutsch anzeigen
+        function updateNutritionDate()
+        {
+            const selectedDate = new Date(nutritionDate.value + "T12:00:00");   //T trennt Datum und Uhrzeit; 12:00:00 bedeutet 12 Uhr mittags (Stunde:Minute:Sekunde)
+                                                                                //verhindert, dass das Datum durch Zeitzonenverschiebungen versehentlich auf den Vortag oder Folgetag fällt
+            nutritionDateText.textContent = new Intl.DateTimeFormat("de-DE",
+                    {
+                        weekday: "long",
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    }).format(selectedDate);
+        }
+
+        // Datum beim Laden und nach einer Änderung anzeigen
+        updateNutritionDate();
+        nutritionDate.addEventListener("change", updateNutritionDate);
+    </script>
+
+</body>
+</html>

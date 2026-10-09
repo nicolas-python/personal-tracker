@@ -59,6 +59,7 @@ loop.index = aktuelle Nummer im Durchlauf
 setsInput.type = "number" ist der HTML-Eingabetyp und erlaubt Zahleneingaben
 step = "0.5" = bestimmt die Schrittweite bei einer Zahleneingabe
 JSON.parse() = Lies diesen Text und mach daraus echte JavaScript-Daten
+`${}` = Template Literal = Fügt den Wert einer Variable in einen Text ein ,dafür werden Backticks ` verwendet
 
 Jinja/Jinja2
 Jinja = Template-Sprache von Flask, mit der HTML dynamisch erzeugt werden kann
