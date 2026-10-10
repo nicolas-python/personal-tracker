@@ -194,3 +194,11 @@ method="pbkdf2:sha256" =  legt die Hash-Methode für das Passwort fest
                           -Passwort wird nicht im Klartext gespeichert
                           -PBKDF2 = Schlüsselableitungsverfahren
                           -SHA-256 = Hashfunktion
+
+Kalorienbedarfsrechner grobe Richtwerte =
+???x
+Wenig Bewegung im Alltag = 1.2
+Leicht aktiv = 1.375
+Moderat aktiv = 1.55
+Sehr aktiv = 1.725
+Extrem aktiv = 1.9
