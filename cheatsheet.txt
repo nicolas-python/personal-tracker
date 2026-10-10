@@ -215,3 +215,6 @@ Extrem aktiv = 1.9
 Abnahme - 300 - 600  Kalorien am Tag
 Zunahme + 300 - 600  Kalorien am Tag
 
+Eiweiß = Körpergewicht × 1,5 = geschätztes tägliches Proteinziel
+Sportlich Erwachsene ca 1.4 - 2.0g Protin pro Kg Körpergewicht
+

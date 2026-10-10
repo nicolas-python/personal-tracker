@@ -66,7 +66,6 @@
 
             <button type="button" id="calculateCalories">Kalorienbedarf berechnen</button>
             <p id="calorieResult"></p>
-
         </form>
     </details>
 
@@ -75,14 +74,14 @@
 
         <div class="nutrition-card">
             <h3>Kalorien</h3>
-            <p><strong id="caloriesConsumed">--</strong> kcal</p>
-            <p>von <span id="caloriesGoal">--</span> kcal</p>
+            <p><strong id="caloriesConsumed"></strong> kcal</p>
+            <p>von <span id="caloriesGoal"></span> kcal</p>
         </div>
 
         <div class="nutrition-card">
             <h3>Protein</h3>
-            <p><strong id="proteinConsumed">--</strong> g</p>
-            <p>von <span id="proteinGoal">--</span> g</p>
+            <p><strong id="proteinConsumed"></strong> g</p>
+            <p>von <span id="proteinGoal"></span> g</p>
         </div>
     </div>
 <!---------------------------------------------Frühstück----------------------------------------------->
@@ -127,6 +126,11 @@
 
         function CalorieNeedsCalculator()
         {
+            if (!calorieForm.reportValidity())      //reportValidity = Prüft die HTML-Regeln deiner Eingabefelden ! kehrt true und false um
+                {
+                    return;
+                }
+
             const formValues = Object.fromEntries(new FormData(calorieForm));
 
             const gender = formValues.gender;
@@ -169,8 +173,12 @@
                     alert("Bitte alle Felder ausfüllen und auswählen.");
                     return;
                 }
+            const proteinGoal = weight * 1.5;
 
             document.getElementById("calorieResult").textContent = "Dein Kalorienziel: " + Math.round(caloriegoal) + " kcal pro Tag";
+
+            document.getElementById("caloriesGoal").textContent = Math.round(caloriegoal);
+            document.getElementById("proteinGoal").textContent = Math.round(proteinGoal);
         }
 
         calculateButton.addEventListener("click", CalorieNeedsCalculator);
