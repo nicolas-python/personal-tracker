@@ -31,7 +31,7 @@
 <!-- -------------------------------------------Kalorienbedarfsrechner------------------------------------------- -->
     <details class="calorie-calculator">
         <summary>Kalorienbedarfsrechner</summary>
-        <div class="calorin-inputs">
+        <form class="calorin-inputs" id="calorieForm">
 
             <label for="gender">Geschlecht</label>
             <select id="gender" name="gender">
@@ -39,9 +39,8 @@
                 <option value="female">Weiblich</option>
             </select>
 
-            <label for="age">Alter in Jahren:></label>
-            <input type="number" id="age" name="age" min="1" max="150" requierd>
-
+            <label for="age">Alter in Jahren:</label>
+            <input type="number" id="age" name="age" min="1" max="150" required>
 
             <label for="height">Größe in cm:</label>
             <input type="number" id="height" name="height" min="50" max="250" required>
@@ -66,8 +65,9 @@
             </select>
 
             <button type="button" id="calculateCalories">Kalorienbedarf berechnen</button>
+            <p id="calorieResult"></p>
 
-        </div>
+        </form>
     </details>
 
 <!---------------------------------------------Kalorien und Protein------------------------------------>
@@ -89,6 +89,7 @@
 <!---------------------------------------------Mittagessen--------------------------------------------->
 <!---------------------------------------------Abendessen---------------------------------------------->
 <!---------------------------------------------Lebensmittel hinzufügen--------------------------------->
+
     <script>
         //Datumseingabe und Textanzeige aus dem HTML holen
         const nutritionDate = document.getElementById("nutritionDate");
@@ -119,6 +120,61 @@
         // Datum beim Laden und nach einer Änderung anzeigen
         updateNutritionDate();
         nutritionDate.addEventListener("change", updateNutritionDate);
+
+        //Kalorienbedarfsrechner
+        const calorieForm = document.getElementById("calorieForm");
+        const calculateButton = document.getElementById("calculateCalories");
+
+        function CalorieNeedsCalculator()
+        {
+            const formValues = Object.fromEntries(new FormData(calorieForm));
+
+            const gender = formValues.gender;
+            const weight = Number(formValues.weight);
+            const height = Number(formValues.height);
+            const age = Number(formValues.age);
+
+            const activity = Number(formValues.activity);
+            const goal = formValues.goal;
+
+            let restingMetabolism;
+            if (gender === "male")
+                {
+                    restingMetabolism = (10 * weight)+(6.25 * height)-(5 * age) + 5
+                }
+
+            else if (gender === "female")
+                {
+                    restingMetabolism = (10 * weight)+(6.25 * height)-(5 * age) - 161
+                }
+            else
+                {
+                    alert("Bitte alle Felder ausfüllen und auswählen.");
+                    return;
+                }
+
+            const calorieNeeds = restingMetabolism * activity;
+
+            let caloriegoal;
+
+            if (goal === "lose")
+                {caloriegoal = calorieNeeds - 400}
+            else if (goal === "maintain")
+                {caloriegoal = calorieNeeds - 0}
+            else if (goal === "gain")
+                {caloriegoal = calorieNeeds + 400}
+
+            else
+                {
+                    alert("Bitte alle Felder ausfüllen und auswählen.");
+                    return;
+                }
+
+            document.getElementById("calorieResult").textContent = "Dein Kalorienziel: " + Math.round(caloriegoal) + " kcal pro Tag";
+        }
+
+        calculateButton.addEventListener("click", CalorieNeedsCalculator);
+
     </script>
 
 </body>

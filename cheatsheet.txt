@@ -195,10 +195,23 @@ method="pbkdf2:sha256" =  legt die Hash-Methode für das Passwort fest
                           -PBKDF2 = Schlüsselableitungsverfahren
                           -SHA-256 = Hashfunktion
 
-Kalorienbedarfsrechner grobe Richtwerte =
-???x
+Grundumsatz berechnen:
+Mifflin-St.-Jeor-Formel schätzt anhand von Gewicht, Größe, Alter und Geschlecht, wie viel Energie dein Körper im Ruhezustand täglich benötigt
+
+Formeln Ruheumsatz:
+Für Männer:
+(10×Gewicht)+(6,25×Größe)−(5×Alter)+5
+
+Für Frauen:
+(10×Gewicht)+(6,25×Größe)−(5×Alter)−161
+
+Kalorienbedarfsrechner grobe Richtwerte = Ruheumsatz x Aktivität
 Wenig Bewegung im Alltag = 1.2
 Leicht aktiv = 1.375
 Moderat aktiv = 1.55
 Sehr aktiv = 1.725
 Extrem aktiv = 1.9
+
+Abnahme - 300 - 600  Kalorien am Tag
+Zunahme + 300 - 600  Kalorien am Tag
+
