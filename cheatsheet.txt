@@ -38,6 +38,7 @@ document = JavaScript-Zugriff auf die HTML-Seite
 => = Arrow Function = Kurzschreibweise für eine Funktion, z.b exercise => exercise[0] =Nimm "exercise" als Eingabe und führe den Ausdruck rechts davon aus
 .filter = geht durch jedes Element eines Arrays und prüft eine Bedingung
 .includes = prüft, ob ein bestimmter Wert in einem Array enthalten ist
+forEach() = geht jeden gefundenen Button einzeln durch
 
 
 flask elemente:
@@ -194,6 +195,7 @@ method="pbkdf2:sha256" =  legt die Hash-Methode für das Passwort fest
                           -Passwort wird nicht im Klartext gespeichert
                           -PBKDF2 = Schlüsselableitungsverfahren
                           -SHA-256 = Hashfunktion
+
 
 Grundumsatz berechnen:
 Mifflin-St.-Jeor-Formel schätzt anhand von Gewicht, Größe, Alter und Geschlecht, wie viel Energie dein Körper im Ruhezustand täglich benötigt
