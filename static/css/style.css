@@ -219,6 +219,24 @@
 {
     background-color: darkred;
 }
+.nutrition-meal-card
+{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 20px;
+}
+
+.meal-food-list
+{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-height: 20px;
+}
 
 /* -------------------------------------------Handy-------------------------------------------*/
 @media (max-width: 600px)
