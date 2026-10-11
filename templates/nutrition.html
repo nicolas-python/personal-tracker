@@ -126,10 +126,10 @@
 
     </div>
 <!---------------------------------------------Snacks---------------------------------------------->
-    <div class="nutrition-meal-card" id="snacksFoods">
+    <div class="nutrition-meal-card" id="snacks">
 
         <h2>Snacks</h2>
-            <div class="meal-food-list" id="snacks">
+            <div class="meal-food-list" id="snacksFoods">
                 <!-- Lebensmittel angezeigt/Lebensmittel hinzufügen -->
             </div>
 
@@ -137,6 +137,24 @@
 
     </div>
 <!---------------------------------------------Lebensmittel hinzufügen--------------------------------->
+
+    <div id="foodSearch" hidden>
+
+        <h2>Lebensmittel hinzufügen</h2>
+
+        <label for="foodSearchInput">Lebensmittel suchen:</label>
+        <input type="search" id="foodSearchInput" placeholder="z. B. Harzer Käse">
+
+        <button type="button" id="searchFoodButton">Suchen</button>
+
+        <div id="foodSearchResults">
+            <!--Suchergebnisse angezeigen -->
+        </div>
+
+        <button type="button" id="closeFoodSearch">Schließen</button>
+
+    </div>
+
 
     <script>
         //Datumseingabe und Textanzeige aus dem HTML holen
@@ -235,15 +253,29 @@
 
 
         const addFoodButtons = document.querySelectorAll(".add-food-button");
+        const foodSearch = document.getElementById("foodSearch");
+        const closeFoodSearchButton = document.getElementById("closeFoodSearch");
+        let selectedMeal = "";
 
         function addFoodButton(event)
         {
-            const meal = event.currentTarget.dataset.meal;
-            console.log("Lebensmittel hinzufügen bei:", meal);
+            const selectedMealCard = event.currentTarget.closest(".nutrition-meal-card");       // Suchfenster unter die angeklickte Mahlzeitenkarte verschieben
+            selectedMealCard.appendChild(foodSearch);
+
+            selectedMeal = event.currentTarget.dataset.meal;
+            foodSearch.hidden = false;
         }
 
-        //Alle Lebensmittel-Buttons mit der Funktion verbinden
+        //Alle Lebensmittel Buttons mit der Funktion verbinden
         addFoodButtons.forEach(function (button) {button.addEventListener("click", addFoodButton);});
+
+
+        function closeFoodSearch()
+        {
+            foodSearch.hidden = true;
+        }
+
+        closeFoodSearchButton.addEventListener("click", closeFoodSearch);
 
     </script>
 
