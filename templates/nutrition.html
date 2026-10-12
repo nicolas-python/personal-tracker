@@ -277,6 +277,29 @@
 
         closeFoodSearchButton.addEventListener("click", closeFoodSearch);
 
+
+        //Lebensmittelsuche
+        const foodSearchInput = document.getElementById("foodSearchInput");
+        const searchFoodButton = document.getElementById("searchFoodButton");
+        const foodSearchResults = document.getElementById("foodSearchResults");
+
+        function searchFood()
+        {
+            const searchTerm = foodSearchInput.value.trim();
+
+            if (searchTerm === "")
+            {
+                foodSearchResults.textContent = "Bitte gib ein Lebensmittel ein.";
+                return;
+            }
+
+            foodSearchResults.textContent = "Suche nach: " + searchTerm;
+
+            console.log("Suchbegriff:", searchTerm);
+        }
+
+        searchFoodButton.addEventListener("click", searchFood);
+
     </script>
 
 </body>
