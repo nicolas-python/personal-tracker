@@ -283,7 +283,7 @@
         const searchFoodButton = document.getElementById("searchFoodButton");
         const foodSearchResults = document.getElementById("foodSearchResults");
 
-        function searchFood()
+        async function searchFood()
         {
             const searchTerm = foodSearchInput.value.trim();
 
@@ -293,9 +293,46 @@
                 return;
             }
 
-            foodSearchResults.textContent = "Suche nach: " + searchTerm;
+            foodSearchResults.textContent = "Suche läuft...";
 
-            console.log("Suchbegriff:", searchTerm);
+            try
+            {
+                const response = await fetch(`/search-food?q=${encodeURIComponent(searchTerm)}`);
+
+                // Antwort von Flask als JSON auslesen
+                const data = await response.json();
+
+                if (!response.ok)
+                {
+                    foodSearchResults.textContent = data.error || "Die Suche ist fehlgeschlagen";
+                    return;
+                }
+
+                const products = data.hits || [];
+
+                //Alte Suchergebnisse entfernen
+                foodSearchResults.replaceChildren();
+
+                if (products.length === 0)
+                {
+                    foodSearchResults.textContent = "Keine Lebensmittel gefunden.";
+                    return;
+                }
+
+                //HTML anzeigen
+                products.forEach(function(product)
+                {
+                    const productItem = document.createElement("p");
+                    productItem.textContent = product.product_name || product.code || "Unbenanntes Produkt";
+                    foodSearchResults.appendChild(productItem);
+                });
+            }
+            catch (error)
+            {
+                console.error("Fehler bei der Lebensmittelsuche:", error);
+                foodSearchResults.textContent = "Die Suche ist fehlgeschlagen. Bitte prüfe die Verbindung";
+            }
+
         }
 
         searchFoodButton.addEventListener("click", searchFood);

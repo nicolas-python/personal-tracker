@@ -1,4 +1,4 @@
-Projektstruktur
+Projektstruktur:
 
 fitness_app.py
 database.py
@@ -23,6 +23,41 @@ static
     js
         -fitness.js
 
+imports
+Flask :
+    -Flask: Erstellt die Flask-Anwendung
+    -render_template(): Zeigt eine HTML-Datei aus dem Templates-Ordner an
+    -request: Liest Informationen aus einer eingehenden Anfrage des Browsers, beispielsweise Formularwerte oder URL-Parameter
+    -flash(): Speichert eine kurze Nachricht, die beispielsweise nach einer Anmeldung angezeigt wird
+    -session: Speichert benutzerbezogene Informationen zwischen mehreren Anfragen, beispielsweise die Benutzer-ID nach dem Login
+    -redirect(): Leitet den Browser auf eine andere URL weiter
+    -url_for(): Ermittelt die URL einer Flask-Route anhand ihres Funktionsnamens
+    -jsonify(): Wandelt Python-Daten in eine JSON-HTTP-Antwort um, die JavaScript verarbeiten kann
+
+database :
+    -create_database() erstellt die benötigte Datenbankstruktur
+    -add_user() legt einen Benutzer an
+    -login_user() überprüft die Anmeldedaten
+    -save_workout() speichert einen Trainingsplan
+    -get_workouts() ruft Trainingspläne ab
+    -update_workout() aktualisiert einen Trainingsplan
+    -delete_workout() löscht einen Trainingsplan
+
+sqlite3 :
+    -sqlite3 ist ein eingebautes Python-Modul zur Arbeit mit SQLite-Datenbanken
+
+os :
+    -os = Operating System= ist ein eingebautes Python-Modul für Funktionen des Betriebssystems
+    -os.environ.get("SECRET_KEY") liest den Wert der Umgebungsvariable SECRET_KEY aus. So kann ein geheimer Schlüssel außerhalb des Quellcodes hinterlegt werden
+
+requests :
+    -requests ist eine zusätzliche Python-Bibliothek für HTTP-Anfragen an andere Server
+
+from http import HTTPStatus
+    -HTTPStatus enthält benannte HTTP-Statuscodes. Dadurch müssen wir uns nicht alle Zahlen merken
+    -z.b -HTTPStatus.OK = 200: Anfrage erfolgreich
+         -HTTPStatus.BAD_REQUEST = 400: Anfrage ungültig, beispielsweise weil ein Suchbegriff fehlt
+         -HTTPStatus.BAD_GATEWAY = 502: Unser Server konnte keine gültige Antwort vom externen Dienst erhalten
 
 JavaScript:
 ++  =  um 1 erhöhen

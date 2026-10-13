@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, flash, session, redirect, url_for
+from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
 from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout ,delete_workout
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
+import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
+from http import HTTPStatus  # Enthält benannte HTTP-Statuscodes
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")       #liest die Umgebungsvariable SECRET_KEY aus
@@ -155,6 +157,34 @@ def start_workout(workout_id):
 @app.route("/nutrition")
 def nutrition():
     return render_template("nutrition.html")
+
+@app.route("/search-food")
+def search_food():
+    search_term = request.args.get("q", "").strip()     #Suchbegriff aus der URL auslesen, q = von Open Food Facts vorgegebener Parameter für den Suchbegriff
+
+    if not search_term:
+        return jsonify({"error": "Bitte ein Lebensmittel eingeben."}), HTTPStatus.BAD_REQUEST  #HTTP 400: Anfrage ungültig
+
+    try:
+        #Open Food Facts nach dem Lebensmittel fragen
+        response = requests.get("https://search.openfoodfacts.org/search",
+            params=[
+                ("q", search_term),                 # q = von Open Food Facts vorgegebener Parameter für den Suchbegriff
+                ("langs", "de:en"),              #deutsch bevorzugen, englisch zusätzlich berücksichtigen
+                ("page_size", 5)                    #max fünf Ergebnisse anfordern
+            ],
+            headers={"User-Agent": "PersonalTracker/1.0"},timeout=10)
+
+        response.raise_for_status()
+
+        #Suchergebnisse als JSON an unsere Anwendung zurückgeben
+        return jsonify(response.json())
+
+    except requests.RequestException:
+        return jsonify({"error": "Die Lebensmittelsuche ist momentan nicht erreichbar."}), HTTPStatus.BAD_GATEWAY  #HTTP 502: Server konnte keine gültige Antwort vom externen Dienst erhalten
+
+    except ValueError:
+        return jsonify({"error": "Die API hat ungültige Daten zurückgegeben."}), 502
 
 
 
