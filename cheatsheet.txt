@@ -74,7 +74,8 @@ document = JavaScript-Zugriff auf die HTML-Seite
 .filter = geht durch jedes Element eines Arrays und prüft eine Bedingung
 .includes = prüft, ob ein bestimmter Wert in einem Array enthalten ist
 forEach() = geht jeden gefundenen Button einzeln durch
-
+async = Diese Funktion darf auf Ergebnisse warten, ohne die ganze Webseite anzuhalten
+await = Warte innerhalb dieser Funktion, bis das angeforderte Ergebnis verfügbar ist
 
 flask elemente:
 request = Zugriff auf die vom Browser gesendeten Daten

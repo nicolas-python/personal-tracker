@@ -283,7 +283,9 @@
         const searchFoodButton = document.getElementById("searchFoodButton");
         const foodSearchResults = document.getElementById("foodSearchResults");
 
-        async function searchFood()
+        let selectedProduct = null;
+
+        async function searchFood()                         //async = warten ohne website aufzuhalten
         {
             const searchTerm = foodSearchInput.value.trim();
 
@@ -320,11 +322,30 @@
                 }
 
                 //HTML anzeigen
-                products.forEach(function(product)
+                products.forEach(function (product)
                 {
-                    const productItem = document.createElement("p");
-                    productItem.textContent = product.product_name || product.code || "Unbenanntes Produkt";
-                    foodSearchResults.appendChild(productItem);
+                    //Button für das gefundene Produkt erstellen
+                    const productButton = document.createElement("button");
+
+                    productButton.type = "button";
+                    productButton.className = "food-result-button";
+
+                    productButton.textContent = product.product_name || "Produktname nicht vorhanden";
+
+                    productButton.addEventListener("click", function ()
+                    {
+                        selectedProduct = product;
+
+                        foodSearchResults.querySelectorAll(".food-result-button").forEach(function (button)
+                        {
+                            button.classList.remove("selected");
+                        });
+
+                        productButton.classList.add("selected");
+
+                    });
+
+                    foodSearchResults.appendChild(productButton);
                 });
             }
             catch (error)
