@@ -284,6 +284,12 @@
     border-radius: 5px;
 }
 
+.food-result-button.selected
+{
+    background-color: green;
+    color: white;
+}
+
 /* -------------------------------------------Handy-------------------------------------------*/
 @media (max-width: 600px)
 {

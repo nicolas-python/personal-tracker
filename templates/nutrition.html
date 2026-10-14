@@ -162,8 +162,8 @@
             <!--Suchergebnisse angezeigen -->
         </div>
 
+        <button type="button" id="addSelectedFood">Lebensmittel hinzufügen</button>
         <button type="button" id="closeFoodSearch">Schließen</button>
-
     </div>
 
 
@@ -270,7 +270,8 @@
 
         function addFoodButton(event)
         {
-            const selectedMealCard = event.currentTarget.closest(".nutrition-meal-card");       // Suchfenster unter die angeklickte Mahlzeitenkarte verschiebenn
+            const selectedMealCard = event.currentTarget.closest(".nutrition-meal-card");   //suchfenster unter die angeklickte Mahlzeitenkarte verschieben
+
             selectedMealCard.appendChild(foodSearch);
 
             selectedMeal = event.currentTarget.dataset.meal;
@@ -341,7 +342,23 @@
                     productButton.type = "button";
                     productButton.className = "food-result-button";
 
-                    productButton.textContent = product.product_name || "Produktname nicht vorhanden";
+                    //nährwerte aus Open Food Facts auslesen
+                    const nutrients = product.nutriments || {};
+
+                    const calories = nutrients["energy-kcal_100g"] ?? nutrients["energy-kcal"] ?? "Keine Angabe";       //?? verwendet "Keine Angabe", wenn kein Nährwert vorhanden ist
+                    const protein = nutrients.proteins_100g ?? "Keine Angabe";
+                    const fat = nutrients.fat_100g ?? "Keine Angabe";
+                    const carbs = nutrients.carbohydrates_100g ?? "Keine Angabe";
+                    const sugar = nutrients.sugars_100g ?? "Keine Angabe";
+
+
+                    //Name und Nährwerte anzeigen
+                    productButton.textContent = (product.product_name || "Produktname nicht vorhanden") +
+                            "\n" + calories + " kcal" +
+                            " | Eiweiß: " + protein + " g" +
+                            " | Fett: " + fat + " g" +
+                            " | Kohlenhydrate: " + carbs + " g" +
+                            " | Zucker: " + sugar + " g";
 
                     productButton.addEventListener("click", function ()
                     {
@@ -368,6 +385,42 @@
         }
 
         searchFoodButton.addEventListener("click", searchFood);
+
+        const addSelectedFoodButton = document.getElementById("addSelectedFood");
+        addSelectedFoodButton.addEventListener("click", function ()
+        {
+            if (!selectedProduct)
+            {
+                alert("Bitte wähle zuerst ein Lebensmittel aus.");
+                return;
+            }
+
+            const grams = Number(document.getElementById("foodGrams").value);
+
+            if (!grams || grams <= 0)
+            {
+                alert("Bitte gib eine gültige Menge in Gramm ein.");
+                return;
+            }
+
+            const mealFoodList = document.getElementById(selectedMeal + "Foods");
+
+            if (!mealFoodList)
+            {
+                alert("Die Mahlzeit wurde nicht gefunden.");
+                return;
+            }
+
+            const foodItem = document.createElement("div");
+            foodItem.className = "meal-food-item";
+            foodItem.textContent = selectedProduct.product_name + " – " + grams + " g";
+
+            mealFoodList.appendChild(foodItem);
+
+            selectedProduct = null;
+            document.getElementById("foodGrams").value = "";
+            foodSearch.hidden = true;
+        });
 
     </script>
 
