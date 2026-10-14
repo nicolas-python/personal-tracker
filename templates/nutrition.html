@@ -75,7 +75,7 @@
         <div class="nutrition-card">
             <h3>Kalorien</h3>
             <p><strong id="caloriesConsumed"></strong> kcal</p>
-            <p>von <span id="caloriesGoal"></span> kcal</p>
+            <span id="caloriesGoal" data-saved-calories="{{ calorie_needs[0] if calorie_needs else '' }}"></span>
 
             <div class="progress-bar">
                 <div id="calorieProgressBar" class="progress-fill"></div>
@@ -85,7 +85,7 @@
         <div class="nutrition-card">
             <h3>Protein</h3>
             <p><strong id="proteinConsumed"></strong> g</p>
-            <p>von <span id="proteinGoal"></span> g</p>
+            <span id="proteinGoal" data-saved-protein="{{ calorie_needs[1] if calorie_needs else '' }}"></span>
 
             <div class="progress-bar">
                 <div id="proteinProgressBar" class="progress-fill"></div>
@@ -166,7 +166,6 @@
         <button type="button" id="closeFoodSearch">Schließen</button>
     </div>
 
-
     <script>
         //Datumseingabe und Textanzeige aus dem HTML holen
         const nutritionDate = document.getElementById("nutritionDate");
@@ -202,6 +201,21 @@
         //Kalorienbedarfsrechner
         const calorieForm = document.getElementById("calorieForm");
         const calculateButton = document.getElementById("calculateCalories");
+
+        const caloriesGoalElement = document.getElementById("caloriesGoal");
+        const proteinGoalElement = document.getElementById("proteinGoal");
+
+        const savedCalories = caloriesGoalElement.dataset.savedCalories;
+        const savedProtein = proteinGoalElement.dataset.savedProtein;
+
+        if (savedCalories && savedProtein)
+        {
+            caloriesGoalElement.textContent = savedCalories;
+            proteinGoalElement.textContent = savedProtein;
+
+            document.getElementById("calorieResult").textContent = "Dein Kalorienziel: " + savedCalories + " kcal pro Tag";
+        }
+
 
         function CalorieNeedsCalculator()
         {
@@ -258,10 +272,26 @@
 
             document.getElementById("caloriesGoal").textContent = Math.round(caloriegoal);
             document.getElementById("proteinGoal").textContent = Math.round(proteinGoal);
+
+            fetch("/save-calorie-needs", {method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    calories: Math.round(caloriegoal),
+                    protein: Math.round(proteinGoal)
+                })
+            })
+            .then(response => {if (!response.ok)
+                {
+                    throw new Error("Speichern fehlgeschlagen");
+                }
+            })
+            .catch(error => {
+                console.error("Fehler beim Speichern:", error);
+                alert("Kalorienziel konnte nicht gespeichert werden.");
+            });
         }
 
         calculateButton.addEventListener("click", CalorieNeedsCalculator);
-
 
         const addFoodButtons = document.querySelectorAll(".add-food-button");
         const foodSearch = document.getElementById("foodSearch");

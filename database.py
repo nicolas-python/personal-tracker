@@ -27,7 +27,18 @@ def create_database():
         )
     """)
 
-    #übungen zu den Workouts
+#Kalorienbedarfsrechner
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS calorie_needs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL UNIQUE,
+            calories INTEGER NOT NULL,
+            protein INTEGER NOT NULL,
+            FOREIGN KEY(user_id) REFERENCES users(id)
+        )
+    """)
+
+#übungen zu den Workouts
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS workout_exercises(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -195,5 +206,37 @@ def get_workout_exercises(workout_id):
     exercises = cursor.fetchall()
     connection.close()
     return exercises
+
+def save_calorie_needs(user_id, calories, protein):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        INSERT INTO calorie_needs (user_id, calories, protein)
+        VALUES (?, ?, ?)
+        ON CONFLICT(user_id)
+        DO UPDATE SET
+            calories = excluded.calories,
+            protein = excluded.protein
+    """, (user_id, calories, protein))
+
+    connection.commit()
+    connection.close()
+
+def get_calorie_needs(user_id):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT calories, protein
+        FROM calorie_needs
+        WHERE user_id = ?
+    """, (user_id,))
+
+    calorie_needs = cursor.fetchone()
+    connection.close()
+
+    return calorie_needs
+
 
 create_database()

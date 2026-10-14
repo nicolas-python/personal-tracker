@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout ,delete_workout
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -156,7 +156,11 @@ def start_workout(workout_id):
 
 @app.route("/nutrition")
 def nutrition():
-    return render_template("nutrition.html")
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    calorie_needs = get_calorie_needs(session["user_id"])
+
+    return render_template("nutrition.html",calorie_needs=calorie_needs)
 
 @app.route("/search-food")
 def search_food():
@@ -186,6 +190,16 @@ def search_food():
     except ValueError:
         return jsonify({"error": "Die API hat ungültige Daten zurückgegeben."}), 502
 
+@app.route("/save-calorie-needs", methods=["POST"])
+def save_calorie_needs_route():
+    if "user_id" not in session:
+        return jsonify({"error": "Nicht angemeldet"}), 401
+
+    data = request.get_json()
+
+    save_calorie_needs(session["user_id"],data["calories"],data["protein"])
+
+    return jsonify({"success": True})
 
 
 if __name__ == "__main__":
