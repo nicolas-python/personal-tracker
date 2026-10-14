@@ -219,6 +219,7 @@
 {
     background-color: darkred;
 }
+
 .nutrition-meal-card
 {
     border: 1px solid lightgray;
@@ -236,6 +237,51 @@
     padding: 10px;
     margin-bottom: 10px;
     min-height: 20px;
+}
+
+.food-search-inputs
+{
+    display: flex;
+    gap: 10px;
+}
+
+.food-search-field
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.food-search-field:first-child
+{
+    flex: 3;
+}
+
+.food-search-field:last-child
+{
+    flex: 1;
+}
+
+#foodSearchInput,
+#foodGrams
+{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#searchFoodButton
+{
+    margin-top: 10px;
+}
+
+.food-result-button
+{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }
 
 /* -------------------------------------------Handy-------------------------------------------*/
