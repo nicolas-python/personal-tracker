@@ -286,6 +286,11 @@
         function closeFoodSearch()
         {
             foodSearch.hidden = true;
+
+            const selectedMealCard = foodSearch.closest(".nutrition-meal-card");
+            const addFoodButton = selectedMealCard.querySelector(".add-food-button");
+
+            addFoodButton.hidden = false;
         }
 
         closeFoodSearchButton.addEventListener("click", closeFoodSearch);
@@ -388,6 +393,7 @@
         searchFoodButton.addEventListener("click", searchFood);
 
         const addSelectedFoodButton = document.getElementById("addSelectedFood");
+
         addSelectedFoodButton.addEventListener("click", function ()
         {
             if (!selectedProduct)
@@ -420,7 +426,7 @@
 
             selectedProduct = null;
             document.getElementById("foodGrams").value = "";
-            foodSearch.hidden = true;
+            closeFoodSearch();
         });
 
     </script>
