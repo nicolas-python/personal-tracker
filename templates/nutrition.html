@@ -286,11 +286,6 @@
         function closeFoodSearch()
         {
             foodSearch.hidden = true;
-
-            const selectedMealCard = foodSearch.closest(".nutrition-meal-card");
-            const addFoodButton = selectedMealCard.querySelector(".add-food-button");
-
-            addFoodButton.hidden = false;
         }
 
         closeFoodSearchButton.addEventListener("click", closeFoodSearch);
@@ -392,6 +387,7 @@
 
         searchFoodButton.addEventListener("click", searchFood);
 
+
         const addSelectedFoodButton = document.getElementById("addSelectedFood");
 
         addSelectedFoodButton.addEventListener("click", function ()
@@ -418,6 +414,38 @@
                 return;
             }
 
+            const nutrients = selectedProduct.nutriments || {};
+            const caloriesPer100g = Number(nutrients["energy-kcal_100g"] ?? nutrients["energy-kcal"] ?? 0);
+            const addedCalories = caloriesPer100g * grams / 100;
+            const proteinPer100g = Number(nutrients.proteins_100g ?? 0);
+            const addedProtein = proteinPer100g * grams / 100;
+
+            const caloriesConsumed = document.getElementById("caloriesConsumed");
+            const calorieProgressBar = document.getElementById("calorieProgressBar");
+            const caloriesGoal = Number(document.getElementById("caloriesGoal").textContent) || 0;
+            const currentCalories = Number(caloriesConsumed.textContent) || 0;
+            const totalCalories = currentCalories + addedCalories;
+
+            const proteinConsumed = document.getElementById("proteinConsumed");
+            const proteinProgressBar = document.getElementById("proteinProgressBar");
+            const proteinGoal = Number(document.getElementById("proteinGoal").textContent) || 0;
+            const currentProtein = Number(proteinConsumed.textContent) || 0;
+            const totalProtein = currentProtein + addedProtein;
+
+            proteinConsumed.textContent = Math.round(totalProtein);
+
+            if (proteinGoal > 0)
+            {
+                proteinProgressBar.style.width = Math.min(totalProtein / proteinGoal * 100, 100) + "%";
+            }
+
+            caloriesConsumed.textContent = Math.round(totalCalories);
+
+            if (caloriesGoal > 0)
+            {
+                calorieProgressBar.style.width = Math.min(totalCalories / caloriesGoal * 100, 100) + "%";
+            }
+
             const foodItem = document.createElement("div");
             foodItem.className = "meal-food-item";
             foodItem.textContent = selectedProduct.product_name + " – " + grams + " g";
@@ -426,7 +454,7 @@
 
             selectedProduct = null;
             document.getElementById("foodGrams").value = "";
-            closeFoodSearch();
+            foodSearch.hidden = true;
         });
 
     </script>
