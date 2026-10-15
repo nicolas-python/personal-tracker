@@ -33,6 +33,7 @@ Flask :
     -redirect(): Leitet den Browser auf eine andere URL weiter
     -url_for(): Ermittelt die URL einer Flask-Route anhand ihres Funktionsnamens
     -jsonify(): Wandelt Python-Daten in eine JSON-HTTP-Antwort um, die JavaScript verarbeiten kann
+    -fetch() = Schickt Daten zwischen JavaScript und Flask
 
 database :
     -create_database() erstellt die benötigte Datenbankstruktur

@@ -51,6 +51,23 @@ def create_database():
         )
     """)
 
+#Lebensmittel-Einträge
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS food_entries (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            food_name TEXT NOT NULL,
+            grams REAL NOT NULL,
+            calories REAL NOT NULL,
+            protein REAL NOT NULL,
+            fat REAL NOT NULL,
+            carbs REAL NOT NULL,
+            sugar REAL NOT NULL,
+            meal TEXT NOT NULL,
+            entry_date TEXT NOT NULL,
+            FOREIGN KEY(user_id) REFERENCES users(id)
+        )
+    """)
     connection.commit()
     connection.close()
 
@@ -237,6 +254,18 @@ def get_calorie_needs(user_id):
     connection.close()
 
     return calorie_needs
+
+def save_food(user_id, food_name, grams, calories, protein, fat, carbs, sugar, meal, entry_date):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        INSERT INTO food_entries (user_id, food_name, grams, calories, protein, fat, carbs, sugar, meal, entry_date)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        (user_id, food_name, grams, calories, protein, fat, carbs, sugar, meal, entry_date))
+
+    connection.commit()
+    connection.close()
 
 
 create_database()

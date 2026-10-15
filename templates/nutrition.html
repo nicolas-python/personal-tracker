@@ -449,6 +449,9 @@
             const addedCalories = caloriesPer100g * grams / 100;
             const proteinPer100g = Number(nutrients.proteins_100g ?? 0);
             const addedProtein = proteinPer100g * grams / 100;
+            const addedFat = Number(nutrients.fat_100g ?? 0) * grams / 100;
+            const addedCarbs = Number(nutrients.carbohydrates_100g ?? 0) * grams / 100;
+            const addedSugar = Number(nutrients.sugars_100g ?? 0) * grams / 100;
 
             const caloriesConsumed = document.getElementById("caloriesConsumed");
             const calorieProgressBar = document.getElementById("calorieProgressBar");
@@ -481,6 +484,40 @@
             foodItem.textContent = selectedProduct.product_name + " – " + grams + " g";
 
             mealFoodList.appendChild(foodItem);
+
+            fetch("/save-food", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(
+                {
+                    food_name: selectedProduct.product_name,
+                    grams: grams,
+                    calories: addedCalories,
+                    protein: addedProtein,
+                    fat: addedFat,
+                    carbs: addedCarbs,
+                    sugar: addedSugar,
+                    meal: selectedMeal,
+                    entry_date: document.getElementById("nutritionDate").value
+                })
+            })
+
+            .then(response =>
+            {
+                if (!response.ok) {throw new Error("Lebensmittel konnte nicht gespeichert werden.");}
+                return response.json();
+            })
+
+            .then(data =>
+            {
+                console.log("Lebensmittel gespeichert:", data);
+            })
+
+            .catch(error =>
+            {
+                console.error("Fehler beim Speichern:", error);
+                alert("Das Lebensmittel konnte nicht gespeichert werden.");
+            });
 
             selectedProduct = null;
             document.getElementById("foodGrams").value = "";
