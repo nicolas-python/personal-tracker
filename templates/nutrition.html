@@ -193,9 +193,13 @@
                     }).format(selectedDate);
         }
 
-        // Datum beim Laden und nach einer Änderung anzeigen
+        //Datum beim Laden und nach einer Änderung anzeigen
         updateNutritionDate();
-        nutritionDate.addEventListener("change", updateNutritionDate);
+        nutritionDate.addEventListener("change", function ()
+        {
+            updateNutritionDate();
+            loadFood();
+        });
 
 
         //Kalorienbedarfsrechner
@@ -524,6 +528,44 @@
             foodSearch.hidden = true;
         });
 
+        //lebensmittel anzeigen
+        async function loadFood()
+        {
+            const date = nutritionDate.value;
+
+            try
+            {
+                const response = await fetch(`/get-food?date=${encodeURIComponent(date)}`);
+
+                if (!response.ok)
+                {
+                    throw new Error("Lebensmittel konnten nicht geladen werden.");
+                }
+
+                const data = await response.json();
+                document.querySelectorAll(".meal-food-list").forEach(function (list)
+                {
+                    list.replaceChildren();
+                });
+
+                //gespeicherte Lebensmittel anzeigen
+                data.foods.forEach(function (food)
+                {
+                    const foodItem = document.createElement("div");
+                    foodItem.className = "meal-food-item";
+                    foodItem.textContent = food[1] + " – " + food[2] + " g";
+
+                    const mealFoodList = document.getElementById(food[8] + "Foods");
+
+                    if (mealFoodList)
+                    {
+                        mealFoodList.appendChild(foodItem);
+                    }
+                });
+            } catch (error) {console.error("Fehler beim Laden der Lebensmittel:", error);}
+        }
+
+        loadFood();
     </script>
 
 </body>

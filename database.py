@@ -267,5 +267,21 @@ def save_food(user_id, food_name, grams, calories, protein, fat, carbs, sugar, m
     connection.commit()
     connection.close()
 
+def get_food(user_id, entry_date):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+                   SELECT id, food_name, grams, calories, protein, fat, carbs, sugar, meal, entry_date
+                   FROM food_entries
+                   WHERE user_id = ?
+                     AND entry_date = ?
+                   """, (user_id, entry_date))
+
+    foods = cursor.fetchall()
+    connection.close()
+
+    return foods
+
 
 create_database()

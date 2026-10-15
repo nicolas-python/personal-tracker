@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -222,6 +222,20 @@ def save_food_route():
     )
 
     return jsonify({"success": True})
+
+@app.route("/get-food")
+def get_food_route():
+    if "user_id" not in session:
+        return jsonify({"error": "Nicht angemeldet"}), 401
+
+    entry_date = request.args.get("date")
+
+    if not entry_date:
+        return jsonify({"error": "Datum fehlt"}), 400
+
+    foods = get_food(session["user_id"], entry_date)
+
+    return jsonify({"foods": foods})
 
 
 if __name__ == "__main__":
