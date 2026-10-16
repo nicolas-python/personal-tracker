@@ -290,6 +290,54 @@
     color: white;
 }
 
+.meal-nutrition-summary
+{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.meal-nutrition-item p     /*p = alle <p> elemente */
+{
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+.nutrition-circle
+{
+    width: 90px;
+    height: 90px;
+    border: 7px solid lightgray;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+.calories-circle
+{
+    border-color: orange;
+}
+
+.protein-circle
+{
+    border-color: royalblue;
+}
+
+.fat-circle
+{
+    border-color: green;
+}
+
+.carbs-circle
+{
+    border-color:  mediumpurple;
+}
 /* -------------------------------------------Handy-------------------------------------------*/
 @media (max-width: 600px)
 {
