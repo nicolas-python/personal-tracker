@@ -543,6 +543,9 @@
                 }
 
                 const data = await response.json();
+                let totalCalories = 0;
+                let totalProtein = 0;
+
                 document.querySelectorAll(".meal-food-list").forEach(function (list)
                 {
                     list.replaceChildren();
@@ -551,6 +554,9 @@
                 //gespeicherte Lebensmittel anzeigen
                 data.foods.forEach(function (food)
                 {
+                    totalCalories += Number(food[3]) || 0;
+                    totalProtein += Number(food[4]) || 0;
+
                     const foodItem = document.createElement("div");
                     foodItem.className = "meal-food-item";
                     foodItem.textContent = food[1] + " – " + food[2] + " g";
@@ -562,6 +568,39 @@
                         mealFoodList.appendChild(foodItem);
                     }
                 });
+
+                //kalorien aktualisieren
+                const caloriesConsumed = document.getElementById("caloriesConsumed");
+                const caloriesGoal = Number(document.getElementById("caloriesGoal").textContent) || 0;
+                const calorieProgressBar = document.getElementById("calorieProgressBar");
+
+                caloriesConsumed.textContent = Math.round(totalCalories);
+
+                if (caloriesGoal > 0)
+                {
+                    calorieProgressBar.style.width = Math.min(totalCalories / caloriesGoal * 100, 100) + "%";   //% = weil CSS eine Prozentangabe benötigt
+                }
+                else
+                {
+                    calorieProgressBar.style.width = "0%";
+                }
+
+                //protein aktualisieren
+                const proteinConsumed = document.getElementById("proteinConsumed");
+                const proteinGoal = Number(document.getElementById("proteinGoal").textContent) || 0;
+                const proteinProgressBar = document.getElementById("proteinProgressBar");
+
+                proteinConsumed.textContent = Math.round(totalProtein);
+
+                if (proteinGoal > 0)
+                {
+                    proteinProgressBar.style.width = Math.min(totalProtein / proteinGoal * 100, 100) + "%";
+                }
+                else
+                {
+                    proteinProgressBar.style.width = "0%";
+                }
+
             } catch (error) {console.error("Fehler beim Laden der Lebensmittel:", error);}
         }
 
