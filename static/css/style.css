@@ -338,6 +338,11 @@
 {
     border-color:  mediumpurple;
 }
+
+.sugar-circle
+{
+    border-color: crimson;
+}
 /* -------------------------------------------Handy-------------------------------------------*/
 @media (max-width: 600px)
 {

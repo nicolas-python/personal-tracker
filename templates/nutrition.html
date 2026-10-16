@@ -93,7 +93,7 @@
         </div>
     </div>
 
-<!---------------------------------------- -Nährwerte der ausgewählten Mahlzeit -------------------------------------->
+<!---------------------------------------- -Nährwerte Mahlzeiten Kreis anzeige -------------------------------------->
     <div class="meal-nutrition-summary">
 
         <div class="meal-nutrition-item">
@@ -124,6 +124,12 @@
             <p>Kohlenhydrate (g)</p>
         </div>
 
+        <div class="meal-nutrition-item">
+            <div class="nutrition-circle sugar-circle">
+                <span id="mealSugar">0</span>
+            </div>
+            <p>Zucker (g)</p>
+        </div>
     </div>
 <!---------------------------------------------Frühstück----------------------------------------------->
     <div class="nutrition-meal-card" id="breakfast">
@@ -548,6 +554,7 @@
             .then(data =>
             {
                 console.log("Lebensmittel gespeichert:", data);
+                loadFood();         //lebensmittel und Nährwerte aktualisieren
             })
 
             .catch(error =>
@@ -576,10 +583,12 @@
                 }
 
                 const data = await response.json();
+                console.log("Geladene Lebensmittel:", data.foods);
                 let totalCalories = 0;
                 let totalProtein = 0;
                 let totalFat = 0;
                 let totalCarbs = 0;
+                let totalSugar = 0;
 
                 document.querySelectorAll(".meal-food-list").forEach(function (list)
                 {
@@ -593,6 +602,7 @@
                     totalProtein += Number(food[4]) || 0;
                     totalFat += Number(food[5]) || 0;
                     totalCarbs += Number(food[6]) || 0;
+                    totalSugar += Number(food[7]) || 0;
 
                     const foodItem = document.createElement("div");
                     foodItem.className = "meal-food-item";
@@ -610,6 +620,7 @@
                 document.getElementById("mealProtein").textContent = Math.round(totalProtein);
                 document.getElementById("mealFat").textContent = Math.round(totalFat);
                 document.getElementById("mealCarbs").textContent = Math.round(totalCarbs);
+                document.getElementById("mealSugar").textContent = Math.round(totalSugar);
 
                 //kalorien aktualisieren
                 const caloriesConsumed = document.getElementById("caloriesConsumed");
@@ -643,7 +654,10 @@
                     proteinProgressBar.style.width = "0%";
                 }
 
-            } catch (error) {console.error("Fehler beim Laden der Lebensmittel:", error);}
+            }catch (error)
+            {
+                console.error("Fehler beim Laden der Lebensmittel:", error);
+            }
         }
 
         loadFood();
