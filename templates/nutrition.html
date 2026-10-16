@@ -578,6 +578,8 @@
                 const data = await response.json();
                 let totalCalories = 0;
                 let totalProtein = 0;
+                let totalFat = 0;
+                let totalCarbs = 0;
 
                 document.querySelectorAll(".meal-food-list").forEach(function (list)
                 {
@@ -589,6 +591,8 @@
                 {
                     totalCalories += Number(food[3]) || 0;
                     totalProtein += Number(food[4]) || 0;
+                    totalFat += Number(food[5]) || 0;
+                    totalCarbs += Number(food[6]) || 0;
 
                     const foodItem = document.createElement("div");
                     foodItem.className = "meal-food-item";
@@ -601,6 +605,11 @@
                         mealFoodList.appendChild(foodItem);
                     }
                 });
+                //nährwerte Kreisen
+                document.getElementById("mealCalories").textContent = Math.round(totalCalories);
+                document.getElementById("mealProtein").textContent = Math.round(totalProtein);
+                document.getElementById("mealFat").textContent = Math.round(totalFat);
+                document.getElementById("mealCarbs").textContent = Math.round(totalCarbs);
 
                 //kalorien aktualisieren
                 const caloriesConsumed = document.getElementById("caloriesConsumed");
