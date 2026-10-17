@@ -215,11 +215,6 @@
     transition: width 0.3s ease, background-color 0.3s ease;
 }
 
-.progress-fill.over-goal
-{
-    background-color: darkred;
-}
-
 .nutrition-meal-card
 {
     border: 1px solid lightgray;

@@ -631,11 +631,25 @@
 
                 if (caloriesGoal > 0)
                 {
-                    calorieProgressBar.style.width = Math.min(totalCalories / caloriesGoal * 100, 100) + "%";   //% = weil CSS eine Prozentangabe benötigt
+                    const caloriePercentage = totalCalories / caloriesGoal * 100;
+
+                    if (caloriePercentage <= 100)
+                    {
+                        calorieProgressBar.style.width = caloriePercentage + "%";
+                        calorieProgressBar.style.background = "green";
+                    }
+                    else
+                    {
+                        const redPercentage = (totalCalories - caloriesGoal) / totalCalories * 100;
+
+                        calorieProgressBar.style.width = "100%";
+                        calorieProgressBar.style.background = `linear-gradient(to right, green 0%, green ${100 - redPercentage}%, red ${100 - redPercentage}%, red 100%)`;
+                    }
                 }
                 else
                 {
                     calorieProgressBar.style.width = "0%";
+                    calorieProgressBar.style.background = "green";
                 }
 
                 //protein aktualisieren
@@ -647,7 +661,7 @@
 
                 if (proteinGoal > 0)
                 {
-                    proteinProgressBar.style.width = Math.min(totalProtein / proteinGoal * 100, 100) + "%";
+                    proteinProgressBar.style.width = Math.min(totalProtein / proteinGoal * 100, 100) + "%";     //% = weil CSS eine Prozentangabe benötigt
                 }
                 else
                 {
