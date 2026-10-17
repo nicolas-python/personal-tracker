@@ -345,9 +345,9 @@
         {
             const selectedMealCard = event.currentTarget.closest(".nutrition-meal-card");   //suchfenster unter die angeklickte Mahlzeitenkarte verschieben
 
+            selectedMeal = event.currentTarget.dataset.meal;
             selectedMealCard.appendChild(foodSearch);
 
-            selectedMeal = event.currentTarget.dataset.meal;
             event.currentTarget.hidden = true;
             foodSearch.hidden = false;
         }
@@ -567,6 +567,12 @@
             selectedProduct = null;
             document.getElementById("foodGrams").value = "";
             foodSearch.hidden = true;
+
+            const selectedButton = document.querySelector('.add-food-button[data-meal="' + selectedMeal + '"]');
+            if (selectedButton)
+            {
+                selectedButton.hidden = false;
+            }
         });
 
         //lebensmittel anzeigen
