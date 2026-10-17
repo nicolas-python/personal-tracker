@@ -225,6 +225,14 @@
     min-height: 20px;
 }
 
+.meal-food-item
+{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
 .meal-food-list
 {
     border: 1px solid lightgray;

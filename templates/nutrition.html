@@ -524,6 +524,7 @@
 
             const foodItem = document.createElement("div");
             foodItem.className = "meal-food-item";
+
             foodItem.textContent = selectedProduct.product_name + " – " + grams + " g";
 
             mealFoodList.appendChild(foodItem);
@@ -606,14 +607,92 @@
 
                     const foodItem = document.createElement("div");
                     foodItem.className = "meal-food-item";
-                    foodItem.textContent = food[1] + " – " + food[2] + " g";
+
+                    const foodText = document.createElement("span");
+                    foodText.textContent = food[1] + " – " + food[2] + " g";
+                    foodItem.appendChild(foodText);
+
+                    //bearbeiten-Button erstellen
+                    const editButton = document.createElement("button");
+                    editButton.type = "button";
+                    editButton.textContent = "Bearbeiten";
+
+                    editButton.addEventListener("click", async function ()
+                    {
+                        const newGrams = Number(prompt("Neue Grammzahl für " + food[1] + ":", food[2]));
+                        if (!Number.isFinite(newGrams) || newGrams <= 0)
+                        {
+                            alert("Bitte gib eine gültige Grammzahl größer als 0 ein.");
+                            return;
+                        }
+
+                        const oldGrams = Number(food[2]);
+                        if (oldGrams <= 0)
+                        {
+                            alert("Die bisherige Grammzahl ist ungültig.");
+                            return;
+                        }
+
+                        const factor = newGrams / oldGrams;
+                        const response = await fetch("/update-food",
+                        {
+                            method: "POST",
+                            headers: {"Content-Type": "application/json"},
+                            body: JSON.stringify({
+                                food_id: food[0],
+                                grams: newGrams,
+                                calories: Number(food[3]) * factor,
+                                protein: Number(food[4]) * factor,
+                                fat: Number(food[5]) * factor,
+                                carbs: Number(food[6]) * factor,
+                                sugar: Number(food[7]) * factor
+                            })
+                        });
+
+                        if (!response.ok)
+                        {
+                            alert("Das Lebensmittel konnte nicht bearbeitet werden.");
+                            return;
+                        }
+                        await loadFood();
+                    });
+                    foodItem.appendChild(editButton);
+
+                    //löschen-Button erstellen
+                    const deleteButton = document.createElement("button");
+                    deleteButton.type = "button";
+                    deleteButton.textContent = "Löschen";
+
+                    deleteButton.addEventListener("click", async function ()
+                    {
+                        if (!confirm("Möchtest du " + food[1] + " wirklich löschen?"))
+                        {
+                            return;
+                        }
+
+                        const response = await fetch("/delete-food",
+                                {
+                                method: "POST",
+                                headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify({food_id: food[0]})
+                                });
+
+                        if (!response.ok)
+                        {
+                            alert("Das Lebensmittel konnte nicht gelöscht werden.");
+                            return;
+                        }
+
+                        await loadFood();
+                    });
+                    foodItem.appendChild(deleteButton);
 
                     const mealFoodList = document.getElementById(food[8] + "Foods");
-
                     if (mealFoodList)
                     {
                         mealFoodList.appendChild(foodItem);
                     }
+
                 });
                 //nährwerte Kreisen
                 document.getElementById("mealCalories").textContent = Math.round(totalCalories);

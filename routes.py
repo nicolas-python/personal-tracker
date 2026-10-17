@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -132,7 +132,6 @@ def edit_workout(workout_id):
 
 @app.route("/delete-workout/<int:workout_id>", methods=["POST"])
 def delete_workout_route(workout_id):
-    # Prüfen, ob ein Benutzer angemeldet ist
     if "user_id" not in session:
         flash("Bitte melde dich zuerst an.", "error")
         return redirect(url_for("home"))                                    #url_for() sucht anhand des Funktionsnamens die passende URL heraus
@@ -236,6 +235,55 @@ def get_food_route():
     foods = get_food(session["user_id"], entry_date)
 
     return jsonify({"foods": foods})
+
+
+@app.route("/delete-food", methods=["POST"])
+def delete_food_route():
+    if "user_id" not in session:
+        return jsonify({"error": "Nicht angemeldet"}), 401
+
+    data = request.get_json()
+    food_id = data.get("food_id")
+
+    if not food_id:
+        return jsonify({"error": "Lebensmittel-ID fehlt"}), 400
+
+    deleted_rows = delete_food(session["user_id"], food_id)
+
+    if deleted_rows == 0:
+        return jsonify({"error": "Lebensmittel nicht gefunden"}), 404
+
+    return jsonify({"success": True})
+
+@app.route("/update-food", methods=["POST"])
+def update_food_route():
+    if "user_id" not in session:
+        return jsonify({"error": "Nicht angemeldet"}), 401
+
+    data = request.get_json()
+    food_id = data.get("food_id")
+
+    required_fields = ["grams", "calories", "protein", "fat", "carbs", "sugar"]
+    if not food_id or any(field not in data for field in required_fields):
+        return jsonify({"error": "Daten fehlen"}), 400
+
+    updated_rows = (update_food
+        (
+        session["user_id"],
+        food_id,
+        data["grams"],
+        data["calories"],
+        data["protein"],
+        data["fat"],
+        data["carbs"],
+        data["sugar"]
+        ))
+
+    if updated_rows == 0:
+        return jsonify({"error": "Lebensmittel nicht gefunden"}), 404
+
+    return jsonify({"success": True})
+
 
 
 if __name__ == "__main__":

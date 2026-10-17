@@ -284,4 +284,42 @@ def get_food(user_id, entry_date):
     return foods
 
 
+def delete_food(user_id, food_id):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        DELETE FROM food_entries
+        WHERE id = ?
+        AND user_id = ?
+    """, (food_id, user_id))
+
+    connection.commit()
+    deleted_rows = cursor.rowcount
+    connection.close()
+    return deleted_rows
+
+
+def update_food(user_id, food_id, grams, calories, protein, fat, carbs, sugar):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        UPDATE food_entries
+        SET grams = ?,
+            calories = ?,
+            protein = ?,
+            fat = ?,
+            carbs = ?,
+            sugar = ?
+        WHERE id = ?
+        AND user_id = ?
+    """, (grams, calories, protein, fat, carbs, sugar, food_id, user_id))
+
+    connection.commit()
+    updated_rows = cursor.rowcount
+    connection.close()
+    return updated_rows
+
+
 create_database()
