@@ -359,9 +359,15 @@
         function closeFoodSearch()
         {
             foodSearch.hidden = true;
+            foodSearchInput.value = "";
+            document.getElementById("foodGrams").value = "";
+            foodSearchResults.replaceChildren();
+            selectedProduct = null;
 
             const selectedButton = document.querySelector('.add-food-button[data-meal="' + selectedMeal + '"]');
-            if (selectedButton) {
+
+            if (selectedButton)
+            {
                 selectedButton.hidden = false;
             }
         }
