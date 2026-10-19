@@ -65,7 +65,8 @@ JavaScript:
 -- = um 1 verringern
 includes() = prüft, ob ein Wert in einer Liste vorhanden ist
 === = vergleicht, ob zwei Werte exakt gleich sind
-!== = ist nicht gleich
+!== = ist nicht gleich/ungleich
+&& = UND
 insertBefore() = setzt ein neues Element vor ein anderes Element
 querySelector() = sucht ein HTML-Element, das zu diesem Suchmuster passt
 Number() = macht aus dem String z.b "3" wieder die Zahl 3
@@ -77,6 +78,11 @@ document = JavaScript-Zugriff auf die HTML-Seite
 forEach() = geht jeden gefundenen Button einzeln durch
 async = Diese Funktion darf auf Ergebnisse warten, ohne die ganze Webseite anzuhalten
 await = Warte innerhalb dieser Funktion, bis das angeforderte Ergebnis verfügbar ist
+Number.isFinite() = prüft ob ein Wert eine gültige endliche Zahl ist
+/\s+/ = Findet ein oder mehrere aufeinanderfolgende Leerraumzeichen, um Text daran aufzuteilen
+    /../ = kennzeichnet einen regulären Ausdruck (RegEx)
+    \s = ein Leerzeichen
+    + = mindestens einmal, auch mehrfach
 
 flask elemente:
 request = Zugriff auf die vom Browser gesendeten Daten

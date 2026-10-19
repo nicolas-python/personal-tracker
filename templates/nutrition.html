@@ -419,15 +419,26 @@
                     const fat = nutrients.fat_100g;
                     const carbs = nutrients.carbohydrates_100g;
                     const sugar = nutrients.sugars_100g;
+                    const searchWords = foodSearchInput.value
+                        .trim()
+                        .toLocaleLowerCase("de-DE")
+                        .split(/\s+/);
+                    const productName = (product.product_name || "")
+                        .toLocaleLowerCase("de-DE");
 
                     return(
+                            searchWords.every(function (word)
+                            {
+                                return productName.includes(word);
+                            }) &&
                             product.product_name &&
                             product.product_name.trim() !== "" &&
-                            calories != null &&
-                            protein != null &&
-                            fat != null &&
-                            carbs != null &&
-                            sugar != null
+
+                            calories != null && Number.isFinite(Number(calories)) &&
+                            protein != null && Number.isFinite(Number(protein)) &&
+                            fat != null && Number.isFinite(Number(fat)) &&
+                            carbs != null && Number.isFinite(Number(carbs)) &&
+                            sugar != null && Number.isFinite(Number(sugar))
                     );
                 });
 
