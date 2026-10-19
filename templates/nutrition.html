@@ -409,17 +409,39 @@
 
                 const products = data.hits || [];
 
+                //nur Produkte mit Namen und Kalorienangabe anzeigen
+                const filteredProducts = products.filter(function (product)
+                {
+                    const nutrients = product.nutriments || {};
+
+                    const calories = nutrients["energy-kcal_100g"] ?? nutrients["energy-kcal"];
+                    const protein = nutrients.proteins_100g;
+                    const fat = nutrients.fat_100g;
+                    const carbs = nutrients.carbohydrates_100g;
+                    const sugar = nutrients.sugars_100g;
+
+                    return(
+                            product.product_name &&
+                            product.product_name.trim() !== "" &&
+                            calories != null &&
+                            protein != null &&
+                            fat != null &&
+                            carbs != null &&
+                            sugar != null
+                    );
+                });
+
                 //Alte Suchergebnisse entfernen
                 foodSearchResults.replaceChildren();
 
-                if (products.length === 0)
+                if (filteredProducts.length === 0)
                 {
                     foodSearchResults.textContent = "Keine Lebensmittel gefunden.";
                     return;
                 }
 
                 //HTML anzeigen
-                products.forEach(function (product)
+                filteredProducts.forEach(function (product)
                 {
                     //Button für das gefundene Produkt erstellen
                     const productButton = document.createElement("button");

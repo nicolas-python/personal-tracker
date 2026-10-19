@@ -174,7 +174,7 @@ def search_food():
             params=[
                 ("q", search_term),                 # q = von Open Food Facts vorgegebener Parameter für den Suchbegriff
                 ("langs", "de:en"),              #deutsch bevorzugen, englisch zusätzlich berücksichtigen
-                ("page_size", 5)                    #max fünf Ergebnisse anfordern
+                ("page_size", 100)                    #max 100 Ergebnisse anfordern fürs filtern #max fünf Ergebnisse anfordern
             ],
             headers={"User-Agent": "PersonalTracker/1.0"},timeout=10)
 

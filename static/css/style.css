@@ -346,6 +346,28 @@
 {
     border-color: crimson;
 }
+
+/*suchergebnisse begrenzen und scrollbar machen*/
+#foodSearchResults
+{
+    max-height: 350px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 5px;
+}
+
+/*suchergebnisse als einzelne Felder anzeigen*/
+#foodSearchResults .food-result-button
+{
+    flex-shrink: 0;
+    width: 100%;
+    min-height: 60px;
+    white-space: pre-line;
+    text-align: left;
+    padding: 10px;
+}
 /* -------------------------------------------Handy-------------------------------------------*/
 @media (max-width: 600px)
 {
