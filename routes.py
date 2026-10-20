@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -219,6 +219,21 @@ def save_food_route():
         data["meal"],
         data["entry_date"]
     )
+
+    return jsonify({"success": True})
+
+@app.route("/save-custom-food", methods=["POST"])
+def save_custom_food_route():
+    data = request.get_json()
+
+    name = data.get("name", "").strip()
+    calories = data.get("calories")
+    protein = data.get("protein")
+    fat = data.get("fat")
+    carbs = data.get("carbs")
+    sugar = data.get("sugar")
+
+    save_custom_food(name, calories, protein, fat, carbs, sugar)
 
     return jsonify({"success": True})
 

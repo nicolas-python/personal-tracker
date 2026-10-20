@@ -68,6 +68,20 @@ def create_database():
             FOREIGN KEY(user_id) REFERENCES users(id)
         )
     """)
+
+#selbst erstellte Lebensmittel
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS custom_foods(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL UNIQUE,
+            calories REAL NOT NULL,
+            protein REAL NOT NULL,
+            fat REAL NOT NULL,
+            carbs REAL NOT NULL,
+            sugar REAL NOT NULL
+        )
+    """)
+
     connection.commit()
     connection.close()
 
@@ -320,6 +334,18 @@ def update_food(user_id, food_id, grams, calories, protein, fat, carbs, sugar):
     updated_rows = cursor.rowcount
     connection.close()
     return updated_rows
+
+def save_custom_food(name, calories, protein, fat, carbs, sugar):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        INSERT INTO custom_foods (name, calories, protein, fat, carbs, sugar)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (name, calories, protein, fat, carbs, sugar))
+
+    connection.commit()
+    connection.close()
 
 
 create_database()
