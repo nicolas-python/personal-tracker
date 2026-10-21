@@ -201,8 +201,36 @@
             <!--Suchergebnisse angezeigen -->
         </div>
 
-        <button type="button" id="addSelectedFood">Lebensmittel hinzufügen</button>
-        <button type="button" id="closeFoodSearch">Schließen</button>
+<!---------------------------------------------Eigenes Lebensmittel hinzufügen--------------------------------->
+        <button type="button" id="showCustomFoodForm">Eigenes Lebensmittel erstellen</button>
+        <div id="customFoodForm" hidden>
+
+            <h3>Eigenes Lebensmittel erstellen</h3>
+            <p>Nährwerte jeweils pro 100 g eingeben.</p>
+
+            <label for="manualFoodName">Lebensmittelname:</label>
+            <input type="text" id="manualFoodName" required>
+
+            <label for="manualFoodCalories">Kalorien:</label>
+            <input type="number" id="manualFoodCalories" min="0" step="any" required>
+
+            <label for="manualFoodProtein">Eiweiß (g):</label>
+            <input type="number" id="manualFoodProtein" min="0" step="any" required>
+
+            <label for="manualFoodFat">Fett (g):</label>
+            <input type="number" id="manualFoodFat" min="0" step="any" required>
+
+            <label for="manualFoodCarbs">Kohlenhydrate (g):</label>
+            <input type="number" id="manualFoodCarbs" min="0" step="any" required>
+
+            <label for="manualFoodSugar">Zucker (g):</label>
+            <input type="number" id="manualFoodSugar" min="0" step="any" required>
+
+            <button type="button" id="saveCustomFoodButton">Eigenes Lebensmittel speichern</button>
+        </div>
+
+            <button type="button" id="addSelectedFood">Lebensmittel hinzufügen</button>
+            <button type="button" id="closeFoodSearch">Schließen</button>
     </div>
 
     <script>
@@ -804,6 +832,16 @@
                 console.error("Fehler beim Laden der Lebensmittel:", error);
             }
         }
+
+        const showCustomFoodFormButton = document.getElementById("showCustomFoodForm");
+        const customFoodForm = document.getElementById("customFoodForm");
+
+        showCustomFoodFormButton.addEventListener("click", function ()
+        {
+            customFoodForm.hidden = false;
+            console.log("Formular für eigene Lebensmittel wurde geöffnet");
+        });
+
 
         loadFood();
     </script>
