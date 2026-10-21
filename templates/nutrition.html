@@ -843,6 +843,88 @@
         });
 
 
+        //Speichern-Button für eigene Lebensmittel
+        const saveCustomFoodButton = document.getElementById("saveCustomFoodButton");
+
+        saveCustomFoodButton.addEventListener("click", async function ()
+        {
+            const foodName = document.getElementById("manualFoodName").value.trim();
+            const caloriesInput = document.getElementById("manualFoodCalories").value;
+            const proteinInput = document.getElementById("manualFoodProtein").value;
+            const fatInput = document.getElementById("manualFoodFat").value;
+            const carbsInput = document.getElementById("manualFoodCarbs").value;
+            const sugarInput = document.getElementById("manualFoodSugar").value;
+
+            if (
+                foodName === "" ||
+                caloriesInput === "" ||
+                proteinInput === "" ||
+                fatInput === "" ||
+                carbsInput === "" ||
+                sugarInput === ""
+                )
+                {
+                    alert("Bitte fülle alle Felder aus.");
+                    return;
+                }
+
+            //eingaben in zahlen umwandeln
+            const calories = Number(caloriesInput);
+            const protein = Number(proteinInput);
+            const fat = Number(fatInput);
+            const carbs = Number(carbsInput);
+            const sugar = Number(sugarInput);
+
+            //prüfe Nährwerte = gültige Zahlen
+            if (
+                !Number.isFinite(calories) || calories < 0 ||
+                !Number.isFinite(protein) || protein < 0 ||
+                !Number.isFinite(fat) || fat < 0 ||
+                !Number.isFinite(carbs) || carbs < 0 ||
+                !Number.isFinite(sugar) || sugar < 0
+                )
+                {
+                    alert("Bitte gib gültige Nährwerte ein.");
+                    return;
+                }
+
+            //Lebensmittel an Flask senden und in der Datenbank speichern
+            try
+            {
+                const response = await fetch("/save-custom-food",
+                {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        name: foodName,
+                        calories: calories,
+                        protein: protein,
+                        fat: fat,
+                        carbs: carbs,
+                        sugar: sugar
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok)
+                {
+                    alert(data.error || "Das Lebensmittel konnte nicht gespeichert werden.");
+                    return;
+                }
+
+                alert("Eigenes Lebensmittel erfolgreich gespeichert!");
+
+                //Formular nach erfolgreichem Speichern schließen
+                customFoodForm.hidden = true;
+            }
+            catch (error)
+            {
+                console.error("Fehler beim Speichern:", error);
+                alert("Das Lebensmittel konnte nicht gespeichert werden.");
+            }
+        });
+
         loadFood();
     </script>
 

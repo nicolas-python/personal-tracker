@@ -347,5 +347,18 @@ def save_custom_food(name, calories, protein, fat, carbs, sugar):
     connection.commit()
     connection.close()
 
+def show_custom_foods():
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT * FROM custom_foods")
+    custom_foods = cursor.fetchall()
+
+    connection.close()
+
+    for food in custom_foods:
+        print(food)
+
 
 create_database()
+show_custom_foods()
