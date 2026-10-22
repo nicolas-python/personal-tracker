@@ -392,6 +392,13 @@
             foodSearchResults.replaceChildren();
             selectedProduct = null;
 
+            //lebensmittel hinzufügen schließen
+            customFoodForm.hidden = true;
+
+            //buttons anzeigen
+            showCustomFoodFormButton.hidden = false;
+            addSelectedFoodButton.hidden = false;
+
             const selectedButton = document.querySelector('.add-food-button[data-meal="' + selectedMeal + '"]');
 
             if (selectedButton)
