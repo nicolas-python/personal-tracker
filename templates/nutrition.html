@@ -839,6 +839,9 @@
         showCustomFoodFormButton.addEventListener("click", function ()
         {
             customFoodForm.hidden = false;
+            showCustomFoodFormButton.hidden = true;
+            addSelectedFoodButton.hidden = true;
+
             console.log("Formular für eigene Lebensmittel wurde geöffnet");
         });
 
@@ -915,8 +918,19 @@
 
                 alert("Eigenes Lebensmittel erfolgreich gespeichert!");
 
+                //eingabefelder leeren
+                document.getElementById("manualFoodName").value = "";
+                document.getElementById("manualFoodCalories").value = "";
+                document.getElementById("manualFoodProtein").value = "";
+                document.getElementById("manualFoodFat").value = "";
+                document.getElementById("manualFoodCarbs").value = "";
+                document.getElementById("manualFoodSugar").value = "";
                 //Formular nach erfolgreichem Speichern schließen
                 customFoodForm.hidden = true;
+
+                //button anzeigen
+                showCustomFoodFormButton.hidden = false;
+                addSelectedFoodButton.hidden = false;
             }
             catch (error)
             {
