@@ -347,18 +347,45 @@ def save_custom_food(name, calories, protein, fat, carbs, sugar):
     connection.commit()
     connection.close()
 
-def show_custom_foods():
+def search_custom_foods(search_term):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
 
-    cursor.execute("SELECT * FROM custom_foods")
-    custom_foods = cursor.fetchall()
+    search_words = search_term.strip().split()
 
+    if not search_words:
+        connection.close()
+        return []
+
+    conditions = []
+    parameters = []
+
+    for word in search_words:
+        conditions.append("name LIKE ?")
+        parameters.append("%" + word + "%")
+
+    query = """
+        SELECT name, calories, protein, fat, carbs, sugar
+        FROM custom_foods
+        WHERE """ + " AND ".join(conditions)
+
+    cursor.execute(query, parameters)
+    foods = cursor.fetchall()
     connection.close()
 
-    for food in custom_foods:
-        print(food)
+    results = []
+    for food in foods:
+        results.append({
+            "product_name": food[0],
+            "nutriments": {
+                "energy-kcal_100g": food[1],
+                "proteins_100g": food[2],
+                "fat_100g": food[3],
+                "carbohydrates_100g": food[4],
+                "sugars_100g": food[5]
+                }
+        })
 
+    return results
 
 create_database()
-show_custom_foods()

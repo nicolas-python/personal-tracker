@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,search_custom_foods
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -164,6 +164,11 @@ def nutrition():
 @app.route("/search-food")
 def search_food():
     search_term = request.args.get("q", "").strip()     #Suchbegriff aus der URL auslesen, q = von Open Food Facts vorgegebener Parameter für den Suchbegriff
+
+    #zuerst eigene lebensmittel in der Datenbank suchen
+    custom_foods = search_custom_foods(search_term)
+    if custom_foods:
+        return jsonify({"hits": custom_foods})
 
     if not search_term:
         return jsonify({"error": "Bitte ein Lebensmittel eingeben."}), HTTPStatus.BAD_REQUEST  #HTTP 400: Anfrage ungültig
