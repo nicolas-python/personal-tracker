@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,search_custom_foods
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,search_custom_foods, get_username
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -50,6 +50,7 @@ def login():
     user = login_user(username, password)
     if user:
         session["user_id"] = user[0]
+        session["username"] = user[1]
         flash("Login erfolgreich!", "success")              #flash(Nachricht, Kategorie) = Kategorie gibt an, um welche Art von Nachricht es sich handelt
 
     else:
@@ -59,7 +60,13 @@ def login():
 
 @app.route("/selection")
 def selection():
-    return render_template("selection.html")
+    user_id = session.get("user_id")
+    username = session.get("username")
+
+    if user_id is None:
+        return redirect("/login")
+
+    return render_template("selection.html", username=username)
 
 
 @app.route("/fitness")
@@ -303,6 +310,15 @@ def update_food_route():
         return jsonify({"error": "Lebensmittel nicht gefunden"}), 404
 
     return jsonify({"success": True})
+
+@app.route("/recipes")
+def recipes():
+    return render_template("recipes.html")
+
+
+@app.route("/fuel")
+def fuel():
+    return render_template("fuel.html")
 
 
 

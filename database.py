@@ -238,6 +238,24 @@ def get_workout_exercises(workout_id):
     connection.close()
     return exercises
 
+def get_username(user_id):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT username
+        FROM users
+        WHERE id = ?
+    """, (user_id,))
+
+    user = cursor.fetchone()
+    connection.close()
+
+    if user:
+        return user[0]
+
+    return None
+
 def save_calorie_needs(user_id, calories, protein):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()

@@ -634,7 +634,8 @@ button:hover
         background-attachment: scroll;
     }
 
-   body.nutrition-page
+                                            /*anpassen!*/
+    body.nutrition-page
     {
         background-size: 100% auto;
         background-position: center;

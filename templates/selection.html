@@ -11,7 +11,8 @@
 
 <body class="selection-page">
 
-    <h1>Was möchten Sie heute machen?</h1>
+    <h1>Willkommen, {{ username }}!</h1>
+    <h2>Was möchten Sie heute machen?</h2>
 
         <div class="selection-container">
 
@@ -22,6 +23,14 @@
         <button class="selection-box" type="button" onclick="window.location.href='/nutrition'">
             <h2>Ernährung</h2>
         </button>
+
+        <button class="selection-box" type="button" onclick="window.location.href='/recipes'">
+            <h2>Rezepte</h2>
+        </button>
+
+       <button class="selection-box" type="button" onclick="window.location.href='/fuel'">
+           <h2>Tanken</h2>
+       </button>
 
 </div>
 
