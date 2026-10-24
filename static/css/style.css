@@ -383,6 +383,112 @@
     display: none;
 }
 
+/*------------------------------------Hintergründe----------------------------------------------------------------*/
+/*login,register,startseite,start_workout*/
+body.login-page,
+body.register-page,
+body.selection-page,
+body.start-workout-page
+{
+    background-image: url("/static/images/hintergrund_1.jpg");
+}
+
+/*ernährung*/
+body.nutrition-page
+{
+    background-image: url("/static/images/hintergrund_nutrition.jpg");
+}
+
+/*training*/
+body.workouts-page,
+body.create-workout-page,
+body.fitness-page
+{
+    background-image: url("/static/images/hintergrund_workouts.jpg");
+}
+
+/*------------------------------------Dunkles Design------------------------------------*/
+
+/*Hintergrundbild passend zum Bildschirm anzeigen*/
+body.login-page,
+body.register-page,
+body.selection-page,
+body.start-workout-page,
+body.nutrition-page,
+body.workouts-page,
+body.create-workout-page,
+body.fitness-page
+{
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/*Texte auf den Hintergrundbildern lesbar machen*/
+body.login-page,
+body.register-page,
+body.selection-page,
+body.start-workout-page,
+body.nutrition-page,
+body.workouts-page,
+body.create-workout-page,
+body.fitness-page
+{
+    color: white;
+}
+
+/*Eingabefelder*/
+input,
+select,
+textarea
+{
+    background-color: darkslategray;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+/*Platzhalter*/
+input::placeholder,
+textarea::placeholder
+{
+    color: silver;
+}
+
+/*Allgemeine Buttons*/
+button
+{
+    background-color: darkslategray;
+    color: white;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+button:hover
+{
+    background-color: dimgray;
+}
+
+/*Bereiche auf dem Hintergrund abheben*/
+.selection-box,
+.muscle-group,
+.nutrition-meal-card,
+.meal-food-list,
+.workout,
+.exercises
+{
+    background-color: rgba(20, 20, 20, 0.9);
+    color: white;
+    border-color: darkgray;
+}
+
+
+
 /* -------------------------------------------Handy-------------------------------------------*/
 @media (max-width: 600px)
 {
@@ -514,109 +620,27 @@
         display: block;
     }
 
-}
+    /*------------------------------------Hintergründe Handy------------------------------------*/
+    body.login-page,
+    body.register-page,
+    body.selection-page,
+    body.start-workout-page,
+    body.workouts-page,
+    body.create-workout-page,
+    body.fitness-page
+    {
+        background-size: cover;
+        background-position: center top;
+        background-attachment: scroll;
+    }
 
-/*------------------------------------Hintergründe----------------------------------------------------------------*/
-/*login,register,startseite,start_workout*/
-body.login-page,
-body.register-page,
-body.selection-page,
-body.start-workout-page
-{
-    background-image: url("/static/images/hintergrund_1.jpg");
-}
+   body.nutrition-page
+    {
+        background-size: 100% auto;
+        background-position: center;
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+        background-color: black;
+    }
 
-/*ernährung*/
-body.nutrition-page
-{
-    background-image: url("/static/images/hintergrund_nutrition.jpg");
-}
-
-/*training*/
-body.workouts-page,
-body.create-workout-page,
-body.fitness-page
-{
-    background-image: url("/static/images/hintergrund_workouts.jpg");
-}
-
-
-/*------------------------------------Dunkles Design------------------------------------*/
-
-/*Hintergrundbild passend zum Bildschirm anzeigen*/
-body.login-page,
-body.register-page,
-body.selection-page,
-body.start-workout-page,
-body.nutrition-page,
-body.workouts-page,
-body.create-workout-page,
-body.fitness-page
-{
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-}
-
-/*Texte auf den Hintergrundbildern lesbar machen*/
-body.login-page,
-body.register-page,
-body.selection-page,
-body.start-workout-page,
-body.nutrition-page,
-body.workouts-page,
-body.create-workout-page,
-body.fitness-page
-{
-    color: white;
-}
-
-/*Eingabefelder*/
-input,
-select,
-textarea
-{
-    background-color: darkslategray;
-    color: white;
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding: 8px;
-}
-
-/*Platzhalter*/
-input::placeholder,
-textarea::placeholder
-{
-    color: silver;
-}
-
-/*Allgemeine Buttons*/
-button
-{
-    background-color: darkslategray;
-    color: white;
-    border: 1px solid darkgrey;
-    border-radius: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
-}
-
-button:hover
-{
-    background-color: dimgray;
-}
-
-/*Bereiche auf dem Hintergrund abheben*/
-.selection-box,
-.muscle-group,
-.nutrition-meal-card,
-.meal-food-list,
-.workout,
-.exercises
-{
-    background-color: rgba(20, 20, 20, 0.9);
-    color: white;
-    border-color: darkgray;
 }
