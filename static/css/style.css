@@ -634,13 +634,13 @@ button:hover
         background-attachment: scroll;
     }
 
-                                            /*anpassen!*/
     body.nutrition-page
     {
+        background-image: url("/static/images/hintergrund_nutrition_mobile.jpg");
         background-size: 100% auto;
-        background-position: center;
-        background-attachment: scroll;
+        background-position: center top;
         background-repeat: no-repeat;
+        background-attachment: scroll;
         background-color: black;
     }
 
