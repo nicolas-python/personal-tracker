@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,search_custom_foods, get_username,  get_daily_nutrition
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,search_custom_foods, get_username,  get_daily_nutrition, get_daily_training_stats
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -71,6 +71,8 @@ def selection():
     calories, protein = get_daily_nutrition(user_id, today)
     calorie_needs = get_calorie_needs(user_id)
 
+    completed_workouts_count, total_weight = get_daily_training_stats(user_id, today)
+
     if calorie_needs:
         calorie_goal = calorie_needs[0]
     else:
@@ -83,7 +85,9 @@ def selection():
         calories=round(calories),
         protein=round(protein, 1),
         calorie_needs = calorie_needs[0],
-        protein_goal = calorie_needs[1]
+        protein_goal = calorie_needs[1],
+        completed_workouts_count=completed_workouts_count,
+        total_weight=round(total_weight)
     )
 
 

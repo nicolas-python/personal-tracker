@@ -82,6 +82,19 @@ def create_database():
         )
     """)
 
+#abgeschlossene Trainingseinheiten
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS completed_workouts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            workout_id INTEGER NOT NULL,
+            completed_date TEXT NOT NULL,
+            FOREIGN KEY(user_id) REFERENCES users(id),
+            FOREIGN KEY(workout_id) REFERENCES workouts(id)
+        )
+    """)
+    
+
     connection.commit()
     connection.close()
 
@@ -332,6 +345,35 @@ def get_daily_nutrition(user_id, entry_date):
     connection.close()
 
     return totals
+
+def get_daily_training_stats(user_id, training_date):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    # Anzahl abgeschlossener Trainingseinheiten heute
+    cursor.execute("""
+        SELECT COUNT(*)
+        FROM completed_workouts
+        WHERE user_id = ? AND completed_date = ?
+    """, (user_id, training_date))
+
+    completed_workouts_count = cursor.fetchone()[0]
+
+    # Gesamtgewicht aller Sätze und Wiederholungen
+    cursor.execute("""
+        SELECT COALESCE(SUM(
+            we.sets * we.reps * we.weight
+        ), 0)
+        FROM completed_workouts cw
+        JOIN workout_exercises we ON cw.workout_id = we.workout_id
+        WHERE cw.user_id = ? AND cw.completed_date = ?
+    """, (user_id, training_date))
+
+    total_weight = cursor.fetchone()[0]
+
+    connection.close()
+
+    return completed_workouts_count, total_weight
 
 
 
