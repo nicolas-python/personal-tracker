@@ -14,7 +14,7 @@
     <h1>Willkommen, {{ username }}!</h1>
     <h2>Was möchten Sie heute machen?</h2>
 
-        <div class="selection-container">
+    <div class="selection-container">
 
         <button class="selection-box" type="button" onclick="window.location.href='/fitness'">
             <h2>Fitness</h2>
@@ -31,10 +31,33 @@
        <button class="selection-box" type="button" onclick="window.location.href='/fuel'">
            <h2>Tanken</h2>
        </button>
+    </div>
 
-</div>
+    <div class="daily-stats-container">
 
-</div>
+        <div class="daily-stats-box">
+            <h2>Training</h2>
+            <p>Heute bewegtes Gewicht: ??? kg</p>
+            <p>Das Entspricht ca ???? </p>
+        </div>
+
+        <div class="daily-stats-box">
+            <h2>Fitness</h2>
+            <p>Abgeschlossene Trainingseinheiten: ????</p>
+        </div>
+
+        <div class="daily-stats-box">
+            <h2>Ernährung</h2>
+            <p>Heutige Kalorien: {{ calories }} kcal von {{ calorie_needs }} kcal</p>
+        </div>
+
+        <div class="daily-stats-box">
+            <h2>Protein</h2>
+            <p>Heutiges Eiweiß: {{ protein }} g von {{ protein_goal }} g</p>
+        </div>
+
+    </div>
+
 
 </body>
 </html>

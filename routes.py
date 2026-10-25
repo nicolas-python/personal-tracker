@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,search_custom_foods, get_username
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,search_custom_foods, get_username,  get_daily_nutrition
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -60,13 +60,31 @@ def login():
 
 @app.route("/selection")
 def selection():
-    user_id = session.get("user_id")
+    if "user_id" not in session:
+        return redirect(url_for("home"))
+
+    user_id = session["user_id"]
     username = session.get("username")
 
-    if user_id is None:
-        return redirect("/login")
+    today = __import__("datetime").date.today().isoformat()
 
-    return render_template("selection.html", username=username)
+    calories, protein = get_daily_nutrition(user_id, today)
+    calorie_needs = get_calorie_needs(user_id)
+
+    if calorie_needs:
+        calorie_goal = calorie_needs[0]
+    else:
+        calorie_goal = 0
+        protein_goal = 0
+
+    return render_template(
+        "selection.html",
+        username=username,
+        calories=round(calories),
+        protein=round(protein, 1),
+        calorie_needs = calorie_needs[0],
+        protein_goal = calorie_needs[1]
+    )
 
 
 @app.route("/fitness")

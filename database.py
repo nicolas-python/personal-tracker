@@ -315,6 +315,25 @@ def get_food(user_id, entry_date):
 
     return foods
 
+def get_daily_nutrition(user_id, entry_date):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT
+            COALESCE(SUM(calories), 0),
+            COALESCE(SUM(protein), 0)
+        FROM food_entries
+        WHERE user_id = ?
+        AND entry_date = ?
+    """, (user_id, entry_date))
+
+    totals = cursor.fetchone()
+    connection.close()
+
+    return totals
+
+
 
 def delete_food(user_id, food_id):
     connection = sqlite3.connect(DATABASE)
