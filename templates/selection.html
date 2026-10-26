@@ -34,7 +34,10 @@
     </div>
 
     <div class="daily-stats-container">
-
+        <div class="date-selection">
+            <label for="selectedDate">Datum auswählen:</label>
+            <input type="date" id="selectedDate" value="{{ selected_date }}">
+        </div>
 
         <div class="daily-stats-box">
             <h2>Training</h2>
@@ -115,12 +118,19 @@ function getWeightComparisonText(totalWeight)
 
     const amount = Number((totalWeight / comparison.weight).toFixed(2));                      //toFixed(2) = rundet die Zahl auf maximal zwei Nachkommastellen
 
-    return "Das entspricht ungefähr " +  amount.toLocaleString("de-DE") + " " + comparison.text + ".";      //toLocaleString("de-DE") = formatiert die Zahl nach deutschen Schreibregeln(Komma für Dezimalzahlen und Punkt für Tausender)
+    return "Das entspricht ungefähr " + amount.toLocaleString("de-DE") + " " + comparison.text + "<br>die du an diesem Tag bewegt hast.";    //toLocaleString("de-DE") = formatiert die Zahl nach deutschen Schreibregeln(Komma für Dezimalzahlen und Punkt für Tausender)
 }
-comparison.textContent = getWeightComparisonText(totalWeight);
+comparison.innerHTML = getWeightComparisonText(totalWeight);
+
+//datumsfeld auswählen
+const selectedDate = document.getElementById("selectedDate");
+
+selectedDate.addEventListener("change", function ()
+{
+    window.location.href = "/selection?date=" + selectedDate.value;
+});
+
 
 </script>
-
-
 </body>
 </html>

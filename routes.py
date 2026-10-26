@@ -66,12 +66,12 @@ def selection():
     user_id = session["user_id"]
     username = session.get("username")
 
-    today = __import__("datetime").date.today().isoformat()
+    today = __import__("datetime").date.today().isoformat()             #isoformat() wandelt ein Datum in ein festes Textformat um JJJJ-MM-TT
+    selected_date = request.args.get("date", today)
 
-    calories, protein = get_daily_nutrition(user_id, today)
+    calories, protein = get_daily_nutrition(user_id, selected_date)
     calorie_needs = get_calorie_needs(user_id)
-
-    completed_workouts_count, total_weight = get_daily_training_stats(user_id, today)
+    completed_workouts_count, total_weight = get_daily_training_stats(user_id, selected_date)
 
     if calorie_needs:
         calorie_goal = calorie_needs[0]
@@ -87,7 +87,8 @@ def selection():
         calorie_needs = calorie_needs[0],
         protein_goal = calorie_needs[1],
         completed_workouts_count=completed_workouts_count,
-        total_weight=round(total_weight)
+        total_weight=round(total_weight),
+        selected_date=selected_date,
     )
 
 
