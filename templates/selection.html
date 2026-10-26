@@ -39,6 +39,7 @@
         <div class="daily-stats-box">
             <h2>Training</h2>
             <p>Heute bewegtes Gewicht: {{ total_weight }} kg</p>
+            <p id="weightComparison"></p>
         </div>
 
         <div class="daily-stats-box">
@@ -57,6 +58,68 @@
         </div>
 
     </div>
+<script>
+const totalWeight = Number("{{ total_weight }}");
+const comparison = document.getElementById("weightComparison");
+
+const weightComparisons = [
+    { weight: 4, text: "Katzen" },
+    { weight: 7, text: "Airfryer" },
+    { weight: 15, text: "E-Bikes" },
+    { weight: 25, text: "Autoreifen mit Felge" },
+    { weight: 30, text: "Hunde" },
+    { weight: 70, text: "Waschmaschinen" },
+    { weight: 80, text: "Kühlschränke" },
+    { weight: 90, text: "Schnitzel" },
+    { weight: 220, text: "Motorräder" },
+    { weight: 200, text: "Motorblöcke" },
+    { weight: 250, text: "Bären" },
+    { weight: 300, text: "Klaviere" },
+    { weight: 500, text: "Pferde" },
+    { weight: 700, text: "Kühe" },
+    { weight: 1000, text: "kleine Flugzeuge" },
+    { weight: 1000, text: "Wohnwagen" },
+    { weight: 1000, text: "mittelgroße Bäume" },
+    { weight: 1400, text: "Kleinwage" },
+    { weight: 1500, text: "Porsche 911" },
+    { weight: 1800, text: "Lamborghinis" },
+    { weight: 2000, text: "Flusspferde" },
+    { weight: 2600, text: "Mercedes G-Klassen" },
+    { weight: 4000, text: "Atombomben vom Typ Little Boy" },
+    { weight: 5000, text: "Elefanten" },
+    { weight: 7000, text: "T-Rexese" },
+    { weight: 12000, text: "Stadtbusse" },
+    { weight: 64000, text: "Leopard-2-Panzer" },
+    { weight: 79000, text: "Passagierflugzeuge(Boeing)" },
+    { weight: 11, text: "Veigars" },
+    { weight: 66, text: "Ahris" },
+    { weight: 100, text: "Garens" },
+    { weight: 333, text: "Gragas" },
+    { weight: 500, text: "Dr.-Mundos" },
+    { weight: 680, text: "Alistars" },
+    { weight: 1360, text: "Sions" },
+    { weight: 2200, text: "Mordekaisers" },
+    { weight: 18140, text: "Malphites" },
+    { weight: 100000, text: "Cho'Gath-Champions" },
+    { weight: 1000000, text: "Aurelion-Sol-Champions" },
+
+    { weight: 90, text: "Skittlz" },
+    { weight: 95, text: "Bulchiken" },
+    { weight: 95, text: "Toji" },
+];
+
+function getWeightComparisonText(totalWeight)
+{
+    const randomComparison = Math.floor(Math.random() * weightComparisons.length);               //math.floor() = rundet eine Zahl immer ab, damit ein gültiger Listenindex entsteht
+    const comparison = weightComparisons[randomComparison];
+
+    const amount = Number((totalWeight / comparison.weight).toFixed(2));                      //toFixed(2) = rundet die Zahl auf maximal zwei Nachkommastellen
+
+    return "Das entspricht ungefähr " +  amount.toLocaleString("de-DE") + " " + comparison.text + ".";      //toLocaleString("de-DE") = formatiert die Zahl nach deutschen Schreibregeln(Komma für Dezimalzahlen und Punkt für Tausender)
+}
+comparison.textContent = getWeightComparisonText(totalWeight);
+
+</script>
 
 
 </body>
