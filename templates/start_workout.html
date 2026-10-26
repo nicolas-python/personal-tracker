@@ -147,8 +147,14 @@ nextButton.addEventListener("click", function()
 
 finishWorkout.addEventListener("click", function()
 {
-    window.location.href = "/fitness";
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/complete-workout/{{ workout[0] }}";
+
+    document.body.appendChild(form);
+    form.submit();
 });
+
                                         // Fortschritts balken
 
 const workoutProgressBar = document.getElementById("workoutProgressBar");

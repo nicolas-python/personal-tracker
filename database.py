@@ -359,7 +359,7 @@ def get_daily_training_stats(user_id, training_date):
 
     completed_workouts_count = cursor.fetchone()[0]
 
-    # Gesamtgewicht aller Sätze und Wiederholungen
+    #Gesamtgewicht aller Sätze und Wiederholungen
     cursor.execute("""
         SELECT COALESCE(SUM(
             we.sets * we.reps * we.weight
@@ -375,6 +375,18 @@ def get_daily_training_stats(user_id, training_date):
 
     return completed_workouts_count, total_weight
 
+
+def save_completed_workout(user_id, workout_id, completed_date):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        INSERT INTO completed_workouts (user_id, workout_id, completed_date)
+        VALUES (?, ?, ?)
+    """, (user_id, workout_id, completed_date))
+
+    connection.commit()
+    connection.close()
 
 
 def delete_food(user_id, food_id):

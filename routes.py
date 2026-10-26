@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,search_custom_foods, get_username,  get_daily_nutrition, get_daily_training_stats
+from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,search_custom_foods, get_username,  get_daily_nutrition, get_daily_training_stats, save_completed_workout
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -180,6 +180,19 @@ def start_workout(workout_id):
     exercises = get_workout_exercises(workout_id)
 
     return render_template("start_workout.html", workout=workout, exercises=exercises)
+
+
+@app.route("/complete-workout/<int:workout_id>", methods=["POST"])
+def complete_workout(workout_id):
+    if "user_id" not in session:
+        return redirect(url_for("home"))
+
+    user_id = session["user_id"]
+    today = __import__("datetime").date.today().isoformat()
+
+    save_completed_workout(user_id, workout_id, today)
+
+    return redirect(url_for("selection"))
 
 
 @app.route("/nutrition")
