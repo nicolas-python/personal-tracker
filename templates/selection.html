@@ -64,6 +64,8 @@
 <script>
 const totalWeight = Number("{{ total_weight }}");
 const comparison = document.getElementById("weightComparison");
+const selectedDate = document.getElementById("selectedDate");
+const weightComparison = JSON.parse('{{ weight_comparison | tojson }}');
 
 const weightComparisons = [
     { weight: 4, text: "Katzen" },
@@ -73,7 +75,6 @@ const weightComparisons = [
     { weight: 30, text: "Hunde" },
     { weight: 70, text: "Waschmaschinen" },
     { weight: 80, text: "Kühlschränke" },
-    { weight: 90, text: "Schnitzel" },
     { weight: 220, text: "Motorräder" },
     { weight: 200, text: "Motorblöcke" },
     { weight: 250, text: "Bären" },
@@ -111,20 +112,61 @@ const weightComparisons = [
     { weight: 95, text: "Toji" },
 ];
 
-function getWeightComparisonText(totalWeight)
+async function showWeightComparison(totalWeight)
 {
-    const randomComparison = Math.floor(Math.random() * weightComparisons.length);               //math.floor() = rundet eine Zahl immer ab, damit ein gültiger Listenindex entsteht
-    const comparison = weightComparisons[randomComparison];
+    if (totalWeight <= 0)
+    {
+        comparison.innerHTML = "";
+        return;
+    }
 
-    const amount = Number((totalWeight / comparison.weight).toFixed(2));                      //toFixed(2) = rundet die Zahl auf maximal zwei Nachkommastellen
+    if (weightComparison !== null)
+    {
+        const comparisonName = weightComparison[0];
+        const comparisonWeight = Number(weightComparison[1]);
 
-    return "Das entspricht ungefähr " + amount.toLocaleString("de-DE") + " " + comparison.text + "<br>die du an diesem Tag bewegt hast.";    //toLocaleString("de-DE") = formatiert die Zahl nach deutschen Schreibregeln(Komma für Dezimalzahlen und Punkt für Tausender)
-}
-comparison.innerHTML = getWeightComparisonText(totalWeight);
+        const amount = Number((totalWeight / comparisonWeight).toFixed(2));
+
+        comparison.innerHTML = "Das entspricht ungefähr " + amount.toLocaleString("de-DE") + " " + comparisonName + "<br>die du an diesem Tag bewegt hast.";
+
+        return;
+    }
+
+    //Zufälligen Vergleich aus der vorhandenen Liste auswählen
+    const randomIndex = Math.floor(Math.random() * weightComparisons.length);       //math.floor() = rundet eine Zahl immer ab, damit ein gültiger Listenindex entsteht
+    const selectedComparison = weightComparisons[randomIndex];
+
+    //Datenbank speichern
+    const response = await fetch("/save-weight-comparison",
+    {
+        method: "POST",
+        headers:
+        {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(
+        {
+            comparison_date: selectedDate.value,
+            comparison_name: selectedComparison.text,
+            comparison_weight: selectedComparison.weight
+        })
+    });
+
+    if (!response.ok)
+    {
+        comparison.innerHTML = "";
+        return;
+    }
+
+    const savedComparison = await response.json();
+    const amount = Number((totalWeight / savedComparison.comparison_weight).toFixed(2));        //toFixed(2) = rundet die Zahl auf maximal zwei Nachkommastellen
+
+    comparison.innerHTML = "Das entspricht ungefähr " + amount.toLocaleString("de-DE") + " " + savedComparison.comparison_name + "<br>die du an diesem Tag bewegt hast.";}      //toLocaleString("de-DE") = formatiert die Zahl nach deutschen Schreibregeln(Komma für Dezimalzahlen und Punkt für Tausender)
+
+showWeightComparison(totalWeight);
+
 
 //datumsfeld auswählen
-const selectedDate = document.getElementById("selectedDate");
-
 selectedDate.addEventListener("change", function ()
 {
     window.location.href = "/selection?date=" + selectedDate.value;

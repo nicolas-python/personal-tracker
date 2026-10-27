@@ -93,7 +93,19 @@ def create_database():
             FOREIGN KEY(workout_id) REFERENCES workouts(id)
         )
     """)
-    
+
+#gespeicherter Gewichtsvergleich
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS daily_weight_comparisons (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            comparison_date TEXT NOT NULL,
+            comparison_name TEXT NOT NULL,
+            comparison_weight REAL NOT NULL,
+            UNIQUE(user_id, comparison_date),
+            FOREIGN KEY(user_id) REFERENCES users(id)
+        )
+    """)
 
     connection.commit()
     connection.close()
@@ -478,5 +490,37 @@ def search_custom_foods(search_term):
         })
 
     return results
+
+
+def get_daily_weight_comparison(user_id, comparison_date):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT comparison_name, comparison_weight
+        FROM daily_weight_comparisons
+        WHERE user_id = ? AND comparison_date = ?
+    """, (user_id, comparison_date))
+
+    comparison = cursor.fetchone()
+    connection.close()
+
+    return comparison
+
+
+def save_daily_weight_comparison(user_id, comparison_date, comparison_name, comparison_weight):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        INSERT INTO daily_weight_comparisons
+            (user_id, comparison_date, comparison_name, comparison_weight)
+        VALUES (?, ?, ?, ?)
+        ON CONFLICT(user_id, comparison_date) DO NOTHING
+    """, (user_id, comparison_date, comparison_name, comparison_weight))
+
+    connection.commit()
+    connection.close()
+
 
 create_database()

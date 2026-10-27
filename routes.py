@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify     #jsonify = Wandelt Python-Daten, beispielsweise ein Dictionary, in eine JSON-HTTP-Antwort um
-from database import create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout , delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,search_custom_foods, get_username,  get_daily_nutrition, get_daily_training_stats, save_completed_workout
+from database import (create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout ,
+                     delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,
+                     search_custom_foods, get_username,  get_daily_nutrition, get_daily_training_stats, save_completed_workout,
+                     save_daily_weight_comparison, get_daily_weight_comparison)
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -72,6 +75,8 @@ def selection():
     calories, protein = get_daily_nutrition(user_id, selected_date)
     calorie_needs = get_calorie_needs(user_id)
     completed_workouts_count, total_weight = get_daily_training_stats(user_id, selected_date)
+    weight_comparison = get_daily_weight_comparison(user_id, selected_date)
+
 
     if calorie_needs:
         calorie_goal = calorie_needs[0]
@@ -89,6 +94,7 @@ def selection():
         completed_workouts_count=completed_workouts_count,
         total_weight=round(total_weight),
         selected_date=selected_date,
+        weight_comparison=weight_comparison
     )
 
 
@@ -194,6 +200,24 @@ def complete_workout(workout_id):
     save_completed_workout(user_id, workout_id, today)
 
     return redirect(url_for("selection"))
+
+@app.route("/save-weight-comparison", methods=["POST"])
+def save_weight_comparison_route():
+    if "user_id" not in session:
+        return jsonify({"error": "Nicht angemeldet"}), 401
+
+    data = request.get_json()
+
+    user_id = session["user_id"]
+    comparison_date = data["comparison_date"]
+    comparison_name = data["comparison_name"]
+    comparison_weight = data["comparison_weight"]
+
+    save_daily_weight_comparison(user_id, comparison_date, comparison_name, comparison_weight)
+
+    weight_comparison = get_daily_weight_comparison(user_id, comparison_date)
+
+    return jsonify({"comparison_name": weight_comparison[0],"comparison_weight": weight_comparison[1]})
 
 
 @app.route("/nutrition")
@@ -346,6 +370,8 @@ def update_food_route():
         return jsonify({"error": "Lebensmittel nicht gefunden"}), 404
 
     return jsonify({"success": True})
+
+
 
 @app.route("/recipes")
 def recipes():
