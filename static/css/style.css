@@ -657,9 +657,16 @@ button:hover
     .daily-stats-container
     {
         grid-template-columns: 1fr;
-        width: 80%;
+        width: 75%;
         gap: 15px;
+        background-color: transparent;
+    }
+
+    .daily-stats-box
+    {
         background-color: rgba(20, 20, 20, 0.9);
+        border: 2px solid darkgray;
+        border-radius: 10px;
     }
 
     /*-------------------------------------------create_workout.html Handy-------------------------------------------*/
