@@ -433,7 +433,8 @@ body.start-workout-page
 }
 
 /*ernährung*/
-body.nutrition-page
+body.nutrition-page,
+body.recipes-page
 {
     background-image: url("/static/images/hintergrund_nutrition.jpg");
 }
@@ -454,6 +455,7 @@ body.register-page,
 body.selection-page,
 body.start-workout-page,
 body.nutrition-page,
+body.recipes-page,
 body.workouts-page,
 body.create-workout-page,
 body.fitness-page
@@ -471,6 +473,7 @@ body.register-page,
 body.selection-page,
 body.start-workout-page,
 body.nutrition-page,
+body.recipes-page,
 body.workouts-page,
 body.create-workout-page,
 body.fitness-page
