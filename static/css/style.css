@@ -447,6 +447,51 @@
     min-width: 0;
     box-sizing: border-box;
 }
+
+.recipe-results-container
+{
+    width: 80%;
+    max-width: 1000px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.recipe-card
+{
+    padding: 15px;
+    background-color: rgba(20, 20, 20, 0.9);
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.recipe-card img
+{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.recipe-card h3
+{
+    color: white;
+    margin-bottom: 0;
+}
+
+/*bild in der rezeptansicht*/
+.recipe-details img
+{
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: 15px auto;
+    border-radius: 5px;
+}
+
 /*------------------------------------Hintergründe----------------------------------------------------------------*/
 /*login,register,startseite,start_workout*/
 body.login-page,

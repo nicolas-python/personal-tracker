@@ -31,5 +31,175 @@
 
     </div>
 
+    <div id="recipeResults" class="recipe-results-container"></div>
+
+    <script>
+        const recipeSearchForm = document.getElementById("recipeSearchForm");
+        const recipeSearch = document.getElementById("recipeSearch");
+        const recipeResults = document.getElementById("recipeResults");
+
+        recipeSearchForm.addEventListener("submit", async function(event)
+        {
+            event.preventDefault();
+
+            const searchTerm = recipeSearch.value.trim();
+
+            if (searchTerm === "")
+            {
+                recipeResults.innerHTML = "<p>Bitte gib einen Suchbegriff ein.</p>";
+                return;
+            }
+
+            recipeResults.innerHTML = "<p>Rezepte werden gesucht ...</p>";
+
+            try
+            {
+                const response = await fetch(
+                    "https://www.themealdb.com/api/json/v1/1/search.php?s="
+                    + encodeURIComponent(searchTerm)
+                );
+
+                const data = await response.json();
+
+                if (!data.meals)
+                {
+                    recipeResults.innerHTML = "<p>Keine Rezepte gefunden</p>";
+                    return;
+                }
+
+                recipeResults.innerHTML = "";
+
+                data.meals.forEach(function (meal)
+                {
+                    const recipeCard = document.createElement("div");
+                    recipeCard.className = "recipe-card";
+
+                    //bild erstellen
+                    const recipeImage = document.createElement("img");
+                    recipeImage.src = meal.strMealThumb;
+                    recipeImage.alt = meal.strMeal;
+
+                    //name erstellen
+                    const recipeName = document.createElement("h3");
+                    recipeName.textContent = meal.strMeal;
+
+                    recipeCard.appendChild(recipeImage);
+                    recipeCard.appendChild(recipeName);
+
+
+                    recipeCard.addEventListener("click", function ()
+                    {
+                        loadRecipeDetails(meal.idMeal);
+                    });
+
+                    recipeResults.appendChild(recipeCard);
+                });
+            }
+
+            catch (error)
+                {
+                    recipeResults.innerHTML = "<p>Die Rezepte konnten nicht geladen werden. Bitte versuche es erneut</p>";
+                    console.error("Fehler bei der Rezeptsuche:", error);
+                }
+        });
+
+
+        async function loadRecipeDetails(mealId)
+        {
+            try
+            {
+                const response = await fetch(
+                    "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
+                    + mealId
+                );
+
+                const data = await response.json();
+
+                if (!data.meals)
+                {
+                    recipeResults.innerHTML = "<p>Rezeptdetails konnten nicht geladen werden.</p>";
+                    return;
+                }
+
+                const meal = data.meals[0];
+                const ingredients = [];
+
+                let i = 1;
+
+                while (i <= 20)                                     //Zutaten limiter ,bis zu 20 zutaten anzeigen
+                {
+                    const ingredient = meal["strIngredient" + i];
+                    const measure = meal["strMeasure" + i];
+
+                    if (ingredient && ingredient.trim() !== "")
+                    {
+                        ingredients.push({
+                            name: ingredient.trim(),
+                            amount: measure ? measure.trim() : ""
+                        });
+                    }
+
+                    i = i + 1;
+                }
+
+                recipeResults.innerHTML = "";
+
+                //container für Rezeptdetails erstellen
+                const recipeDetails = document.createElement("div");
+                recipeDetails.className = "recipe-details";
+
+                //rezeptname
+                const recipeName = document.createElement("h2");
+                recipeName.textContent = meal.strMeal;
+
+                //rezeptbild
+                const recipeImage = document.createElement("img");
+                recipeImage.src = meal.strMealThumb;
+                recipeImage.alt = meal.strMeal;
+
+                //überschrift für die Zubereitung
+                const instructionsHeading = document.createElement("h3");
+                instructionsHeading.textContent = "Zubereitung";
+
+                //zubereitungstext erstellen
+                const instructions = document.createElement("p");
+                instructions.textContent = meal.strInstructions;
+
+                recipeDetails.appendChild(recipeName);
+                recipeDetails.appendChild(recipeImage);
+
+                //ztatenüberschrift erstellen
+                const ingredientsHeading = document.createElement("h3");
+                ingredientsHeading.textContent = "Zutaten";
+                recipeDetails.appendChild(ingredientsHeading);
+
+                //zutatenliste erstellen
+                const ingredientsList = document.createElement("ul");
+
+                ingredients.forEach(function (ingredient)
+                {
+                    const ingredientItem = document.createElement("li");
+
+                    ingredientItem.textContent =
+                            ingredient.amount + " " + ingredient.name;
+
+                    ingredientsList.appendChild(ingredientItem);
+                });
+
+                recipeDetails.appendChild(ingredientsList);
+
+                recipeDetails.appendChild(instructionsHeading);
+                recipeDetails.appendChild(instructions);
+
+                recipeResults.appendChild(recipeDetails);
+            }
+
+            catch (error)
+                {
+                    recipeResults.innerHTML = "<p>Fehler beim Laden der Rezeptdetails.</p>";
+                    console.error("Fehler:", error);
+                }
+        }
+    </script>
 </body>
 </html>
