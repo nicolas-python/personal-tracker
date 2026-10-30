@@ -73,7 +73,40 @@
                 }
 
                 const translationData = await translationResponse.json();
-                const englishSearchTerm = translationData.translatedText;
+
+                // Deutsche Fleischbegriffe erkennen und passend übersetzen
+                const germanSearchTerm = searchTerm.toLowerCase();
+
+                let englishSearchTerm = translationData.translatedText;
+
+                if (germanSearchTerm.includes("schwein"))
+                    {
+                        englishSearchTerm = "Pork";
+                    }
+                else if (germanSearchTerm.includes("rind"))
+                    {
+                        englishSearchTerm = "Beef";
+                    }
+                else if (germanSearchTerm.includes("huhn") || germanSearchTerm.includes("hühn") || germanSearchTerm.includes("hähnchen"))
+                    {
+                        englishSearchTerm = "Chicken";
+                    }
+                else if (germanSearchTerm.includes("pute"))
+                    {
+                        englishSearchTerm = "Turkey";
+                    }
+                else if (germanSearchTerm.includes("lamm"))
+                    {
+                        englishSearchTerm = "Lamb";
+                    }
+                else if (germanSearchTerm.includes("ente"))
+                    {
+                        englishSearchTerm = "Duck";
+                    }
+                else if (germanSearchTerm.includes("gans"))
+                    {
+                        englishSearchTerm = "Goose";
+                    }
 
                 let response = await fetch(
                         "https://www.themealdb.com/api/json/v1/1/search.php?s="
