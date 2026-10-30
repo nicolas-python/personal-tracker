@@ -377,6 +377,35 @@ def update_food_route():
 def recipes():
     return render_template("recipes.html")
 
+@app.route("/translate", methods=["POST"])
+def translate():
+    data = request.get_json()
+
+    text = data.get("text", "").strip()
+    source = data.get("source", "de")
+    target = data.get("target", "en")
+
+    if not text:
+        return jsonify({"error": "Kein Text angegeben"}), 400
+
+    try:
+        response = requests.post(
+            "http://127.0.0.1:5000/translate",
+            json={
+                "q": text,
+                "source": source,
+                "target": target,
+                "format": "text"
+            },
+            timeout=30
+        )
+
+        response.raise_for_status()
+        return jsonify(response.json())
+
+    except requests.RequestException:
+        return jsonify({"error": "Übersetzung fehlgeschlagen"}), 502
+
 
 @app.route("/fuel")
 def fuel():
