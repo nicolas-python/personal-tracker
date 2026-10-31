@@ -522,5 +522,38 @@ def save_daily_weight_comparison(user_id, comparison_date, comparison_name, comp
     connection.commit()
     connection.close()
 
+#recipes.db
+def search_recipes(search_term):
+    connection = sqlite3.connect("database/recipes.db")
+    cursor = connection.cursor()
+
+    search_words = search_term.strip().split()
+
+    if not search_words:
+        connection.close()
+        return []
+
+    conditions = []
+    parameters = []
+
+    for word in search_words:
+        conditions.append("(Title LIKE ? OR Ingredients LIKE ?)")
+
+        parameters.append("%" + word + "%")
+        parameters.append("%" + word + "%")
+
+    query = """
+        SELECT id, Title, Ingredients, Instructions
+        FROM recipes
+        WHERE """ + " AND ".join(conditions) + """
+        LIMIT 100
+    """
+
+    cursor.execute(query, parameters)
+
+    recipes = cursor.fetchall()
+    connection.close()
+
+    return recipes
 
 create_database()

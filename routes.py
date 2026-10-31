@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, session, redirect, url
 from database import (create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout ,
                      delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,
                      search_custom_foods, get_username,  get_daily_nutrition, get_daily_training_stats, save_completed_workout,
-                     save_daily_weight_comparison, get_daily_weight_comparison)
+                     save_daily_weight_comparison, get_daily_weight_comparison, search_recipes)
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -376,6 +376,28 @@ def update_food_route():
 @app.route("/recipes")
 def recipes():
     return render_template("recipes.html")
+
+#rezeptsuche über die separate recipes.db
+@app.route("/search-recipes")
+def search_recipes_route():
+    search_term = request.args.get("q", "").strip()
+
+    if not search_term:
+        return jsonify({"recipes": []})
+
+    recipes = search_recipes(search_term)
+
+    return jsonify({
+        "recipes": [
+            {
+                "id": recipe[0],
+                "title": recipe[1],
+                "ingredients": recipe[2],
+                "instructions": recipe[3]
+            }
+            for recipe in recipes
+        ]
+    })
 
 @app.route("/translate", methods=["POST"])
 def translate():

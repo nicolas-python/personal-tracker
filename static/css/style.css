@@ -481,6 +481,12 @@
     margin-bottom: 0;
 }
 
+/* Überschrift der Rezeptdatenbank*/
+.recipe-results-container > h2
+{
+    grid-column: 1 / -1;
+}
+
 /*bild in der rezeptansicht*/
 .recipe-details img
 {

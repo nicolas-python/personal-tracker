@@ -115,6 +115,13 @@
 
                 let data = await response.json();
 
+                //Rezeptdatenbank(recipes.db) durchsuchen
+                const localResponse = await fetch(
+                    "/search-recipes?q=" + encodeURIComponent(englishSearchTerm)
+                );
+
+                const localData = await localResponse.json();
+
                 if (!data.meals)
                 {
                     response = await fetch(
@@ -125,39 +132,59 @@
                     data = await response.json();
                 }
 
-                if (!data.meals)
-                {
+                // Prüfen, ob eine der beiden Quellen Rezepte gefunden hat
+                if (!data.meals && localData.recipes.length === 0) {
                     recipeResults.innerHTML = "<p>Keine Rezepte gefunden</p>";
                     return;
                 }
 
                 recipeResults.innerHTML = "";
 
-                data.meals.forEach(function (meal)
+                //Rezepte aus TheMealDB API anzeigen
+                if (data.meals)
                 {
-                    const recipeCard = document.createElement("div");
-                    recipeCard.className = "recipe-card";
-
-                    //bild erstellen
-                    const recipeImage = document.createElement("img");
-                    recipeImage.src = meal.strMealThumb;
-                    recipeImage.alt = meal.strMeal;
-
-                    //name erstellen
-                    const recipeName = document.createElement("h3");
-                    recipeName.textContent = meal.strMeal;
-
-                    recipeCard.appendChild(recipeImage);
-                    recipeCard.appendChild(recipeName);
-
-
-                    recipeCard.addEventListener("click", function ()
+                    data.meals.forEach(function (meal)
                     {
-                        loadRecipeDetails(meal.idMeal);
-                    });
+                        const recipeCard = document.createElement("div");
+                        recipeCard.className = "recipe-card";
 
-                    recipeResults.appendChild(recipeCard);
-                });
+                        const recipeImage = document.createElement("img");
+                        recipeImage.src = meal.strMealThumb;
+                        recipeImage.alt = meal.strMeal;
+
+                        const recipeName = document.createElement("h3");
+                        recipeName.textContent = meal.strMeal;
+
+                        recipeCard.appendChild(recipeImage);
+                        recipeCard.appendChild(recipeName);
+
+                        recipeCard.addEventListener("click", function ()
+                        {
+                            loadRecipeDetails(meal.idMeal);
+                        });
+
+                        recipeResults.appendChild(recipeCard);
+                    });
+                }
+
+                //Rezepte Datenbank anzeigen
+                if (localData.recipes.length > 0)
+                {
+                    const heading = document.createElement("h2");
+                    heading.textContent = "Rezepte aus recipes.db";
+                    recipeResults.appendChild(heading);
+
+                    localData.recipes.forEach(function (recipe) {
+                        const recipeCard = document.createElement("div");
+                        recipeCard.className = "recipe-card";
+
+                        const recipeName = document.createElement("h3");
+                        recipeName.textContent = recipe.title;
+
+                        recipeCard.appendChild(recipeName);
+                        recipeResults.appendChild(recipeCard);
+                    });
+                }
             }
 
             catch (error)
