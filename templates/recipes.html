@@ -74,7 +74,7 @@
 
                 const translationData = await translationResponse.json();
 
-                // Deutsche Fleischbegriffe erkennen und passend übersetzen
+                //Deutsche Fleischbegriffe erkennen und passend übersetzen für API(TheMealDB)
                 const germanSearchTerm = searchTerm.toLowerCase();
 
                 let englishSearchTerm = translationData.translatedText;
@@ -174,7 +174,8 @@
                     heading.textContent = "Rezepte aus recipes.db";
                     recipeResults.appendChild(heading);
 
-                    localData.recipes.forEach(function (recipe) {
+                    localData.recipes.forEach(function (recipe)
+                    {
                         const recipeCard = document.createElement("div");
                         recipeCard.className = "recipe-card";
 
@@ -182,6 +183,13 @@
                         recipeName.textContent = recipe.title;
 
                         recipeCard.appendChild(recipeName);
+
+                        //Rezeptdetails aus recipes laden
+                        recipeCard.addEventListener("click", function ()
+                        {
+                            loadLocalRecipeDetails(recipe.id);
+                        });
+
                         recipeResults.appendChild(recipeCard);
                     });
                 }
@@ -265,15 +273,85 @@
                 recipeDetails.appendChild(ingredientsHeading);
 
                 //zutatenliste erstellen
+                const ingredientsList = document.createElement("ul");           //<ul> = Unordered List = eine ungeordnete Liste mit Aufzählungspunkten
+
+                ingredients.forEach(function (ingredient)
+                {
+                    const ingredientItem = document.createElement("li");        //<li> = List Item = ein einzelner Listeneintrag
+
+                    ingredientItem.textContent =
+                            ingredient.amount + " " + ingredient.name;
+
+                    ingredientsList.appendChild(ingredientItem);
+                });
+
+                recipeDetails.appendChild(ingredientsList);
+
+                recipeDetails.appendChild(instructionsHeading);
+                recipeDetails.appendChild(instructions);
+
+                recipeResults.appendChild(recipeDetails);
+            }
+
+            catch (error)
+                {
+                    recipeResults.innerHTML = "<p>Fehler beim Laden der Rezeptdetails.</p>";
+                    console.error("Fehler:", error);
+                }
+        }
+
+        async function loadLocalRecipeDetails(recipeId)
+        {
+            try
+            {
+                const response = await fetch(`/get-recipe/${recipeId}`);
+                const recipe = await response.json();
+
+                if (!response.ok)
+                {
+                    recipeResults.innerHTML = "<p>Rezeptdetails konnten nicht geladen werden.</p>";
+                    return;
+                }
+
+                //Zutaten aus DB (Python-Listenformat verarbeitet (kein JSON))   //Unterschied: Python verwendet einfache Anführungszeichen ('')
+                const ingredients = recipe.ingredients                           //JSON verwendet doppelte Anführungszeichen ("")
+                        .replace(/^\[|\]$/g, "")                //entfernt die öffnende Klammer am Anfang und die schließende Klammer am Ende (cheatsheet)
+                        .split(", ")
+                        .map(function (ingredient)
+                            {
+                                return ingredient.replace(/^'|'$/g, "");            //entfernt die einfachen Anführungszeichen am Anfang und Ende jeder Zutat
+                            });
+
+                recipeResults.innerHTML = "";
+
+                //container für Rezeptdetails
+                const recipeDetails = document.createElement("div");
+                recipeDetails.className = "recipe-details";
+
+                //rezeptname
+                const recipeName = document.createElement("h2");
+                recipeName.textContent = recipe.title;
+
+                const instructionsHeading = document.createElement("h3");
+                instructionsHeading.textContent = "Zubereitung";
+
+                //zubereitungstext erstellen
+                const instructions = document.createElement("p");
+                instructions.textContent = recipe.instructions;
+
+                recipeDetails.appendChild(recipeName);
+
+                const ingredientsHeading = document.createElement("h3");
+                ingredientsHeading.textContent = "Zutaten";
+                recipeDetails.appendChild(ingredientsHeading);
+
+                //zutatenliste erstellen
                 const ingredientsList = document.createElement("ul");
 
                 ingredients.forEach(function (ingredient)
                 {
                     const ingredientItem = document.createElement("li");
-
-                    ingredientItem.textContent =
-                            ingredient.amount + " " + ingredient.name;
-
+                    ingredientItem.textContent = ingredient;
                     ingredientsList.appendChild(ingredientItem);
                 });
 
