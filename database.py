@@ -556,4 +556,20 @@ def search_recipes(search_term):
 
     return recipes
 
+#einzelnes Rezept anhand der ID aus recipes (local) auswählen
+def get_recipe_by_id(recipe_id):
+    connection = sqlite3.connect("database/recipes.db")
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT id, Title, Ingredients, Instructions
+        FROM recipes
+        WHERE id = ?
+    """, (recipe_id,))
+
+    recipe = cursor.fetchone()
+    connection.close()
+
+    return recipe
+
 create_database()
