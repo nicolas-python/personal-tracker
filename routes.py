@@ -13,6 +13,10 @@ app.secret_key = os.environ.get("SECRET_KEY")       #liest die Umgebungsvariable
                                                     #flash verlangt einen secret_key, um zu funktionieren
                                                     #Flask Secret Key = geheimer Schlüssel für Sessions und Flash-Nachrichten ,nicht mit dem Benutzerpasswort verwechseln!
 
+
+#--------------------------------------#
+#---------ANMELDUNG / BENUTZER---------#
+#--------------------------------------#
 @app.route("/")
 def home():
     return render_template("login.html")
@@ -41,6 +45,7 @@ def register():
 
     return render_template("register.html")
 
+
 @app.route("/login", methods=["POST"])
 def login():
     username = request.form["username"]
@@ -61,6 +66,9 @@ def login():
 
     return render_template("login.html")
 
+#--------------------------------------#
+#---------Homepage---------------------#
+#--------------------------------------#
 @app.route("/selection")
 def selection():
     if "user_id" not in session:
@@ -98,9 +106,32 @@ def selection():
     )
 
 
+@app.route("/save-weight-comparison", methods=["POST"])
+def save_weight_comparison_route():
+    if "user_id" not in session:
+        return jsonify({"error": "Nicht angemeldet"}), 401
+
+    data = request.get_json()
+
+    user_id = session["user_id"]
+    comparison_date = data["comparison_date"]
+    comparison_name = data["comparison_name"]
+    comparison_weight = data["comparison_weight"]
+
+    save_daily_weight_comparison(user_id, comparison_date, comparison_name, comparison_weight)
+
+    weight_comparison = get_daily_weight_comparison(user_id, comparison_date)
+
+    return jsonify({"comparison_name": weight_comparison[0],"comparison_weight": weight_comparison[1]})
+
+#--------------------------------------#
+#---------SPORT / WORKOUTS-------------#
+#--------------------------------------#
+
 @app.route("/fitness")
 def fitness():
     return render_template("fitness.html")
+
 
 @app.route("/create-workout", methods=["GET", "POST"])
 def create_workout():
@@ -125,6 +156,7 @@ def create_workout():
 
     return render_template("create_workout.html", exercises=[])
 
+
 @app.route("/workouts")
 def workouts():
     workouts = get_workouts(session["user_id"])
@@ -135,6 +167,7 @@ def workouts():
         workout_exercises[workout_id] = get_workout_exercises(workout_id)
 
     return render_template("workouts.html",workouts=workouts,workout_exercises=workout_exercises)
+
 
 @app.route("/edit-workout/<int:workout_id>", methods=["GET", "POST"])
 def edit_workout(workout_id):
@@ -166,6 +199,7 @@ def edit_workout(workout_id):
 
     return render_template("create_workout.html", workout=workout, exercises=exercises)
 
+
 @app.route("/delete-workout/<int:workout_id>", methods=["POST"])
 def delete_workout_route(workout_id):
     if "user_id" not in session:
@@ -181,6 +215,8 @@ def delete_workout_route(workout_id):
         flash("Trainingsplan nicht gefunden.", "error")
 
     return redirect(url_for("workouts"))                                    #redirect() schickt den Browser anschließend zu dieser URL
+
+
 @app.route("/start-workout/<int:workout_id>")               #id
 def start_workout(workout_id):
     workout = get_workout(workout_id)
@@ -201,24 +237,9 @@ def complete_workout(workout_id):
 
     return redirect(url_for("selection"))
 
-@app.route("/save-weight-comparison", methods=["POST"])
-def save_weight_comparison_route():
-    if "user_id" not in session:
-        return jsonify({"error": "Nicht angemeldet"}), 401
-
-    data = request.get_json()
-
-    user_id = session["user_id"]
-    comparison_date = data["comparison_date"]
-    comparison_name = data["comparison_name"]
-    comparison_weight = data["comparison_weight"]
-
-    save_daily_weight_comparison(user_id, comparison_date, comparison_name, comparison_weight)
-
-    weight_comparison = get_daily_weight_comparison(user_id, comparison_date)
-
-    return jsonify({"comparison_name": weight_comparison[0],"comparison_weight": weight_comparison[1]})
-
+#--------------------------------------#
+#---------ERNÄHRUNG--------------------#
+#--------------------------------------#
 
 @app.route("/nutrition")
 def nutrition():
@@ -261,6 +282,7 @@ def search_food():
     except ValueError:
         return jsonify({"error": "Die API hat ungültige Daten zurückgegeben."}), 502
 
+
 @app.route("/save-calorie-needs", methods=["POST"])
 def save_calorie_needs_route():
     if "user_id" not in session:
@@ -271,6 +293,7 @@ def save_calorie_needs_route():
     save_calorie_needs(session["user_id"],data["calories"],data["protein"])
 
     return jsonify({"success": True})
+
 
 @app.route("/save-food", methods=["POST"])
 def save_food_route():
@@ -294,6 +317,7 @@ def save_food_route():
 
     return jsonify({"success": True})
 
+
 @app.route("/save-custom-food", methods=["POST"])
 def save_custom_food_route():
     data = request.get_json()
@@ -308,6 +332,7 @@ def save_custom_food_route():
     save_custom_food(name, calories, protein, fat, carbs, sugar)
 
     return jsonify({"success": True})
+
 
 @app.route("/get-food")
 def get_food_route():
@@ -342,6 +367,7 @@ def delete_food_route():
 
     return jsonify({"success": True})
 
+
 @app.route("/update-food", methods=["POST"])
 def update_food_route():
     if "user_id" not in session:
@@ -371,8 +397,9 @@ def update_food_route():
 
     return jsonify({"success": True})
 
-
-
+#--------------------------------------#
+#---------REZEPTE----------------------#
+#--------------------------------------#
 @app.route("/recipes")
 def recipes():
     return render_template("recipes.html")
@@ -413,6 +440,11 @@ def get_recipe_route(recipe_id):
         "ingredients": recipe[2],
         "instructions": recipe[3]
     })
+
+
+#--------------------------------------#
+#---------SONSTIGES--------------------#
+#--------------------------------------#
 
 @app.route("/translate", methods=["POST"])
 def translate():

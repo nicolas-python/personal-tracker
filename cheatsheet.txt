@@ -112,7 +112,69 @@ tojson = wandelt Python-Daten in JavaScript-kompatible Daten um
 {% if ... %} = Jinja2-Syntax =  Mit Jinja kan man innerhalb der HTML-Datei Python-ähnliche Logik benutzen
 {% for ... %} = Wiederhole etwas für mehrere Werte
 
-rel="stylesheet" = Diese verlinkte Datei ist ein Stylesheet, eine CSS-Datei die das Aussehen dieser HTML-Seite bestimmt.
+rel="stylesheet" = Diese verlinkte Datei ist ein Stylesheet, eine CSS-Datei die das Aussehen dieser HTML-Seite bestimmt
+
+<ul> = Ungeordnete Liste
+<ol> = Nummerierte Liste
+<li> = Einzelner Listeneintrag
+<h2> = Überschrift
+<p> = Absatz
+<div> = Allgemeiner Container
+<img> = Bild
+
+//Zutaten aus DB (Python-Listenformat verarbeitet (kein JSON)) zeile 316
+JavaScript – replace() und RegEx (reguläre Ausdrücke)
+
+Mit replace() können bestimmte Zeichen oder Textstellen ersetzt bzw. entfernt werden
+RegEx steht für Regular Expressions (reguläre Ausdrücke bzw eine Art Suchmuster). Damit kann man genauer festlegen, welche Zeichen oder Textstellen gesucht werden
+
+Beispiel:
+.replace(/^\[|\]$/g, "")
+
+Bedeutung der einzelnen Zeichen:
+
+/.../ = Anfang und Ende des RegEx-Ausdrucks
+^ = Anfang des Textes
+\[ = Öffnende eckige Klammer [
+` ` Oder \] = Schließende eckige Klammer ]
+$ = Ende des Textes
+g = Alle passenden Stellen suchen
+"" = Gefundene Zeichen durch nichts ersetzen
+
+Beispiel:
+1.
+    Vorher:
+    ['Mehl', 'Eier', 'Milch']
+
+    Nachher:
+    'Mehl', 'Eier', 'Milch'
+    Die äußeren eckigen Klammern wurden entfernt
+
+2.
+Einfache Anführungszeichen entfernen
+
+ingredient.replace(/^'|'$/g, "")
+
+^' = einfaches Anführungszeichen am Anfang suchen
+| = oder
+'$ = einfaches Anführungszeichen am Ende suchen
+g = alle passenden Stellen suchen
+"" = durch nichts ersetzen
+
+Vorher:
+    'Mehl'
+
+Nachher:
+    Mehl
+
+recipes.db speichert Zutaten im Python-Listenformat:
+    ['Mehl', 'Eier', 'Milch']
+
+JSON verwendet dagegen doppelte Anführungszeichen:
+    ["Mehl", "Eier", "Milch"]
+
+Zunächst die äußeren Klammern und Anführungszeichen und teilen anschließend die Zutaten mit .split(", ") auf
+Merke: RegEx ermöglicht eine gezielte Suche nach Zeichen oder Textmustern. ^ und $ helfen dabei, den Anfang und das Ende eines Textes zu erkennen
 
 
 CSS :
