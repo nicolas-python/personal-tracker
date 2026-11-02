@@ -417,6 +417,16 @@
                     const ingredientItem = document.createElement("li");
                     ingredientItem.textContent = ingredient;
                     ingredientsList.appendChild(ingredientItem);
+
+                    translateText(ingredient)
+                            .then(function (germanIngredient)
+                                {
+                                    ingredientItem.textContent = germanIngredient;
+                                })
+                            .catch(function (error)
+                                {
+                                    console.error("Fehler bei der Zutatenübersetzung:", error);
+                                });
                 });
 
                 recipeDetails.appendChild(ingredientsList);
