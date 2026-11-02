@@ -202,6 +202,37 @@
                 }
         });
 
+        async function translateText(text)
+        {
+            if (!text || text.trim() === "")
+                {
+                    return text;
+                }
+
+            const response = await fetch("/translate",
+            {
+                method: "POST",
+                headers:
+                    {
+                        "Content-Type": "application/json"
+                    },
+                body: JSON.stringify(
+                    {
+                        text: text,
+                        source: "en",
+                        target: "de"
+                    })
+            });
+
+            if (!response.ok)
+                {
+                    throw new Error("Übersetzung fehlgeschlagen");
+                }
+
+            const data = await response.json();
+
+            return data.translatedText;
+        }
 
         async function loadRecipeDetails(mealId)
         {
@@ -221,6 +252,7 @@
                 }
 
                 const meal = data.meals[0];
+                const germanTitle = await translateText(meal.strMeal);
                 const ingredients = [];
 
                 let i = 1;
@@ -249,7 +281,7 @@
 
                 //rezeptname
                 const recipeName = document.createElement("h2");
-                recipeName.textContent = meal.strMeal;
+                recipeName.textContent = germanTitle;
 
                 //rezeptbild
                 const recipeImage = document.createElement("img");
