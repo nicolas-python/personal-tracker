@@ -399,6 +399,10 @@
                 const instructionsHeading = document.createElement("h3");
                 instructionsHeading.textContent = "Zubereitung";
 
+                const translationStatus = document.createElement("small");
+                translationStatus.textContent = "Zubereitung wird übersetzt ...";
+                translationStatus.className = "translation-status";
+
                 //zubereitungstext erstellen
                 const instructions = document.createElement("p");
                 instructions.textContent = recipe.instructions;
@@ -431,10 +435,28 @@
 
                 recipeDetails.appendChild(ingredientsList);
 
-                recipeDetails.appendChild(instructionsHeading);
+                const instructionsHeader = document.createElement("div");
+                instructionsHeader.className = "instructions-header";
+
+                instructionsHeader.appendChild(instructionsHeading);
+                instructionsHeader.appendChild(translationStatus);
+
+                recipeDetails.appendChild(instructionsHeader);
                 recipeDetails.appendChild(instructions);
 
                 recipeResults.appendChild(recipeDetails);
+
+                translateText(recipe.instructions)
+                    .then(function (germanInstructions)
+                        {
+                            instructions.textContent = germanInstructions;
+                            translationStatus.remove();
+                        })
+                    .catch(function (error)
+                        {
+                            console.error("Fehler bei der Übersetzung:", error);
+                            translationStatus.textContent = "Übersetzung fehlgeschlagen.";
+                        });
             }
 
             catch (error)
