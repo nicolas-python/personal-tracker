@@ -458,8 +458,12 @@ def translate():
         return jsonify({"error": "Kein Text angegeben"}), 400
 
     try:
+        translate_url = os.environ.get(
+            "TRANSLATE_URL",
+           "http://127.0.0.1:5000/translate")
+
         response = requests.post(
-            "http://127.0.0.1:5000/translate",
+            translate_url,
             json={
                 "q": text,
                 "source": source,
