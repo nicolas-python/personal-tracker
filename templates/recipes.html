@@ -311,10 +311,19 @@
                 {
                     const ingredientItem = document.createElement("li");        //<li> = List Item = ein einzelner Listeneintrag
 
-                    ingredientItem.textContent =
-                            ingredient.amount + " " + ingredient.name;
+                    ingredientItem.textContent = ingredient.amount + " " + ingredient.name;
 
                     ingredientsList.appendChild(ingredientItem);
+
+                    translateText(ingredient.amount + " " + ingredient.name)
+                            .then(function (germanIngredient)
+                                {
+                                    ingredientItem.textContent = germanIngredient;
+                                })
+                            .catch(function (error)
+                                {
+                                    console.error("Fehler bei der Zutatenübersetzung:", error);
+                                });
                 });
 
                 recipeDetails.appendChild(ingredientsList);
