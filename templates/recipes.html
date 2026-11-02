@@ -393,7 +393,8 @@
 
                 //rezeptname
                 const recipeName = document.createElement("h2");
-                recipeName.textContent = recipe.title;
+                const germanTitle = await translateText(recipe.title);
+                recipeName.textContent = germanTitle;
 
                 const instructionsHeading = document.createElement("h3");
                 instructionsHeading.textContent = "Zubereitung";
