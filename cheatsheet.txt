@@ -60,6 +60,13 @@ from http import HTTPStatus
          -HTTPStatus.BAD_REQUEST = 400: Anfrage ungültig, beispielsweise weil ein Suchbegriff fehlt
          -HTTPStatus.BAD_GATEWAY = 502: Unser Server konnte keine gültige Antwort vom externen Dienst erhalten
 
+ast :
+    -ast.literal_eval = wandelt einen Text in eine echte Python-Liste umwandeln z.b datenbank (text) : "['1 medium onion, chopped', '2 cloves garlic']"
+                                                                                   wird zu (liste)   :  ['1 medium onion, chopped', '2 cloves garlic']
+
+
+
+
 JavaScript:
 ++  =  um 1 erhöhen
 -- = um 1 verringern

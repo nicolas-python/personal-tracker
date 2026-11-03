@@ -3,6 +3,7 @@ from database import (create_database, add_user, login_user, save_workout, updat
                      delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,
                      search_custom_foods, get_username,  get_daily_nutrition, get_daily_training_stats, save_completed_workout,
                      save_daily_weight_comparison, get_daily_weight_comparison, search_recipes, get_recipe_by_id)
+import ast              #Abstract Syntax Trees (abstrakte Syntaxbäume) dafür da Python-Ausdrücke zu analysieren(gespeicherte Daten zu erkennen und auszuwerten)
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
@@ -434,13 +435,14 @@ def get_recipe_route(recipe_id):
     if recipe is None:
         return jsonify({"error": "Rezept nicht gefunden"}), 404
 
+    ingredients = ast.literal_eval(recipe[2])                   #ast.literal_eval() wandelt Text aus db(rezepte) in eine echte Python-Liste um
+
     return jsonify({
         "id": recipe[0],
         "title": recipe[1],
-        "ingredients": recipe[2],
+        "ingredients": ingredients,
         "instructions": recipe[3]
     })
-
 
 #--------------------------------------#
 #---------SONSTIGES--------------------#

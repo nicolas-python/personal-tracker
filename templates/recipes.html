@@ -377,13 +377,7 @@
                 }
 
                 //Zutaten aus DB (Python-Listenformat verarbeitet (kein JSON))   //Unterschied: Python verwendet einfache Anführungszeichen ('')
-                const ingredients = recipe.ingredients                           //JSON verwendet doppelte Anführungszeichen ("")
-                        .replace(/^\[|\]$/g, "")                //entfernt die öffnende Klammer am Anfang und die schließende Klammer am Ende (cheatsheet)
-                        .split(", ")
-                        .map(function (ingredient)
-                            {
-                                return ingredient.replace(/^'|'$/g, "");            //entfernt die einfachen Anführungszeichen am Anfang und Ende jeder Zutat
-                            });
+                const ingredients = recipe.ingredients;                     //JSON verwendet doppelte Anführungszeichen ("")
 
                 recipeResults.innerHTML = "";
 
