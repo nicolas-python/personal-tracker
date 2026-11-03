@@ -306,29 +306,44 @@
                 //ztatenüberschrift erstellen
                 const ingredientsHeading = document.createElement("h3");
                 ingredientsHeading.textContent = "Zutaten";
-                recipeDetails.appendChild(ingredientsHeading);
+
+                const ingredientsTranslationStatus = document.createElement("small");
+                ingredientsTranslationStatus.textContent = "Zutaten werden übersetzt ...";
+                ingredientsTranslationStatus.className = "translation-status";
+
+                const ingredientsHeader = document.createElement("div");
+                ingredientsHeader.className = "instructions-header";
+
+                ingredientsHeader.appendChild(ingredientsHeading);
+                ingredientsHeader.appendChild(ingredientsTranslationStatus);
+
+                recipeDetails.appendChild(ingredientsHeader);
 
                 //zutatenliste erstellen
                 const ingredientsList = document.createElement("ul");           //<ul> = Unordered List = eine ungeordnete Liste mit Aufzählungspunkten
 
-                ingredients.forEach(function (ingredient)
-                {
-                    const ingredientItem = document.createElement("li");        //<li> = List Item = ein einzelner Listeneintrag
+                const ingredientTranslations = ingredients.map(function (ingredient)
+                    {
+                        return translateText(ingredient.amount + " " + ingredient.name);
+                    });
 
-                    ingredientItem.textContent = ingredient.amount + " " + ingredient.name;
+                Promise.all(ingredientTranslations)
+                        .then(function (germanIngredients)
+                            {
+                                germanIngredients.forEach(function (germanIngredient)
+                                    {
+                                        const ingredientItem = document.createElement("li");        //<li> = List Item = ein einzelner Listeneintrag
+                                        ingredientItem.textContent = germanIngredient;
+                                        ingredientsList.appendChild(ingredientItem);
+                                    });
 
-                    ingredientsList.appendChild(ingredientItem);
-
-                    translateText(ingredient.amount + " " + ingredient.name)
-                            .then(function (germanIngredient)
-                                {
-                                    ingredientItem.textContent = germanIngredient;
-                                })
-                            .catch(function (error)
-                                {
-                                    console.error("Fehler bei der Zutatenübersetzung:", error);
-                                });
-                });
+                                ingredientsTranslationStatus.remove();
+                            })
+                        .catch(function (error)
+                            {
+                                console.error("Fehler bei der Zutatenübersetzung:", error);
+                                ingredientsTranslationStatus.textContent = "Übersetzung fehlgeschlagen.";
+                            });
 
                 recipeDetails.appendChild(ingredientsList);
 
@@ -405,28 +420,42 @@
 
                 const ingredientsHeading = document.createElement("h3");
                 ingredientsHeading.textContent = "Zutaten";
-                recipeDetails.appendChild(ingredientsHeading);
 
-                //zutatenliste erstellen
+                const ingredientsTranslationStatus = document.createElement("small");
+                ingredientsTranslationStatus.textContent = "Zutaten werden übersetzt ...";
+                ingredientsTranslationStatus.className = "translation-status";
+
+                const ingredientsHeader = document.createElement("div");
+                ingredientsHeader.className = "instructions-header";
+
+                ingredientsHeader.appendChild(ingredientsHeading);
+                ingredientsHeader.appendChild(ingredientsTranslationStatus);
+
+                recipeDetails.appendChild(ingredientsHeader);
+
                 const ingredientsList = document.createElement("ul");
+                const ingredientTranslations = ingredients.map(function (ingredient)
+                    {
+                        return translateText(ingredient);
+                    });
 
-                ingredients.forEach(function (ingredient)
-                {
-                    const ingredientItem = document.createElement("li");
-                    ingredientItem.textContent = ingredient;
-                    ingredientsList.appendChild(ingredientItem);
-
-                    translateText(ingredient)
-                            .then(function (germanIngredient)
+                Promise.all(ingredientTranslations)                     //Promise.all() = führt mehrere asynchrone Vorgänge zusammen und wartet, bis alle abgeschlossen sind gibt die Ergebnisse zusammen zurück
+                        .then(function (germanIngredients)
+                            {
+                                germanIngredients.forEach(function (germanIngredient, index)
                                 {
+                                    const ingredientItem = document.createElement("li");
                                     ingredientItem.textContent = germanIngredient;
-                                })
-                            .catch(function (error)
-                                {
-                                    console.error("Fehler bei der Zutatenübersetzung:", error);
+                                    ingredientsList.appendChild(ingredientItem);
                                 });
-                });
 
+                                ingredientsTranslationStatus.remove();
+                            })
+                        .catch(function (error)
+                            {
+                                console.error("Fehler bei der Zutatenübersetzung:", error);
+                                ingredientsTranslationStatus.textContent = "Übersetzung fehlgeschlagen.";
+                            });
                 recipeDetails.appendChild(ingredientsList);
 
                 const instructionsHeader = document.createElement("div");
