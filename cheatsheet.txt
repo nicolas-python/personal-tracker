@@ -334,3 +334,15 @@ Eiweiß = Körpergewicht × 1,5 = geschätztes tägliches Proteinziel
 Sportlich Erwachsene ca 1.4 - 2.0g Protin pro Kg Körpergewicht
 
 
+TODO:
+- Nährwerte für Rezepte ergänzen
+    - Kalorien (kcal)
+    - Eiweiß (Protein)
+    - Kohlenhydrate
+    - Fett
+
+- Paket bei der Registrierung auswählen
+    - Je nach Paket bestimmte Seiten und Funktionen freischalten
+    - Gesperrte Funktionen mit "???" anzeigen
+    - Beim Anklicken gesperrter Funktionen erscheint:
+        "Bitte upgraden Sie Ihr Paket, um diese Funktion nutzen zu können."
