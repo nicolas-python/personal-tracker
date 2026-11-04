@@ -28,6 +28,11 @@ def register():
         username = request.form["username"]
         password = request.form["password"]
         password_confirm = request.form["password_confirm"]
+        package = request.form["package"]
+
+        if package not in ["basic", "premium", "premium_plus"]:
+            flash("Ungültige Paketauswahl", "error")
+            return render_template("register.html")
 
         if not username or not password or not password_confirm:
             flash("Bitte alle Felder ausfüllen", "error")
@@ -38,7 +43,7 @@ def register():
             return render_template("register.html")
 
         try:
-            add_user(username, password)
+            add_user(username, password, package)
             flash("Registrierung erfolgreich!","success")  # flash = Flask-Funktion, mit der man eine kurze Nachricht über einen Seitenwechsel hinweg speichern und anzeigen kann
 
         except sqlite3.IntegrityError:
@@ -63,6 +68,7 @@ def login():
     if user:
         session["user_id"] = user[0]
         session["username"] = user[1]
+        session["package"] = user[3]                                            #index/spalte:user[0]=id,user[1]=username,user[2]=password_hash,user[3]=package
         flash("Login erfolgreich!", "success")              #flash(Nachricht, Kategorie) = Kategorie gibt an, um welche Art von Nachricht es sich handelt
 
     else:

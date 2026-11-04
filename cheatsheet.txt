@@ -344,3 +344,11 @@ TODO:
     - Gesperrte Funktionen mit "???" anzeigen
     - Beim Anklicken gesperrter Funktionen erscheint:
         "Bitte upgraden Sie Ihr Paket, um diese Funktion nutzen zu können."
+
+Rechtevergabe regelt das sich nicht jeder alles geben kan !
+Rechteverwaltung / Zugriffskontrolle:
+    - HTML zeigt dem Benutzer die verfügbaren Auswahlmöglichkeiten
+    - Flask überprüft die übermittelten Daten und entscheidet, welche Aktionen erlaubt sind
+    - Die Datenbank speichert das zugewiesene Benutzerpaket
+    - Flask prüft bei jedem geschützten Zugriff, ob der Benutzer die erforderlichen Berechtigungen besitzt
+    - Änderungen an HTML oder JavaScript dürfen keine zusätzlichen Rechte ermöglichen
