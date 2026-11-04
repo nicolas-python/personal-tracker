@@ -28,7 +28,7 @@ def register():
         username = request.form["username"]
         password = request.form["password"]
         password_confirm = request.form["password_confirm"]
-        package = request.form["package"]
+        package = request.form.get("package", "")
 
         if package not in ["basic", "premium", "premium_plus"]:
             flash("Ungültige Paketauswahl", "error")
