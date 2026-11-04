@@ -101,9 +101,9 @@ def selection():
     completed_workouts_count, total_weight = get_daily_training_stats(user_id, selected_date)
     weight_comparison = get_daily_weight_comparison(user_id, selected_date)
 
-
     if calorie_needs:
         calorie_goal = calorie_needs[0]
+        protein_goal = calorie_needs[1]
     else:
         calorie_goal = 0
         protein_goal = 0
@@ -113,8 +113,8 @@ def selection():
         username=username,
         calories=round(calories),
         protein=round(protein, 1),
-        calorie_needs = calorie_needs[0],
-        protein_goal = calorie_needs[1],
+        calorie_goal=calorie_goal,
+        protein_goal=protein_goal,
         completed_workouts_count=completed_workouts_count,
         total_weight=round(total_weight),
         selected_date=selected_date,
