@@ -34,6 +34,9 @@ Flask :
     -url_for(): Ermittelt die URL einer Flask-Route anhand ihres Funktionsnamens
     -jsonify(): Wandelt Python-Daten in eine JSON-HTTP-Antwort um, die JavaScript verarbeiten kann
     -fetch() = Schickt Daten zwischen JavaScript und Flask
+    -GET = Daten bzw. eine Webseite abrufen
+    -POST = Daten an den Server senden
+    -request.method = Prüft, welche HTTP-Methode verwendet wurde
 
 database :
     -create_database() erstellt die benötigte Datenbankstruktur

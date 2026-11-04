@@ -47,8 +47,11 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "GET":
+        return render_template("login.html")
+
     username = request.form["username"]
     password = request.form["password"]
 
@@ -66,6 +69,12 @@ def login():
         flash("Login fehlgeschlagen: Passwort oder Benutzername falsch", "error")
 
     return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()                         #session.clear() meldet diesen Benutzer ab, ohne seine Datenbankeinträge zu löschen
+    return redirect("/login")
 
 #--------------------------------------#
 #---------Homepage---------------------#
