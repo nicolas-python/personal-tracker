@@ -27,16 +27,17 @@ imports
 Flask :
     -Flask: Erstellt die Flask-Anwendung
     -render_template(): Zeigt eine HTML-Datei aus dem Templates-Ordner an
-    -request: Liest Informationen aus einer eingehenden Anfrage des Browsers, beispielsweise Formularwerte oder URL-Parameter
-    -flash(): Speichert eine kurze Nachricht, die beispielsweise nach einer Anmeldung angezeigt wird
-    -session: Speichert benutzerbezogene Informationen zwischen mehreren Anfragen, beispielsweise die Benutzer-ID nach dem Login
-    -redirect(): Leitet den Browser auf eine andere URL weiter
+    -request: Liest Informationen aus einer eingehenden Anfrage des Browsers, beispielsweise Formularwerte oder URL-Parameter(Zugriff auf die vom Browser gesendeten Daten)
+    -flash(): Speichert eine kurze Nachricht, die beispielsweise nach einer Anmeldung angezeigt wird(Nachricht für die nächste Seite speichern)
+    -session: Speichert benutzerbezogene Informationen zwischen mehreren Anfragen, beispielsweise die Benutzer-ID nach dem Login(merkt sich welcher Benutzer gerade eingeloggt ist)
+    -redirect(): Leitet den Browser auf eine andere URL weiter(Browser zu einer anderen Route schicken)
     -url_for(): Ermittelt die URL einer Flask-Route anhand ihres Funktionsnamens
     -jsonify(): Wandelt Python-Daten in eine JSON-HTTP-Antwort um, die JavaScript verarbeiten kann
     -fetch() = Schickt Daten zwischen JavaScript und Flask
     -GET = Daten bzw. eine Webseite abrufen
     -POST = Daten an den Server senden
     -request.method = Prüft, welche HTTP-Methode verwendet wurde
+    -request.form = Zugriff auf Daten aus einem HTML-Formular
 
 database :
     -create_database() erstellt die benötigte Datenbankstruktur
@@ -95,13 +96,6 @@ Number.isFinite() = prüft ob ein Wert eine gültige endliche Zahl ist
     \s = ein Leerzeichen
     + = mindestens einmal, auch mehrfach
 
-flask elemente:
-request = Zugriff auf die vom Browser gesendeten Daten
-request.form = Zugriff auf Daten aus einem HTML-Formular
-flash = Nachricht für die nächste Seite speichern
-redirect = Browser zu einer anderen Route schicken
-session = merkt sich welcher Benutzer gerade eingeloggt ist
-
 Datenbank:
 Passwort-Hashing = Passwort wird einseitig in einen Hash umgewandelt und nicht als Klartext gespeichert.
                    Dadurch kann das ursprüngliche Passwort aus dem Hash nicht einfach zurückgerechnet werden.
@@ -115,6 +109,7 @@ setsInput.type = "number" ist der HTML-Eingabetyp und erlaubt Zahleneingaben
 step = "0.5" = bestimmt die Schrittweite bei einer Zahleneingabe
 JSON.parse() = Lies diesen Text und mach daraus echte JavaScript-Daten
 `${}` = Template Literal = Fügt den Wert einer Variable in einen Text ein ,dafür werden Backticks ` verwendet
+radio (type="radio")= Auswahlfeld, bei dem nur eine Option aus mehreren ausgewählt werden kann, wenn alle denselben name-Wert haben
 
 Jinja/Jinja2
 Jinja = Template-Sprache von Flask, mit der HTML dynamisch erzeugt werden kann

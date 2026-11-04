@@ -30,6 +30,52 @@
     border-radius: 10px;
     text-align: center;
 }
+
+/*Paketauswahl*/
+.package-container
+{
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgba(20, 20, 20, 0.9);
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.package-options
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.package-card
+{
+    padding: 20px;
+    background-color: rgba(50, 50, 50, 0.9);
+    border: 1px solid darkgray;
+    border-radius: 10px;
+}
+
+.package-card h3
+{
+    margin-top: 0;
+}
+
+/*radio punkt verstecken*/
+.package-card input[type="radio"]
+{
+    display: none;
+}
+
+/*Ausgewähltes Paket ordentlcih hervorheben*/
+.package-card:has(input[type="radio"]:checked)
+{
+    border: 2px solid lightblue;
+    background-color: rgba(55, 75, 85, 0.8);
+}
 /* -------------------------------------------selection.html------------------------------------------- */
 .selection-container
 {
