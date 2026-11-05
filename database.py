@@ -255,6 +255,25 @@ def validate_active_session(user_id, session_token):
     finally:
         connection.close()
 
+def delete_active_session(user_id, session_token):
+    connection = sqlite3.connect(DATABASE)
+
+    try:
+        cursor = connection.cursor()
+
+        #aktive Sitzung des Benutzers aus der Datenbank löschen
+        cursor.execute("""
+            DELETE FROM active_sessions
+            WHERE user_id = ?
+            AND session_token = ?
+        """, (user_id, session_token))
+
+        connection.commit()
+
+    finally:
+        connection.close()
+
+
 def save_workout(user_id, workout_name, exercises):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()

@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, flash, session, redirect, url
 from database import (create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout ,
                      delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,
                      search_custom_foods, get_username,  get_daily_nutrition, get_daily_training_stats, save_completed_workout,
-                     save_daily_weight_comparison, get_daily_weight_comparison, search_recipes, get_recipe_by_id, create_active_session, validate_active_session)
+                     save_daily_weight_comparison, get_daily_weight_comparison, search_recipes, get_recipe_by_id, create_active_session, validate_active_session,
+                     delete_active_session)
 import ast              #Abstract Syntax Trees (abstrakte Syntaxbäume) dafür da Python-Ausdrücke zu analysieren(gespeicherte Daten zu erkennen und auszuwerten)
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
@@ -126,6 +127,12 @@ def login():
 
 @app.route("/logout")
 def logout():
+    user_id = session.get("user_id")
+    session_token = session.get("active_session_token")
+
+    if user_id and session_token:
+        delete_active_session(user_id, session_token)
+
     session.clear()                         #session.clear() meldet diesen Benutzer ab, ohne seine Datenbankeinträge zu löschen
     return redirect("/login")
 
