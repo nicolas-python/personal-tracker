@@ -9,11 +9,20 @@ import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
 from http import HTTPStatus  # Enthält benannte HTTP-Statuscodes
 import secrets  #sichere, zufällige Sitzungsschlüssel erzeugen
+from flask_limiter import Limiter       #anfragen pro Benutzer begrenzen
+from flask_limiter.util import get_remote_address    #IP-Adresse des Besuchers ermitteln
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")       #liest die Umgebungsvariable SECRET_KEY aus
                                                     #flash verlangt einen secret_key, um zu funktionieren
                                                     #Flask Secret Key = geheimer Schlüssel für Sessions und Flash-Nachrichten ,nicht mit dem Benutzerpasswort verwechseln!
+#Anfragen pro IP-Adresse begrenzen
+limiter = Limiter(
+    get_remote_address,  #IP-Adresse zur Identifizierung verwenden
+    app=app,
+    default_limits=["120 per minute"],  #Max 120 Anfragen pro Minute
+    storage_uri="memory://"  #Zähler im Arbeitsspeicher speichern
+)
 
 @app.before_request
 def check_active_session():
