@@ -44,6 +44,7 @@ def check_active_session():
         flash("Deine Sitzung ist abgelaufen oder wurde auf einem anderen Gerät ersetzt.", "error")
 
         return redirect(url_for("login"))
+
 #--------------------------------------#
 #---------ANMELDUNG / BENUTZER---------#
 #--------------------------------------#
@@ -86,6 +87,7 @@ def register():
 
 
 @app.route("/login", methods=["GET", "POST"])
+@limiter.limit("3 per minute", methods=["POST"])  #maximal 3 Login-Versuche pro Minute
 def login():
     if request.method == "GET":
         return render_template("login.html")

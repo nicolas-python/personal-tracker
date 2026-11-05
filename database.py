@@ -171,6 +171,7 @@ def login_user(username, password):
 
 def create_active_session(user_id, session_token):
     connection = sqlite3.connect(DATABASE)
+    print("Aktive Sitzungen – Datenbank:", connection.execute("PRAGMA database_list").fetchone()[2])
 
     try:
         cursor = connection.cursor()
