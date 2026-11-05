@@ -21,17 +21,35 @@
             <h2>Fitness</h2>
         </button>
 
-        <button class="selection-box" type="button" onclick="window.location.href='/nutrition'">
-            <h2>Ernährung</h2>
+        <button class="selection-box {% if not show_premium %}locked-box{% endif %}"
+                type="button"
+                {% if show_premium %}
+                    onclick="window.location.href='/nutrition'"
+                {% else %}
+                    disabled
+                {% endif %}>
+            <h2>Ernährung {% if not show_premium %}🔒{% endif %}</h2>
         </button>
 
-        <button class="selection-box" type="button" onclick="window.location.href='/recipes'">
-            <h2>Rezepte</h2>
+        <button class="selection-box {% if not show_premium_plus %}locked-box{% endif %}"
+                type="button"
+                {% if show_premium_plus %}
+                    onclick="window.location.href='/recipes'"
+                {% else %}
+                    disabled
+                {% endif %}>
+            <h2>Rezepte {% if not show_premium_plus %}🔒{% endif %}</h2>
         </button>
 
-       <button class="selection-box" type="button" onclick="window.location.href='/fuel'">
-           <h2>Tanken</h2>
-       </button>
+        <button class="selection-box {% if not show_premium_plus %}locked-box{% endif %}"
+                type="button"
+                {% if show_premium_plus %}
+                    onclick="window.location.href='/fuel'"
+                {% else %}
+                    disabled
+                {% endif %}>
+            <h2>Tanken {% if not show_premium_plus %}🔒{% endif %}</h2>
+        </button>
     </div>
 
     <div class="daily-stats-container">
@@ -39,7 +57,7 @@
             <input type="date" id="selectedDate" value="{{ selected_date }}">
         </div>
 
-        {% if show_stats %}
+        {% if show_premium %}
             <div class="daily-stats-box">
                 <h2>Training</h2>
                 <p>Heute bewegtes Gewicht: {{ total_weight }} kg</p>

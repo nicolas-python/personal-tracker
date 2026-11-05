@@ -94,8 +94,8 @@ def selection():
     username = session.get("username")
     show_stats = package_access("premium")
 
-    show_fitness = package_access("basic")
-    show_nutrition = package_access("premium")
+    show_basic = package_access("basic")
+    show_premium = package_access("premium")
     show_premium_plus = package_access("premium_plus")
 
     today = __import__("datetime").date.today().isoformat()             #isoformat() wandelt ein Datum in ein festes Textformat um JJJJ-MM-TT
@@ -134,6 +134,9 @@ def selection():
         selected_date=selected_date,
         weight_comparison=weight_comparison,
         show_stats=show_stats,
+        show_fitness=show_basic,
+        show_nutrition=show_premium,
+        show_premium_plus=show_premium_plus,
     )
 
 
@@ -274,6 +277,9 @@ def complete_workout(workout_id):
 
 @app.route("/nutrition")
 def nutrition():
+    if not package_access("premium"):
+        return redirect(url_for("selection"))
+
     if "user_id" not in session:
         return redirect(url_for("login"))
     calorie_needs = get_calorie_needs(session["user_id"])

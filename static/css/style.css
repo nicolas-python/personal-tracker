@@ -96,6 +96,12 @@
     align-items: center;
 }
 
+.locked-box
+{
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
 /*Tagesstatistiken*/
 .daily-stats-container
 {
