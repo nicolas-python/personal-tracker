@@ -21,6 +21,8 @@ app.config["SESSION_COOKIE_HTTPONLY"] = True  #javaScript darf Cookie nicht ausl
 app.config["SESSION_COOKIE_SECURE"] = True    #Cookie nur über HTTPS übertragen
 app.config["SESSION_COOKIE_SAMESITE"] = "Lax" #Schutz vor bestimmten CSRF-Angriffen (Cross-Site Request Forgery = websiteübergreifende Anfragenfälschung)
 
+app.config["MAX_CONTENT_LENGTH"] = 2 * 1024 * 1024  #Max Anfragegröße: 2 MB,begrenzen um übergroße Anfragen und unnötigen Ressourcenverbrauch zu verhindern
+
 #Anfragen pro IP-Adresse begrenzen
 limiter = Limiter(
     get_remote_address,  #IP-Adresse zur Identifizierung verwenden
