@@ -134,8 +134,8 @@ def selection():
         selected_date=selected_date,
         weight_comparison=weight_comparison,
         show_stats=show_stats,
-        show_fitness=show_basic,
-        show_nutrition=show_premium,
+        show_basic=show_basic,
+        show_premium=show_premium,
         show_premium_plus=show_premium_plus,
     )
 
