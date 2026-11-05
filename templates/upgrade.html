@@ -1,0 +1,43 @@
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Upgrade</h1>
+<p>Wähle dein gewünschtes Paket aus.</p>
+
+<div class="upgrade-container">
+
+    <div class="upgrade-card">
+        <h2>Basic</h2>
+        <p>Fitness-Funktionen</p>
+        <h3>Kostenlos</h3>
+        <button type="button">Auswählen</button>
+    </div>
+
+    <div class="upgrade-card">
+        <h2>Premium</h2>
+        <p>Fitness und Ernährung</p>
+        <h3>4,99 € / Monat</h3>
+        <button type="button">Auswählen</button>
+    </div>
+
+    <div class="upgrade-card">
+        <h2>Premium+</h2>
+        <p>Alle verfügbaren Funktionen</p>
+        <h3>9,99 € / Monat</h3>
+        <button type="button">Auswählen</button>
+    </div>
+
+</div>
+
+<button type="button" onclick="window.location.href='/selection'">
+    Zurück
+</button>
+
+</body>
+</html>

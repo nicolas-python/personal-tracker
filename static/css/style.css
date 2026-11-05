@@ -146,6 +146,25 @@
     gap: 10px;
 }
 
+.upgrade-button
+{
+    background-color: goldenrod;
+    color: white;
+    border: 2px solid goldenrod;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.account-buttons
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 /* -------------------------------------------create_workout.html------------------------------------------- */
 .exercise
 {

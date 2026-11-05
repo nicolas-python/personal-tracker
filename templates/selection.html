@@ -13,10 +13,18 @@
 
     <h1>Willkommen, {{ username }}</h1>
     <h2>Was möchten Sie heute machen?</h2>
-    <button type="button" onclick="window.location.href='/logout'">Ausloggen</button>
+
+    <div class="account-buttons">
+        <button type="button" onclick="window.location.href='/logout'">
+            Ausloggen
+        </button>
+
+        <button class="upgrade-button" type="button" onclick="window.location.href='/upgrade'">
+            Upgrade
+        </button>
+    </div>
 
     <div class="selection-container">
-
         <button class="selection-box" type="button" onclick="window.location.href='/fitness'">
             <h2>Fitness</h2>
         </button>

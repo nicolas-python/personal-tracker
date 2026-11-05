@@ -534,6 +534,14 @@ def package_access(required_package):
         return True
     else:
         return False
+
+@app.route("/upgrade")
+def upgrade():
+    if "user_id" not in session:
+        return redirect(url_for("home"))
+
+    return render_template("upgrade.html")
+
 @app.route("/fuel")
 def fuel():
     return render_template("fuel.html")
