@@ -16,6 +16,11 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")       #liest die Umgebungsvariable SECRET_KEY aus
                                                     #flash verlangt einen secret_key, um zu funktionieren
                                                     #Flask Secret Key = geheimer Schlüssel für Sessions und Flash-Nachrichten ,nicht mit dem Benutzerpasswort verwechseln!
+#session-Cookie absichern
+app.config["SESSION_COOKIE_HTTPONLY"] = True  #javaScript darf Cookie nicht auslesen
+app.config["SESSION_COOKIE_SECURE"] = True    #Cookie nur über HTTPS übertragen
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax" #Schutz vor bestimmten CSRF-Angriffen (Cross-Site Request Forgery = websiteübergreifende Anfragenfälschung)
+
 #Anfragen pro IP-Adresse begrenzen
 limiter = Limiter(
     get_remote_address,  #IP-Adresse zur Identifizierung verwenden
