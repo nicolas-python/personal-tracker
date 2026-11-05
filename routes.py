@@ -2,19 +2,39 @@ from flask import Flask, render_template, request, flash, session, redirect, url
 from database import (create_database, add_user, login_user, save_workout, update_workout, get_workouts, get_workout_exercises, get_workout ,
                      delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,
                      search_custom_foods, get_username,  get_daily_nutrition, get_daily_training_stats, save_completed_workout,
-                     save_daily_weight_comparison, get_daily_weight_comparison, search_recipes, get_recipe_by_id)
+                     save_daily_weight_comparison, get_daily_weight_comparison, search_recipes, get_recipe_by_id, create_active_session, validate_active_session)
 import ast              #Abstract Syntax Trees (abstrakte Syntaxbäume) dafür da Python-Ausdrücke zu analysieren(gespeicherte Daten zu erkennen und auszuwerten)
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
 import requests              # Python-Bibliothek zum Senden von HTTP-Anfragen an externe APIs
 from http import HTTPStatus  # Enthält benannte HTTP-Statuscodes
+import secrets  #sichere, zufällige Sitzungsschlüssel erzeugen
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")       #liest die Umgebungsvariable SECRET_KEY aus
                                                     #flash verlangt einen secret_key, um zu funktionieren
                                                     #Flask Secret Key = geheimer Schlüssel für Sessions und Flash-Nachrichten ,nicht mit dem Benutzerpasswort verwechseln!
 
+@app.before_request
+def check_active_session():
 
+    if request.endpoint == "static":
+        return None
+
+    user_id = session.get("user_id")
+    session_token = session.get("active_session_token")
+
+    #nicht angemeldete Besucher dürfen normal fortfahren
+    if user_id is None:
+        return None
+
+    #sitzung überprüfen
+    if not session_token or not validate_active_session(user_id, session_token):
+
+        session.clear()
+        flash("Deine Sitzung ist abgelaufen oder wurde auf einem anderen Gerät ersetzt.", "error")
+
+        return redirect(url_for("login"))
 #--------------------------------------#
 #---------ANMELDUNG / BENUTZER---------#
 #--------------------------------------#
@@ -43,8 +63,12 @@ def register():
             return render_template("register.html")
 
         try:
-            add_user(username, password, package)
-            flash("Registrierung erfolgreich!","success")  # flash = Flask-Funktion, mit der man eine kurze Nachricht über einen Seitenwechsel hinweg speichern und anzeigen kann
+            created = add_user(username, password, package)
+
+            if created:
+                flash("Registrierung erfolgreich!", "success")  #flash = Flask-Funktion, mit der man eine kurze Nachricht über einen Seitenwechsel hinweg speichern und anzeigen kann
+            else:
+                flash("Maximale Benutzeranzahl von 8 erreicht!", "error")
 
         except sqlite3.IntegrityError:
             flash("Der Benutzername ist bereits vergeben", "error")
@@ -66,10 +90,15 @@ def login():
 
     user = login_user(username, password)
     if user:
-        session["user_id"] = user[0]
-        session["username"] = user[1]
-        session["package"] = user[3]                                            #index/spalte:user[0]=id,user[1]=username,user[2]=password_hash,user[3]=package
-        flash("Login erfolgreich!", "success")              #flash(Nachricht, Kategorie) = Kategorie gibt an, um welche Art von Nachricht es sich handelt
+        session_token = secrets.token_urlsafe(32)
+        if create_active_session(user[0], session_token):
+            session.clear()
+
+            session["user_id"] = user[0]
+            session["username"] = user[1]
+            session["package"] = user[3]                                            #index/spalte:user[0]=id,user[1]=username,user[2]=password_hash,user[3]=package
+            session["active_session_token"] = session_token
+            flash("Login erfolgreich!", "success")              #flash(Nachricht, Kategorie) = Kategorie gibt an, um welche Art von Nachricht es sich handelt
 
     else:
         flash("Login fehlgeschlagen: Passwort oder Benutzername falsch", "error")

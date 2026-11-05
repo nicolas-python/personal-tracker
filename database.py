@@ -1,5 +1,7 @@
 import sqlite3
+import time                     #aktuellen Zeitpunkt als Unix-Zeitstempel abrufen
 from werkzeug.security import generate_password_hash, check_password_hash
+
 
 DATABASE = "database/personal_tracker.db"
 
@@ -108,6 +110,17 @@ def create_database():
         )
     """)
 
+#aktive Benutzersitzungen
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS active_sessions
+            (user_id INTEGER PRIMARY KEY,
+            session_token TEXT NOT NULL UNIQUE,
+            last_activity REAL NOT NULL,
+            FOREIGN KEY(user_id) 
+            REFERENCES users(id)
+        )
+    """)
+
     connection.commit()
     connection.close()
 
@@ -115,6 +128,17 @@ def create_database():
 def add_user(username, password, package):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
+    cursor.execute("BEGIN IMMEDIATE")        #schreibzugriff reservieren damit parallele Registrierungen verhindert werden
+
+    #anzahl registrierter Benutzer prüfen
+    cursor.execute("SELECT COUNT(*) FROM users")
+    user_count = cursor.fetchone()[0]
+
+    #registrierung bei 8 Benutzern verhindern
+    if user_count >= 8:
+        connection.rollback()
+        connection.close()
+        return False
 
     password_hash = generate_password_hash(password, method="pbkdf2:sha256")  # PBKDF2 = Schlüsselableitungsverfahren SHA-256 = Hashfunktion
 
@@ -125,6 +149,7 @@ def add_user(username, password, package):
 
     connection.commit()
     connection.close()
+    return True
 
 
 def login_user(username, password):
@@ -143,6 +168,91 @@ def login_user(username, password):
         return user
 
     return None
+
+def create_active_session(user_id, session_token):
+    connection = sqlite3.connect(DATABASE)
+
+    try:
+        cursor = connection.cursor()
+        cursor.execute("BEGIN IMMEDIATE")
+
+        now = time.time()
+
+        #abgelaufene Sitzungen nach 30 Minuten Inaktivität löschen
+        cursor.execute("""
+            DELETE FROM active_sessions
+            WHERE last_activity < ?
+        """, (now - 1800,))
+
+        #prüfen, ob der Benutzer bereits angemeldet ist
+        cursor.execute("""
+            SELECT session_token
+            FROM active_sessions
+            WHERE user_id = ?
+        """, (user_id,))
+
+        existing_session = cursor.fetchone()
+
+        #vorhandene Sitzung durch neue Sitzung ersetzen
+        if existing_session:
+            cursor.execute("""
+                UPDATE active_sessions
+                SET session_token = ?, last_activity = ?
+                WHERE user_id = ?
+            """, (session_token, now, user_id))
+
+            connection.commit()
+            return True
+
+        #anzahl aktiver Sitzungen prüfen
+        cursor.execute("SELECT COUNT(*) FROM active_sessions")
+        active_count = cursor.fetchone()[0]
+
+        #maximal 8 gleichzeitig
+        if active_count >= 8:
+            connection.rollback()
+            return False
+
+        #neue Sitzung speichern
+        cursor.execute("""
+            INSERT INTO active_sessions (user_id, session_token, last_activity)
+            VALUES (?, ?, ?)
+        """, (user_id, session_token, now))
+
+        connection.commit()
+        return True
+
+    except Exception:
+        connection.rollback()
+        raise
+
+    finally:                            #finally = wird immer ausgeführt, egal ob die Funktion erfolgreich war oder ein Fehler aufgetreten ist
+        connection.close()
+
+#Seitenaufruf zu kontrollieren
+def validate_active_session(user_id, session_token):
+    connection = sqlite3.connect(DATABASE)
+
+    try:
+        cursor = connection.cursor()
+        now = time.time()
+
+        #sitzung prüfen und letzte Aktivität aktualisieren
+        cursor.execute("""
+            UPDATE active_sessions
+            SET last_activity = ?
+            WHERE user_id = ?
+            AND session_token = ?
+            AND last_activity >= ?
+        """, (now, user_id, session_token, now - 1800))
+
+        valid = cursor.rowcount == 1
+
+        connection.commit()
+        return valid
+
+    finally:
+        connection.close()
 
 def save_workout(user_id, workout_name, exercises):
     connection = sqlite3.connect(DATABASE)
