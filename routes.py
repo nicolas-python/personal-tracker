@@ -92,21 +92,35 @@ def selection():
 
     user_id = session["user_id"]
     username = session.get("username")
+    show_stats = package_access("premium")
+
+    show_fitness = package_access("basic")
+    show_nutrition = package_access("premium")
+    show_premium_plus = package_access("premium_plus")
 
     today = __import__("datetime").date.today().isoformat()             #isoformat() wandelt ein Datum in ein festes Textformat um JJJJ-MM-TT
     selected_date = request.args.get("date", today)
 
-    calories, protein = get_daily_nutrition(user_id, selected_date)
-    calorie_needs = get_calorie_needs(user_id)
-    completed_workouts_count, total_weight = get_daily_training_stats(user_id, selected_date)
-    weight_comparison = get_daily_weight_comparison(user_id, selected_date)
+    if show_stats:
+        calories, protein = get_daily_nutrition(user_id, selected_date)
+        calorie_needs = get_calorie_needs(user_id)
+        completed_workouts_count, total_weight = get_daily_training_stats(user_id, selected_date)
+        weight_comparison = get_daily_weight_comparison(user_id, selected_date)
 
-    if calorie_needs:
-        calorie_goal = calorie_needs[0]
-        protein_goal = calorie_needs[1]
+        if calorie_needs:
+            calorie_goal = calorie_needs[0]
+            protein_goal = calorie_needs[1]
+        else:
+            calorie_goal = 0
+            protein_goal = 0
     else:
+        calories = 0
+        protein = 0
         calorie_goal = 0
         protein_goal = 0
+        completed_workouts_count = 0
+        total_weight = 0
+        weight_comparison = None
 
     return render_template(
         "selection.html",
@@ -118,7 +132,8 @@ def selection():
         completed_workouts_count=completed_workouts_count,
         total_weight=round(total_weight),
         selected_date=selected_date,
-        weight_comparison=weight_comparison
+        weight_comparison=weight_comparison,
+        show_stats=show_stats,
     )
 
 
@@ -497,6 +512,22 @@ def translate():
         return jsonify({"error": "Übersetzung fehlgeschlagen"}), 502
 
 
+def package_access(required_package):
+    user_package = session.get("package")
+
+    package_levels = {
+        "basic": 1,
+        "premium": 2,
+        "premium_plus": 3
+    }
+
+    user_level = package_levels.get(user_package, 0)
+    required_level = package_levels.get(required_package)
+
+    if user_level >= required_level:
+        return True
+    else:
+        return False
 @app.route("/fuel")
 def fuel():
     return render_template("fuel.html")

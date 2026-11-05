@@ -39,27 +39,49 @@
             <input type="date" id="selectedDate" value="{{ selected_date }}">
         </div>
 
-        <div class="daily-stats-box">
-            <h2>Training</h2>
-            <p>Heute bewegtes Gewicht: {{ total_weight }} kg</p>
-            <p id="weightComparison"></p>
-        </div>
+        {% if show_stats %}
+            <div class="daily-stats-box">
+                <h2>Training</h2>
+                <p>Heute bewegtes Gewicht: {{ total_weight }} kg</p>
+                <p id="weightComparison"></p>
+            </div>
 
-        <div class="daily-stats-box">
-            <h2>Fitness</h2>
-            <p>Abgeschlossene Trainingseinheiten: {{ completed_workouts_count }}</p>
-        </div>
+            <div class="daily-stats-box">
+                <h2>Fitness</h2>
+                <p>Abgeschlossene Trainingseinheiten: {{ completed_workouts_count }}</p>
+            </div>
 
-        <div class="daily-stats-box">
-            <h2>Ernährung</h2>
-            <p>Heutige Kalorien: {{ calories }} kcal von {{ calorie_goal }} kcal</p>
-        </div>
+            <div class="daily-stats-box">
+                <h2>Ernährung</h2>
+                <p>Heutige Kalorien: {{ calories }} kcal von {{ calorie_goal }} kcal</p>
+            </div>
 
-        <div class="daily-stats-box">
-            <h2>Protein</h2>
-            <p>Heutiges Eiweiß: {{ protein }} g von {{ protein_goal }} g</p>
-        </div>
+            <div class="daily-stats-box">
+                <h2>Protein</h2>
+                <p>Heutiges Eiweiß: {{ protein }} g von {{ protein_goal }} g</p>
+            </div>
+        {% else %}
+            <div class="daily-stats-box">
+                <h2>Training</h2>
+                <p>Heute bewegtes Gewicht: ???</p>
+                <p>???</p>
+            </div>
 
+            <div class="daily-stats-box">
+                <h2>Fitness</h2>
+                <p>Abgeschlossene Trainingseinheiten: ???</p>
+            </div>
+
+            <div class="daily-stats-box">
+                <h2>Ernährung</h2>
+                <p>Heutige Kalorien: ???</p>
+            </div>
+
+            <div class="daily-stats-box">
+                <h2>Protein</h2>
+                <p>Heutiges Eiweiß: ???</p>
+            </div>
+        {% endif %}
     </div>
 <script>
 const totalWeight = Number("{{ total_weight }}");
