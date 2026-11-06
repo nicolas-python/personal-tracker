@@ -323,7 +323,7 @@ Request-Limit = Begrenzt die Größe eingehender Anfragen, um übermäßig groß
 CSRF-Schutz = Verhindert, dass fremde Webseiten unbemerkt Anfragen im Namen eines angemeldeten Benutzers ausführen
 
 
-CSRF-Schutz vervollständigen = Schützt vor gefälschten Anfragen durch fremde Webseiten
+CSRF-Schutz vervollständigen = Schützt vor gefälschten Anfragen durch fremde Webseiten(verhindert dass fremde Websites unbemerkt Aktionen über die Sitzung eines eingeloggten Benutzers ausführen)
 Routen-Zugriffskontrolle = Verhindert den Zugriff auf geschützte Bereiche ohne Anmeldung
 Benutzerrechte prüfen = Verhindert, dass Benutzer fremde persönliche Daten lesen oder verändern
 SQL-Injection-Schutz = Verhindert das Einschleusen eigener SQL-Befehle

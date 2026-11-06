@@ -58,9 +58,8 @@
                 //Übersetzer raspberrypi
                 const translationResponse = await fetch("/translate", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: {"Content-Type": "application/json",
+                              "X-CSRFToken": document.querySelector('meta[name="csrf-token"]').getAttribute("content")},
                     body: JSON.stringify({
                         text: searchTerm,
                         source: "de",
@@ -213,10 +212,8 @@
             const response = await fetch("/translate",
             {
                 method: "POST",
-                headers:
-                    {
-                        "Content-Type": "application/json"
-                    },
+                headers: {"Content-Type": "application/json",
+                          "X-CSRFToken": document.querySelector('meta[name="csrf-token"]').getAttribute("content")},
                 body: JSON.stringify(
                     {
                         text: text,

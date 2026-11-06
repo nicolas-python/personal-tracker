@@ -346,7 +346,8 @@
             document.getElementById("proteinGoal").textContent = Math.round(proteinGoal);
 
             fetch("/save-calorie-needs", {method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: {"Content-Type": "application/json",
+                    "X-CSRFToken": document.querySelector('meta[name="csrf-token"]').getAttribute("content")},
                 body: JSON.stringify({
                     calories: Math.round(caloriegoal),
                     protein: Math.round(proteinGoal)
@@ -611,7 +612,8 @@
 
             fetch("/save-food", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: {"Content-Type": "application/json",
+                          "X-CSRFToken": document.querySelector('meta[name="csrf-token"]').getAttribute("content")},
                 body: JSON.stringify(
                 {
                     food_name: selectedProduct.product_name,
@@ -725,7 +727,8 @@
                         const response = await fetch("/update-food",
                         {
                             method: "POST",
-                            headers: {"Content-Type": "application/json"},
+                            headers: {"Content-Type": "application/json",
+                                      "X-CSRFToken": document.querySelector('meta[name="csrf-token"]').getAttribute("content")},
                             body: JSON.stringify({
                                 food_id: food[0],
                                 grams: newGrams,
@@ -761,7 +764,8 @@
                         const response = await fetch("/delete-food",
                                 {
                                 method: "POST",
-                                headers: {"Content-Type": "application/json"},
+                                headers: {"Content-Type": "application/json",
+                                          "X-CSRFToken": document.querySelector('meta[name="csrf-token"]').getAttribute("content")},
                                 body: JSON.stringify({food_id: food[0]})
                                 });
 
@@ -903,7 +907,8 @@
             try {
                 const response = await fetch("/save-custom-food", {
                     method: "POST",
-                    headers: {"Content-Type": "application/json"},
+                    headers: {"Content-Type": "application/json",
+                              "X-CSRFToken": document.querySelector('meta[name="csrf-token"]').getAttribute("content")},
                     body: JSON.stringify({
                         name: foodName,
                         calories: calories,
