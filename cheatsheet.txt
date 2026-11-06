@@ -297,6 +297,9 @@ sudo systemctl enable --now personal-tracker
 Flask-Autostart Prüfen
 sudo systemctl status personal-tracker = Prüfen
 
+
+Sicherheitsmaßnahmen :
+
 Zufälligen Secret Key erzeugen:
 python3 -c "import secrets; print(secrets.token_hex(32))" = erzeugt einen zufälligen 64-stelligen Hex-Schlüssel
 
@@ -306,6 +309,36 @@ method="pbkdf2:sha256" =  legt die Hash-Methode für das Passwort fest
                           -Passwort wird nicht im Klartext gespeichert
                           -PBKDF2 = Schlüsselableitungsverfahren
                           -SHA-256 = Hashfunktion
+Warum? =
+Passwort-Hashing = Passwörter werden nicht im Klartext gespeichert. Selbst bei einem Datenbankdiebstahl sind die ursprünglichen Passwörter nicht direkt lesbar
+Login-Limit = Begrenzt Login-Versuche, damit Angreifer nicht unbegrenzt Passwörter ausprobieren können (Brute Force)
+Flask-Limiter = Begrenzt die Anzahl der Anfragen, um Missbrauch und Überlastung durch zu viele Requests zu verhindern
+Sitzungsverwaltung = Kontrolliert aktive Benutzersitzungen und verhindert unkontrollierte oder ungültige Anmeldungen
+Sitzungsbegrenzung = Verhindert, dass unbegrenzt viele Sitzungen gleichzeitig erstellt werden und Ressourcen verbrauchen
+Inaktivitätslimit = Beendet inaktive Sitzungen automatisch, damit ein offener Login nicht dauerhaft missbraucht werden kann
+Logout = Beendet die Sitzung und macht den gespeicherten Sitzungseintrag ungültig
+Benutzerlimit = Begrenzt die Anzahl registrierter Accounts, um unkontrollierte Registrierungen zu verhindern
+Sichere Cookies = Schützen Sitzungscookies vor JavaScript-Zugriff, unsicherer Übertragung und bestimmten Cross-Site-Angriffen
+Request-Limit = Begrenzt die Größe eingehender Anfragen, um übermäßig große Datenübertragungen und mögliche Überlastung zu verhindern
+CSRF-Schutz = Verhindert, dass fremde Webseiten unbemerkt Anfragen im Namen eines angemeldeten Benutzers ausführen
+
+
+CSRF-Schutz vervollständigen = Schützt vor gefälschten Anfragen durch fremde Webseiten
+Routen-Zugriffskontrolle = Verhindert den Zugriff auf geschützte Bereiche ohne Anmeldung
+Benutzerrechte prüfen = Verhindert, dass Benutzer fremde persönliche Daten lesen oder verändern
+SQL-Injection-Schutz = Verhindert das Einschleusen eigener SQL-Befehle
+XSS-Schutz = Verhindert das Ausführen eingeschleusten JavaScripts im Browser
+Eingabevalidierung = Prüft Eingaben auf gültige Werte und verhindert manipulierte Daten
+Fehlerbehandlung = Verhindert, dass interne technische Informationen nach außen gelangen
+HTTPS überprüfen = Stellt sicher, dass die Verbindung verschlüsselt ist und nicht ungeschützt übertragen wird
+Datenbank-Backups = Ermöglicht die Wiederherstellung bei Datenverlust oder Beschädigung
+Abhängigkeiten aktualisieren = schließt bekannte Sicherheitslücken in verwendeten Bibliotheken
+
+
+
+
+
+
 
 
 Grundumsatz berechnen:

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Ernährung - Personal Tracker</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -899,10 +900,8 @@
                 }
 
             //Lebensmittel an Flask senden und in der Datenbank speichern
-            try
-            {
-                const response = await fetch("/save-custom-food",
-                {
+            try {
+                const response = await fetch("/save-custom-food", {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({

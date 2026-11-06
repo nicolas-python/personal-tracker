@@ -22,7 +22,7 @@
 {% endwith %}
 
 <form method="POST" action="{{ '/edit-workout/' + workout[0]|string if workout else '/create-workout' }}">
-
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <h1>Trainingsplan erstellen</h1>
         <label for="workout_name">Name des Trainingsplans:</label>
         <input type="text" id="workout_name" name="workout_name" value="{{ workout[1] if workout else '' }}">

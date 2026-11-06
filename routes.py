@@ -12,11 +12,14 @@ from http import HTTPStatus  # Enthält benannte HTTP-Statuscodes
 import secrets  #sichere, zufällige Sitzungsschlüssel erzeugen
 from flask_limiter import Limiter       #anfragen pro Benutzer begrenzen
 from flask_limiter.util import get_remote_address    #IP-Adresse des Besuchers ermitteln
+from flask_wtf.csrf import CSRFProtect  #Schutz vor Cross-Site-Request-Forgery  (Cross-Site Request Forgery = websiteübergreifende Anfragenfälschung)
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")       #liest die Umgebungsvariable SECRET_KEY aus
                                                     #flash verlangt einen secret_key, um zu funktionieren
                                                     #Flask Secret Key = geheimer Schlüssel für Sessions und Flash-Nachrichten ,nicht mit dem Benutzerpasswort verwechseln!
+csrf = CSRFProtect(app)     #CSRF-Schutz für alle POST-, PUT-, PATCH- und DELETE-Anfragen aktivieren
+
 #session-Cookie absichern
 app.config["SESSION_COOKIE_HTTPONLY"] = True  #javaScript darf Cookie nicht auslesen
 app.config["SESSION_COOKIE_SECURE"] = True    #Cookie nur über HTTPS übertragen
