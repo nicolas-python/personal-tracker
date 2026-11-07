@@ -121,6 +121,8 @@ def login():
             session["package"] = user[3]                                            #index/spalte:user[0]=id,user[1]=username,user[2]=password_hash,user[3]=package
             session["active_session_token"] = session_token
             flash("Login erfolgreich!", "success")              #flash(Nachricht, Kategorie) = Kategorie gibt an, um welche Art von Nachricht es sich handelt
+        else:
+            flash("Maximale Anzahl aktiver Sitzungen erreicht!", "error")
 
     else:
         flash("Login fehlgeschlagen: Passwort oder Benutzername falsch", "error")
@@ -209,7 +211,8 @@ def save_weight_comparison_route():
     comparison_name = data["comparison_name"]
     comparison_weight = data["comparison_weight"]
 
-    save_daily_weight_comparison(user_id, comparison_date, comparison_name, comparison_weight)
+    if not save_daily_weight_comparison(user_id, comparison_date, comparison_name, comparison_weight):
+        return jsonify({"error": "Gewichtsvergleich konnte nicht gespeichert werden"}), 500
 
     weight_comparison = get_daily_weight_comparison(user_id, comparison_date)
 
@@ -240,7 +243,9 @@ def create_workout():
 
                 exercises.append((exercise, sets, reps, weight))
 
-        save_workout(session["user_id"], workout_name, exercises)
+        if not save_workout(session["user_id"], workout_name, exercises):
+            flash("Trainingsplan konnte nicht gespeichert werden!", "danger")
+            return render_template("create_workout.html", exercises=[], saved=False)
 
         flash("Trainingsplan gespeichert!", "success")
         return render_template("create_workout.html", exercises=[], saved=True)
@@ -398,7 +403,8 @@ def save_calorie_needs_route():
 
     data = request.get_json()
 
-    save_calorie_needs(session["user_id"],data["calories"],data["protein"])
+    if not save_calorie_needs(session["user_id"], data["calories"], data["protein"]):
+        return jsonify({"error": "Kalorienbedarf konnte nicht gespeichert werden"}), 500
 
     return jsonify({"success": True})
 
@@ -410,18 +416,19 @@ def save_food_route():
 
     data = request.get_json()
 
-    save_food(
-        session["user_id"],
-        data["food_name"],
-        data["grams"],
-        data["calories"],
-        data["protein"],
-        data["fat"],
-        data["carbs"],
-        data["sugar"],
-        data["meal"],
-        data["entry_date"]
-    )
+    if not save_food(
+            session["user_id"],
+            data["food_name"],
+            data["grams"],
+            data["calories"],
+            data["protein"],
+            data["fat"],
+            data["carbs"],
+            data["sugar"],
+            data["meal"],
+            data["entry_date"]
+            ):
+        return jsonify({"error": "Lebensmittel konnte nicht gespeichert werden"}), 500
 
     return jsonify({"success": True})
 
@@ -437,7 +444,8 @@ def save_custom_food_route():
     carbs = data.get("carbs")
     sugar = data.get("sugar")
 
-    save_custom_food(name, calories, protein, fat, carbs, sugar)
+    if not save_custom_food(name, calories, protein, fat, carbs, sugar):
+        return jsonify({"error": "Eigenes Lebensmittel konnte nicht gespeichert werden"}), 500
 
     return jsonify({"success": True})
 

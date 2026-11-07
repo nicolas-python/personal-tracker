@@ -294,6 +294,7 @@ def save_workout(user_id, workout_name, exercises):
 
     connection.commit()
     connection.close()
+    return True
 
 def delete_workout(workout_id, user_id):
     connection = sqlite3.connect(DATABASE)
@@ -361,6 +362,7 @@ def update_workout(user_id, workout_id, workout_name, exercises):
 
     connection.commit()
     connection.close()
+    return True
 
 def get_workouts(user_id):
     connection = sqlite3.connect(DATABASE)
@@ -445,6 +447,7 @@ def save_calorie_needs(user_id, calories, protein):
 
     connection.commit()
     connection.close()
+    return True
 
 def get_calorie_needs(user_id):
     connection = sqlite3.connect(DATABASE)
@@ -472,6 +475,7 @@ def save_food(user_id, food_name, grams, calories, protein, fat, carbs, sugar, m
 
     connection.commit()
     connection.close()
+    return True
 
 def get_food(user_id, entry_date):
     connection = sqlite3.connect(DATABASE)
@@ -603,6 +607,7 @@ def save_custom_food(name, calories, protein, fat, carbs, sugar):
 
     connection.commit()
     connection.close()
+    return True
 
 def search_custom_foods(search_term):
     connection = sqlite3.connect(DATABASE)
@@ -673,8 +678,11 @@ def save_daily_weight_comparison(user_id, comparison_date, comparison_name, comp
         ON CONFLICT(user_id, comparison_date) DO NOTHING
     """, (user_id, comparison_date, comparison_name, comparison_weight))
 
+    saved = cursor.rowcount == 1
+
     connection.commit()
     connection.close()
+    return saved
 
 #recipes.db
 def search_recipes(search_term):
