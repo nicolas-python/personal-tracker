@@ -255,7 +255,7 @@ def workouts():
 
     for workout in workouts:
         workout_id = workout[0]
-        workout_exercises[workout_id] = get_workout_exercises(workout_id)
+        workout_exercises[workout_id] = get_workout_exercises(session["user_id"], workout_id)
 
     return render_template("workouts.html",workouts=workouts,workout_exercises=workout_exercises)
 
@@ -276,17 +276,17 @@ def edit_workout(workout_id):
 
                 exercises.append((exercise, sets, reps, weight))
 
-        update_workout(workout_id, workout_name, exercises)
+        update_workout(session["user_id"], workout_id, workout_name, exercises)
 
         flash("Trainingsplan aktualisiert!", "success")
 
-        workout = get_workout(workout_id)
-        exercises = get_workout_exercises(workout_id)
+        workout = get_workout(session["user_id"], workout_id)
+        exercises = get_workout_exercises(session["user_id"], workout_id)
 
         return render_template("create_workout.html", workout=workout, exercises=exercises)
 
-    workout = get_workout(workout_id)
-    exercises = get_workout_exercises(workout_id)
+    workout = get_workout(session["user_id"], workout_id)
+    exercises = get_workout_exercises(session["user_id"], workout_id)
 
     return render_template("create_workout.html", workout=workout, exercises=exercises)
 
@@ -310,8 +310,12 @@ def delete_workout_route(workout_id):
 
 @app.route("/start-workout/<int:workout_id>")               #id
 def start_workout(workout_id):
-    workout = get_workout(workout_id)
-    exercises = get_workout_exercises(workout_id)
+    workout = get_workout(session["user_id"], workout_id)
+    if workout is None:
+        flash("Trainingsplan nicht gefunden oder kein Zugriff!", "danger")
+        return redirect(url_for("selection"))
+    
+    exercises = get_workout_exercises(session["user_id"], workout_id)
 
     return render_template("start_workout.html", workout=workout, exercises=exercises)
 
@@ -324,7 +328,9 @@ def complete_workout(workout_id):
     user_id = session["user_id"]
     today = __import__("datetime").date.today().isoformat()
 
-    save_completed_workout(user_id, workout_id, today)
+    if not save_completed_workout(user_id, workout_id, today):
+        flash("Trainingsplan nicht gefunden oder kein Zugriff!", "danger")
+        return redirect(url_for("selection"))
 
     return redirect(url_for("selection"))
 

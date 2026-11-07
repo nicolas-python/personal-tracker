@@ -334,12 +334,22 @@ def delete_workout(workout_id, user_id):
 
     return True
 
-def update_workout(workout_id, workout_name, exercises):
+def update_workout(user_id, workout_id, workout_name, exercises):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
 
     #trainingsplannamen aktualisieren
-    cursor.execute("""UPDATE workouts SET name = ?WHERE id = ?""", (workout_name, workout_id))
+    cursor.execute("""
+                   UPDATE workouts
+                   SET name = ?
+                   WHERE id = ?
+                     AND user_id = ?
+                   """, (workout_name, workout_id, user_id))
+
+    #prüfen, ob der Trainingsplan dem Benutzer gehört
+    if cursor.rowcount == 0:
+        connection.close()
+        return False
 
     #alte übungen dieses Trainingsplans löschen
     cursor.execute("""DELETE FROM workout_exercises WHERE workout_id = ? """, (workout_id,))
@@ -366,7 +376,7 @@ def get_workouts(user_id):
     connection.close()
     return workouts
 
-def get_workout(workout_id):
+def get_workout(user_id, workout_id):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
 
@@ -374,13 +384,14 @@ def get_workout(workout_id):
         SELECT id, name
         FROM workouts
         WHERE id = ?
-    """, (workout_id,))
+        AND user_id = ?
+    """, (workout_id, user_id))
 
     workout = cursor.fetchone()
     connection.close()
     return workout
 
-def get_workout_exercises(workout_id):
+def get_workout_exercises(user_id, workout_id):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
 
@@ -388,7 +399,14 @@ def get_workout_exercises(workout_id):
         SELECT exercise_name, sets, reps, weight
         FROM workout_exercises
         WHERE workout_id = ?
-    """, (workout_id,))
+        AND EXISTS (
+            SELECT 1
+            FROM workouts
+            WHERE workouts.id = workout_exercises.workout_id
+            AND workouts.user_id = ?
+        )
+    """, (workout_id, user_id))
+
 
     exercises = cursor.fetchall()
     connection.close()
@@ -525,11 +543,16 @@ def save_completed_workout(user_id, workout_id, completed_date):
 
     cursor.execute("""
         INSERT INTO completed_workouts (user_id, workout_id, completed_date)
-        VALUES (?, ?, ?)
-    """, (user_id, workout_id, completed_date))
+        SELECT ?, id, ?
+        FROM workouts
+        WHERE id = ?
+        AND user_id = ?
+    """, (user_id, completed_date, workout_id, user_id))
+    saved = cursor.rowcount == 1
 
     connection.commit()
     connection.close()
+    return saved
 
 
 def delete_food(user_id, food_id):
