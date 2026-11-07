@@ -262,6 +262,13 @@ def workouts():
 
 @app.route("/edit-workout/<int:workout_id>", methods=["GET", "POST"])
 def edit_workout(workout_id):
+    #prüfung benutzer
+    workout = get_workout(session["user_id"], workout_id)
+
+    if workout is None:
+        flash("Trainingsplan nicht gefunden oder kein Zugriff!", "danger")
+        return redirect(url_for("selection"))
+
     if request.method == "POST":
         workout_name = request.form["workout_name"]
         exercises = []
@@ -276,7 +283,9 @@ def edit_workout(workout_id):
 
                 exercises.append((exercise, sets, reps, weight))
 
-        update_workout(session["user_id"], workout_id, workout_name, exercises)
+        if not update_workout(session["user_id"], workout_id, workout_name, exercises):
+            flash("Trainingsplan konnte nicht aktualisiert werden!", "danger")
+            return redirect(url_for("selection"))
 
         flash("Trainingsplan aktualisiert!", "success")
 
@@ -285,7 +294,6 @@ def edit_workout(workout_id):
 
         return render_template("create_workout.html", workout=workout, exercises=exercises)
 
-    workout = get_workout(session["user_id"], workout_id)
     exercises = get_workout_exercises(session["user_id"], workout_id)
 
     return render_template("create_workout.html", workout=workout, exercises=exercises)
