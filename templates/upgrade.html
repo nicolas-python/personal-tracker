@@ -14,9 +14,15 @@
     <div class="upgrade-options">
 
         <div class="upgrade-card">
-            <h2>Basic</h2>
-            <p>Fitness-Funktionen</p>
-            <h3>Kostenlos</h3>
+            <h3>Basic</h3>
+            <h4>Kostenlos</h4>
+            <p>Grundfunktionen für dein Training</p>
+                <ul>
+                    <li>Trainingspläne erstellen und verwalten</li>
+                    <li>Übungen und Gewichte dokumentieren</li>
+                    <li>Gespeicherte Workouts mit Timer abarbeiten</li>
+                    <li>Absolvierte Workouts speichern</li>
+                </ul>
 
             <form method="POST" action="{{ url_for('upgrade') }}">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -26,9 +32,20 @@
         </div>
 
     <div class="upgrade-card">
-        <h2>Premium</h2>
+        <h3>Premium</h3>
+        <h4>
+            <del class="old-price">4,99 € / Monat</del>            <!-- del = alten Preis durchstreichen -->
+            <span class="special-price">= 0,00 € Sonderangebot</span>
+        </h4>
         <p>Fitness und Ernährung</p>
-        <h3>4,99 € / Monat</h3>
+            <ul>
+                <li>Alle Basic-Funktionen</li>
+                <li>Kalorien- und Proteinbedarf berechnen</li>
+                <li>Ernährungstagebuch führen</li>
+                <li>Lebensmittel suchen und speichern</li>
+                <li>Trainings- und Ernährungsstatistiken</li>
+                <li>Gewichtsvergleiche</li>
+            </ul>
 
         <form method="POST" action="{{ url_for('upgrade') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -38,10 +55,18 @@
     </div>
 
     <div class="upgrade-card">
-        <h2>Premium+</h2>
-        <p>Alle verfügbaren Funktionen</p>
-        <h3>9,99 € / Monat</h3>
-
+        <h3>Premium+</h3>
+        <h4>
+            <del class="old-price">9,99 € / Monat</del>            <!-- del = alten Preis durchstreichen -->
+            <span class="special-price">= 0,00 € Sonderangebot</span>
+        </h4>
+        <p>Der volle Funktionsumfang</p>
+            <ul>
+                <li>Alle Premium-Funktionen</li>
+                <li>Rezepte suchen und anzeigen</li>
+                <li>Tanken-Bereich</li>
+                <li>Zugriff auf alle verfügbaren App-Bereiche</li>
+            </ul>
         <form method="POST" action="{{ url_for('upgrade') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" name="package" value="premium_plus">
