@@ -3,7 +3,7 @@ from database import (create_database, add_user, login_user, save_workout, updat
                      delete_workout, get_calorie_needs, save_calorie_needs, save_food, get_food, delete_food, update_food ,save_custom_food ,
                      search_custom_foods, get_username,  get_daily_nutrition, get_daily_training_stats, save_completed_workout,
                      save_daily_weight_comparison, get_daily_weight_comparison, search_recipes, get_recipe_by_id, create_active_session, validate_active_session,
-                     delete_active_session)
+                     delete_active_session, update_user_package)
 import ast              #Abstract Syntax Trees (abstrakte Syntaxbäume) dafür da Python-Ausdrücke zu analysieren(gespeicherte Daten zu erkennen und auszuwerten)
 import os                           #Operating System = Python-Modul für Funktionen des Betriebssystems
 import sqlite3
@@ -614,13 +614,37 @@ def package_access(required_package):
     else:
         return False
 
-@app.route("/upgrade")
+
+@app.route("/upgrade", methods=["GET", "POST"])
 def upgrade():
     if "user_id" not in session:
         return redirect(url_for("home"))
 
-    return render_template("upgrade.html")
+    if request.method == "POST":
+        package = request.form.get("package", "")
 
+        allowed_packages = ["basic", "premium", "premium_plus"]
+
+        if package not in allowed_packages:
+            flash("Ungültige Paketauswahl!", "error")
+            return redirect(url_for("upgrade"))
+
+        #Tarif aktualisieren
+        updated = update_user_package(session["user_id"], package)
+
+        if updated:
+            session["package"] = package
+
+            return jsonify({
+                "success": True,
+                "message": "Dein Tarif wurde erfolgreich geändert!"})
+
+        else:
+            return jsonify({
+                "success": False,
+                "message": "Tarif konnte nicht geändert werden!"}), 500
+
+    return render_template("upgrade.html")
 @app.route("/fuel")
 def fuel():
     return render_template("fuel.html")

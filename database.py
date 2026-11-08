@@ -414,6 +414,24 @@ def get_workout_exercises(user_id, workout_id):
     connection.close()
     return exercises
 
+
+def update_user_package(user_id, package):
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        UPDATE users
+        SET package = ?
+        WHERE id = ?
+    """, (package, user_id))
+
+    updated = cursor.rowcount == 1
+
+    connection.commit()
+    connection.close()
+
+    return updated
+
 def get_username(user_id):
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()

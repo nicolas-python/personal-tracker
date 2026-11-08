@@ -13,25 +13,40 @@
 <div class="upgrade-container">
     <div class="upgrade-options">
 
-    <div class="upgrade-card">
-        <h2>Basic</h2>
-        <p>Fitness-Funktionen</p>
-        <h3>Kostenlos</h3>
-        <button type="button">Auswählen</button>
-    </div>
+        <div class="upgrade-card">
+            <h2>Basic</h2>
+            <p>Fitness-Funktionen</p>
+            <h3>Kostenlos</h3>
+
+            <form method="POST" action="{{ url_for('upgrade') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="package" value="basic">
+                <button type="submit">Auswählen</button>
+            </form>
+        </div>
 
     <div class="upgrade-card">
         <h2>Premium</h2>
         <p>Fitness und Ernährung</p>
         <h3>4,99 € / Monat</h3>
-        <button type="button">Auswählen</button>
+
+        <form method="POST" action="{{ url_for('upgrade') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="package" value="premium">
+            <button type="submit">Auswählen</button>
+        </form>
     </div>
 
     <div class="upgrade-card">
         <h2>Premium+</h2>
         <p>Alle verfügbaren Funktionen</p>
         <h3>9,99 € / Monat</h3>
-        <button type="button">Auswählen</button>
+
+        <form method="POST" action="{{ url_for('upgrade') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="package" value="premium_plus">
+            <button type="submit">Auswählen</button>
+        </form>
     </div>
 
     </div>
@@ -40,6 +55,41 @@
 <button type="button" onclick="window.location.href='/selection'">
     Zurück
 </button>
+
+
+<script>
+    const forms = document.querySelectorAll(".upgrade-card form");
+
+    forms.forEach(function(form)
+    {
+        form.addEventListener("submit", async function(event)
+        {
+            event.preventDefault();
+
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: new FormData(form)
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success === true)
+                {
+
+                    alert(result.message);
+
+                    window.location.href = "{{ url_for('selection') }}";
+
+                }
+            else
+                {
+
+                    alert(result.message || "Tarifänderung fehlgeschlagen!");
+
+                }
+        });
+    });
+</script>
 
 </body>
 </html>
