@@ -164,7 +164,44 @@
     align-items: center;
     width: 100%;
 }
+/*-------------------------------------------upgrade.html----------------------------------------------*/
+.upgrade-container
+{
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgba(20, 20, 20, 0.9);
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    text-align: center;
+}
 
+.upgrade-options
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    row-gap: 30px;
+}
+
+.upgrade-card
+{
+    padding: 20px;
+    background-color: rgba(50, 50, 50, 0.9);
+    border: 1px solid darkgray;
+    border-radius: 10px;
+}
+
+.upgrade-card h2
+{
+    margin-top: 0;
+}
+
+.upgrade-card h3
+{
+    color: goldenrod;
+}
 /* -------------------------------------------create_workout.html------------------------------------------- */
 .exercise
 {
@@ -606,7 +643,8 @@
 body.login-page,
 body.register-page,
 body.selection-page,
-body.start-workout-page
+body.start-workout-page,
+body.upgrade-page
 {
     background-image: url("/static/images/hintergrund_1.jpg");
 }
@@ -655,7 +693,8 @@ body.nutrition-page,
 body.recipes-page,
 body.workouts-page,
 body.create-workout-page,
-body.fitness-page
+body.fitness-page,
+body.upgrade-page
 {
     color: white;
 }
@@ -863,7 +902,8 @@ button:hover
     body.start-workout-page,
     body.workouts-page,
     body.create-workout-page,
-    body.fitness-page
+    body.fitness-page,
+    body.upgrade-page
     {
         background-size: cover;
         background-position: center top;

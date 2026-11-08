@@ -3,14 +3,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upgrade</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
+<body class="upgrade-page">
 
 <h1>Upgrade</h1>
 <p>Wähle dein gewünschtes Paket aus.</p>
 
 <div class="upgrade-container">
+    <div class="upgrade-options">
 
     <div class="upgrade-card">
         <h2>Basic</h2>
@@ -33,6 +34,7 @@
         <button type="button">Auswählen</button>
     </div>
 
+    </div>
 </div>
 
 <button type="button" onclick="window.location.href='/selection'">
