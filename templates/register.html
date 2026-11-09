@@ -14,7 +14,7 @@
     <h1>Personal Tracker</h1>
     <h2>Registrieren</h2>
 
-    <button type="button" onclick="window.location.href='/'">Zurück</button>
+    <button type="button" class="back-button" onclick="window.location.href='/'">Zurück</button>
 
     {% with messages = get_flashed_messages(with_categories=true) %}   <!-- Jinja2-Syntax -->
         {% for category, message in messages %}

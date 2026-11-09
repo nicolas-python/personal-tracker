@@ -14,6 +14,22 @@ body.login-page
     min-height: 100vh;
 }
 /* -------------------------------------------register.html---------------------------------------------- */
+body.register-page
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+body.register-page .back-button
+{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+
 /* Popup Hintergrund */
 .popup
 {
@@ -44,7 +60,7 @@ body.login-page
 {
     width: 80%;
     max-width: 900px;
-    margin: 30px 15px;
+    margin: 30px auto;
     padding: 20px;
     background-color: rgba(20, 20, 20, 0.9);
     border: 1px solid darkgray;
