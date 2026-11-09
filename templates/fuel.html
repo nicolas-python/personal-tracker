@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprit - Personal Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="fuel-page">
+    <h1>Tanken & Spritrechner</h1>
+    <button class="backButton" onclick="window.location.href='/selection'"> Zurück</button>
+
+    <h2>Tankstellensuche</h2>
+        <div class="Gasstation-search-container">
+
+            <label for="location">Standort</label>
+            <input type="text" id="location" name="location" placeholder="PLZ oder Ort eingeben">
+        </div>
+
+    <h2>Spritrechner</h2>
+        <div class="Fuel-calculator-container">
+
+            <label for="consumption">Verbrauch (Liter / 100 km)</label>
+            <input type="number" id="consumption" name="consumption" placeholder="z. B. 8.5l">
+
+            <label for="fuel-price">Kraftstoffpreis (Euro / Liter)</label>
+            <input type="number" id="fuel-price" name="fuel-price" placeholder="z. B. 2.10€">
+
+            <label for="distance">Gefahrene Strecke (km)</label>
+            <input type="number" id="distance" name="distance" placeholder="z. B. 150km">
+        </div>
+
+</body>
+
+</html>
