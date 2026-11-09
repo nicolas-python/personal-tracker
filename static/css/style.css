@@ -831,8 +831,11 @@ button:hover
     form[action="/register"]
     {
         display: grid;
-        grid-template-columns: max-content 1fr;
+        grid-template-columns: max-content minmax(0, 1fr);
         gap: 10px;
+        width: 95%;
+        max-width: 900px;
+        box-sizing: border-box;
     }
 
     form[action="/register"] label
@@ -852,20 +855,51 @@ button:hover
         padding: 10px 15px;
     }
 
-    /*-------------------------------------------Popups Handy-------------------------------------------*/
-    .popup-content
+    form[action="/register"] > button[type="submit"]
     {
-        width: 80%;
-        padding: 25px;
-        font-size: 18px;
+        grid-column: 1 / -1;
+        justify-self: center;
     }
 
-    .popup-content button
+    form[action="/register"] .package-container
     {
-        font-size: 18px;
-        padding: 12px 20px;
+        grid-column: 1 / -1;
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+        margin: 20px 0;
     }
 
+    .package-options
+    {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .package-card
+    {
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    /*-------------------------------------------upgrade.html Handy-------------------------------------------*/
+    .upgrade-container
+    {
+        width: 95%;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+
+    .upgrade-options
+    {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .upgrade-card
+    {
+        padding: 15px;
+    }
     /*-------------------------------------------fitness.html Handy-------------------------------------------*/
     .fitness-container
     {
@@ -936,6 +970,49 @@ button:hover
         display: block;
     }
 
+    /*-------------------------------------------nutrition.html Handy-------------------------------------------*/
+    .food-search-inputs
+    {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .food-search-field
+    {
+        width: 100%;
+        flex: none;
+    }
+
+    #customFoodForm
+    {
+        grid-template-columns: 1fr;
+    }
+    /*-------------------------------------------recipes.html Handy-------------------------------------------*/
+    .recipe-search-container
+    {
+        width: 95%;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+
+    #recipeSearchForm
+    {
+        flex-direction: column;
+    }
+
+    .recipe-results-container
+    {
+        width: 95%;
+        grid-template-columns: 1fr;
+    }
+
+    .recipe-details
+    {
+        width: 95%;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+
     /*------------------------------------Hintergründe Handy------------------------------------*/
     body.login-page,
     body.register-page,
@@ -959,6 +1036,44 @@ button:hover
         background-repeat: no-repeat;
         background-attachment: scroll;
         background-color: black;
+    }
+    /*-------------------------------------------Allgemein Handy-------------------------------------------*/
+    .popup-content
+    {
+        width: 80%;
+        padding: 25px;
+        font-size: 18px;
+    }
+
+    .popup-content button
+    {
+        font-size: 18px;
+        padding: 12px 20px;
+    }
+
+    .daily-stats-container
+    {
+        grid-template-columns: 1fr;
+        width: 80%;
+        gap: 15px;
+        margin-top: 35px;
+    }
+
+    .date-selection
+    {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        margin: 0;
+    }
+
+    .account-buttons
+    {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
 
 }
