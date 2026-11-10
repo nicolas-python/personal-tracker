@@ -75,15 +75,18 @@ body.register-page .back-button
     gap: 20px;
 }
 
-.package-card
+.package-card,
+.gasstation-card
 {
     padding: 20px;
-    background-color: rgba(50, 50, 50, 0.9);
+    margin-bottom: 15px;
+    background-color: rgba(50, 50, 50, 0.5);
     border: 1px solid darkgray;
     border-radius: 10px;
 }
 
-.package-card h3
+.package-card h3,
+.gasstation-card
 {
     margin-top: 0;
 }
@@ -884,7 +887,8 @@ button:hover
         gap: 12px;
     }
 
-    .package-card
+    .package-card,
+    .gasstation-card
     {
         min-width: 0;
         box-sizing: border-box;

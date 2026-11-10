@@ -74,6 +74,7 @@
             data.items.forEach(function(gasStation)
                 {
                     const gasStationElement = document.createElement("div");
+                    gasStationElement.className = "gasstation-card";
 
                     const gasStationName = document.createElement("h3");
                     gasStationName.textContent = gasStation.name;
@@ -85,7 +86,7 @@
                         gasStation.city;
 
                     const gasStationPrice = document.createElement("p");
-                    gasStationPrice.textContent = "Preis: " + (gasStation.priceCents / 1000).toFixed(3) + " €/Liter";       //preis umrechnen, da TankPuls den Wert ohne , liefert (z.b API-Wert: 2189 Umrechnung: 2189 / 1000 = 2.189€/liter Anzeige
+                    gasStationPrice.textContent = "Preis: " + (gasStation.priceCents / 1000).toFixed(2) + " €/Liter";       //preis umrechnen, da TankPuls den Wert ohne , liefert (z.b API-Wert: 2189 Umrechnung: 2189 / 1000 = 2.189€/liter Anzeige
 
                     const gasStationDistance = document.createElement("p");
                     gasStationDistance.textContent = "Entfernung: " + (gasStation.distanceM / 1000).toFixed(2) + " km";
@@ -103,7 +104,7 @@
         }
         catch (error)
             {
-                resultsContainer.textContent = "Die Tankstellensuche ist momentan nicht erreichbar.";
+                resultsContainer.textContent = "Fehler: " + error.message;
             }
     }
 </script>
