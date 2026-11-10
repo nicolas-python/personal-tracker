@@ -705,6 +705,12 @@ body.fitness-page
     background-image: url("/static/images/hintergrund_workouts.jpg");
 }
 
+/*tank*/
+body.fuel-page
+{
+    background-image: url("/static/images/hintergrund_fuel.jpg");
+}
+
 /*------------------------------------Dunkles Design------------------------------------*/
 
 /*Hintergrundbild passend zum Bildschirm anzeigen*/
@@ -716,7 +722,8 @@ body.nutrition-page,
 body.recipes-page,
 body.workouts-page,
 body.create-workout-page,
-body.fitness-page
+body.fitness-page,
+body.fuel-page
 {
     background-size: cover;
     background-position: center;
@@ -735,7 +742,8 @@ body.recipes-page,
 body.workouts-page,
 body.create-workout-page,
 body.fitness-page,
-body.upgrade-page
+body.upgrade-page,
+body.fuel-page
 {
     color: white;
 }
