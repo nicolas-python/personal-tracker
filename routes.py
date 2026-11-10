@@ -649,6 +649,37 @@ def upgrade():
 def fuel():
     return render_template("fuel.html")
 
+@app.route("/search-gas-stations")
+@limiter.limit("10 per minute")
+def search_gas_stations():
+    postalcode = request.args.get("postalcode", "").strip()
+
+    if not postalcode.isdigit() or len(postalcode) != 5:
+        return jsonify({"error": "Bitte eine gültige fünfstellige PLZ eingeben."}), 400
+
+    try:
+        response = requests.get(
+            "https://api.tankpuls.de/api/stations/postalcode",
+            params={
+                "postalcode": postalcode,
+                "rad": 5,
+                "fuel": "e5",
+                "limit": 10
+            },
+            headers={"User-Agent": "PersonalTracker/1.0"},                  #User-Agent= Kennzeichnet das Programm das die Anfrage stellt 1.0 = einfach meine Version vom Personal Tracker
+            timeout=10
+        )
+
+        response.raise_for_status()
+
+        return jsonify(response.json())
+
+    except requests.RequestException:
+        return jsonify({"error": "Die Tankstellensuche ist momentan nicht erreichbar."}), 502
+
+    except ValueError:
+        return jsonify({"error": "Die API hat ungültige Daten zurückgegeben."}), 502
+
 
 
 if __name__ == "__main__":

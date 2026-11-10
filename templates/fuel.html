@@ -13,11 +13,19 @@
     <button class="backButton" onclick="window.location.href='/selection'"> Zurück</button>
 
     <h2>Tankstellensuche</h2>
-        <div class="Gasstation-search-container">
+    <div class="Gasstation-search-container">
 
-            <label for="location">Standort</label>
-            <input type="text" id="location" name="location" placeholder="PLZ oder Ort eingeben">
-        </div>
+        <label for="location">Postleitzahl</label>
+        <input type="text" id="location" name="location"
+               placeholder="z. B. 71032" maxlength="5">
+
+        <button type="button" onclick="searchGasStations()">
+            Tankstellen suchen
+        </button>
+
+        <div id="gasstation-results"></div>
+
+    </div>
 
     <h2>Spritrechner</h2>
         <div class="Fuel-calculator-container">
@@ -32,6 +40,73 @@
             <input type="number" id="distance" name="distance" placeholder="z. B. 150km">
         </div>
 
+
+<script>
+    async function searchGasStations()
+    {
+        const postalcode = document.getElementById("location").value.trim();
+        const resultsContainer = document.getElementById("gasstation-results");
+
+        resultsContainer.textContent = "Tankstellen werden gesucht ...";
+
+        try
+        {
+            const response = await fetch(
+                "/search-gas-stations?postalcode=" + encodeURIComponent(postalcode)
+            );
+
+            const data = await response.json();
+
+            if (!response.ok)
+                {
+                    resultsContainer.textContent = data.error;
+                    return;
+                }
+
+            resultsContainer.innerHTML = "";
+
+            if (!data.items || data.items.length === 0)
+                {
+                    resultsContainer.textContent = "Keine Tankstellen gefunden.";
+                    return;
+                }
+
+            data.items.forEach(function(gasStation)
+                {
+                    const gasStationElement = document.createElement("div");
+
+                    const gasStationName = document.createElement("h3");
+                    gasStationName.textContent = gasStation.name;
+
+                    const gasStationAddress = document.createElement("p");
+                    gasStationAddress.textContent =
+                        gasStation.street + ", " +
+                        gasStation.postcode + " " +
+                        gasStation.city;
+
+                    const gasStationPrice = document.createElement("p");
+                    gasStationPrice.textContent = "Preis: " + (gasStation.priceCents / 1000).toFixed(3) + " €/Liter";       //preis umrechnen, da TankPuls den Wert ohne , liefert (z.b API-Wert: 2189 Umrechnung: 2189 / 1000 = 2.189€/liter Anzeige
+
+                    const gasStationDistance = document.createElement("p");
+                    gasStationDistance.textContent = "Entfernung: " + (gasStation.distanceM / 1000).toFixed(2) + " km";
+
+                    gasStationElement.append(
+                        gasStationName,
+                        gasStationAddress,
+                        gasStationPrice,
+                        gasStationDistance
+                    );
+
+                    resultsContainer.appendChild(gasStationElement);
+                });
+
+        }
+        catch (error)
+            {
+                resultsContainer.textContent = "Die Tankstellensuche ist momentan nicht erreichbar.";
+            }
+    }
+</script>
 </body>
 
 </html>
