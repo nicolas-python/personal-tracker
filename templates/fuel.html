@@ -33,6 +33,16 @@
             Tankstellen suchen
         </button>
 
+        <div class="fuel-sort-buttons">
+            <button type="button" onclick="sortGasStations('price')">
+                Günstigster Preis
+            </button>
+
+            <button type="button" onclick="sortGasStations('distance')">
+                Kürzeste Entfernung
+            </button>
+        </div>
+
         <div id="gasstation-results"></div>
     </div>
 
@@ -51,6 +61,8 @@
 
 
 <script>
+    let gasStations = [];
+
     async function searchGasStations()
     {
         const postalcode = document.getElementById("location").value.trim();
@@ -74,49 +86,72 @@
                     return;
                 }
 
-            resultsContainer.innerHTML = "";
-
             if (!data.items || data.items.length === 0)
-                {
-                    resultsContainer.textContent = "Keine Tankstellen gefunden.";
-                    return;
-                }
+            {
+                gasStations = [];
+                resultsContainer.textContent = "Keine Tankstellen gefunden.";
+                return;
+            }
 
-            data.items.forEach(function(gasStation)
-                {
-                    const gasStationElement = document.createElement("div");
-                    gasStationElement.className = "gasstation-card";
-
-                    const gasStationName = document.createElement("h3");
-                    gasStationName.textContent = gasStation.name;
-
-                    const gasStationAddress = document.createElement("p");
-                    gasStationAddress.textContent =
-                        gasStation.street + ", " +
-                        gasStation.postcode + " " +
-                        gasStation.city;
-
-                    const gasStationPrice = document.createElement("p");
-                    gasStationPrice.textContent = "Preis: " + (gasStation.priceCents / 1000).toFixed(2) + " €/Liter";       //preis umrechnen, da TankPuls den Wert ohne , liefert (z.b API-Wert: 2189 Umrechnung: 2189 / 1000 = 2.189€/liter Anzeige
-
-                    const gasStationDistance = document.createElement("p");
-                    gasStationDistance.textContent = "Entfernung: " + (gasStation.distanceM / 1000).toFixed(2) + " km";
-
-                    gasStationElement.append(
-                        gasStationName,
-                        gasStationAddress,
-                        gasStationPrice,
-                        gasStationDistance
-                    );
-
-                    resultsContainer.appendChild(gasStationElement);
-                });
-
+            gasStations = data.items;
+            displayGasStations();
         }
         catch (error)
             {
                 resultsContainer.textContent = "Fehler: " + error.message;
             }
+    }
+
+
+    function sortGasStations(sortType)
+    {
+        if (sortType === "price")
+        {
+            gasStations.sort(function (a, b)
+            {
+                return a.priceCents - b.priceCents;
+            });
+        }
+
+        displayGasStations();
+    }
+
+
+    function displayGasStations()
+    {
+        const resultsContainer = document.getElementById("gasstation-results");
+
+        resultsContainer.innerHTML = "";
+
+        gasStations.forEach(function(gasStation)
+        {
+            const gasStationElement = document.createElement("div");
+            gasStationElement.className = "gasstation-card";
+
+            const gasStationName = document.createElement("h3");
+            gasStationName.textContent = gasStation.name;
+
+            const gasStationAddress = document.createElement("p");
+            gasStationAddress.textContent =
+                gasStation.street + ", " +
+                gasStation.postcode + " " +
+                gasStation.city;
+
+            const gasStationPrice = document.createElement("p");
+            gasStationPrice.textContent = "Preis: " + (gasStation.priceCents / 1000).toFixed(2) + " €/Liter";          //preis umrechnen, da TankPuls den Wert ohne , liefert (z.b API-Wert: 2189 Umrechnung: 2189 / 1000 = 2.189€/liter Anzeige
+
+            const gasStationDistance = document.createElement("p");
+            gasStationDistance.textContent = "Entfernung: " + (gasStation.distanceM / 1000).toFixed(2) + " km";
+
+            gasStationElement.append(
+                gasStationName,
+                gasStationAddress,
+                gasStationPrice,
+                gasStationDistance
+            );
+
+            resultsContainer.appendChild(gasStationElement);
+        });
     }
 </script>
 </body>
