@@ -650,7 +650,7 @@ def fuel():
     return render_template("fuel.html")
 
 @app.route("/search-gas-stations")
-@limiter.limit("10 per minute")
+@limiter.limit("10 per minute")                                     #Maximal 10 Suchanfragen pro Minute an deine Flask-Route
 def search_gas_stations():
     postalcode = request.args.get("postalcode", "").strip()
 
@@ -662,9 +662,9 @@ def search_gas_stations():
             "https://api.tankpuls.de/api/stations/postalcode",
             params={
                 "postalcode": postalcode,
-                "rad": 5,
+                "rad": request.args.get("radius", "25"),
                 "fuel": "e5",
-                "limit": 10
+                "limit": 100
             },
             headers={"User-Agent": "PersonalTracker/1.0"},                  #User-Agent= Kennzeichnet das Programm das die Anfrage stellt 1.0 = einfach meine Version vom Personal Tracker
             timeout=10

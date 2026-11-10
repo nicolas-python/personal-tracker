@@ -78,8 +78,8 @@ body.register-page .back-button
 .package-card,
 .gasstation-card
 {
-    padding: 20px;
-    margin-bottom: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
     background-color: rgba(50, 50, 50, 0.5);
     border: 1px solid darkgray;
     border-radius: 10px;
@@ -89,6 +89,13 @@ body.register-page .back-button
 .gasstation-card
 {
     margin-top: 0;
+}
+
+#gasstation-results
+{
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
 }
 
 /*radio punkt verstecken*/
