@@ -114,7 +114,13 @@
                 return a.priceCents - b.priceCents;
             });
         }
-
+        else if (sortType === "distance")
+            {
+                gasStations.sort(function(a, b)
+                {
+                    return a.distanceM - b.distanceM;
+                });
+            }
         displayGasStations();
     }
 
