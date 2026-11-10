@@ -91,13 +91,6 @@ body.register-page .back-button
     margin-top: 0;
 }
 
-#gasstation-results
-{
-    max-height: 600px;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
 /*radio punkt verstecken*/
 .package-card input[type="radio"]
 {
@@ -688,7 +681,21 @@ body.register-page .back-button
     color: white;
     font-size: 12px;
 }
+/*------------------------------------fuel----------------------------------------------------------------*/
+#gasstation-results
+{
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
 
+.fuel-sort-buttons
+{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+}
 /*------------------------------------Hintergründe----------------------------------------------------------------*/
 /*login,register,startseite,start_workout*/
 body.login-page,
