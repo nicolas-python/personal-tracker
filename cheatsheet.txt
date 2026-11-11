@@ -95,6 +95,7 @@ Number.isFinite() = prüft ob ein Wert eine gültige endliche Zahl ist
     /../ = kennzeichnet einen regulären Ausdruck (RegEx)
     \s = ein Leerzeichen
     + = mindestens einmal, auch mehrfach
+... = Spread-Syntax = kann man alle Einträge aus einer Liste nehmen und in eine neue Liste kopieren
 
 Datenbank:
 Passwort-Hashing = Passwort wird einseitig in einen Hash umgewandelt und nicht als Klartext gespeichert.

@@ -62,6 +62,7 @@
 
 <script>
     let gasStations = [];
+    let originalGasStations = [];
 
     async function searchGasStations()
     {
@@ -96,6 +97,7 @@
             }
 
             gasStations = data.items;
+            originalGasStations = [...data.items];
             displayGasStations();
         }
         catch (error)
@@ -107,6 +109,7 @@
 
     function sortGasStations(sortType)
     {
+        gasStations = [...originalGasStations];         //... = Spread-Syntax = Erstellt eine neue Liste und kopiert alle Einträge aus data.items hinein
         if (sortType === "price")
         {
             gasStations.sort(function (a, b)
