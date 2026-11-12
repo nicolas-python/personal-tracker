@@ -53,9 +53,28 @@
         <div id="gasstation-results"></div>
     </div>
 
-    <h2>Spritrechner</h2>
+    <h2>Kostenrechner</h2>
+    <h3>Tankstellen-Sparrechner</h3>
         <div class="Fuel-calculator-container">
+            <label for="price-a">Preis Tankstelle A (Euro / Liter)</label>
+            <input type="number" id="price-a" placeholder="z. B. 1.85€">
 
+            <label for="price-b">Preis Tankstelle B (Euro / Liter)</label>
+            <input type="number" id="price-b" placeholder="z. B. 1.95€">
+
+            <label for="fuel-amount">Tankmenge (Liter)</label>
+            <input type="number" id="fuel-amount" placeholder="z. B. 50l">
+
+            <button type="button" onclick="gasStationSavingsCalculator()">
+                Kosten berechnen
+            </button>
+
+            <p id="savings-result"></p>
+        </div>
+
+
+    <h3>Spritkosten</h3>
+        <div class="Fuel-calculator-container">
             <label for="consumption">Verbrauch (Liter / 100 km)</label>
             <input type="number" id="consumption" name="consumption" placeholder="z. B. 8.5l">
 
@@ -71,6 +90,11 @@
 
             <p id="fuel-result"></p>
         </div>
+
+    <h3>Reichweitenrechner</h3>
+
+
+    <h3>Spritkosten in Arbeitsstunden</h3>
 
 
 <script>
@@ -179,6 +203,23 @@
 
             resultsContainer.appendChild(gasStationElement);
         });
+    }
+
+
+    function gasStationSavingsCalculator()
+    {
+        let priceA = parseFloat(document.getElementById("price-a").value);
+        let priceB = parseFloat(document.getElementById("price-b").value);
+        let fuelAmount = parseFloat(document.getElementById("fuel-amount").value);
+
+        if (isNaN(priceA) || isNaN(priceB) || isNaN(fuelAmount))
+            {
+                alert("Bitte alle Felder ausfüllen.");
+                return;
+            }
+
+        let savings = Math.abs(priceA - priceB) * fuelAmount;
+        document.getElementById("savings-result").textContent = "Du sparst: " + savings.toFixed(2) + " €";
     }
 
     function calculateFuelCosts()
