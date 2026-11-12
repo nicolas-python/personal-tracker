@@ -657,13 +657,18 @@ def search_gas_stations():
     if not postalcode.isdigit() or len(postalcode) != 5:
         return jsonify({"error": "Bitte eine gültige fünfstellige PLZ eingeben."}), 400
 
+    fuel = request.args.get("fuel", "e5").strip().lower()
+
+    if fuel not in ("diesel", "e5", "e10"):
+        return jsonify({"error": "Ungültige Kraftstoffauswahl."}), 400
+
     try:
         response = requests.get(
             "https://api.tankpuls.de/api/stations/postalcode",
             params={
                 "postalcode": postalcode,
                 "rad": request.args.get("radius", "25"),
-                "fuel": "e5",
+                "fuel": fuel,
                 "limit": 100
             },
             headers={"User-Agent": "PersonalTracker/1.0"},                  #User-Agent= Kennzeichnet das Programm das die Anfrage stellt 1.0 = einfach meine Version vom Personal Tracker

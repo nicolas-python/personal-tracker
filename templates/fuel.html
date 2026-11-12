@@ -9,7 +9,7 @@
 </head>
 
 <body class="fuel-page">
-    <h1>Tanken & Spritrechner</h1>
+    <h1>Kraftstoffsuche</h1>
     <button class="backButton" onclick="window.location.href='/selection'"> Zurück</button>
 
     <h2>Tankstellensuche</h2>
@@ -27,6 +27,13 @@
             <option value="15">15 km</option>
             <option value="20">20 km</option>
             <option value="25" selected>25 km</option>
+        </select>
+
+        <label for="fuel-type">Kraftstoff</label>
+        <select id="fuel-type" name="fuel-type">
+            <option value="diesel">Diesel</option>
+            <option value="e5" selected>Super E5</option>
+            <option value="e10">Super E10</option>
         </select>
 
         <button type="button" onclick="searchGasStations()">
@@ -68,6 +75,7 @@
     {
         const postalcode = document.getElementById("location").value.trim();
         const radius = document.getElementById("radius").value;
+        const fuelType = document.getElementById("fuel-type").value;
         const resultsContainer = document.getElementById("gasstation-results");
 
         resultsContainer.textContent = "Tankstellen werden gesucht ...";
@@ -76,7 +84,8 @@
         {
             const response = await fetch(
                     "/search-gas-stations?postalcode=" + encodeURIComponent(postalcode) +
-                    "&radius=" + encodeURIComponent(radius)
+                    "&radius=" + encodeURIComponent(radius) +
+                    "&fuel=" + encodeURIComponent(fuelType)
             );
 
             const data = await response.json();
@@ -97,7 +106,7 @@
             }
 
             gasStations = data.items;
-            originalGasStations = [...data.items];
+            originalGasStations = [...data.items];      //... = Spread-Syntax = Erstellt eine neue Liste und kopiert alle Einträge aus data.items hinein
             displayGasStations();
         }
         catch (error)
@@ -109,7 +118,7 @@
 
     function sortGasStations(sortType)
     {
-        gasStations = [...originalGasStations];         //... = Spread-Syntax = Erstellt eine neue Liste und kopiert alle Einträge aus data.items hinein
+        gasStations = [...originalGasStations];
         if (sortType === "price")
         {
             gasStations.sort(function (a, b)
