@@ -96,6 +96,8 @@ Number.isFinite() = prüft ob ein Wert eine gültige endliche Zahl ist
     \s = ein Leerzeichen
     + = mindestens einmal, auch mehrfach
 ... = Spread-Syntax = kann man alle Einträge aus einer Liste nehmen und in eine neue Liste kopieren
+isNaN() = "is Not a Number" – prüft, ob ein Wert keine gültige Zahl ist(Gibt true zurück, wenn der Wert keine Zahl ist, sonst false)
+
 
 Datenbank:
 Passwort-Hashing = Passwort wird einseitig in einen Hash umgewandelt und nicht als Klartext gespeichert.
@@ -111,12 +113,16 @@ step = "0.5" = bestimmt die Schrittweite bei einer Zahleneingabe
 JSON.parse() = Lies diesen Text und mach daraus echte JavaScript-Daten
 `${}` = Template Literal = Fügt den Wert einer Variable in einen Text ein ,dafür werden Backticks ` verwendet
 radio (type="radio")= Auswahlfeld, bei dem nur eine Option aus mehreren ausgewählt werden kann, wenn alle denselben name-Wert haben
+parseFloat = wandelt einen text(String) in eine Zahl mit Nachkommastellen um
+
 
 Jinja/Jinja2
 Jinja = Template-Sprache von Flask, mit der HTML dynamisch erzeugt werden kann
 tojson = wandelt Python-Daten in JavaScript-kompatible Daten um
 {% if ... %} = Jinja2-Syntax =  Mit Jinja kan man innerhalb der HTML-Datei Python-ähnliche Logik benutzen
 {% for ... %} = Wiederhole etwas für mehrere Werte
+
+
 
 rel="stylesheet" = Diese verlinkte Datei ist ein Stylesheet, eine CSS-Datei die das Aussehen dieser HTML-Seite bestimmt
 

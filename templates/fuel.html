@@ -64,6 +64,12 @@
 
             <label for="distance">Gefahrene Strecke (km)</label>
             <input type="number" id="distance" name="distance" placeholder="z. B. 150km">
+
+            <button type="button" onclick="calculateFuelCosts()">
+                Kosten berechnen
+            </button>
+
+            <p id="fuel-result"></p>
         </div>
 
 
@@ -174,6 +180,24 @@
             resultsContainer.appendChild(gasStationElement);
         });
     }
+
+    function calculateFuelCosts()
+    {
+        let price = parseFloat(document.getElementById("fuel-price").value);
+        let km = parseFloat(document.getElementById("distance").value);
+        let verbrauch = parseFloat(document.getElementById("consumption").value);
+
+        if (isNaN(price) || isNaN(km) || isNaN(verbrauch))              //prüft, ob der Eingabewert keine gültige Zahl ist (NaN = Not a Number)
+            {
+                alert("Bitte alle Felder ausfüllen.");
+                return;
+            }
+
+        let fuelCosts = (verbrauch * km / 100) * price;
+
+        document.getElementById("fuel-result").textContent = "Die Fahrt kostet: " + fuelCosts.toFixed(2) + " €";
+    }
+
 </script>
 </body>
 
