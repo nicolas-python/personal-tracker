@@ -44,8 +44,11 @@ def check_active_session():
     user_id = session.get("user_id")
     session_token = session.get("active_session_token")
 
-    #nicht angemeldete Besucher dürfen normal fortfahren
+    #nicht angemeldete Besucher zur Login-Seite weiterleiten
     if user_id is None:
+        if request.endpoint not in ("login", "register"):
+            return redirect(url_for("login"))
+
         return None
 
     #sitzung überprüfen
