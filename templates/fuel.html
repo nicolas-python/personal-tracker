@@ -97,6 +97,17 @@
     <div class="fuel-calculator-box">
         <h3>Reichweitenrechner</h3>
             <div class="fuel-card-content">
+                <label for="fuelcapacity">Tankinhalt (Liter)</label>
+                <input type="number" id="fuelcapacity" name="fuelcapacity" placeholder="z. B. 50l">
+
+                <label for="range-consumption">Verbrauch (Liter / 100 km)</label>
+                <input type="number" id="range-consumption" name="range-consumption" placeholder="z. B. 8.5l">
+
+                <button type="button" onclick="calculateFuelRange()">
+                    Reichweite berechnen
+                </button>
+
+                <p id="fuelrange-result"></p>
             </div>
     </div>
 
@@ -249,6 +260,21 @@
         document.getElementById("fuel-result").textContent = "Die Fahrt kostet: " + fuelCosts.toFixed(2) + " €";
     }
 
+    function calculateFuelRange()
+    {
+        let fuel_capacity = parseFloat(document.getElementById("fuelcapacity").value);
+        let consumption = parseFloat(document.getElementById("range-consumption").value);
+
+        if (isNaN(fuel_capacity) || isNaN(consumption) || fuel_capacity <= 0 || consumption <= 0)
+            {
+                alert("Bitte alle Felder ausfüllen.");
+                return;
+            }
+
+            let fuelrange_result = (fuel_capacity / consumption) * 100
+
+            document.getElementById("fuelrange-result").textContent = "Der Tank reicht: " + fuelrange_result.toFixed(1) + " km";
+    }
 </script>
 </body>
 
