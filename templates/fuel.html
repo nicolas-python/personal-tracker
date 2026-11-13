@@ -54,47 +54,57 @@
     </div>
 
     <h2>Kostenrechner</h2>
-    <h3>Tankstellen-Sparrechner</h3>
-        <div class="Fuel-calculator-container">
-            <label for="price-a">Preis Tankstelle A (Euro / Liter)</label>
-            <input type="number" id="price-a" placeholder="z. B. 1.85€">
+    <div class="fuel-calculator-box">
+        <h3>Tankstellen-Sparrechner</h3>
+            <div class="fuel-card-content">
+                <label for="price-a">Preis Tankstelle A (Euro / Liter)</label>
+                <input type="number" id="price-a" placeholder="z. B. 1.85€">
 
-            <label for="price-b">Preis Tankstelle B (Euro / Liter)</label>
-            <input type="number" id="price-b" placeholder="z. B. 1.95€">
+                <label for="price-b">Preis Tankstelle B (Euro / Liter)</label>
+                <input type="number" id="price-b" placeholder="z. B. 1.95€">
 
-            <label for="fuel-amount">Tankmenge (Liter)</label>
-            <input type="number" id="fuel-amount" placeholder="z. B. 50l">
+                <label for="fuel-amount">Tankmenge (Liter)</label>
+                <input type="number" id="fuel-amount" placeholder="z. B. 50l">
 
-            <button type="button" onclick="gasStationSavingsCalculator()">
-                Kosten berechnen
-            </button>
+                <button type="button" onclick="gasStationSavingsCalculator()">
+                    Kosten berechnen
+                </button>
 
-            <p id="savings-result"></p>
-        </div>
+                <p id="savings-result"></p>
+            </div>
+    </div>
 
+    <div class="fuel-calculator-box">
+        <h3>Spritkosten</h3>
+            <div class="fuel-card-content">
+                <label for="consumption">Verbrauch (Liter / 100 km)</label>
+                <input type="number" id="consumption" name="consumption" placeholder="z. B. 8.5l">
 
-    <h3>Spritkosten</h3>
-        <div class="Fuel-calculator-container">
-            <label for="consumption">Verbrauch (Liter / 100 km)</label>
-            <input type="number" id="consumption" name="consumption" placeholder="z. B. 8.5l">
+                <label for="fuel-price">Kraftstoffpreis (Euro / Liter)</label>
+                <input type="number" id="fuel-price" name="fuel-price" placeholder="z. B. 2.10€">
 
-            <label for="fuel-price">Kraftstoffpreis (Euro / Liter)</label>
-            <input type="number" id="fuel-price" name="fuel-price" placeholder="z. B. 2.10€">
+                <label for="distance">Gefahrene Strecke (km)</label>
+                <input type="number" id="distance" name="distance" placeholder="z. B. 150km">
 
-            <label for="distance">Gefahrene Strecke (km)</label>
-            <input type="number" id="distance" name="distance" placeholder="z. B. 150km">
+                <button type="button" onclick="calculateFuelCosts()">
+                    Kosten berechnen
+                </button>
 
-            <button type="button" onclick="calculateFuelCosts()">
-                Kosten berechnen
-            </button>
+                <p id="fuel-result"></p>
+            </div>
+    </div>
 
-            <p id="fuel-result"></p>
-        </div>
+    <div class="fuel-calculator-box">
+        <h3>Reichweitenrechner</h3>
+            <div class="fuel-card-content">
+            </div>
+    </div>
 
-    <h3>Reichweitenrechner</h3>
-
-
-    <h3>Spritkosten in Arbeitsstunden</h3>
+    <div class="fuel-calculator-box">
+        <h3>Spritkosten in Arbeitsstunden</h3>
+            <div class="fuel-card-content">
+            </div>
+    </div>
 
 
 <script>

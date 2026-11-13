@@ -696,6 +696,57 @@ body.register-page .back-button
     gap: 10px;
     width: 100%;
 }
+
+.fuel-search-box
+{
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgba(20, 20, 20, 0.6);
+    text-align: center;
+}
+
+.fuel-calculator-box
+{
+    width: 80%;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(20, 20, 20, 0.6);
+    margin: 30px auto 20px auto;
+}
+
+.fuel-card-content
+{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+.fuel-card-content > div
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.fuel-card-content label
+{
+    text-align: center;
+}
+
+.fuel-card-content #savings-result
+{
+    flex-basis: 100%;
+    text-align: center;
+}
+
 /*------------------------------------Hintergründe----------------------------------------------------------------*/
 /*login,register,startseite,start_workout*/
 body.login-page,
