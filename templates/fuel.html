@@ -56,59 +56,84 @@
     <h2>Kostenrechner</h2>
     <div class="fuel-calculator-box">
         <h3>Tankstellen-Sparrechner</h3>
-            <div class="fuel-card-content">
+        <div class="fuel-card-content">
+
+            <div>
                 <label for="price-a">Preis Tankstelle A (Euro / Liter)</label>
                 <input type="number" id="price-a" placeholder="z. B. 1.85€">
+            </div>
 
+            <div>
                 <label for="price-b">Preis Tankstelle B (Euro / Liter)</label>
                 <input type="number" id="price-b" placeholder="z. B. 1.95€">
+            </div>
 
+            <div>
                 <label for="fuel-amount">Tankmenge (Liter)</label>
                 <input type="number" id="fuel-amount" placeholder="z. B. 50l">
+            </div>
 
+            <div>
                 <button type="button" onclick="gasStationSavingsCalculator()">
                     Kosten berechnen
                 </button>
+            </div>
 
                 <p id="savings-result"></p>
-            </div>
+        </div>
     </div>
 
     <div class="fuel-calculator-box">
         <h3>Spritkosten</h3>
-            <div class="fuel-card-content">
+        <div class="fuel-card-content">
+
+            <div>
                 <label for="consumption">Verbrauch (Liter / 100 km)</label>
                 <input type="number" id="consumption" name="consumption" placeholder="z. B. 8.5l">
+            </div>
 
+            <div>
                 <label for="fuel-price">Kraftstoffpreis (Euro / Liter)</label>
                 <input type="number" id="fuel-price" name="fuel-price" placeholder="z. B. 2.10€">
+            </div>
 
+            <div>
                 <label for="distance">Gefahrene Strecke (km)</label>
                 <input type="number" id="distance" name="distance" placeholder="z. B. 150km">
+            </div>
 
+            <div>
                 <button type="button" onclick="calculateFuelCosts()">
                     Kosten berechnen
                 </button>
+            </div>
 
                 <p id="fuel-result"></p>
-            </div>
+        </div>
     </div>
 
     <div class="fuel-calculator-box">
         <h3>Reichweitenrechner</h3>
-            <div class="fuel-card-content">
+        <div class="fuel-card-content">
+
+            <div>
                 <label for="fuelcapacity">Tankinhalt (Liter)</label>
                 <input type="number" id="fuelcapacity" name="fuelcapacity" placeholder="z. B. 50l">
+            </div>
 
+            <div>
                 <label for="range-consumption">Verbrauch (Liter / 100 km)</label>
                 <input type="number" id="range-consumption" name="range-consumption" placeholder="z. B. 8.5l">
+            </div>
 
+            <div>
                 <button type="button" onclick="calculateFuelRange()">
                     Reichweite berechnen
                 </button>
+            </div>
 
                 <p id="fuelrange-result"></p>
-            </div>
+        </div>
     </div>
 
 
@@ -116,44 +141,61 @@
         <h3>Spritkosten in Arbeitsstunden</h3>
         <div class="fuel-card-content">
 
-            <label for="working-hours">Stundenlohn (Euro / Stunde)</label>
-            <input type="number" id="working-hours" name="working-hours" placeholder="z. B. 20 €/h">
+            <div>
+                <label for="working-hours">Stundenlohn (Euro / Stunde)</label>
+                <input type="number" id="working-hours" name="working-hours" placeholder="z. B. 20 €/h">
+            </div>
 
-            <label for="tank-capacity">Tankinhalt (Liter)</label>
-            <input type="number" id="tank-capacity" name="tank-capacity" placeholder="z. B. 50 Liter">
+            <div>
+                <label for="tank-capacity">Tankinhalt (Liter)</label>
+                <input type="number" id="tank-capacity" name="tank-capacity" placeholder="z. B. 50 Liter">
+            </div>
 
-            <label for="work-fuel-price">Kraftstoffpreis (Euro / Liter)</label>
-            <input type="number" id="work-fuel-price" name="work-fuel-price" placeholder="z. B. 2.10 €">
+            <div>
+                <label for="work-fuel-price">Kraftstoffpreis (Euro / Liter)</label>
+                <input type="number" id="work-fuel-price" name="work-fuel-price" placeholder="z. B. 2.10 €">
+            </div>
 
-            <button type="button" onclick="calculateFuelCostsWorkHours()">
-                Arbeitszeit berechnen
-            </button>
+            <div>
+                <button type="button" onclick="calculateFuelCostsWorkHours()">
+                    Arbeitszeit berechnen
+                </button>
+            </div>
 
-            <p id="fuel-costs-work-hours-result"></p>
+                <p id="fuel-costs-work-hours-result"></p>
         </div>
     </div>
 
     <div class="fuel-calculator-box">
         <h3>Fahrtkosten nach Kilometer</h3>
         <div class="fuel-card-content">
-            <label for="work-consumption">Verbrauch (Liter / 100 km)</label>
-            <input type="number" id="work-consumption" placeholder="z. B. 8.5l ">
+            <div>
+                <label for="work-consumption">Verbrauch (Liter / 100 km)</label>
+                <input type="number" id="work-consumption" placeholder="z. B. 8.5l ">
+            </div>
 
-            <label for="work-distance">Gefahrene Strecke (km)</label>
-            <input type="number" id="work-distance" placeholder="z. B. 150 km">
+            <div>
+                <label for="work-distance">Gefahrene Strecke (km)</label>
+                <input type="number" id="work-distance" placeholder="z. B. 150 km">
+            </div>
 
-            <label for="trip-fuel-price">Kraftstoffpreis (Euro / Liter)</label>
-            <input type="number" id="trip-fuel-price" placeholder="z. B. 2.10€">
+            <div>
+                <label for="trip-fuel-price">Kraftstoffpreis (Euro / Liter)</label>
+                <input type="number" id="trip-fuel-price" placeholder="z. B. 2.10€">
+            </div>
 
-            <label for="trip-hourly-wage">Stundenlohn (Euro / Stunde)</label>
-            <input type="number" id="trip-hourly-wage" placeholder="z. B. 20€/h">
+            <div>
+                <label for="trip-hourly-wage">Stundenlohn (Euro / Stunde)</label>
+                <input type="number" id="trip-hourly-wage" placeholder="z. B. 20€/h">
+            </div>
 
-            <button type="button" onclick="calculateFuelTripWorkHours()">
-                Arbeitszeit berechnen
-            </button>
+            <div>
+                <button type="button" onclick="calculateFuelTripWorkHours()">
+                    Arbeitszeit berechnen
+                </button>
+            </div>
 
-            <p id="fuel-trip-work-hours-result"></p>
-
+                <p id="fuel-trip-work-hours-result"></p>
         </div>
     </div>
 

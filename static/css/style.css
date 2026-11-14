@@ -725,7 +725,7 @@ body.register-page .back-button
     align-items: flex-end;
     justify-content: center;
     gap: 20px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 .fuel-card-content > div
@@ -736,14 +736,15 @@ body.register-page .back-button
     gap: 5px;
 }
 
-.fuel-card-content label
-{
-    text-align: center;
-}
-
-.fuel-card-content #savings-result
+.fuel-card-content p
 {
     flex-basis: 100%;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.fuel-card-content label
+{
     text-align: center;
 }
 
