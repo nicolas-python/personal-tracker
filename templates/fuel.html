@@ -117,19 +117,43 @@
         <div class="fuel-card-content">
 
             <label for="working-hours">Stundenlohn (Euro / Stunde)</label>
-            <input type="number" id="working-hours" name="working-hours" placeholder="z. B. 20 €/h" step="0.01">
+            <input type="number" id="working-hours" name="working-hours" placeholder="z. B. 20 €/h">
 
             <label for="tank-capacity">Tankinhalt (Liter)</label>
-            <input type="number" id="tank-capacity" name="tank-capacity" placeholder="z. B. 50 Liter" step="0.1">
+            <input type="number" id="tank-capacity" name="tank-capacity" placeholder="z. B. 50 Liter">
 
             <label for="work-fuel-price">Kraftstoffpreis (Euro / Liter)</label>
-            <input type="number" id="work-fuel-price" name="work-fuel-price" placeholder="z. B. 2.10 €" step="0.001">
+            <input type="number" id="work-fuel-price" name="work-fuel-price" placeholder="z. B. 2.10 €">
 
             <button type="button" onclick="calculateFuelCostsWorkHours()">
                 Arbeitszeit berechnen
             </button>
 
             <p id="fuel-costs-work-hours-result"></p>
+        </div>
+    </div>
+
+    <div class="fuel-calculator-box">
+        <h3>Fahrtkosten nach Kilometer</h3>
+        <div class="fuel-card-content">
+            <label for="work-consumption">Verbrauch (Liter / 100 km)</label>
+            <input type="number" id="work-consumption" placeholder="z. B. 8.5l ">
+
+            <label for="work-distance">Gefahrene Strecke (km)</label>
+            <input type="number" id="work-distance" placeholder="z. B. 150 km">
+
+            <label for="trip-fuel-price">Kraftstoffpreis (Euro / Liter)</label>
+            <input type="number" id="trip-fuel-price" placeholder="z. B. 2.10€">
+
+            <label for="trip-hourly-wage">Stundenlohn (Euro / Stunde)</label>
+            <input type="number" id="trip-hourly-wage" placeholder="z. B. 20€/h">
+
+            <button type="button" onclick="calculateFuelTripWorkHours()">
+                Arbeitszeit berechnen
+            </button>
+
+            <p id="fuel-trip-work-hours-result"></p>
+
         </div>
     </div>
 
@@ -318,6 +342,38 @@
 
         document.getElementById("fuel-costs-work-hours-result").textContent = "Tankfüllung: " + tankCosts.toFixed(2) + " € | Arbeitszeit: " +
                                                                                hours + " Stunden und " + minutes + " Minuten";
+    }
+
+
+    function calculateFuelTripWorkHours()
+    {
+        let workingHours = parseFloat(document.getElementById("trip-hourly-wage").value);
+        let fuelPrice = parseFloat(document.getElementById("trip-fuel-price").value);
+        let consumption = parseFloat(document.getElementById("work-consumption").value);
+        let distance = parseFloat(document.getElementById("work-distance").value);
+
+        if (isNaN(workingHours) || isNaN(fuelPrice) || isNaN(consumption) || isNaN(distance) ||
+                workingHours <= 0 || fuelPrice <= 0 || consumption <= 0 || distance <= 0)
+        {
+            alert("Bitte alle Felder ausfüllen.");
+            return;
+        }
+
+        let fuelAmount = (consumption * distance) / 100;
+        let fuelCosts = fuelAmount * fuelPrice;
+        let workTime = fuelCosts / workingHours;
+
+        let hours = Math.floor(workTime);
+        let minutes = Math.round((workTime - hours) * 60);
+
+        if (minutes === 60)
+        {
+            hours = hours + 1;
+            minutes = 0;
+        }
+
+        document.getElementById("fuel-trip-work-hours-result").textContent = "Spritkosten: " + fuelCosts.toFixed(2) + " € | Arbeitszeit: " +
+                                                                              hours + " Stunden und " + minutes + " Minuten";
     }
 </script>
 </body>
