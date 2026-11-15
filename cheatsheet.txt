@@ -342,12 +342,6 @@ Datenbank-Backups = Ermöglicht die Wiederherstellung bei Datenverlust oder Besc
 Abhängigkeiten aktualisieren = schließt bekannte Sicherheitslücken in verwendeten Bibliotheken
 
 
-
-
-
-
-
-
 Grundumsatz berechnen:
 Mifflin-St.-Jeor-Formel schätzt anhand von Gewicht, Größe, Alter und Geschlecht, wie viel Energie dein Körper im Ruhezustand täglich benötigt
 
@@ -371,24 +365,4 @@ Zunahme + 300 - 600  Kalorien am Tag
 Eiweiß = Körpergewicht × 1,5 = geschätztes tägliches Proteinziel
 Sportlich Erwachsene ca 1.4 - 2.0g Protin pro Kg Körpergewicht
 
-
-TODO:
-- Nährwerte für Rezepte ergänzen
-    - Kalorien (kcal)
-    - Eiweiß (Protein)
-    - Kohlenhydrate
-    - Fett
-
-- Paket bei der Registrierung auswählen
-    - Je nach Paket bestimmte Seiten und Funktionen freischalten
-    - Gesperrte Funktionen mit "???" anzeigen
-    - Beim Anklicken gesperrter Funktionen erscheint:
-        "Bitte upgraden Sie Ihr Paket, um diese Funktion nutzen zu können."
-
-Rechtevergabe regelt das sich nicht jeder alles geben kan !
-Rechteverwaltung / Zugriffskontrolle:
-    - HTML zeigt dem Benutzer die verfügbaren Auswahlmöglichkeiten
-    - Flask überprüft die übermittelten Daten und entscheidet, welche Aktionen erlaubt sind
-    - Die Datenbank speichert das zugewiesene Benutzerpaket
-    - Flask prüft bei jedem geschützten Zugriff, ob der Benutzer die erforderlichen Berechtigungen besitzt
-    - Änderungen an HTML oder JavaScript dürfen keine zusätzlichen Rechte ermöglichen
+REST-APIs bedeutet, dass Anwendung externe Dienste über HTTP-Anfragen anspricht und Daten austauscht, häufig im JSON-Format
