@@ -1102,7 +1102,7 @@ button:hover
 
     #gasstation-results
     {
-        max-height: 450px;
+        max-height: 400px;
         overflow-y: auto;
         padding-right: 5px;
         box-sizing: border-box;
