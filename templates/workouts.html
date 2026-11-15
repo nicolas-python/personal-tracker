@@ -58,6 +58,14 @@
             form.method = "POST";
             form.action = "/delete-workout/" + workoutId;
 
+            //CSRF-Token hinzufügen
+            const csrfInput = document.createElement("input");
+            csrfInput.type = "hidden";
+            csrfInput.name = "csrf_token";
+            csrfInput.value = "{{ csrf_token() }}";
+
+            form.appendChild(csrfInput);
+
             document.body.appendChild(form);
             form.submit();
         }
