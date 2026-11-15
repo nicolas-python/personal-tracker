@@ -75,6 +75,7 @@ function addBackExercise()
     setsInput.id = "backSets" + (exerciseCount + 1);
     setsInput.name = "backSets" + (exerciseCount + 1);
     setsInput.min = "1";
+    setsInput.required = true; //sets muss angegeben werden
 
     //Wiederholungen Rücken
     const repsLabel = document.createElement("label");
@@ -86,6 +87,7 @@ function addBackExercise()
     repsInput.id = "backReps" + (exerciseCount + 1);
     repsInput.name = "backReps" + (exerciseCount + 1);
     repsInput.min = "1";
+    repsInput.required = true;  //reps muss angegeben werden
 
     //Gewicht Rücken
     const weightLabel = document.createElement("label");
@@ -98,6 +100,7 @@ function addBackExercise()
     weightInput.name = "backWeight" + (exerciseCount + 1);
     weightInput.min = "0";
     weightInput.step = "0.5";
+    weightInput.required = true;   //gewicht muss angegeben werden
 
     exercise.appendChild(label);
     exercise.appendChild(select);
@@ -152,6 +155,7 @@ function addChestExercise()
     setsInput.id = "chestSets" + (exerciseCount + 1);
     setsInput.name = "chestSets" + (exerciseCount + 1);
     setsInput.min = "1";
+    setsInput.required = true;
 
     //Wiederholungen Brust
     const repsLabel = document.createElement("label");
@@ -163,6 +167,7 @@ function addChestExercise()
     repsInput.id = "chestReps" + (exerciseCount + 1);
     repsInput.name = "chestReps" + (exerciseCount + 1);
     repsInput.min = "1";
+    repsInput.required = true;
 
     //Gewicht Brust
     const weightLabel = document.createElement("label");
@@ -175,6 +180,7 @@ function addChestExercise()
     weightInput.name = "chestWeight" + (exerciseCount + 1);
     weightInput.min = "0";
     weightInput.step = "0.5";
+    weightInput.required = true;
 
     exercise.appendChild(label);
     exercise.appendChild(select);
@@ -228,6 +234,7 @@ function addArmsExercise()
     setsInput.id = "armsSets" + (exerciseCount + 1);
     setsInput.name = "armsSets" + (exerciseCount + 1);
     setsInput.min = "1";
+    setsInput.required = true;
 
     //Wiederholungen Arme
     const repsLabel = document.createElement("label");
@@ -239,6 +246,7 @@ function addArmsExercise()
     repsInput.id = "armsReps" + (exerciseCount + 1);
     repsInput.name = "armsReps" + (exerciseCount + 1);
     repsInput.min = "1";
+    repsInput.required = true;
 
     //Gewicht Arme
     const weightLabel = document.createElement("label");
@@ -251,6 +259,7 @@ function addArmsExercise()
     weightInput.name = "armsWeight" + (exerciseCount + 1);
     weightInput.min = "0";
     weightInput.step = "0.5";
+    weightInput.required = true;
 
     exercise.appendChild(label);
     exercise.appendChild(select);
@@ -304,6 +313,7 @@ function addShoulderExercise()
     setsInput.id = "shoulderSets" + (exerciseCount + 1);
     setsInput.name = "shoulderSets" + (exerciseCount + 1);
     setsInput.min = "1";
+    setsInput.required = true;
 
     //Wiederholungen Schultern
     const repsLabel = document.createElement("label");
@@ -315,6 +325,7 @@ function addShoulderExercise()
     repsInput.id = "shoulderReps" + (exerciseCount + 1);
     repsInput.name = "shoulderReps" + (exerciseCount + 1);
     repsInput.min = "1";
+    repsInput.required = true;
 
     //Gewicht Schultern
     const weightLabel = document.createElement("label");
@@ -327,6 +338,7 @@ function addShoulderExercise()
     weightInput.name = "shoulderWeight" + (exerciseCount + 1);
     weightInput.min = "0";
     weightInput.step = "0.5";
+    weightInput.required = true;
 
     exercise.appendChild(label);
     exercise.appendChild(select);
@@ -380,6 +392,7 @@ function addLegsExercise()
     setsInput.id = "legsSets" + (exerciseCount + 1);
     setsInput.name = "legsSets" + (exerciseCount + 1);
     setsInput.min = "1";
+    setsInput.required = true;
 
     //Wiederholungen Beine
     const repsLabel = document.createElement("label");
@@ -391,6 +404,7 @@ function addLegsExercise()
     repsInput.id = "legsReps" + (exerciseCount + 1);
     repsInput.name = "legsReps" + (exerciseCount + 1);
     repsInput.min = "1";
+    repsInput.required = true;
 
     //Gewicht Beine
     const weightLabel = document.createElement("label");
@@ -403,6 +417,7 @@ function addLegsExercise()
     weightInput.name = "legsWeight" + (exerciseCount + 1);
     weightInput.min = "0";
     weightInput.step = "0.5";
+    weightInput.required = true;
 
 
     exercise.appendChild(label);
