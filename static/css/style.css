@@ -1091,6 +1091,58 @@ button:hover
         box-sizing: border-box;
     }
 
+    /*-------------------------------------------fuel.html Handy-------------------------------------------*/
+    .fuel-search-box
+    {
+        width: 95%;
+        padding: 12px;
+        margin: 20px auto;
+        box-sizing: border-box;
+    }
+
+    #gasstation-results
+    {
+        max-height: 450px;
+        overflow-y: auto;
+        padding-right: 5px;
+        box-sizing: border-box;
+    }
+
+    .fuel-sort-buttons
+    {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .fuel-calculator-box
+    {
+        width: 95%;
+        padding: 12px;
+        margin: 20px auto;
+        box-sizing: border-box;
+    }
+
+    .fuel-card-content
+    {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .fuel-card-content > div
+    {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .fuel-card-content input,
+    .fuel-card-content select
+    {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
     /*------------------------------------Hintergründe Handy------------------------------------*/
     body.login-page,
     body.register-page,
@@ -1153,5 +1205,4 @@ button:hover
         justify-content: center;
         gap: 10px;
     }
-
 }
