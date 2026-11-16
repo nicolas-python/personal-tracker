@@ -365,38 +365,49 @@ def nutrition():
 
     return render_template("nutrition.html",calorie_needs=calorie_needs)
 
+
 @app.route("/search-food")
 def search_food():
-    search_term = request.args.get("q", "").strip()     #Suchbegriff aus der URL auslesen, q = von Open Food Facts vorgegebener Parameter für den Suchbegriff
-
-    #zuerst eigene lebensmittel in der Datenbank suchen
-    custom_foods = search_custom_foods(search_term)
-    if custom_foods:
-        return jsonify({"hits": custom_foods})
+    search_term = request.args.get("q","").strip()  # Suchbegriff aus der URL auslesen, q = von Open Food Facts vorgegebener Parameter für den Suchbegriff
 
     if not search_term:
-        return jsonify({"error": "Bitte ein Lebensmittel eingeben."}), HTTPStatus.BAD_REQUEST  #HTTP 400: Anfrage ungültig
+        return jsonify({"error": "Bitte ein Lebensmittel eingeben."}), HTTPStatus.BAD_REQUEST  # HTTP 400: Anfrage ungültig
+
+    # eigene Lebensmittel aus der Datenbank suchen
+    custom_foods = search_custom_foods(search_term)
 
     try:
-        #Open Food Facts nach dem Lebensmittel fragen
-        response = requests.get("https://search.openfoodfacts.org/search",
-            params=[
-                ("q", search_term),                 # q = von Open Food Facts vorgegebener Parameter für den Suchbegriff
-                ("langs", "de:en"),              #deutsch bevorzugen, englisch zusätzlich berücksichtigen
-                ("page_size", 100)                    #max 100 Ergebnisse anfordern fürs filtern #max fünf Ergebnisse anfordern
-            ],
-            headers={"User-Agent": "PersonalTracker/1.0"},timeout=10)
+        response = requests.get("https://world.openfoodfacts.net/cgi/search.pl",
+            params={
+                "search_terms": search_term,
+                "search_simple": 1,
+                "action": "process",
+                "json": 1,
+                "langs": "de:en",     # deutsch bevorzugen, englisch zusätzlich berücksichtigen
+                "page_size": 100     # max 100 Ergebnisse anfordern fürs filtern #max fünf Ergebnisse anfordern
+            },
+            headers={"User-Agent": "PersonalTracker/1.0"},
+            timeout=15
+            )
 
         response.raise_for_status()
 
-        #Suchergebnisse als JSON an unsere Anwendung zurückgeben
-        return jsonify(response.json())
+        api_data = response.json()
+        open_food_facts = api_data.get("products", [])
+        hits = custom_foods + open_food_facts
 
-    except requests.RequestException:
-        return jsonify({"error": "Die Lebensmittelsuche ist momentan nicht erreichbar."}), HTTPStatus.BAD_GATEWAY  #HTTP 502: Server konnte keine gültige Antwort vom externen Dienst erhalten
+        return jsonify({"hits": hits})
+
+    except requests.RequestException as error:
+        print("Open Food Facts Fehler:", error)
+
+        if custom_foods:
+            return jsonify({"hits": custom_foods})
+
+        return jsonify({"error": "Die Lebensmittelsuche ist momentan nicht erreichbar."}), HTTPStatus.BAD_GATEWAY  # HTTP 502: Server konnte keine gültige Antwort vom externen Dienst erhalten
 
     except ValueError:
-        return jsonify({"error": "Die API hat ungültige Daten zurückgegeben."}), 502
+        return jsonify({"error": "Die API hat ungültige Daten zurückgegeben."}), HTTPStatus.BAD_GATEWAY
 
 
 @app.route("/save-calorie-needs", methods=["POST"])

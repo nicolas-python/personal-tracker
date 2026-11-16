@@ -453,9 +453,9 @@
 
                     const calories = nutrients["energy-kcal_100g"] ?? nutrients["energy-kcal"];
                     const protein = nutrients.proteins_100g;
-                    const fat = nutrients.fat_100g;
-                    const carbs = nutrients.carbohydrates_100g;
-                    const sugar = nutrients.sugars_100g;
+                    //const fat = nutrients.fat_100g;
+                    //const carbs = nutrients.carbohydrates_100g;
+                    //const sugar = nutrients.sugars_100g;
                     const searchWords = foodSearchInput.value
                         .trim()
                         .toLocaleLowerCase("de-DE")
@@ -472,10 +472,10 @@
                             product.product_name.trim() !== "" &&
 
                             calories != null && Number.isFinite(Number(calories)) &&
-                            protein != null && Number.isFinite(Number(protein)) &&
-                            fat != null && Number.isFinite(Number(fat)) &&
-                            carbs != null && Number.isFinite(Number(carbs)) &&
-                            sugar != null && Number.isFinite(Number(sugar))
+                            protein != null && Number.isFinite(Number(protein))
+                            //fat != null && Number.isFinite(Number(fat)) &&
+                            //carbs != null && Number.isFinite(Number(carbs)) &&
+                            //sugar != null && Number.isFinite(Number(sugar))
                     );
                 });
 
