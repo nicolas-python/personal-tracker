@@ -447,6 +447,7 @@
                 const products = data.hits || [];
 
                 //nur Produkte mit Namen und Kalorienangabe anzeigen
+                console.log("Produkte von API:", products.length);   //1
                 const filteredProducts = products.filter(function (product)
                 {
                     const nutrients = product.nutriments || {};
@@ -463,8 +464,22 @@
                     const productName = (product.product_name || "")
                         .toLocaleLowerCase("de-DE");
 
+                    if (
+                        !product.product_name ||
+                        product.product_name.trim() === "" ||
+                        calories == null ||
+                        !Number.isFinite(Number(calories)) ||
+                        protein == null ||
+                        !Number.isFinite(Number(protein))
+                    )
+                    {
+                        console.log("Ausgefiltert:", product.product_name, {
+                            calories: calories,
+                            protein: protein
+                            });
+                    }
                     return(
-                            searchWords.every(function (word)
+                            searchWords.some(function (word)            //some() = Mindestens ein Suchwort muss vorkommen
                             {
                                 return productName.includes(word);
                             }) &&
@@ -478,6 +493,7 @@
                             //sugar != null && Number.isFinite(Number(sugar))
                     );
                 });
+                console.log("Produkte nach Filter:", filteredProducts.length); //1
 
                 //Alte Suchergebnisse entfernen
                 foodSearchResults.replaceChildren();
@@ -951,6 +967,15 @@
         });
 
         loadFood();
+// Fehlersuche Open Food Facts:
+// Die API liefert bis zu 100 Produkte zurück
+// Viele Produkte besitzen jedoch keine vollständigen Nährwertangaben
+// Produkte ohne Namen, Kalorien oder Eiweiß werden durch den Filter aussortiert
+// Dadurch können aus 100 API-Treffern nur wenige sichtbare Suchergebnisse entstehen bei ein paar anfragen wie Rind
+
+// Suchanpassung:
+// Durch das Lockern der Filterbedingungen und das Beibehalten der Anforderungen
+// an Kalorien und Eiweiß liefert die Suche mehr passende Ergebnisse z. B. bei Schwein, Steak und Hähnchen
     </script>
 
 </body>

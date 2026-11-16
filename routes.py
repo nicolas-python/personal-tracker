@@ -394,6 +394,7 @@ def search_food():
 
         api_data = response.json()
         open_food_facts = api_data.get("products", [])
+        print("Open Food Facts Treffer:", len(open_food_facts)) #1
         hits = custom_foods + open_food_facts
 
         return jsonify({"hits": hits})
