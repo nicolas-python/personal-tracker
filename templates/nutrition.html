@@ -447,7 +447,6 @@
                 const products = data.hits || [];
 
                 //nur Produkte mit Namen und Kalorienangabe anzeigen
-                console.log("Produkte von API:", products.length);   //1
                 const filteredProducts = products.filter(function (product)
                 {
                     const nutrients = product.nutriments || {};
@@ -493,7 +492,6 @@
                             //sugar != null && Number.isFinite(Number(sugar))
                     );
                 });
-                console.log("Produkte nach Filter:", filteredProducts.length); //1
 
                 //Alte Suchergebnisse entfernen
                 foodSearchResults.replaceChildren();
