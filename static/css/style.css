@@ -14,7 +14,7 @@
     right: 20px;
 }
 
-/* -------------------------------------------register.html---------------------------------------------- */
+/* -------------------------------------------login.html---------------------------------------------- */
 body.login-page
 {
     display: flex;
@@ -35,6 +35,24 @@ body.login-page form
     background-color: rgba(20, 20, 20, 0.7);
     border: 1px solid darkgray;
     border-radius: 10px;
+}
+
+.login-clock
+{
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#clock-time
+{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#clock-date
+{
+    font-size: 14px;
+    opacity: 0.8;
 }
 /* -------------------------------------------register.html---------------------------------------------- */
 body.register-page

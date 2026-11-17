@@ -9,6 +9,10 @@
 <body class="login-page">
 
     <h1>Personal Tracker</h1>
+    <div class="login-clock">
+        <div id="clock-time"></div>
+        <div id="clock-date"></div>
+    </div>
 
 {% with messages = get_flashed_messages(with_categories=true) %}    <!-- Jinja2-Syntax -->
      {% for category, message in messages %}
@@ -43,5 +47,22 @@
 
     </form>
 
+<script>
+    function updateClock()
+    {
+        const now = new Date();
+        document.getElementById("clock-time").textContent = now.toLocaleTimeString("de-DE");
+
+        document.getElementById("clock-date").textContent = now.toLocaleDateString("de-DE", {
+            weekday: "long",
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+            });
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
 </body>
 </html>
