@@ -39,7 +39,12 @@
         <input type="text" id="username" name="username">
 
         <label for="password">Passwort:</label>
-        <input type="password" id="password" name="password">
+        <div class="password-container">
+            <input type="password" id="password" name="password">
+            <button type="button" onclick="togglePassword()">
+                <span id="password-eye">👁</span>
+            </button>
+        </div>
 
         <button type="submit">Einloggen</button>
 
@@ -63,6 +68,24 @@
 
     updateClock();
     setInterval(updateClock, 1000);
+
+
+    function togglePassword()
+    {
+        const passwordField = document.getElementById("password");
+        const passwordEye = document.getElementById("password-eye");
+
+        if (passwordField.type === "password")
+            {
+                passwordField.type = "text";            //ändert den Input-Typ auf "text" damit das Passwort sichtbar wird
+                passwordEye.textContent = "🔒";
+            }
+        else
+            {
+                passwordField.type = "password";            //ändert den Input-Typ auf "password" damit das Passwort versteckt wird
+                passwordEye.textContent = "👁";
+            }
+    }
 </script>
 </body>
 </html>
