@@ -23,6 +23,19 @@ body.login-page
     justify-content: flex-start;
     min-height: 100vh;
 }
+
+body.login-page form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 280px;
+    padding: 25px;
+    margin-top: 10px;
+    background-color: rgba(20, 20, 20, 0.7);
+    border: 1px solid darkgray;
+    border-radius: 10px;
+}
 /* -------------------------------------------register.html---------------------------------------------- */
 body.register-page
 {
