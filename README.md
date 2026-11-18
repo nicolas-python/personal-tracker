@@ -14,7 +14,7 @@ Der Zugriff auf die Anwendung erfolgt über ein Benutzerkonto mit unterschiedlic
 ![Login](static/images/screenshots/login.png)
 
 
-### Selection
+### Selection/Homepage
 ![Selection](static/images/screenshots/selection.png)
 
 
