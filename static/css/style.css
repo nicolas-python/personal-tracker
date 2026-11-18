@@ -14,6 +14,13 @@
     right: 20px;
 }
 
+/*Automatisches Browser-Auge ausblenden*/
+input::-ms-reveal,
+input::-ms-clear
+{
+    display: none;
+}
+
 /* -------------------------------------------login.html---------------------------------------------- */
 body.login-page
 {
@@ -85,6 +92,54 @@ body.register-page
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
+}
+
+/* Gesamte Registrierungszeile */
+.register-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+/* Eingabefelder */
+.register-form input {
+    width: 180px;
+    height: 38px;
+    box-sizing: border-box;
+}
+
+
+.password-container-register
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container-register button
+{
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.password-container-register input
+{
+    padding-right: 35px;
+}
+
+.register-form button[type="submit"]
+{
+    height: 38px;
+    white-space: nowrap;
 }
 
 body.register-page .back-button

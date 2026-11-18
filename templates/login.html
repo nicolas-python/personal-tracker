@@ -42,7 +42,7 @@
         <div class="password-container">
             <input type="password" id="password" name="password">
             <button type="button" onclick="togglePassword()">
-                <span id="password-eye">👁</span>
+                <span id="password-eye">🔒</span>
             </button>
         </div>
 
@@ -78,12 +78,12 @@
         if (passwordField.type === "password")
             {
                 passwordField.type = "text";            //ändert den Input-Typ auf "text" damit das Passwort sichtbar wird
-                passwordEye.textContent = "🔒";
+                passwordEye.textContent = "👁";
             }
         else
             {
                 passwordField.type = "password";            //ändert den Input-Typ auf "password" damit das Passwort versteckt wird
-                passwordEye.textContent = "👁";
+                passwordEye.textContent = "🔒";
             }
     }
 </script>

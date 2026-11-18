@@ -35,18 +35,30 @@
     {% endwith %}                                   <!-- Beendet den with-Block -->
 
     <form action="/register" method="POST">
+    <div class="register-form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
         <label for="username">Einlogname:</label>
         <input type="text" id="username" name="username">
 
         <label for="password">Passwort:</label>
-        <input type="password" id="password" name="password">
+        <div class="password-container-register">
+            <input type="password" id="password" name="password">
+            <button type="button" onclick="togglePassword('password', 'passwordEye')">
+                <span id="passwordEye">🔒</span>
+            </button>
+        </div>
 
         <label for="password_confirm">Passwort wiederholen:</label>
-        <input type="password" id="password_confirm" name="password_confirm">
+        <div class="password-container-register">
+            <input type="password" id="password_confirm" name="password_confirm">
+            <button type="button" onclick="togglePassword('password_confirm', 'passwordConfirmEye')">
+                <span id="passwordConfirmEye">🔒</span>
+            </button>
+        </div>
 
         <button type="submit">Registrieren</button>
+    </div>
 
         <div class="package-container">
             <h2>Paket auswählen</h2>
@@ -102,6 +114,23 @@
         </div>
 
     </form>
+<script>
+function togglePassword(passwordFieldId, passwordEyeId)
+{
+    const passwordField = document.getElementById(passwordFieldId);
+    const passwordEye = document.getElementById(passwordEyeId);
 
+    if (passwordField.type === "password")
+        {
+            passwordField.type = "text"; // Passwort sichtbar machen
+            passwordEye.textContent = "👁";
+        }
+    else
+        {
+            passwordField.type = "password"; // Passwort verstecken
+            passwordEye.textContent = "🔒";
+        }
+}
+</script>
 </body>
 </html>
