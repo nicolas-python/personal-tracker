@@ -7,8 +7,13 @@
 </head>
 
 <body class="login-page">
+<div class="login-wrapper">
 
     <h1>Personal Tracker</h1>
+    <p class="login-subtitle">
+        Dein Training. Deine Ernährung. Dein Fortschritt.
+    </p>
+
     <div class="login-clock">
         <div id="clock-time"></div>
         <div id="clock-date"></div>
@@ -51,6 +56,29 @@
         <button type="button" onclick="window.location.href='/register'">Registrieren</button>
 
     </form>
+    <div class="login-features">
+
+        <div class="feature-card">
+            <h3>Training</h3>
+            <p>Workouts planen und Fortschritte dokumentieren</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Ernährung</h3>
+            <p>Kalorien und Proteine im Blick behalten</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Statistiken</h3>
+            <p>Deine persönliche Entwicklung verfolgen</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Tanken</h3>
+            <p>Tankstellen finden und Spritpreise vergleichen</p>
+        </div>
+    </div>
+</div>
 
 <script>
     function updateClock()
