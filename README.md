@@ -8,6 +8,32 @@ Die Anwendung bietet verschiedene Bereiche zur persönlichen Organisation und Do
 Die Daten werden lokal in SQLite-Datenbanken gespeichert. 
 Der Zugriff auf die Anwendung erfolgt über ein Benutzerkonto mit unterschiedlichen Paketstufen.
 
+## Screenshots
+
+### Login
+![Login](static/images/screenshots/login.png)
+
+
+### Selection
+![Selection](static/images/screenshots/selection.png)
+
+
+### Trainingspläne
+![Trainingspläne](static/images/screenshots/trainingsplan-erstellen.png)
+
+
+### Ernährung
+![Ernährung](static/images/screenshots/nutrition.png)
+
+
+### Rezepte
+![Rezepte](static/images/screenshots/rezepte.png)
+
+
+### Tanken
+![Tanken](static/images/screenshots/fuel.png)
+
+
 ## Funktionen
 ### Benutzerverwaltung
   - Registrierung und Login
