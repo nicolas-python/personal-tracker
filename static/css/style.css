@@ -1066,6 +1066,22 @@ button:hover
         font-size: 15px;
         padding: 10px 15px;
     }
+
+     .login-features
+    {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        width: 90%;
+        margin: 25px auto;
+    }
+
+    .feature-card
+    {
+        width: auto;
+        box-sizing: border-box;
+        padding: 15px 10px;
+    }
     /*-------------------------------------------register.html Handy-------------------------------------------*/
     form[action="/register"]
     {
