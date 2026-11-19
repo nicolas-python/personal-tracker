@@ -366,3 +366,13 @@ Eiweiß = Körpergewicht × 1,5 = geschätztes tägliches Proteinziel
 Sportlich Erwachsene ca 1.4 - 2.0g Protin pro Kg Körpergewicht
 
 REST-APIs bedeutet, dass Anwendung externe Dienste über HTTP-Anfragen anspricht und Daten austauscht, häufig im JSON-Format
+
+
+
+QA - TEST
+
+md (Markdown) = ein einfaches Textformat, das besonders häufig für Dokumentationen auf GitHub verwendet wird weil :
+                - Überschriften, Tabellen und Listen sind möglich
+                - Direkt in PyCharm bearbeitbar
+                - GitHub zeigt die Dateien automatisch formatiert an
+                - Kein zusätzliches Programm wie Word notwendig
