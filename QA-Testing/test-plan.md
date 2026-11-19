@@ -2,7 +2,16 @@
 
 ## Testbereiche
 
-## 1. Login
+## 1. Registrierung
+- [x] Registrierung mit gültigen Daten
+- [X] Registrierung mit bereits vorhandenem Benutzernamen
+- [X] Registrierung mit leerem Passwort
+- [X] Registrierung mit leerem Paket auswahl
+- [X] Registrierung mit leerem Benutzernamen
+- [X] Registrierung mit nicht übereinstimmenden Passwörtern
+- [X] Maximale Benutzeranzahl erreicht
+
+## 2. Login
 - [ ] Login mit korrekten Zugangsdaten
 - [ ] Login mit falschem Passwort
 - [ ] Login mit unbekanntem Benutzernamen
@@ -12,11 +21,6 @@
 - [ ] Mehrfach falsche Loginversuche testen
 - [ ] Login mit Enter Taste
 
-## 2. Registrierung
-- [ ] Registrierung mit gültigen Daten
-- [ ] Registrierung mit bereits vorhandenem Benutzernamen
-- [ ] Registrierung mit leerem Passwort
-- [ ] Passwortanforderungen testen
 
 ## 3. Trainingspläne
 - [ ] Trainingsplan erstellen
@@ -43,3 +47,11 @@
 - [ ] Kraftstoffarten wechseln
 - [ ] Nach Preis sortieren
 - [ ] Nach Entfernung sortieren
+
+## 8. Sicherheitstests
+- [ ] Passwort-Hashing prüfen
+- [ ] SQL-Injection testen
+- [ ] Login Rate-Limit prüfen
+- [ ] Session-Sicherheit prüfen
+- [ ] Zugriffsschutz prüfen
+- [ ] CSRF-Schutz prüfen
