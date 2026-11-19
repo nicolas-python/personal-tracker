@@ -163,3 +163,122 @@ Datenbank enthält genau 8 Benutzer
 Kein neues Benutzerkonto erstellt
 
 **Status:** Passed
+
+### REG-008  Passwort anzeigen/verbergen testen
+**Voraussetzung:**
+Die Registrierungsseite ist erreichbar
+
+**Testschritte:**
+1. Passwort eingeben
+2. Auf das Schloss-Symbol klicken (Passwort wird angezeigt)
+3. Auf das Auge-Symbol klicken (Passwort wird wieder verborgen)
+
+**Erwartetes Ergebnis:**
+Nach dem Klick auf das Schloss-Symbol wird das Passwort als Klartext angezeigt
+Nach erneutem Klick wird das Passwort wieder verborgen dargestellt
+
+**Testergebnis:**
+Wechsel zwischen sichtbarem und verborgenem Passwort funktioniert
+
+**Status:** Passed
+
+## Login
+### LOG-001 Login mit korrekten Zugangsdaten
+**Voraussetzung:**
+Die Loginseite ist erreichbar
+Ein Benutzerkonto existiert bereits
+
+**Testschritte:**
+1. Benutzernamen eingeben 
+2. Passwort eingeben
+3. Auf „Einloggen“ klicken
+
+**Erwartetes Ergebnis:**
+Login-Bestätigung wird als Popup angezeigt
+Weiterleitung auf Selection/Homepage
+
+**Testergebnis:**
+Das Passwort-Eingabefeld liegt optisch über dem Popup
+Selection/Homepage wird angezeigt
+
+**Status:** Faild
+
+### LOG-002 Login mit falschem Passwort
+**Voraussetzung:**
+Die Loginseite ist erreichbar
+Ein Benutzerkonto existiert bereits
+
+**Testschritte:**
+1. Benutzernamen eingeben 
+2. falsches Passwort eingeben
+3. Auf „Einloggen“ klicken
+
+**Erwartetes Ergebnis:**
+Fehlermeldung: "Passwort oder Benutzername sind Falsch"
+Keine Weiterleitung auf Selection/Homepage
+
+**Testergebnis:**
+Fehlermeldung: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
+Das Passwort-Eingabefeld liegt optisch über dem Popup (siehe BUG-001)
+Selection/Homepage wird nicht angezeigt
+
+**Status:** Failed
+
+### LOG-003 Login mit unbekanntem Benutzernamen
+**Voraussetzung:**
+Die Loginseite ist erreichbar
+Ein Benutzerkonto existiert bereits
+
+**Testschritte:**
+1. Unbekannten Benutzernamen eingeben "test10"
+2. Passwort eingeben
+3. Auf „Einloggen“ klicken
+
+**Erwartetes Ergebnis:**
+Fehlermeldung: "Passwort oder Benutzername sind Falsch"
+Keine Weiterleitung auf Selection/Homepage
+
+**Testergebnis:**
+Fehlermeldung: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
+Das Passwort-Eingabefeld liegt optisch über dem Popup (siehe BUG-001)
+Selection/Homepage wird nicht angezeigt
+
+**Status:** Failed
+
+### LOG-004 Login ohne Eingabe
+**Voraussetzung:**
+Die Loginseite ist erreichbar
+
+**Testschritte:**
+1. Benutzernamen leer lassen
+2. Passwort leer lassen
+3. Auf „Einloggen“ klicken
+
+**Erwartetes Ergebnis:**
+Fehlermeldung: "Passwort oder Benutzername sind Falsch"
+Keine Weiterleitung auf Selection/Homepage
+
+**Testergebnis:**
+Fehlermeldung: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
+Das Passwort-Eingabefeld liegt optisch über dem Popup (siehe BUG-001)
+Selection/Homepage wird nicht angezeigt
+
+**Status:** Failed
+
+### LOG-005  Passwort anzeigen/verbergen testen
+**Voraussetzung:**
+Die Loginseite ist erreichbar
+
+**Testschritte:**
+1. Passwort eingeben
+2. Auf das Schloss-Symbol klicken (Passwort wird angezeigt)
+3. Auf das Auge-Symbol klicken (Passwort wird wieder verborgen)
+
+**Erwartetes Ergebnis:**
+Nach dem Klick auf das Schloss-Symbol wird das Passwort als Klartext angezeigt
+Nach erneutem Klick wird das Passwort wieder verborgen dargestellt
+
+**Testergebnis:**
+Wechsel zwischen sichtbarem und verborgenem Passwort funktioniert
+
+**Status:** Passed

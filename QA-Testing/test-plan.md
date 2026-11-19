@@ -10,14 +10,14 @@
 - [X] Registrierung mit leerem Benutzernamen
 - [X] Registrierung mit nicht übereinstimmenden Passwörtern
 - [X] Maximale Benutzeranzahl erreicht
+- [X] Passwort anzeigen/verbergen testen
 
 ## 2. Login
 - [ ] Login mit korrekten Zugangsdaten
 - [ ] Login mit falschem Passwort
 - [ ] Login mit unbekanntem Benutzernamen
 - [ ] Login ohne Eingabe
-- [ ] Login-Button testen
-- [ ] Passwort anzeigen/verbergen testen
+- [x] Passwort anzeigen/verbergen testen
 - [ ] Mehrfach falsche Loginversuche testen
 - [ ] Login mit Enter Taste
 
