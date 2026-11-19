@@ -20,38 +20,102 @@
 - [x] Passwort anzeigen/verbergen testen
 - [ ] Mehrfach falsche Loginversuche testen
 - [ ] Login mit Enter Taste
+- [ ] Login mit Leerzeichen im Benutzernamen
+- [ ] Abmeldung über Logout-Button
+- [ ] Nach Logout erneuten Zugriff auf geschützte Seiten prüfen
+- [ ] Automatischer logout nach 30 min
+- [ ] Login gleicher benutzer meherer geräte 
 
+## 3.Homepage / Navigation
+- [ ] Homepage nach erfolgreichem Login anzeigen
+- [ ] Navigation zu allen verfügbaren Bereichen
+- [ ] Zurück-Navigation funktioniert
+- [ ] Gesperrte Bereiche werden korrekt angezeigt
+- [ ] Darstellung auf verschiedenen Bildschirmgrößen prüfen
+- [ ] Speichern von Statistiken in premium 
+- [ ] Speichern von Statistiken in premium+
+- [ ] Gesperrte Statistiken in basic
+- [ ] Upgrade Knopf funktioniert
 
-## 3. Trainingspläne
+## 4. Paketverwaltung / Upgrade
+- [ ] Upgrade von Basic auf Premium
+- [ ] Upgrade von Basic auf Premium+
+- [ ] Upgrade von Premium auf Premium+
+- [ ] Paket nach Upgrade korrekt anzeigen
+- [ ] Downgrade von Basic auf Premium
+- [ ] Downgrade von Basic auf Premium+
+- [ ] Downgrade von Premium auf Premium+
+- [ ] Paket nach  Downgrade korrekt anzeigen
+- [ ] Freigeschaltete Funktionen nach Upgrade prüfen
+- [ ] Gesperrte Funktionen ohne entsprechendes Paket prüfen
+- [ ] Upgrade ohne gültige Paketauswahl
+- [ ] Paket bleibt nach erneutem Login erhalten
+- [ ] Paket bleibt nach Upgrade und erneutem Login erhalten
+
+## 5. Trainingspläne
 - [ ] Trainingsplan erstellen
 - [ ] Trainingsplan bearbeiten
 - [ ] Trainingsplan löschen
-- [ ] Übungen hinzufügen und entfernen
-- [ ] Training starten und abschließen
+- [ ] Übungen hinzufügen
+- [ ] Übungen entfernen
+- [ ] Trainingsplan mit leerem Namen erstellen
+- [ ] Trainingsplan mit mehreren Übungen erstellen
+- [ ] Training starten
+- [ ] Training abschließen
+- [ ] Trainingszeit / Timer prüfen
+- [ ] Abgeschlossenes Training speichern
+- [ ] Gespeicherte Trainingseinheiten erneut aufrufen
+- [ ] Trainingsplan nach erneutem Login weiterhin vorhanden
 
-## 4. Ernährung
+## 6. Ernährung
+- [ ] Kalorienrechner mit gültigen Werten testen
+- [ ] Kalorienrechner mit ungültigen Werten testen
+- [ ] Kalorien rechner Funktion mit Punkt testen
+- [ ] Kalorien rechner Funktion mit Komma testen
 - [ ] Lebensmittel suchen
 - [ ] Lebensmittel hinzufügen
 - [ ] Lebensmittel löschen
+- [ ] Eigenes Lebensmittel erstellen
+- [ ] Eigenes Lebensmittel suchen
+- [ ] Eigenes Lebensmittel hinzufügen
+- [ ] Eigenes Lebensmittel löschen
+- [ ] Lebensmittelmenge ändern
 - [ ] Mahlzeiten speichern
 - [ ] Vergangene Tage aufrufen
+- [ ] Gespeicherte Mahlzeiten nach erneutem Aufruf prüfen
+- [ ] Gespeicherte Lebensmittel nach erneutem Login weiterhin vorhanden
+- [ ] Kalorien- und Proteinwerte korrekt berechnen
+- [ ] Tagesziele und Fortschrittsanzeige prüfen
 
-## 5. Rezepte
-- [ ] Rezepte suchen
-- [ ] Rezeptdetails öffnen
-- [ ] Zutaten und Zubereitung anzeigen
+## 7. Rezepte
+- [ ] Suche ohne Suchbegriff testen
+- [ ] Rezepte suchen (API)
+- [ ] Rezeptdetails öffnen (API)
+- [ ] Zutaten und Zubereitung anzeigen (API)
+- [ ] Zutaten und Zubereitung übersetzung anzeigen (API)
 
-## 6. Tanken
+- [ ] Rezepte suchen (DB)
+- [ ] Rezeptdetails öffnen (DB)
+- [ ] Zutaten und Zubereitung anzeigen (DB)
+- [ ] Zutaten und Zubereitung übersetzung anzeigen (DB)
+- 
+## 8. Tanken
 - [ ] Suche mit gültiger PLZ
 - [ ] Suche mit ungültiger PLZ
-- [ ] Kraftstoffarten wechseln
+- [ ] Kraftstoffarten wechseln (E5, E10, Diesel)
 - [ ] Nach Preis sortieren
 - [ ] Nach Entfernung sortieren
+- [ ] Tankstellenpreise korrekt anzeigen
+- [ ] Entfernung korrekt anzeigen
+- [ ] Rechnergebnisse auf korrekte Berechnung prüfen
 
-## 8. Sicherheitstests
+## 9. Sicherheitstests
 - [ ] Passwort-Hashing prüfen
 - [ ] SQL-Injection testen
 - [ ] Login Rate-Limit prüfen
 - [ ] Session-Sicherheit prüfen
 - [ ] Zugriffsschutz prüfen
 - [ ] CSRF-Schutz prüfen
+- [ ] Zugriff auf fremde Benutzerdaten prüfen
+- [ ] Maximale Anzahl aktiver Sessions prüfen
+- [ ] Ungültige Session-Tokens testen
