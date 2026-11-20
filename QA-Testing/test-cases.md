@@ -1,4 +1,6 @@
+-----------------------------------------------
 ## Registrieren
+-----------------------------------------------
 ### REG-001 Registrierung mit gültigen Daten
 **Voraussetzung:**
 Die Registrierungsseite ist erreichbar
@@ -182,7 +184,9 @@ Wechsel zwischen sichtbarem und verborgenem Passwort funktioniert
 
 **Status:** Passed
 
+-----------------------------------------------
 ## Login
+-----------------------------------------------
 ### LOG-001 Login mit korrekten Zugangsdaten
 **Voraussetzung:**
 Die Loginseite ist erreichbar
@@ -398,5 +402,117 @@ Es können maximal 1 aktive Sitzungen pro Benutzer gleichzeitig bestehen
 Die bisherige Sitzung wird beendet
 Die erwartete Fehlermeldung wird angezeigt
 Es besteht maximal eine aktive Sitzung pro Benutzer
+
+**Status:** Passed
+
+-----------------------------------------------
+##Homepage / Navigation
+-----------------------------------------------
+### HOME-001: Homepage nach erfolgreichem Login anzeigen
+
+**Voraussetzung:**
+Ein Benutzerkonto existiert
+Benutzer befindet sich auf der Login-Seite
+
+**Testschritte:**
+1. Gültigen Benutzernamen eingeben
+2. Gültiges Passwort eingeben
+3. Auf den Login-Button klicken
+4. Popup "Login erfolgreich!" bestätigen
+5. Weiterleitung zur Selection / Homepage abwarten
+6. Angezeigte Seite prüfen
+
+**Erwartetes Ergebnis:**
+Login ist erfolgreich
+Popup "Login erfolgreich!" wird angezeigt 
+Benutzer wird zur Homepage / Auswahlseite weitergeleitet
+Benutzername wird auf der Homepage angezeigt
+Homepage wird vollständig und korrekt dargestellt
+
+**Testergebnis:**
+Login ist erfolgreich
+Popup "Login erfolgreich!" wird angezeigt
+Benutzer wird zur Homepage / Auswahlseite weitergeleitet
+Benutzername wird auf der Homepage angezeigt
+Homepage wird vollständig und korrekt dargestellt
+
+**Status:** Passed
+
+
+### HOME-002: Navigation zu allen verfügbaren Bereichen
+**Voraussetzung:**
+Benutzer ist erfolgreich angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Jeden verfügbaren Bereich auf der Homepage einzeln anklicken
+2. Prüfen, ob der jeweilige Bereich geöffnet wird
+3. Prüfen, ob die richtige Seite angezeigt wird
+4. Zur Homepage zurückkehren
+5. Mit dem nächsten Bereich fortfahren
+
+**Erwartetes Ergebnis:**
+Alle verfügbaren Bereiche sind erreichbar
+Jeder Bereich öffnet die richtige Seite
+Die Navigation funktioniert ohne Fehlermeldungen
+
+**Testergebnis:**
+Alle verfügbaren Bereiche sind erreichbar
+Jeder Bereich öffnet die richtige Seite
+Die Navigation funktioniert ohne Fehlermeldungen
+
+
+**Status:** Passed
+
+### HOME-003: Zurück-Navigation funktioniert
+**Voraussetzung:**
+Benutzer ist erfolgreich angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Einen verfügbaren Bereich öffnen (z. B. Ernährung)
+2. Zurück-Button anklicken
+3. Prüfen, ob die Homepage / Auswahlseite wieder angezeigt wird
+4. Den Vorgang bei weiteren Bereichen wiederholen
+
+**Erwartetes Ergebnis:**
+Zurück-Button funktioniert
+Benutzer wird zur Homepage / Auswahlseite zurückgeleitet
+Homepage wird korrekt dargestellt
+Es treten keine Fehlermeldungen auf
+
+**Testergebnis:**
+Zurück-Button funktioniert
+Benutzer wird zur Homepage / Auswahlseite zurückgeleitet
+Homepage wird korrekt dargestellt
+Es treten keine Fehlermeldungen auf
+
+**Status:** Passed
+
+### HOME-003: Gesperrte Bereiche werden angezeigt und sind nicht anklickbar
+**Voraussetzung:**
+Benutzerkonto mit Paket Basic existiert
+Benutzer ist erfolgreich angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Homepage mit einem Basic-Benutzer öffnen
+2. Premium- und Premium+-Bereiche kontrollieren (gesperrt)
+3. Prüfen, ob gesperrte Bereiche mit einem Schloss gekennzeichnet sind
+4. Versuchen, die gesperrten Bereiche anzuklicken
+5. Prüfen, ob Statistiken für Basic-Benutzer gesperrt sind
+
+**Erwartetes Ergebnis:**
+Premium- und Premium+-Bereiche werden angezeigt
+Gesperrte Bereiche sind optisch als gesperrt gekennzeichnet
+Gesperrte Bereiche können nicht angeklickt werden
+Es erfolgt keine Weiterleitung in einen gesperrten Bereich
+Premium-Statistiken sind für Basic-Benutzer nicht verfügbar
+
+**Testergebnis:**
+Premium- und Premium+-Bereiche werden angezeigt
+Gesperrte Bereiche sind optisch als gesperrt gekennzeichnet
+Gesperrte Bereiche können nicht angeklickt werden
+Es erfolgt keine Weiterleitung in einen gesperrten Bereich
 
 **Status:** Passed

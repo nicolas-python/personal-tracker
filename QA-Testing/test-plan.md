@@ -26,10 +26,12 @@
 - [X] Login gleicher benutzer meherer geräte 
 
 ## 3.Homepage / Navigation
-- [ ] Homepage nach erfolgreichem Login anzeigen
-- [ ] Navigation zu allen verfügbaren Bereichen
-- [ ] Zurück-Navigation funktioniert
-- [ ] Gesperrte Bereiche werden korrekt angezeigt
+- [X] Homepage nach erfolgreichem Login anzeigen
+- [X] Navigation zu allen verfügbaren Bereichen
+- [X] Zurück-Navigation funktioniert
+- [X] Gesperrte Bereiche werden angezeigt und sind nicht anklickbar
+- [ ] Freigeschaltete Bereiche bei Premium
+- [ ] Freigeschaltete Bereiche bei Premium
 - [ ] Darstellung auf verschiedenen Bildschirmgrößen prüfen
 - [ ] Speichern von Statistiken in premium 
 - [ ] Speichern von Statistiken in premium+
