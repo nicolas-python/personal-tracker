@@ -1045,11 +1045,21 @@ button:hover
     }
 
     /*------------------------------------------login.html handy------------------------------------------------------*/
+    .login-wrapper
+    {
+        width: 95%;
+        padding: 15px;
+        margin: 20px auto;
+        box-sizing: border-box;
+    }
+
     form[action="/login"]                                   /* form = Formular | grid = Elemente in einem Raster anordnen */
     {
-        display: grid;                                      /* form = Formular | grid = Elemente in einem Raster anordnen */
-        grid-template-columns: max-content 1fr;             /* max-content =erste Spalte wird nur so breit wie nötig für ihren Inhalt , 1fr= zweite Spalte bekommt den verbleibenden Platz(fr = fraction = eine Spalte, die den verfügbaren Platz einnimmt)*/
-        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+        box-sizing: border-box;
     }
 
     form[action="/login"] label
