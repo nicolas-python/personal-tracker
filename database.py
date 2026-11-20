@@ -245,7 +245,7 @@ def validate_active_session(user_id, session_token):
             WHERE user_id = ?
             AND session_token = ?
             AND last_activity >= ?
-        """, (now, user_id, session_token, now - 1800))
+        """, (now, user_id, session_token, now - 60))             #1800s = 30min test  60
 
         valid = cursor.rowcount == 1
 

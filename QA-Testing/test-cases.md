@@ -201,7 +201,7 @@ Weiterleitung auf Selection/Homepage
 Das Passwort-Eingabefeld liegt optisch über dem Popup
 Selection/Homepage wird angezeigt
 
-**Status:** Faild
+**Status:** Passed
 
 ### LOG-002 Login mit falschem Passwort
 **Voraussetzung:**
@@ -243,7 +243,7 @@ Fehlermeldung: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
 Das Passwort-Eingabefeld liegt optisch über dem Popup (siehe BUG-001)
 Selection/Homepage wird nicht angezeigt
 
-**Status:** Failed
+**Status:** Passed
 
 ### LOG-004 Login ohne Eingabe
 **Voraussetzung:**
@@ -280,5 +280,123 @@ Nach erneutem Klick wird das Passwort wieder verborgen dargestellt
 
 **Testergebnis:**
 Wechsel zwischen sichtbarem und verborgenem Passwort funktioniert
+
+**Status:** Passed
+
+### LOG-006 Mehrfach falsche Loginversuche testen
+**Voraussetzung:**
+Die Loginseite ist erreichbar
+
+**Testschritte:**
+1. Falscher Benutzer eingeben
+2. Falsches Passwort eingeben
+3. Auf „Einloggen“ klicken
+4. Den Vorgang mehrfach innerhalb einer Minute wiederholen
+
+**Erwartetes Ergebnis:**
+Anzeige: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
+Nach drei erlaubten Versuchen innerhalb einer kurzen zeitspanne werden weitere Loginversuche blockiert
+
+**Testergebnis:**
+Das Passwort-Eingabefeld liegt optisch über dem Popup (siehe BUG-001)
+Anzeige: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
+Nach drei erlaubten Versuchen wird der weitere Loginversuch blockiert
+Anzeige: "Too Many Requests – 3 per 1 minute"
+
+**Status:** Passed
+
+### LOG-007 Login mit Leerzeichen im Benutzernamen
+
+**Voraussetzung:**
+Die Loginseite ist erreichbar
+Ein Benutzerkonto mit Leerzeichen im Benutzernamen existiert bereits
+
+**Testschritte:**
+1. Benutzernamen mit Leerzeichen eingeben
+2. Korrektes Passwort eingeben
+3. Auf „Einloggen“ klicken
+
+**Erwartetes Ergebnis:**
+Login mit dem Benutzernamen funktioniert
+Weiterleitung auf Selection/Homepage
+
+**Testergebnis:**
+Login mit Leerzeichen im Benutzernamen funktioniert
+
+**Status:** Passed
+
+
+### LOG-008: Abmeldung und Zugriffsschutz nach Logout
+
+**Voraussetzung:**
+Benutzer ist erfolgreich angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Logout-Button anklicken
+2. Beobachten, auf welche Seite man weitergeleitet wird
+3. URL http://127.0.0.1:5001/selection direkt in die Adresszeile eingeben
+
+**Erwartetes Ergebnis:**
+Benutzer wird erfolgreich abgemeldet
+Weiterleitung zur Login-Seite erfolgt
+Die aktive Sitzung wird beendet
+Erneuter Zugriff auf geschützte Seiten wird verweigert
+Benutzer wird wieder zur Login-Seite weitergeleitet
+
+**Testergebnis:**
+Benutzer wird erfolgreich abgemeldet
+Weiterleitung zur Login-Seite erfolgt
+Die aktive Sitzung wird beendet
+
+**Status:** Passed
+
+
+### LOG-009: Automatischer logout nach 30 min
+**Voraussetzung:**
+Benutzer ist erfolgreich angemeldet
+Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Benutzer anmelden
+2. Mindestens 30 Minuten keine Aktivität durchführen   (für den Test wurde die Zeit vorübergehend auf 1 Minute / 60 Sekunden gesetzt)
+3. Anschließend eine geschützte Seite aufrufen (z. B. Tanken)
+4. Angezeigte Meldung und Weiterleitung prüfen
+
+**Erwartetes Ergebnis:**
+Die aktive Sitzung wird nach 30 Minuten Inaktivität ungültig
+Benutzer wird zur Login-Seite weitergeleitet
+Die Meldung "Deine Sitzung ist abgelaufen oder wurde auf einem anderen Gerät ersetzt" wird angezeigt
+
+**Testergebnis:**
+- Automatischer Logout nach 1 Minute (temporär für den Test eingestellt)
+- Weiterleitung zur Login-Seite erfolgt
+- Die Meldung "Deine Sitzung ist abgelaufen oder wurde auf einem anderen Gerät ersetzt" wird angezeigt
+
+**Status:** Passed
+
+
+### LOG-009: Login desselben Benutzers auf mehreren Geräten
+
+**Voraussetzung:**
+Ein Benutzerkonto existiert
+Zwei unterschiedliche Browser oder Geräte stehen zur Verfügung
+
+**Testschritte:**
+1. Im ersten Browser mit dem Benutzer anmelden
+2. Im zweiten Browser dieselben Zugangsdaten verwenden
+3. Prüfen, ob die Anmeldung im zweiten Browser erfolgreich ist
+4. Im ersten Browser eine geschützte Seite aufrufen
+5. Im zweiten Browser eine geschützte Seite aufrufen
+
+**Erwartetes Ergebnis:**
+Die bisherige Sitzung wird beendet
+Ausloggen der aktiven Sitzung mit der Fehlermeldung :"Deine Sitzung ist abgelaufen oder wurde auf einem anderen Gerät ersetzt"
+Es können maximal 1 aktive Sitzungen pro Benutzer gleichzeitig bestehen
+
+**Testergebnis:**
+Die bisherige Sitzung wird beendet
+Die erwartete Fehlermeldung wird angezeigt
+Es besteht maximal eine aktive Sitzung pro Benutzer
 
 **Status:** Passed

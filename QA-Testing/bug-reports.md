@@ -1,6 +1,6 @@
-### BUG-001: Passwortfeld liegt über dem Popup
+### REG-BUG-001: Passwortfeld liegt über dem Popup
 
-**Bereich:** Login
+**Bereich:** Register/Login
 
 **Schritte zur Reproduktion:**
 1. Login-Seite öffnen
@@ -13,11 +13,19 @@ Das Popup wird vollständig im Vordergrund angezeigt
 **Tatsächliches Verhalten:**
 Das Passwort-Eingabefeld liegt optisch über dem Popup
 
+**Ursache:**
+Fehlender "z-index" beim Popup
+
+**Lösung:**
+"z-index: 2000" zur CSS-Klasse ".popup" hinzugefügt
+
 **Betroffene Testfälle:**
 LOG-001
 LOG-002
 LOG-003
 LOG-004
+LOG-006
 
-**Status:** Open
+**Status:** Fixed
+
 

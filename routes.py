@@ -55,7 +55,7 @@ def check_active_session():
     if not session_token or not validate_active_session(user_id, session_token):
 
         session.clear()
-        flash("Deine Sitzung ist abgelaufen oder wurde auf einem anderen Gerät ersetzt.", "error")
+        flash("Deine Sitzung ist abgelaufen oder wurde auf einem anderen Gerät ersetzt", "error")
 
         return redirect(url_for("login"))
 

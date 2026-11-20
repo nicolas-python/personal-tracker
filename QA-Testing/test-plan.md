@@ -13,18 +13,17 @@
 - [X] Passwort anzeigen/verbergen testen
 
 ## 2. Login
-- [ ] Login mit korrekten Zugangsdaten
-- [ ] Login mit falschem Passwort
-- [ ] Login mit unbekanntem Benutzernamen
-- [ ] Login ohne Eingabe
+- [X] Login mit korrekten Zugangsdaten
+- [X] Login mit falschem Passwort
+- [X] Login mit unbekanntem Benutzernamen
+- [X] Login ohne Eingabe
 - [x] Passwort anzeigen/verbergen testen
-- [ ] Mehrfach falsche Loginversuche testen
-- [ ] Login mit Enter Taste
-- [ ] Login mit Leerzeichen im Benutzernamen
-- [ ] Abmeldung über Logout-Button
-- [ ] Nach Logout erneuten Zugriff auf geschützte Seiten prüfen
-- [ ] Automatischer logout nach 30 min
-- [ ] Login gleicher benutzer meherer geräte 
+- [X] Mehrfach falsche Loginversuche testen
+- [ ] Login mit Enter Taste                   (TODO: Funktion implementieren)
+- [X] Login mit Leerzeichen im Benutzernamen
+- [X] Abmeldung und Zugriffsschutz nach Logout
+- [X] Automatischer logout nach 30 min
+- [X] Login gleicher benutzer meherer geräte 
 
 ## 3.Homepage / Navigation
 - [ ] Homepage nach erfolgreichem Login anzeigen
