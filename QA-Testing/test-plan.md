@@ -39,19 +39,17 @@
 - [X] Upgrade Knopf funktioniert
 
 ## 4. Paketverwaltung / Upgrade
-- [ ] Upgrade von Basic auf Premium
-- [ ] Upgrade von Basic auf Premium+
-- [ ] Upgrade von Premium auf Premium+
-- [ ] Paket nach Upgrade korrekt anzeigen
-- [ ] Downgrade von Basic auf Premium
-- [ ] Downgrade von Basic auf Premium+
-- [ ] Downgrade von Premium auf Premium+
-- [ ] Paket nach  Downgrade korrekt anzeigen
-- [ ] Freigeschaltete Funktionen nach Upgrade prüfen
-- [ ] Gesperrte Funktionen ohne entsprechendes Paket prüfen
-- [ ] Upgrade ohne gültige Paketauswahl
-- [ ] Paket bleibt nach erneutem Login erhalten
-- [ ] Paket bleibt nach Upgrade und erneutem Login erhalten
+- [X] Upgrade von Basic auf Premium
+- [X] Upgrade von Basic auf Premium+
+- [X] Upgrade von Premium auf Premium+
+- [X] Downgrade von Premium auf Premium+
+- [X] Downgrade von Premium+ auf Basic
+- [X] Downgrade von Premium auf Basic
+- [X] Freigeschaltete Funktionen nach Upgrade prüfen
+- [X] Gesperrte Funktionen ohne entsprechendes Paket prüfen
+- [X] Upgrade ohne gültige Paketauswahl
+- [X] Paket bleibt nach erneutem Login erhalten
+- [X] Paket bleibt nach Upgrade und erneutem Login erhalten
 
 ## 5. Trainingspläne
 - [ ] Trainingsplan erstellen

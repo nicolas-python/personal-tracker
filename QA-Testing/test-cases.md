@@ -703,3 +703,298 @@ Zurück-Navigation funktioniert
 Homepage / Auswahlseite wird wieder angezeigt
 
 **Status:** Passed
+
+---------------------------------
+##Paketverwaltung / Upgrade
+---------------------------------
+### PV-001: Upgrade von Basic auf Premium
+**Voraussetzung:**
+Benutzerkonto mit Paket Basic existiert
+Benutzer ist angemeldet
+Upgrade-Seite ist geöffnet
+
+**Testschritte:**
+1. Paket Premium auswählen
+2. Upgrade durchführen
+3. Prüfen, ob das Upgrade erfolgreich durchgeführt wurde
+4. Prüfen, ob das Benutzerkonto jetzt Premium besitzt
+5. Homepage / Auswahlseite öffnen
+6. Prüfen, ob Premium-Funktionen freigeschaltet sind
+
+**Erwartetes Ergebnis:**
+Upgrade auf Premium wird erfolgreich durchgeführt
+Benutzerkonto erhält das Paket Premium
+Premium-Funktionen sind freigeschaltet
+Premium+-Funktionen bleiben gesperrt
+
+**Testergebnis:**
+Benutzerkonto erhält das Paket Premium
+Premium- Funktionen sind freigeschaltet
+Premium+ Funktionen bleiben gesperrt
+
+**Status:** Passed
+
+### PV-002: Upgrade von Basic auf Premium+
+**Voraussetzung:**
+Benutzerkonto mit Paket Basic existiert
+Benutzer ist angemeldet
+Upgrade-Seite ist geöffnet
+
+**Testschritte:**
+1. Paket Premium+ auswählen
+2. Upgrade durchführen
+3. Prüfen, ob das Upgrade erfolgreich durchgeführt wurde
+4. Prüfen, ob das Benutzerkonto jetzt Premium+ besitzt
+5. Homepage / Auswahlseite öffnen
+6. Prüfen, ob Premium- und Premium+-Funktionen freigeschaltet sind
+
+**Erwartetes Ergebnis:**
+Upgrade auf Premium+ wird erfolgreich durchgeführt
+Benutzerkonto erhält das Paket Premium+
+Premium-Funktionen sind freigeschaltet
+Premium+-Funktionen sind freigeschaltet
+
+**Testergebnis:**
+Benutzerkonto besitzt jetzt das Paket Premium+
+Premium-Funktionen sind freigeschaltet
+Premium+-Funktionen sind freigeschaltet
+
+**Status:** Passed
+
+
+### PV-003: Upgrade von Premium auf Premium+
+**Voraussetzung:**
+Benutzerkonto mit Paket Premium existiert
+Benutzer ist angemeldet
+Upgrade-Seite ist geöffnet
+
+**Testschritte:**
+1. Paket Premium+ auswählen
+2. Upgrade durchführen
+3. Prüfen, ob das Upgrade erfolgreich durchgeführt wurde
+4. Prüfen, ob das Benutzerkonto jetzt Premium+ besitzt
+5. Homepage / Auswahlseite öffnen
+6. Prüfen, ob Premium+-Funktionen freigeschaltet sind
+
+**Erwartetes Ergebnis:**
+Upgrade auf Premium+ wird erfolgreich durchgeführt
+Benutzerkonto erhält das Paket Premium+
+Premium-Funktionen bleiben freigeschaltet
+Premium+-Funktionen sind freigeschaltet
+
+**Testergebnis:**
+Benutzerkonto besitzt jetzt das Paket Premium+
+Premium-Funktionen bleiben freigeschaltet
+Premium+-Funktionen sind freigeschaltet
+
+**Status:** Passed
+
+### PV-004: Downgrade von Premium+ auf Premium
+**Voraussetzung:**
+Benutzerkonto mit Paket Premium+ existiert
+Benutzer ist angemeldet
+Upgrade-Seite ist geöffnet
+
+**Testschritte:**
+1. Paket Premium auswählen
+2. Downgrade durchführen
+3. Prüfen, ob das Downgrade erfolgreich durchgeführt wurde
+4. Prüfen, ob das Benutzerkonto jetzt Premium besitzt
+5. Homepage / Auswahlseite öffnen
+6. Prüfen, ob Premium+-Funktionen gesperrt sind
+
+**Erwartetes Ergebnis:**
+Downgrade auf Premium wird erfolgreich durchgeführt
+Benutzerkonto erhält das Paket Premium
+Premium-Funktionen bleiben freigeschaltet
+Premium+-Funktionen sind gesperrt
+
+**Testergebnis:**
+Benutzerkonto besitzt jetzt das Paket Premium
+Premium-Funktionen bleiben freigeschaltet
+Premium+-Funktionen sind gesperrt
+
+**Status:** Passed
+
+### PV-005: Downgrade von Premium+ auf Basic
+
+**Voraussetzung:**
+Benutzerkonto mit Paket Premium+ existiert
+Benutzer ist angemeldet
+Upgrade-Seite ist geöffnet
+
+**Testschritte:**
+1. Paket Basic auswählen
+2. Downgrade durchführen
+3. Prüfen, ob das Downgrade erfolgreich durchgeführt wurde
+4. Prüfen, ob das Benutzerkonto jetzt Basic besitzt
+5. Homepage / Auswahlseite öffnen
+6. Prüfen, ob Premium- und Premium+-Funktionen gesperrt sind
+
+**Erwartetes Ergebnis:**
+Downgrade auf Basic wird erfolgreich durchgeführt
+Benutzerkonto erhält das Paket Basic
+Basic-Funktionen bleiben verfügbar
+Premium- und Premium+-Funktionen sind gesperrt
+
+**Testergebnis:**
+Benutzerkonto besitzt jetzt das Paket Basic
+Basic-Funktionen bleiben verfügbar
+Premium- und Premium+-Funktionen sind gesperrt
+
+**Status:** Passed
+
+### PV-006: Downgrade von Premium auf Basic
+**Voraussetzung:**
+Benutzerkonto mit Paket Premium existiert
+Benutzer ist angemeldet
+Upgrade-Seite ist geöffnet
+
+**Testschritte:**
+1. Paket Basic auswählen
+2. Downgrade durchführen
+3. Prüfen, ob das Downgrade erfolgreich durchgeführt wurde
+4. Prüfen, ob das Benutzerkonto jetzt Basic besitzt
+5. Homepage / Auswahlseite öffnen
+6. Prüfen, ob Premium-Funktionen gesperrt sind
+
+**Erwartetes Ergebnis:**
+Downgrade auf Basic wird erfolgreich durchgeführt
+Benutzerkonto erhält das Paket Basic
+Basic-Funktionen bleiben verfügbar
+Premium- und Premium+-Funktionen sind gesperrt
+
+**Testergebnis:**
+Benutzerkonto besitzt jetzt das Paket Basic
+Basic-Funktionen bleiben verfügbar
+Premium- und Premium+-Funktionen sind gesperrt
+
+**Status:** Passed
+
+### PV-007: Freigeschaltete Funktionen nach Upgrade prüfen
+**Voraussetzung:**
+Benutzerkonto mit Paket Basic existiert
+Benutzer ist angemeldet
+Upgrade auf Premium oder Premium+ wurde durchgeführt
+
+**Testschritte:**
+1. Nach dem Upgrade die Homepage / Auswahlseite öffnen
+2. Alle Funktionen des neuen Pakets kontrollieren
+3. Freigeschaltete Bereiche öffnen
+4. Prüfen, ob die Funktionen erreichbar und nutzbar sind
+
+**Erwartetes Ergebnis:**
+Alle Funktionen des neuen Pakets sind freigeschaltet
+Die freigeschalteten Bereiche können geöffnet werden
+Die Funktionen können genutzt werden
+
+**Testergebnis:**
+Alle Funktionen des neuen Pakets sind freigeschaltet
+Die freigeschalteten Bereiche können geöffnet werden
+Die Funktionen können genutzt werden
+
+**Status:** passed
+
+### PV-008: Gesperrte Funktionen ohne entsprechendes Paket prüfen
+**Voraussetzung:**
+Benutzerkonto mit Paket Basic oder Premium existiert
+Benutzer ist angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Homepage / Auswahlseite öffnen
+2. Funktionen kontrollieren, die nicht im aktuellen Paket enthalten sind
+3. Versuchen, gesperrte Bereiche anzuklicken
+4. Prüfen, ob ein direkter Zugriff auf gesperrte Bereiche möglich ist
+
+**Erwartetes Ergebnis:**
+Funktionen ohne entsprechende Paketberechtigung sind gesperrt
+Gesperrte Bereiche können nicht geöffnet werden
+Ein Zugriff auf gesperrte Funktionen ist nicht möglich
+
+**Testergebnis:**
+Funktionen ohne entsprechende Paketberechtigung sind gesperrt
+Gesperrte Bereiche können nicht geöffnet werden
+Ein Zugriff auf gesperrte Funktionen ist nicht möglich
+
+**Status:** Passed
+
+### PV-009: Upgrade ohne gültige Paketauswahl
+**Voraussetzung:**
+Benutzerkonto mit Paket Basic oder Premium existiert
+Benutzer ist angemeldet
+Upgrade-Seite ist geöffnet
+
+**Testschritte:**
+1. Upgrade-Seite öffnen
+2. Kein Paket auswählen
+3. Upgrade bestätigen beziehungsweise versuchen, das Upgrade durchzuführen
+4. Prüfen, ob eine Fehlermeldung angezeigt wird
+5. Prüfen, ob das bisherige Paket unverändert bleibt
+
+**Erwartetes Ergebnis:**
+Upgrade ohne gültige Paketauswahl wird verhindert
+Eine entsprechende Fehlermeldung wird angezeigt
+Das bisherige Paket bleibt unverändert
+
+**Testergebnis:**
+Upgrade ohne gültige Paketauswahl wird verhindert
+Eine entsprechende Fehlermeldung wird angezeigt
+Das bisherige Paket bleibt unverändert
+
+**Status:** Passed
+
+### PV-010: Paket bleibt nach erneutem Login erhalten
+**Voraussetzung:**
+Benutzerkonto mit einem beliebigen Paket existiert
+Benutzer ist angemeldet
+
+**Testschritte:**
+1. Aktuelles Paket des Benutzerkontos überprüfen
+2. Benutzer abmelden
+3. Erneut mit demselben Benutzerkonto anmelden
+4. Homepage / Auswahlseite öffnen
+5. Prüfen, ob weiterhin das gleiche Paket zugewiesen ist
+6. Prüfen, ob die entsprechenden Funktionen freigeschaltet sind
+
+**Erwartetes Ergebnis:**
+Das Benutzerkonto behält sein bisheriges Paket
+Das Paket wird nach erneutem Login korrekt angezeigt
+Die entsprechenden Funktionen sind weiterhin freigeschaltet
+
+**Testergebnis:**
+Das Benutzerkonto behält sein bisheriges Paket
+Das Paket wird nach erneutem Login korrekt angezeigt
+Die entsprechenden Funktionen sind weiterhin freigeschaltet
+
+**Status:** Passed
+
+### PV-011: Paket bleibt nach Upgrade und erneutem Login erhalten
+
+**Voraussetzung:**
+Benutzerkonto mit Paket Basic oder Premium existiert
+Benutzer ist angemeldet
+Upgrade-Seite ist geöffnet
+
+**Testschritte:**
+1. Ein Upgrade auf ein höheres Paket durchführen
+2. Prüfen, ob das neue Paket übernommen wurde
+3. Benutzer abmelden
+4. Erneut mit demselben Benutzerkonto anmelden
+5. Homepage / Auswahlseite öffnen
+6. Prüfen, ob das neue Paket weiterhin zugewiesen ist
+7. Prüfen, ob die entsprechenden Funktionen freigeschaltet sind
+
+**Erwartetes Ergebnis:**
+Upgrade wird erfolgreich durchgeführt
+Das neue Paket wird dauerhaft übernommen
+Das neue Paket bleibt nach erneutem Login erhalten
+Die entsprechenden Funktionen sind weiterhin freigeschaltet
+
+**Testergebnis:**
+Upgrade erfolgreich durchgeführt
+Das neue Paket wird dauerhaft übernommen
+Das neue Paket bleibt nach erneutem Login erhalten
+Die entsprechenden Funktionen sind weiterhin freigeschaltet
+
+**Status:** Passed
