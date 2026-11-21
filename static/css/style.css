@@ -1100,59 +1100,106 @@ button:hover
         padding: 15px 10px;
     }
     /*-------------------------------------------register.html Handy-------------------------------------------*/
+    .register-page h1
+    {
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
+
+    .register-page > h2
+    {
+        font-size: 20px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+
     form[action="/register"]
     {
-        display: grid;
-        grid-template-columns: max-content minmax(0, 1fr);
-        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         width: 95%;
-        max-width: 900px;
-        box-sizing: border-box;
+        max-width: 350px;
+        margin: 10px auto;
+        gap: 10px;
     }
 
-    form[action="/register"] label
+    .register-form
     {
-        align-self: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
     }
 
-    form[action="/register"] input
+    .register-form label
+    {
+        align-self: flex-start;
+        margin-top: 5px;
+    }
+
+    .register-form input
     {
         width: 100%;
+        height: 42px;
         box-sizing: border-box;
     }
 
-    form[action="/register"] button
+    .password-container-register
     {
-        font-size: 15px;
-        padding: 10px 15px;
-    }
-
-    form[action="/register"] > button[type="submit"]
-    {
-        grid-column: 1 / -1;
-        justify-self: center;
-    }
-
-    form[action="/register"] .package-container
-    {
-        grid-column: 1 / -1;
         width: 100%;
-        max-width: none;
+    }
+
+    .password-container-register input
+    {
+        width: 100%;
+        height: 42px;
         box-sizing: border-box;
-        margin: 20px 0;
+    }
+
+    .register-form button[type="submit"]
+    {
+        width: 100%;
+        height: 42px;
+        margin-top: 10px;
+    }
+
+    .package-container
+    {
+        width: 100%;
+        padding: 10px;
+        margin: 15px 0;
+        box-sizing: border-box;
     }
 
     .package-options
     {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
     }
 
-    .package-card,
-    .gasstation-card
+    .package-card
     {
-        min-width: 0;
+        padding: 12px;
+        margin-bottom: 0;
         box-sizing: border-box;
+    }
+
+    .package-card h3
+    {
+        font-size: 17px;
+    }
+
+    .package-card p,
+    .package-card li
+    {
+        font-size: 13px;
+    }
+
+    body.register-page .back-button
+    {
+        position: static;
+        margin: 10px auto;
     }
 
     /*-------------------------------------------upgrade.html Handy-------------------------------------------*/

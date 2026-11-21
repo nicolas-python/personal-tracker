@@ -32,7 +32,7 @@
 - [X] Gesperrte Bereiche werden angezeigt und sind nicht anklickbar
 - [X] Freigeschaltete Bereiche bei Premium
 - [X] Freigeschaltete Bereiche bei Premium
-- [ ] Darstellung auf verschiedenen Bildschirmgrößen prüfen       (Register Handy css anpassen)
+- [X] Darstellung auf verschiedenen Bildschirmgrößen prüfen
 - [X] Speichern von Statistiken in premium 
 - [X] Speichern von Statistiken in premium+
 - [X] Gesperrte Statistiken in basic

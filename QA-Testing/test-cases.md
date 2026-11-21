@@ -223,10 +223,9 @@ Keine Weiterleitung auf Selection/Homepage
 
 **Testergebnis:**
 Fehlermeldung: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
-Das Passwort-Eingabefeld liegt optisch über dem Popup (siehe BUG-001)
 Selection/Homepage wird nicht angezeigt
 
-**Status:** Failed
+**Status:** Passed
 
 ### LOG-003 Login mit unbekanntem Benutzernamen
 **Voraussetzung:**
@@ -244,7 +243,6 @@ Keine Weiterleitung auf Selection/Homepage
 
 **Testergebnis:**
 Fehlermeldung: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
-Das Passwort-Eingabefeld liegt optisch über dem Popup (siehe BUG-001)
 Selection/Homepage wird nicht angezeigt
 
 **Status:** Passed
@@ -264,10 +262,9 @@ Keine Weiterleitung auf Selection/Homepage
 
 **Testergebnis:**
 Fehlermeldung: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
-Das Passwort-Eingabefeld liegt optisch über dem Popup (siehe BUG-001)
 Selection/Homepage wird nicht angezeigt
 
-**Status:** Failed
+**Status:** Passed
 
 ### LOG-005  Passwort anzeigen/verbergen testen
 **Voraussetzung:**
@@ -302,7 +299,6 @@ Anzeige: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
 Nach drei erlaubten Versuchen innerhalb einer kurzen zeitspanne werden weitere Loginversuche blockiert
 
 **Testergebnis:**
-Das Passwort-Eingabefeld liegt optisch über dem Popup (siehe BUG-001)
 Anzeige: "Login fehlgeschlagen: Passwort oder Benutzername falsch"
 Nach drei erlaubten Versuchen wird der weitere Loginversuch blockiert
 Anzeige: "Too Many Requests – 3 per 1 minute"
@@ -310,7 +306,6 @@ Anzeige: "Too Many Requests – 3 per 1 minute"
 **Status:** Passed
 
 ### LOG-007 Login mit Leerzeichen im Benutzernamen
-
 **Voraussetzung:**
 Die Loginseite ist erreichbar
 Ein Benutzerkonto mit Leerzeichen im Benutzernamen existiert bereits
@@ -331,7 +326,6 @@ Login mit Leerzeichen im Benutzernamen funktioniert
 
 
 ### LOG-008: Abmeldung und Zugriffsschutz nach Logout
-
 **Voraussetzung:**
 Benutzer ist erfolgreich angemeldet
 Homepage / Auswahlseite ist geöffnet
@@ -381,7 +375,6 @@ Die Meldung "Deine Sitzung ist abgelaufen oder wurde auf einem anderen Gerät er
 
 
 ### LOG-009: Login desselben Benutzers auf mehreren Geräten
-
 **Voraussetzung:**
 Ein Benutzerkonto existiert
 Zwei unterschiedliche Browser oder Geräte stehen zur Verfügung
@@ -409,7 +402,6 @@ Es besteht maximal eine aktive Sitzung pro Benutzer
 ##Homepage / Navigation
 -----------------------------------------------
 ### HOME-001: Homepage nach erfolgreichem Login anzeigen
-
 **Voraussetzung:**
 Ein Benutzerkonto existiert
 Benutzer befindet sich auf der Login-Seite
@@ -593,10 +585,11 @@ Alle Seiten werden auf mobilen Bildschirmgrößen korrekt dargestellt
 Inhalte und Bedienelemente sind vollständig sichtbar und nutzbar
 
 **Testergebnis:**
-Ansicht Browser ok Browserdarstellung ist korrekt
-Mobile Darstellung der Registrierungsseite ist fehlerhaft
+Browserdarstellung ist korrekt
+Mobile Darstellung ist korrekt
+Inhalte und Bedienelemente sind vollständig sichtbar und nutzbar
 
-**Status:** failed
+**Status:** Passed
 
 ### HOME-008: Statistiken bei Premium speichern
 **Voraussetzung:**
@@ -817,7 +810,6 @@ Premium+-Funktionen sind gesperrt
 **Status:** Passed
 
 ### PV-005: Downgrade von Premium+ auf Basic
-
 **Voraussetzung:**
 Benutzerkonto mit Paket Premium+ existiert
 Benutzer ist angemeldet
@@ -970,7 +962,6 @@ Die entsprechenden Funktionen sind weiterhin freigeschaltet
 **Status:** Passed
 
 ### PV-011: Paket bleibt nach Upgrade und erneutem Login erhalten
-
 **Voraussetzung:**
 Benutzerkonto mit Paket Basic oder Premium existiert
 Benutzer ist angemeldet
@@ -998,3 +989,8 @@ Das neue Paket bleibt nach erneutem Login erhalten
 Die entsprechenden Funktionen sind weiterhin freigeschaltet
 
 **Status:** Passed
+
+-------------------------
+##Trainingspläne
+-------------------------
+### WORK-001 Trainingsplan erstellen
