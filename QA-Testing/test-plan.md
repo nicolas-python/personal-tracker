@@ -30,13 +30,13 @@
 - [X] Navigation zu allen verfügbaren Bereichen
 - [X] Zurück-Navigation funktioniert
 - [X] Gesperrte Bereiche werden angezeigt und sind nicht anklickbar
-- [ ] Freigeschaltete Bereiche bei Premium
-- [ ] Freigeschaltete Bereiche bei Premium
-- [ ] Darstellung auf verschiedenen Bildschirmgrößen prüfen
-- [ ] Speichern von Statistiken in premium 
-- [ ] Speichern von Statistiken in premium+
-- [ ] Gesperrte Statistiken in basic
-- [ ] Upgrade Knopf funktioniert
+- [X] Freigeschaltete Bereiche bei Premium
+- [X] Freigeschaltete Bereiche bei Premium
+- [ ] Darstellung auf verschiedenen Bildschirmgrößen prüfen       (Register Handy css anpassen)
+- [X] Speichern von Statistiken in premium 
+- [X] Speichern von Statistiken in premium+
+- [X] Gesperrte Statistiken in basic
+- [X] Upgrade Knopf funktioniert
 
 ## 4. Paketverwaltung / Upgrade
 - [ ] Upgrade von Basic auf Premium

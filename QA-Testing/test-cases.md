@@ -489,7 +489,7 @@ Es treten keine Fehlermeldungen auf
 
 **Status:** Passed
 
-### HOME-003: Gesperrte Bereiche werden angezeigt und sind nicht anklickbar
+### HOME-004: Gesperrte Bereiche werden angezeigt und sind nicht anklickbar
 **Voraussetzung:**
 Benutzerkonto mit Paket Basic existiert
 Benutzer ist erfolgreich angemeldet
@@ -514,5 +514,192 @@ Premium- und Premium+-Bereiche werden angezeigt
 Gesperrte Bereiche sind optisch als gesperrt gekennzeichnet
 Gesperrte Bereiche können nicht angeklickt werden
 Es erfolgt keine Weiterleitung in einen gesperrten Bereich
+
+**Status:** Passed
+
+### HOME-005: Freigeschaltete Bereiche bei Premium
+**Voraussetzung:**
+Benutzerkonto mit Paket Premium existiert
+Benutzer ist erfolgreich angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Homepage mit einem Premium-Benutzer öffnen
+2. Premium- und Premium+-Bereiche kontrollieren
+3. Prüfen, ob Premium-Bereiche freigeschaltet und anklickbar sind
+4. Prüfen, ob Premium+-Bereiche weiterhin gesperrt sind
+5. Versuchen, einen Premium-Bereich zu öffnen
+6. Prüfen, ob Statistiken für Premium-Benutzer verfügbar sind
+
+**Erwartetes Ergebnis:**
+Premium-Bereiche sind freigeschaltet und anklickbar
+Premium+-Bereiche sind optisch als gesperrt gekennzeichnet
+Premium+-Bereiche können nicht angeklickt werden
+Premium-Bereiche lassen sich öffnen
+Premium-Statistiken sind verfügbar
+
+**Testergebnis:**
+Premium-Bereiche sind freigeschaltet und anklickbar
+Premium+-Bereiche sind weiterhin gesperrt
+Premium-Bereiche lassen sich öffnen
+Premium-Statistiken sind verfügbar
+
+**Status:** Passed
+
+### HOME-006: Freigeschaltete Bereiche bei Premium+
+**Voraussetzung:**
+Benutzerkonto mit Paket Premium+ existiert
+Benutzer ist erfolgreich angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Homepage mit einem Premium+-Benutzer öffnen
+2. Premium- und Premium+-Bereiche kontrollieren
+3. Prüfen, ob alle Bereiche freigeschaltet und anklickbar sind
+4. Premium-Bereiche öffnen
+5. Premium+-Bereiche öffnen
+6. Prüfen, ob Statistiken verfügbar sind
+
+**Erwartetes Ergebnis:**
+Premium-Bereiche sind freigeschaltet und anklickbar
+Premium+-Bereiche sind freigeschaltet und anklickbar
+Alle Bereiche lassen sich öffnen
+Statistiken sind verfügbar
+
+**Testergebnis:**
+Premium- und Premium+-Bereiche sind freigeschaltet und anklickbar
+Alle Bereiche lassen sich öffnen
+Statistiken sind verfügbar
+
+**Status:** Passed
+
+### HOME-007 Darstellung auf verschiedenen Bildschirmgrößen prüfen
+**Voraussetzung:**
+Benutzerkonto existiert
+Benutzer ist erfolgreich angemeldet
+Login,Register, Homepage/Auswahlseite etc ist geöffnet
+
+**Testschritte:**
+1. Einloggen
+2. Die jeweilige Seite im normalen Browserfenster öffnen
+3. Darstellung und Layout überprüfen
+4. Browser-Entwicklertools mit F12 öffnen
+5. Auf eine mobile Bildschirmgröße wechseln
+6. Darstellung und Layout auf dem simulierten Handy überprüfen
+
+**Erwartetes Ergebnis:**
+Alle Seiten werden im Browser korrekt dargestellt
+Alle Seiten werden auf mobilen Bildschirmgrößen korrekt dargestellt
+Inhalte und Bedienelemente sind vollständig sichtbar und nutzbar
+
+**Testergebnis:**
+Ansicht Browser ok Browserdarstellung ist korrekt
+Mobile Darstellung der Registrierungsseite ist fehlerhaft
+
+**Status:** failed
+
+### HOME-008: Statistiken bei Premium speichern
+**Voraussetzung:**
+Benutzerkonto mit Paket Premium existiert
+Benutzer ist erfolgreich angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Premium-Benutzer anmelden
+2. Statistikbereich öffnen
+3. Werte im Kalorienbedarfsrechner eintragen oder vorhandene Werte ändern
+4. Eingabe speichern
+5. Seite neu laden
+6. Prüfen, ob der gespeicherte Wert weiterhin angezeigt wird
+
+**Erwartetes Ergebnis:**
+Statistikbereich ist für Premium-Benutzer verfügbar
+Werte im Kalorienbedarfsrechner können eingetragen und gespeichert werden
+Gespeicherte Werte bleiben nach dem Neuladen erhalten
+
+**Testergebnis:**
+Statistikbereich ist verfügbar
+Werte im Kalorienbedarfsrechner können eingetragen und gespeichert werden
+Gespeicherte Werte bleiben nach dem Neuladen erhalten
+
+**Status:** Passed
+
+### HOME-009: Statistiken bei Premium+ speichern
+**Voraussetzung:**
+Benutzerkonto mit Paket Premium+ existiert
+Benutzer ist erfolgreich angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Premium+-Benutzer anmelden
+2. Statistikbereich öffnen
+3. Werte im Kalorienbedarfsrechner eintragen oder vorhandene Werte ändern
+4. Eingabe speichern
+5. Seite neu laden
+6. Prüfen, ob der gespeicherte Wert weiterhin angezeigt wird
+
+**Erwartetes Ergebnis:**
+Statistikbereich ist für Premium+-Benutzer verfügbar
+Werte im Kalorienbedarfsrechner können eingetragen und gespeichert werden
+Gespeicherte Werte bleiben nach dem Neuladen erhalten
+
+**Testergebnis:**
+Statistikbereich ist verfügbar
+Werte im Kalorienbedarfsrechner können eingetragen und gespeichert werden
+Gespeicherte Werte bleiben nach dem Neuladen erhalten
+
+**Status:** Passed
+
+### HOME-010: Gesperrte Statistiken bei Basic
+**Voraussetzung:**
+Benutzerkonto mit Paket Basic existiert
+Benutzer ist erfolgreich angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Basic-Benutzer anmelden
+2. Statistikbereich aufrufen
+3. Prüfen, ob die Premium-Statistiken gesperrt sind
+4. Versuchen, auf die gesperrten Statistiken zuzugreifen
+
+**Erwartetes Ergebnis:**
+Premium-Statistiken sind für Basic-Benutzer gesperrt
+Gesperrte Statistiken können nicht aufgerufen werden
+Es erfolgt keine Weiterleitung in einen gesperrten Bereich
+
+**Testergebnis:**
+Premium-Statistiken sind für Basic-Benutzer gesperrt
+Gesperrte Statistiken können nicht aufgerufen werden
+Es erfolgt keine Weiterleitung in einen gesperrten Bereich
+
+**Status:** Passed
+
+
+### HOME-011: Navigation zur Upgrade-Seite
+**Voraussetzung:**
+Benutzerkonto existiert
+Benutzer ist erfolgreich angemeldet
+Homepage / Auswahlseite ist geöffnet
+
+**Testschritte:**
+1. Upgrade-Knopf auf der Homepage anklicken
+2. Prüfen, ob die Upgrade-Seite geöffnet wird
+3. Upgrade-Seite überprüfen
+4. Zurück-Navigation anklicken
+5. Prüfen, ob die Homepage / Auswahlseite wieder geöffnet wird
+
+**Erwartetes Ergebnis:**
+Upgrade-Knopf ist sichtbar und anklickbar
+Upgrade-Seite wird korrekt geöffnet
+Verfügbare Pakete werden angezeigt
+Zurück-Navigation funktioniert
+Homepage / Auswahlseite wird wieder angezeigt
+
+**Testergebnis:**
+Upgrade-Knopf funktioniert
+Upgrade-Seite wird korrekt geöffnet
+Verfügbare Pakete werden angezeigt
+Zurück-Navigation funktioniert
+Homepage / Auswahlseite wird wieder angezeigt
 
 **Status:** Passed
