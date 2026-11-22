@@ -52,19 +52,19 @@
 - [X] Paket bleibt nach Upgrade und erneutem Login erhalten
 
 ## 5. Trainingspläne
-- [ ] Trainingsplan erstellen
+- [X] Trainingsplan erstellen
 - [ ] Trainingsplan bearbeiten
-- [ ] Trainingsplan löschen
+- [X] Trainingsplan löschen
 - [ ] Übungen hinzufügen
 - [ ] Übungen entfernen
 - [ ] Trainingsplan mit leerem Namen erstellen
-- [ ] Trainingsplan mit mehreren Übungen erstellen
-- [ ] Training starten
-- [ ] Training abschließen
-- [ ] Trainingszeit / Timer prüfen
-- [ ] Abgeschlossenes Training speichern
-- [ ] Gespeicherte Trainingseinheiten erneut aufrufen
-- [ ] Trainingsplan nach erneutem Login weiterhin vorhanden
+- [X] Trainingsplan mit mehreren Übungen erstellen
+- [X] Training starten
+- [X] Training abschließen
+- [X] Trainingszeit / Timer prüfen
+- [X] Abgeschlossenes Training speichern
+- [X] Abgeschlossene Trainingseinheiten aufrufen
+- [X] Trainingsplan nach erneutem Login weiterhin vorhanden
 
 ## 6. Ernährung
 - [ ] Kalorienrechner mit gültigen Werten testen

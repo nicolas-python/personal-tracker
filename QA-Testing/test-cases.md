@@ -993,4 +993,299 @@ Die entsprechenden Funktionen sind weiterhin freigeschaltet
 -------------------------
 ##Trainingspläne
 -------------------------
-### WORK-001 Trainingsplan erstellen
+### TR-001 Trainingsplan erstellen
+**Voraussetzung:**
+Benutzer ist angemeldet
+create-workout-Seite ist geöffnet
+
+**Testschritte:**
+1. Einen neuen Trainingsplan erstellen
+2. Trainingsplan Bennen
+3. 1 bis 2 Übungen reinmachen
+4. Trainingsplan speichern
+
+**Erwartetes Ergebnis:**
+Trainingsplan wird erfolgreich erstellt
+Trainingsplan wird in der Übersicht angezeigt
+
+**Testergebnis:**
+Trainingsplan erfolgreich erstellt
+Trainingsplan wird in der Übersicht angezeigt
+
+**Status:** Passed
+
+
+### TR-002: Trainingsplan bearbeiten
+**Voraussetzung:**
+Ein Trainingsplan existiert
+Benutzer ist angemeldet
+
+**Testschritte:**
+1. Einen bestehenden Trainingsplan auswählen
+2. Trainigsplan bearbeiten drücken (✏️)
+3. Den Namen des Trainingsplans ändern
+4. Änderungen speichern
+
+**Erwartetes Ergebnis:**
+Aktualisierungsmeldung „Trainingsplan aktualisiert!“ wird angezeigt
+Trainingsplan wird erfolgreich aktualisiert
+Weiterleitung zur workouts-Seite erfolgt
+Neuer Name wird in der Übersicht angezeigt
+
+**Testergebnis:**
+Aktualisierungsmeldung "Trainingsplan aktualisiert!" wird angezeigt
+Trainingsplan wird erfolgreich aktualisiert
+Keine Weiterleitung zur workouts-Seite (TR-BUG-002)
+Neuer Name wird in der Übersicht angezeigt
+
+**Status:** Failed
+
+### TR-003: Trainingsplan löschen
+**Voraussetzung:**
+Ein Trainingsplan existiert
+Benutzer ist angemeldet
+
+**Testschritte:**
+1. Workouts-Seite öffnen
+2. Einen bestehenden Trainingsplan auswählen (X-Button drücken)
+3. Trainingsplan löschen
+4. Übersicht prüfen
+
+**Erwartetes Ergebnis:**
+Pop um message Möchtest du den Traingsplan""wirklich löschen? Bestätigen
+Trainingsplan wird erfolgreich gelöscht
+Der gelöschte Trainingsplan wird nicht mehr in der Übersicht angezeigt
+
+**Testergebnis:**
+Pop um message Möchtest du den Traingsplan""wirklich löschen? Bestätigen
+Trainingsplan erfolgreich gelöscht
+Trainingsplan wird nicht mehr in der Übersicht angezeigt
+
+**Status:** Passed
+
+### TR-004: Übungen hinzufügen
+**Voraussetzung:**
+Ein Trainingsplan existiert
+Benutzer ist angemeldet
+
+**Testschritte:**
+1. Einen bestehenden Trainingsplan auswählen
+2. Trainingsplan per ✏️-Knopf bearbeiten
+3. Eine neue Übung hinzufügen
+4. Änderungen speichern
+5. Übersicht prüfen
+
+**Erwartetes Ergebnis:**
+Aktualisierungsmeldung "Trainingsplan aktualisiert!" wird angezeigt
+Weiterleitung zur workouts-Seite erfolgt
+Übung wird erfolgreich zum Trainingsplan hinzugefügt
+Übung wird im Trainingsplan angezeigt
+
+**Testergebnis:**
+Aktualisierungsmeldung "Trainingsplan aktualisiert!" wird angezeigt
+Keine Weiterleitung zur workouts-Seite (TR-BUG-002)
+Übung erfolgreich hinzugefügt
+Übung wird im Trainingsplan angezeigt
+
+**Status:** Faild
+
+### TR-005: Übungen entfernen
+**Voraussetzung:**
+Ein Trainingsplan mit mindestens einer Übung existiert
+Benutzer ist angemeldet
+
+**Testschritte:**
+1. Workouts-Seite über den Trainingspläne-Knopf öffnen
+2. Einen Trainingsplan zum Bearbeiten auswählen (✏️)
+3. Eine vorhandene Übung entfernen
+4. Änderungen speichern
+5. Übersicht prüfen
+
+**Erwartetes Ergebnis:**
+Pop up massage "Trainingsplan aktualisiert" bestatigen
+In workouts weitergeleitet werden
+Ausgewählte Übung wird aus dem Trainingsplan entfernt
+Übrige Übungen bleiben im Trainingsplan erhalten
+
+**Testergebnis:**
+Aktualisierungsmeldung "Trainingsplan aktualisiert!" wird angezeigt
+Keine Weiterleitung zur workouts-Seite (TR-BUG-002)
+Übung erfolgreich entfernt
+Übrige Übungen bleiben im Trainingsplan erhalten
+
+**Status:** Failed
+
+
+### TR-006: Trainingsplan mit leerem Namen erstellen
+**Voraussetzung:**
+Benutzer ist angemeldet
+Workout-Seite ist geöffnet
+
+**Testschritte:**
+1. Einen neuen Trainingsplan erstellen
+2. Das Namensfeld leer lassen
+3. Speichern versuchen
+
+**Erwartetes Ergebnis:**
+Trainingsplan wird nicht erstellt
+Eine entsprechende Fehlermeldung wird angezeigt
+
+**Testergebnis:**
+Trainingsplan wurde trotz leerem Namensfeld erstellt
+Keine Fehlermeldung wird angezeigt (TR-BUG-003)
+
+**Status:** Failed
+
+### TR-007: Trainingsplan mit mehreren Übungen erstellen
+**Voraussetzung:**
+Benutzer ist angemeldet
+Fitness-Seite ist geöffnet
+
+**Testschritte:**
+1. Einen neuen Trainingsplan erstellen
+2. Einen gültigen Namen eingeben
+3. Mehrere Übungen hinzufügen
+4. Trainingsplan speichern
+
+**Erwartetes Ergebnis:**
+Trainingsplan wird erfolgreich erstellt
+Alle hinzugefügten Übungen werden dem Trainingsplan zugeordnet und angezeigt
+
+**Testergebnis:**
+Trainingsplan erfolgreich erstellt
+Alle hinzugefügten Übungen werden korrekt angezeigt
+
+**Status:** Passed
+
+
+### TR-008: Training starten
+**Voraussetzung:**
+Ein Trainingsplan mit mindestens einer Übung existiert in Workouts
+Benutzer ist angemeldet
+
+**Testschritte:**
+1. Einen Trainingsplan auswählen
+2. Training starten per Startknopf "▶️"
+
+**Erwartetes Ergebnis:**
+Training wird erfolgreich gestartet
+Übungen des ausgewählten Trainingsplans werden angezeigt
+
+**Testergebnis:**
+Training erfolgreich gestartet
+Übungen werden korrekt angezeigt
+
+**Status:** Passed
+
+### TR-009: Training abschließen
+**Voraussetzung:**
+Benutzer ist angemeldet
+Ein Trainingsplan mit mindestens einer Übung existiert
+
+**Testschritte:**
+1. Ein Training starten per Startknopf "▶️" starten
+2. Trainigsplan starten knopf drücken
+3. Übungen per "Next" knopf durchegehen
+4. Training abschließen
+
+**Erwartetes Ergebnis:**
+Trainigstimer fangt nach knopfdruck an hochzuzählen
+Workout-Fortschirttsbalken füllt sich nach jedem mal "Next" drücken einen teil grün
+Training wird erfolgreich abgeschlossen
+Trainingsansicht wird entsprechend aktualisiert
+Workout geschaffts erfolgs meldung mit Trainingszeit und Satz anzahl
+Nach Workout geschfts meldung zuruck in selection/hompage geleitet werden,Statistiken ändern sich
+
+**Testergebnis:**
+Trainigstimer fangt nach knopfdruck an hochzuzählen
+Workout-Fortschirttsbalken füllt sich nach jedem mal "Next" drücken einen teil grün
+Training wird erfolgreich abgeschlossen
+Trainingsansicht wird entsprechend aktualisiert
+Workout geschaffts erfolgs meldung mit Trainingszeit und Satz anzahl
+Nach Workout geschfts meldung zuruck in selection/hompage geleitet werden,Statistiken ändern sich
+
+**Status:** Passed
+
+### TR-010: Trainingszeit / Timer prüfen
+**Voraussetzung:**
+Ein Trainingsplan existiert
+Benutzer ist angemeldet
+
+**Testschritte:**
+1. Ein Training starten
+2. Timer per knopfdruck starten
+3. Timer beobachten
+4. Einige Sekunden warten
+5. Timer erneut prüfen 
+
+**Erwartetes Ergebnis:**
+Timer startet beim Knopfdruck
+Trainingszeit wird fortlaufend angezeigt
+
+**Testergebnis:**
+Timer startet korrekt
+Trainingszeit wird fortlaufend angezeigt
+
+**Status:** Passed
+
+### TR-011: Abgeschlossenes Training in Statistiken speichern
+**Voraussetzung:**
+Benutzer ist angemeldet
+Ein Training wurde gestartet
+Trainigsplan wurde beendet
+
+**Testschritte:**
+1. Ein Training durchführen
+2. Training abschließen
+3. Prüfen, ob das abgeschlossene Training in Statistik gespeichert wurde
+
+**Erwartetes Ergebnis:**
+Abgeschlossenes Training wird erfolgreich in Statistik gespeichert
+Trainingseinheit wird bei den gespeicherten Trainingseinheiten angezeigt
+
+**Testergebnis:**
+Training erfolgreich in Statistik gespeichert
+Trainingseinheit wird bei den gespeicherten Trainingseinheiten angezeigt
+
+**Status:** Passed
+
+### TR-012: Abgeschlossene Trainingseinheiten aufrufen
+**Voraussetzung:**
+Mindestens eine abgeschlossene Trainingseinheit wurde gespeichert
+Benutzer ist angemeldet
+
+**Testschritte:**
+1. Gespeicherte Trainingseinheiten öffnen
+2. Eine vorhandene Trainingseinheit auswählen
+3. Gespeicherte Trainingsdaten prüfen
+
+**Erwartetes Ergebnis:**
+Gespeicherte Trainingseinheit kann erneut aufgerufen werden
+Gespeicherte Trainingsdaten werden korrekt angezeigt
+
+**Testergebnis:**
+Trainingseinheit erfolgreich aufgerufen
+Gespeicherte Trainingsdaten werden korrekt angezeigt
+
+**Status:** Passed
+
+### TR-013: Trainingsplan nach erneutem Login weiterhin vorhanden
+**Voraussetzung:**
+Ein Trainingsplan wurde erstellt
+Benutzer ist angemeldet
+
+**Testschritte:**
+1. Benutzer abmelden
+2. Erneut mit demselben Benutzerkonto anmelden
+3. Workout-Seite öffnen
+4. Prüfen, ob der zuvor erstellte Trainingsplan weiterhin vorhanden ist
+
+**Erwartetes Ergebnis:**
+Trainingsplan ist nach erneutem Login weiterhin vorhanden
+Zugehörige Übungen werden weiterhin angezeigt
+
+**Testergebnis:**
+Trainingsplan ist nach erneutem Login weiterhin vorhanden
+Zugehörige Übungen werden korrekt angezeigt
+
+**Status:** Passed

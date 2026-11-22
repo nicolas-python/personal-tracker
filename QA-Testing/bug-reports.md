@@ -1,5 +1,4 @@
 ### REG-BUG-001: Passwortfeld liegt über dem Popup
-
 **Bereich:** Register/Login
 
 **Schritte zur Reproduktion:**
@@ -28,4 +27,66 @@ LOG-006
 
 **Status:** Fixed
 
+
+### TR-BUG-002 Trainingsplan bearbeiten
+**Bereich:** Trainingspläne bearbeiten/workouts
+
+**Schritte zur Reproduktion:**
+1. Einen bestehenden Trainingsplan auswählen
+2. Trainingsplan bearbeiten drücken (✏️)
+3. Den Namen des Trainingsplans ändern
+4. Änderungen speichern
+5. Erfolgsmeldung bestätigen
+
+**Erwartetes Ergebnis:**
+Aktualisierungsmeldung "Trainingsplan aktualisiert!" wird angezeigt
+Trainingsplan wird erfolgreich aktualisiert
+Weiterleitung zur workouts-Seite erfolgt
+Der neue Name wird in der Übersicht angezeigt
+
+**Testergebnis:**
+Aktualisierungsmeldung "Trainingsplan aktualisiert!" wird angezeigt
+Trainingsplan wird erfolgreich aktualisiert
+Keine Weiterleitung zur workouts-Seite
+Benutzer wird stattdessen auf /create-workout weitergeleitet
+Der neue Name wird korrekt in der Übersicht angezeigt
+
+**Ursache:**
+Noch nicht technisch analysiert. Beobachtetes Fehlerverhalten: Falsche Weiterleitung nach Bestätigung der Erfolgsmeldung
+
+**Lösung:**
+
+**Betroffene Testfälle:**
+TR-002
+TR-004
+TR-005
+
+**Status:**  Open
+
+### TR-BUG-003 Trainingsplan mit leerem Namen erstellen
+**Bereich:** Trainingsplan erstellen
+
+**Schritte zur Reproduktion:**
+1. Einen neuen Trainingsplan erstellen
+2. Das Namensfeld leer lassen
+3. Speichern versuchen
+
+**Erwartetes Ergebnis:**
+Trainingsplan wird nicht erstellt
+Eine entsprechende Fehlermeldung wird angezeigt
+
+**Testergebnis:**
+Trainingsplan wird trotz leerem Namensfeld erstellt
+Keine Fehlermeldung wird angezeigt
+
+**Ursache:** 
+Noch nicht technisch analysiert. Die Eingabe des Trainingsplannamens wird offenbar nicht ausreichend abgesichert
+
+**Lösung:**
+Bedingung Leere Namen müssen abgelehnt werden ,inklusive fehlermeldung
+
+**Betroffene Testfälle:**
+TR-006
+
+**Status:**  Open
 
