@@ -92,3 +92,30 @@ TR-006
 
 **Status:**  Fixed
 
+### TR-BUG-004: Trainingsplan ohne Übungen erstellen
+**Bereich:** Trainingsplan erstellen
+
+**Schritte zur Reproduktion:**
+1. Einen neuen Trainingsplan erstellen
+2. Einen Trainingsplannamen eingeben
+3. Keine Übungen hinzufügen
+4. Trainingsplan speichern
+
+**Erwartetes Ergebnis:**
+Trainingsplan wird nicht erstellt
+Eine entsprechende Fehlermeldung wird angezeigt
+
+**Testergebnis:**
+Leerer Trainingsplan wird trotz fehlender Übungen erfolgreich erstellt
+
+**Ursache:** 
+Beim Speichern eines Trainingsplans wird nicht geprüft, ob mindestens eine Übung hinzugefügt wurde
+
+**Lösung:**
+Eine Bedingung einbauen, die verhindert, dass Trainingspläne ohne Übungen gespeichert werden können
+Es muss mindestens eine Übung hinzugefügt werden (Anzahl der Übungen > 0)
+
+**Betroffene Testfälle:**
+TR-006
+
+**Status:**  opend

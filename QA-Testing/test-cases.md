@@ -1135,7 +1135,51 @@ Die Erstellung mit einem gültigen Namen funktioniert weiterhin
 
 **Status:** Passed
 
-### TR-007: Trainingsplan mit mehreren Übungen erstellen
+### TR-007: Trainingsplan ohne Übungsangaben erstellen
+**Voraussetzung:**
+Benutzer ist angemeldet
+Workout-Seite ist geöffnet
+
+**Testschritte:**
+1. Einen neuen Trainingsplan erstellen
+2. Einen Trainingsplannamen eingeben
+3. Keine Übungen hinzufügen
+4. Trainingsplan speichern
+
+**Erwartetes Ergebnis:**
+Trainingsplan wird erfolgreich erstellt und gespeichert
+Der Trainingsplan wird in der Übersicht angezeigt
+Es werden keine Übungen gespeichert
+
+**Testergebnis:**
+Leerer Traingsplan wird erstellt
+
+**Status:** failed
+
+### TR-008: Übung ohne vollständige Angaben speichern
+**Voraussetzung:**
+Benutzer ist angemeldet
+Workout-Seite ist geöffnet
+
+**Testschritte:**
+1. Einen neuen Trainingsplan erstellen
+2. Einen Trainingsplannamen eingeben
+3. Eine Übung hinzufügen
+4. Sätze, Wiederholungen und Gewicht leer lassen
+5. Trainingsplan speichern
+
+**Erwartetes Ergebnis:**
+Trainingsplan wird nicht gespeichert
+Eine entsprechende Fehlermeldung wird angezeigt
+Fehlende Übungsangaben werden erkannt
+
+**Testergebnis:**
+Trainingsplan wird nicht gespeichert
+Eine Fehlermeldung wird angezeigt wenn die Übungsangaben fehlen
+
+**Status:** Passed
+
+### TR-0019: Trainingsplan mit mehreren Übungen erstellen
 **Voraussetzung:**
 Benutzer ist angemeldet
 Fitness-Seite ist geöffnet
@@ -1157,7 +1201,7 @@ Alle hinzugefügten Übungen werden korrekt angezeigt
 **Status:** Passed
 
 
-### TR-008: Training starten
+### TR-0010: Training starten
 **Voraussetzung:**
 Ein Trainingsplan mit mindestens einer Übung existiert in Workouts
 Benutzer ist angemeldet
@@ -1176,7 +1220,7 @@ Training erfolgreich gestartet
 
 **Status:** Passed
 
-### TR-009: Training abschließen
+### TR-011: Training abschließen
 **Voraussetzung:**
 Benutzer ist angemeldet
 Ein Trainingsplan mit mindestens einer Übung existiert
@@ -1205,7 +1249,7 @@ Nach Workout geschfts meldung zuruck in selection/hompage geleitet werden,Statis
 
 **Status:** Passed
 
-### TR-010: Trainingszeit / Timer prüfen
+### TR-012: Trainingszeit / Timer prüfen
 **Voraussetzung:**
 Ein Trainingsplan existiert
 Benutzer ist angemeldet
@@ -1227,7 +1271,7 @@ Trainingszeit wird fortlaufend angezeigt
 
 **Status:** Passed
 
-### TR-011: Abgeschlossenes Training in Statistiken speichern
+### TR-013: Abgeschlossenes Training in Statistiken speichern
 **Voraussetzung:**
 Benutzer ist angemeldet
 Ein Training wurde gestartet
@@ -1248,7 +1292,7 @@ Trainingseinheit wird bei den gespeicherten Trainingseinheiten angezeigt
 
 **Status:** Passed
 
-### TR-012: Abgeschlossene Trainingseinheiten aufrufen
+### TR-014: Abgeschlossene Trainingseinheiten aufrufen
 **Voraussetzung:**
 Mindestens eine abgeschlossene Trainingseinheit wurde gespeichert
 Benutzer ist angemeldet
@@ -1268,7 +1312,7 @@ Gespeicherte Trainingsdaten werden korrekt angezeigt
 
 **Status:** Passed
 
-### TR-013: Trainingsplan nach erneutem Login weiterhin vorhanden
+### TR-015: Trainingsplan nach erneutem Login weiterhin vorhanden
 **Voraussetzung:**
 Ein Trainingsplan wurde erstellt
 Benutzer ist angemeldet

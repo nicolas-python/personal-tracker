@@ -58,6 +58,8 @@
 - [X] Übungen hinzufügen
 - [X] Übungen entfernen
 - [X] Trainingsplan mit leerem Namen erstellen
+- [ ] Trainingsplan ohne Übungsangaben erstellen
+- [ ] Übung ohne vollständige Angaben speichern
 - [X] Trainingsplan mit mehreren Übungen erstellen
 - [X] Training starten
 - [X] Training abschließen
