@@ -53,10 +53,10 @@
 
 ## 5. Trainingspläne
 - [X] Trainingsplan erstellen
-- [ ] Trainingsplan bearbeiten
+- [X] Trainingsplan bearbeiten
 - [X] Trainingsplan löschen
-- [ ] Übungen hinzufügen
-- [ ] Übungen entfernen
+- [X] Übungen hinzufügen
+- [X] Übungen entfernen
 - [X] Trainingsplan mit leerem Namen erstellen
 - [X] Trainingsplan mit mehreren Übungen erstellen
 - [X] Training starten

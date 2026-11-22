@@ -1035,10 +1035,9 @@ Neuer Name wird in der Übersicht angezeigt
 **Testergebnis:**
 Aktualisierungsmeldung "Trainingsplan aktualisiert!" wird angezeigt
 Trainingsplan wird erfolgreich aktualisiert
-Keine Weiterleitung zur workouts-Seite (TR-BUG-002)
 Neuer Name wird in der Übersicht angezeigt
 
-**Status:** Failed
+**Status:** Passed
 
 ### TR-003: Trainingsplan löschen
 **Voraussetzung:**
@@ -1083,11 +1082,10 @@ Weiterleitung zur workouts-Seite erfolgt
 
 **Testergebnis:**
 Aktualisierungsmeldung "Trainingsplan aktualisiert!" wird angezeigt
-Keine Weiterleitung zur workouts-Seite (TR-BUG-002)
 Übung erfolgreich hinzugefügt
 Übung wird im Trainingsplan angezeigt
 
-**Status:** Faild
+**Status:** Passed
 
 ### TR-005: Übungen entfernen
 **Voraussetzung:**
@@ -1109,11 +1107,10 @@ Ausgewählte Übung wird aus dem Trainingsplan entfernt
 
 **Testergebnis:**
 Aktualisierungsmeldung "Trainingsplan aktualisiert!" wird angezeigt
-Keine Weiterleitung zur workouts-Seite (TR-BUG-002)
 Übung erfolgreich entfernt
 Übrige Übungen bleiben im Trainingsplan erhalten
 
-**Status:** Failed
+**Status:** Passed
 
 
 ### TR-006: Trainingsplan mit leerem Namen erstellen

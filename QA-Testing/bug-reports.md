@@ -47,21 +47,21 @@ Der neue Name wird in der Übersicht angezeigt
 **Testergebnis:**
 Aktualisierungsmeldung "Trainingsplan aktualisiert!" wird angezeigt
 Trainingsplan wird erfolgreich aktualisiert
-Keine Weiterleitung zur workouts-Seite
-Benutzer wird stattdessen auf /create-workout weitergeleitet
-Der neue Name wird korrekt in der Übersicht angezeigt
+Benutzer wird nach Bestätigung zur /workouts-Seite weitergeleitet
+Der neue Name wird in der Übersicht angezeigt
 
 **Ursache:**
-Noch nicht technisch analysiert. Beobachtetes Fehlerverhalten: Falsche Weiterleitung nach Bestätigung der Erfolgsmeldung
+Der OK-Button in create_workout.html leitete unabhängig vom Vorgang immer zur Seite /create-workout weiter
 
 **Lösung:**
+Das Weiterleitungsziel in create_workout.html wurde von /create-workout auf /workouts geändert
 
 **Betroffene Testfälle:**
 TR-002
 TR-004
 TR-005
 
-**Status:**  Open
+**Status:**  Fixed
 
 ### TR-BUG-003 Trainingsplan mit leerem Namen erstellen
 **Bereich:** Trainingsplan erstellen
