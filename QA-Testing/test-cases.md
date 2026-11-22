@@ -1131,10 +1131,12 @@ Trainingsplan wird nicht erstellt
 Eine entsprechende Fehlermeldung wird angezeigt
 
 **Testergebnis:**
-Trainingsplan wurde trotz leerem Namensfeld erstellt
-Keine Fehlermeldung wird angezeigt (TR-BUG-003)
+Leere Trainingsplannamen werden verhindert
+Auch Eingaben, die nur aus Leerzeichen bestehen, werden abgelehnt
+Bei einem leeren Eingabefeld wird eine entsprechende Fehlermeldung angezeigt
+Die Erstellung mit einem gültigen Namen funktioniert weiterhin
 
-**Status:** Failed
+**Status:** Passed
 
 ### TR-007: Trainingsplan mit mehreren Übungen erstellen
 **Voraussetzung:**

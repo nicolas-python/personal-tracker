@@ -233,7 +233,13 @@ def fitness():
 @app.route("/create-workout", methods=["GET", "POST"])
 def create_workout():
     if request.method == "POST":
-        workout_name = request.form["workout_name"]
+        workout_name = request.form.get("workout_name", "").strip()         #.strip() =entfernt Leerzeichen am Anfang und Ende des eingegebenen Textes
+
+        #prüfen, ob ein Trainingsplanname eingegeben wurde
+        if not workout_name:
+            flash("Bitte gib einen Namen für den Trainingsplan ein!", "danger")
+            return render_template("create_workout.html", exercises=[], saved=False)
+
         exercises = []
 
         for key in request.form:

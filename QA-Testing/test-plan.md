@@ -57,7 +57,7 @@
 - [X] Trainingsplan löschen
 - [ ] Übungen hinzufügen
 - [ ] Übungen entfernen
-- [ ] Trainingsplan mit leerem Namen erstellen
+- [X] Trainingsplan mit leerem Namen erstellen
 - [X] Trainingsplan mit mehreren Übungen erstellen
 - [X] Training starten
 - [X] Training abschließen

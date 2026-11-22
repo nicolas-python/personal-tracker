@@ -76,17 +76,19 @@ Trainingsplan wird nicht erstellt
 Eine entsprechende Fehlermeldung wird angezeigt
 
 **Testergebnis:**
-Trainingsplan wird trotz leerem Namensfeld erstellt
-Keine Fehlermeldung wird angezeigt
+Trainingsplan kann nicht mehr ohne Namen erstellt werden
+Auch Eingaben, die nur aus Leerzeichen bestehen, werden verhindert
+Normale Trainingsplannamen funktionieren weiterhin
 
 **Ursache:** 
-Noch nicht technisch analysiert. Die Eingabe des Trainingsplannamens wird offenbar nicht ausreichend abgesichert
+Die Eingabe des Trainingsplannamens wird nicht ausreichend abgesichert
 
 **Lösung:**
-Bedingung Leere Namen müssen abgelehnt werden ,inklusive fehlermeldung
+Eine Bedingung wurde eingebaut die " " und Leerzeichen in Create workout verhindert
+Bei leerem Input-Feld wird eine fehlermeldung Angezeigt 
 
 **Betroffene Testfälle:**
 TR-006
 
-**Status:**  Open
+**Status:**  Fixed
 
