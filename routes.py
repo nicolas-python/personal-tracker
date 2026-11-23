@@ -252,6 +252,11 @@ def create_workout():
 
                 exercises.append((exercise, sets, reps, weight))
 
+        #prüfen min 1 Übung
+        if len(exercises) == 0:
+            flash("Bitte füge mindestens eine Übung hinzu!", "danger")
+            return render_template("create_workout.html", exercises=[], saved=False)
+
         if not save_workout(session["user_id"], workout_name, exercises):
             flash("Trainingsplan konnte nicht gespeichert werden!", "danger")
             return render_template("create_workout.html", exercises=[], saved=False)

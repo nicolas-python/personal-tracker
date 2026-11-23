@@ -113,9 +113,9 @@ Beim Speichern eines Trainingsplans wird nicht geprüft, ob mindestens eine Übu
 
 **Lösung:**
 Eine Bedingung einbauen, die verhindert, dass Trainingspläne ohne Übungen gespeichert werden können
-Es muss mindestens eine Übung hinzugefügt werden (Anzahl der Übungen > 0)
+Es muss mindestens eine Übung hinzugefügt werden
 
 **Betroffene Testfälle:**
 TR-006
 
-**Status:**  opend
+**Status:**  Fixed
