@@ -58,8 +58,8 @@
 - [X] Übungen hinzufügen
 - [X] Übungen entfernen
 - [X] Trainingsplan mit leerem Namen erstellen
-- [ ] Trainingsplan ohne Übungsangaben erstellen
-- [ ] Übung ohne vollständige Angaben speichern
+- [X] Trainingsplan ohne Übungsangaben erstellen
+- [X] Übung ohne vollständige Angaben speichern
 - [X] Trainingsplan mit mehreren Übungen erstellen
 - [X] Training starten
 - [X] Training abschließen
@@ -69,13 +69,15 @@
 - [X] Trainingsplan nach erneutem Login weiterhin vorhanden
 
 ## 6. Ernährung
-- [ ] Kalorienrechner mit gültigen Werten testen
-- [ ] Kalorienrechner mit ungültigen Werten testen
-- [ ] Kalorien rechner Funktion mit Punkt testen
-- [ ] Kalorien rechner Funktion mit Komma testen
-- [ ] Lebensmittel suchen
-- [ ] Lebensmittel hinzufügen
-- [ ] Lebensmittel löschen
+- [X] Kalorienrechner mit gültigen Werten testen
+- [X] Kalorienrechner nach ausloggen noch erhalten
+- [X] Kalorienrechner updaten neue Werte werden übernommen
+- [X] Kalorienrechner mit ungültigen Werten testen
+- [X] Kalorien rechner Funktion mit Punkt testen (KG)
+- [X] Kalorien rechner Funktion mit Komma testen (KG)
+- [X] Lebensmittel suchen
+- [X] Lebensmittel hinzufügen
+- [X] Lebensmittel löschen
 - [ ] Eigenes Lebensmittel erstellen
 - [ ] Eigenes Lebensmittel suchen
 - [ ] Eigenes Lebensmittel hinzufügen

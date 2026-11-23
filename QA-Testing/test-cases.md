@@ -1154,7 +1154,7 @@ Es werden keine Übungen gespeichert
 **Testergebnis:**
 Leerer Traingsplan wird erstellt
 
-**Status:** failed
+**Status:** Passed
 
 ### TR-008: Übung ohne vollständige Angaben speichern
 **Voraussetzung:**
@@ -1332,3 +1332,234 @@ Trainingsplan ist nach erneutem Login weiterhin vorhanden
 Zugehörige Übungen werden korrekt angezeigt
 
 **Status:** Passed
+
+-------------------
+## Ernährung
+-------------------
+
+### ER-001: Kalorienrechner mit gültigen Werten testen
+**Voraussetzung:**
+Benutzer ist angemeldet
+Nutrition-Seite ist erreichbar
+Kalorienbedarfsrechner ist geöffnet
+
+**Testschritte:**
+1. Kalorienbedarfsrechner öffnen
+2. Werte eingeben
+3. Aktivitätslevel und Ziel auswählen
+4. Auf den Button „Kalorienbedarfsrechner“ klicken
+
+**Erwartetes Ergebnis:**
+Kalorienziel wird berechnet und angezeigt
+Kalorienziel und Proteinziel werden übernommen
+Beide Werte werden in der Statistik angezeigt
+
+**Testergebnis:**
+Kalorienziel wird berechnet und angezeigt
+Kalorienziel und Proteinziel werden übernommen
+Beide Werte werden in der Statistik angezeigt
+
+**Status:** Passed
+
+### ER-002: Kalorienrechner nach ausloggen noch erhalten
+**Voraussetzung:**
+Benutzer ist angemeldet
+Nutrition-Seite ist erreichbar
+Kalorienbedarfsrechner wurde für den Benutzer bereits ausgefüllt
+
+**Testschritte:**
+1. Ausloggen 
+2. Erneut einloggen 
+3. Statistik überprüfen (Werte)
+4. Nutrition-Seite öffnen und Kalorienziel sowie Proteinziel überprüfen
+
+**Erwartetes Ergebnis:**
+Kalorienziel ist weiterhin angegeben
+Proteinziel ist weiterhin angegeben
+Statistik zeigt weiterhin die gespeicherten Werte an
+
+**Testergebnis:**
+Kalorienziel ist weiterhin angegeben
+Proteinziel ist weiterhin angegeben
+Statistik zeigt weiterhin die gespeicherten Werte an
+
+**Status:** Passed
+
+### ER-003: Kalorienrechner mit neuen Werten aktualisieren
+**Voraussetzung:**
+Benutzer ist angemeldet
+Nutrition-Seite ist erreichbar
+Kalorienbedarfsrechner wurde für den Benutzer bereits ausgefüllt
+
+**Testschritte:**
+1. Kalorienbedarfsrechner öffnen
+2. Neue Werte eingeben
+3. Aktivitätslevel und Ziel ändern
+4. Auf den Button „Kalorienbedarfsrechner“ klicken
+5. Statistik überprüfen
+
+**Erwartetes Ergebnis:**
+Kalorienziel wird mit den neuen Werten berechnet
+Neues Kalorienziel und Proteinziel werden übernommen
+Beide Werte werden in der Statistik aktualisiert
+
+**Testergebnis:**
+Kalorienziel wird mit den neuen Werten berechnet
+Neues Kalorienziel und Proteinziel werden übernommen
+Beide Werte werden in der Statistik aktualisiert
+
+**Status:** Passed
+
+### ER-004: Kalorienrechner mit ungültigen Werten testen
+**Voraussetzung:**
+Benutzer ist angemeldet
+Nutrition-Seite ist erreichbar
+Kalorienbedarfsrechner ist geöffnet
+
+**Testschritte:**
+1. Ungültige Werte eingeben (z. B. Buchstaben)
+2. Aktivitätslevel und Ziel auswählen
+3. Auf den Button „Kalorienbedarfsrechner“ klicken
+
+**Erwartetes Ergebnis:**
+Ungültige Eingaben werden erkannt
+Kalorienziel wird nicht berechnet
+Eine entsprechende Fehlermeldung wird angezeigt
+
+**Testergebnis:**
+Buchstaben eingabe nicht möglich
+Kalorienziel wird nicht berechnet
+Fehlermeldung: "Füllen Sie dieses Feld aus"
+
+**Status:** Passed
+
+
+### ER-005: Kalorienrechner mit Punkt als Dezimaltrennzeichen testen (Gewicht in kg)
+**Voraussetzung:**
+Benutzer ist angemeldet
+Nutrition-Seite ist erreichbar
+Kalorienbedarfsrechner ist geöffnet
+
+**Testschritte:**
+1. Einen Wert mit Punkt als Dezimaltrennzeichen eingeben (z. B. 75.5kg)
+2. Weitere erforderliche Werte eingeben
+3. Aktivitätslevel und Ziel auswählen
+4. Auf den Button „Kalorienbedarfsrechner“ klicken
+
+**Erwartetes Ergebnis:**
+Eingabe mit Punkt wird korrekt verarbeitet
+Kalorienziel wird berechnet und angezeigt
+Kalorienziel und Proteinziel werden übernommen
+
+**Testergebnis:**
+Eingabe mit Punkt wird korrekt verarbeitet
+Kalorienziel wird berechnet und angezeigt
+Kalorienziel und Proteinziel werden übernommen
+
+**Status:** Passed
+
+
+### ER-006: Kalorienrechner mit Komma als Dezimaltrennzeichen testen (Gewicht in kg)
+**Voraussetzung:**
+Benutzer ist angemeldet
+Nutrition-Seite ist erreichbar
+Kalorienbedarfsrechner ist geöffnet
+
+**Testschritte:**
+1. Einen Wert mit Komma als Dezimaltrennzeichen eingeben (z. B. 75,5kg)
+2. Weitere erforderliche Werte eingeben
+3. Aktivitätslevel und Ziel auswählen
+4. Auf den Button „Kalorienbedarfsrechner“ klicken
+
+**Erwartetes Ergebnis:**
+Eingabe mit Komma wird korrekt verarbeitet
+Kalorienziel wird berechnet und angezeigt
+Kalorienziel und Proteinziel werden übernommen
+
+**Testergebnis:**
+Eingabe mit Komma wird korrekt verarbeitet
+Kalorienziel wird berechnet und angezeigt
+Kalorienziel und Proteinziel werden übernommen
+
+**Status:** Passed
+
+
+### ER-007: Lebensmittel suchen
+**Voraussetzung:**
+Benutzer ist angemeldet
+Nutrition-Seite ist erreichbar
+Lebensmittel-Suchfunktion ist erreichbar
+
+**Testschritte:**
+1. Lebensmittel hinzufügen Knopf drücken
+2. Ein Lebensmittel in das Suchfeld eingeben
+3. Suche starten
+4. Suchergebnisse überprüfen
+
+**Erwartetes Ergebnis:**
+Passende Lebensmittel werden gesucht
+Suchergebnisse werden angezeigt
+Die Lebensmittelinformationen werden korrekt dargestellt
+
+**Testergebnis:**
+Passende Lebensmittel werden gesucht
+Suchergebnisse werden angezeigt
+Die Lebensmittelinformationen werden korrekt dargestellt
+
+**Status:** Passed
+
+
+### ER-008: Lebensmittel hinzufügen (Prüfen bei Frühstück,Mittagessen,Abendessen,Snacks)
+**Voraussetzung:**
+Benutzer ist angemeldet
+Nutrition-Seite ist erreichbar
+Ein Lebensmittel wurde erfolgreich gesucht
+
+**Testschritte:**
+1. Ein Lebensmittel auswählen
+2. Gewünschte Menge eingeben
+3. Mahlzeit auswählen
+4. Lebensmittel hinzufügen knopf betätigen
+5. Eintrag überprüfen
+
+**Erwartetes Ergebnis:**
+Lebensmittel wird erfolgreich hinzugefügt
+Lebensmittel wird in der ausgewählten Mahlzeit angezeigt
+Kalorien und Proteine werden korrekt übernommen
+Anzeigebalken übernehmen den Eintrag 
+Info kreis details übernehmen den Eintrag 
+
+**Testergebnis:**
+Lebensmittel wird erfolgreich hinzugefügt
+Lebensmittel wird in der ausgewählten Mahlzeit angezeigt
+Kalorien und Proteine werden korrekt übernommen
+Anzeigebalken übernehmen den Eintrag 
+Info kreis details übernehmen den Eintrag 
+
+**Status:** Passed
+
+
+### ER-009: Lebensmittel löschen
+**Voraussetzung:**
+Benutzer ist angemeldet
+Nutrition-Seite ist erreichbar
+Mindestens ein Lebensmittel wurde hinzugefügt
+
+**Testschritte:**
+1. Ein gespeichertes Lebensmittel auswählen
+2. Löschfunktion betätigen
+3. Eintrag überprüfen
+
+**Erwartetes Ergebnis:**
+Pop up :"Möchtest du [Lebensmittelname] wirklich löschen?"
+Lebensmittel wird erfolgreich gelöscht
+Lebensmittel wird nicht mehr in der Mahlzeit angezeigt
+Kalorien und Proteine werden entsprechend aktualisiert
+
+**Testergebnis:**
+Pop up :"Möchtest du [Lebensmittelname] wirklich löschen?"
+Lebensmittel wird erfolgreich gelöscht
+Lebensmittel wird nicht mehr in der Mahlzeit angezeigt
+Kalorien und Proteine werden entsprechend aktualisiert
+
+**Status:** Passed 
