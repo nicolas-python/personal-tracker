@@ -15,7 +15,12 @@
         <div class="popup">
             <div class="popup-content">
                 <p>{{ message }}</p>
-                    <button type="button" onclick="window.location.href='/workouts'">OK</button>
+                <button type="button"
+                        data-url="{{ '/workouts' if category == 'success'
+                                    else url_for('edit_workout', workout_id=workout[0])
+                                    if workout else '/create-workout' }}"
+                        onclick="window.location.href = this.dataset.url">OK
+                </button>
             </div>
         </div>
     {% endfor %}
