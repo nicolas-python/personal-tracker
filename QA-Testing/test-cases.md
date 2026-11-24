@@ -1336,7 +1336,6 @@ Zugehörige Übungen werden korrekt angezeigt
 -------------------
 ## Ernährung
 -------------------
-
 ### ER-001: Kalorienrechner mit gültigen Werten testen
 **Voraussetzung:**
 Benutzer ist angemeldet
@@ -1427,7 +1426,7 @@ Kalorienziel wird nicht berechnet
 Eine entsprechende Fehlermeldung wird angezeigt
 
 **Testergebnis:**
-Buchstaben eingabe nicht möglich
+Buchstabeneingabe ist nicht möglich
 Kalorienziel wird nicht berechnet
 Fehlermeldung: "Füllen Sie dieses Feld aus"
 
@@ -1441,7 +1440,7 @@ Nutrition-Seite ist erreichbar
 Kalorienbedarfsrechner ist geöffnet
 
 **Testschritte:**
-1. Einen Wert mit Punkt als Dezimaltrennzeichen eingeben (z. B. 75.5kg)
+1. Einen Wert mit Punkt als Dezimaltrennzeichen eingeben (z. B. 75.5 (kg))
 2. Weitere erforderliche Werte eingeben
 3. Aktivitätslevel und Ziel auswählen
 4. Auf den Button „Kalorienbedarfsrechner“ klicken
@@ -1466,7 +1465,7 @@ Nutrition-Seite ist erreichbar
 Kalorienbedarfsrechner ist geöffnet
 
 **Testschritte:**
-1. Einen Wert mit Komma als Dezimaltrennzeichen eingeben (z. B. 75,5kg)
+1. Einen Wert mit Komma als Dezimaltrennzeichen eingeben (z. B. 75,5 (kg))
 2. Weitere erforderliche Werte eingeben
 3. Aktivitätslevel und Ziel auswählen
 4. Auf den Button „Kalorienbedarfsrechner“ klicken
@@ -1491,7 +1490,7 @@ Nutrition-Seite ist erreichbar
 Lebensmittel-Suchfunktion ist erreichbar
 
 **Testschritte:**
-1. Lebensmittel hinzufügen Knopf drücken
+1. Lebensmittel-hinzufügen-Button drücken
 2. Ein Lebensmittel in das Suchfeld eingeben
 3. Suche starten
 4. Suchergebnisse überprüfen
@@ -1563,3 +1562,251 @@ Lebensmittel wird nicht mehr in der Mahlzeit angezeigt
 Kalorien und Proteine werden entsprechend aktualisiert
 
 **Status:** Passed 
+
+### ER-010: Eigenes Lebensmittel erstellen
+**Voraussetzung:**
+Benutzer ist angemeldet  
+Nutrition-Seite ist erreichbar
+
+**Testschritte:**
+1. Funktion zum Erstellen eigener Lebensmittel per Knopf öffnen
+2. Namen für das Lebensmittel eingeben (test)
+3. Erforderliche Nährwertangaben eingeben (z. B. Kalorien und Proteine)
+4. Eigenes Lebensmittel speichern
+
+**Erwartetes Ergebnis:**
+Eine entsprechende Erfolgsmeldung wird angezeigt :"Eigenes Lebensmittel erfolgreich gespeichert!"
+Eigenes Lebensmittel wird erfolgreich erstellt  
+Lebensmittel wird gespeichert
+
+**Testergebnis:**
+Eine entsprechende Erfolgsmeldung wird angezeigt :"Eigenes Lebensmittel erfolgreich gespeichert!"
+Eigenes Lebensmittel wird erfolgreich erstellt  
+Lebensmittel wird gespeichert
+
+**Status:** Passed
+
+### ER-011: Eigenes Lebensmittel suchen
+**Voraussetzung:**
+Benutzer ist angemeldet  
+Nutrition-Seite ist erreichbar  
+Mindestens ein eigenes Lebensmittel wurde erstellt
+
+**Testschritte:**
+1. Funktion „Lebensmittel hinzufügen“ öffnen
+2. Namen des eigenen Lebensmittels in das Suchfeld eingeben (test)
+3. Suche starten
+4. Suchergebnisse überprüfen
+
+**Erwartetes Ergebnis:**
+Eigenes Lebensmittel wird gefunden  
+Passende Suchergebnisse werden angezeigt  
+Gespeicherte Nährwertangaben werden korrekt dargestellt
+Gespeicherte Nährwertangaben werden korrekt in der Info angezeigt
+
+**Testergebnis:**
+Eigenes Lebensmittel wird gefunden  
+Passende Suchergebnisse werden angezeigt  
+Gespeicherte Nährwertangaben werden korrekt dargestellt
+Gespeicherte Nährwertangaben werden korrekt in der Info angezeigt
+
+**Status:** Passed
+
+### ER-012: Eigenes Lebensmittel hinzufügen
+**Voraussetzung:**
+Benutzer ist angemeldet  
+Nutrition-Seite ist erreichbar  
+Mindestens ein eigenes Lebensmittel wurde erstellt und gesucht
+
+**Testschritte:**
+1. Eigenes Lebensmittel aus den Suchergebnissen auswählen
+2. Lebensmittelname auswahlen
+3. Lebensmittel werte einfügen
+4. Lebensmittel hinzufügen
+5. Eintrag überprüfen
+
+**Erwartetes Ergebnis:**
+Eigenes Lebensmittel wird erfolgreich hinzugefügt  
+Lebensmittel wird in der ausgewählten Mahlzeit angezeigt  
+Kalorien und Proteine werden korrekt übernommen  
+Anzeigebalken übernehmen den Eintrag  
+Info-Kreis-Details übernehmen den Eintrag
+
+**Testergebnis:**
+Eigenes Lebensmittel wird erfolgreich hinzugefügt  
+Lebensmittel wird in der ausgewählten Mahlzeit angezeigt  
+Kalorien und Proteine werden korrekt übernommen  
+Anzeigebalken übernehmen den Eintrag  
+Info-Kreis-Details übernehmen den Eintrag
+
+**Status:** Passed
+
+### ER-013: Eigenes Lebensmittel löschen
+**Voraussetzung:**
+Benutzer ist angemeldet  
+Nutrition-Seite ist erreichbar  
+Mindestens ein eigenes Lebensmittel wurde erstellt
+
+**Testschritte:**
+1. Eigenes Lebensmittel auswählen
+2. Löschfunktion betätigen
+3. Löschvorgang bestätigen
+
+**Erwartetes Ergebnis:**
+Pop-up mit einer entsprechenden Löschbestätigung wird angezeigt :"Möchtest du test wirklich löschen?"
+Eigenes Lebensmittel wird erfolgreich gelöscht  
+
+**Testergebnis:**
+Pop-up mit einer entsprechenden Löschbestätigung wird angezeigt :"Möchtest du test wirklich löschen?"
+Eigenes Lebensmittel wird erfolgreich gelöscht  
+
+**Status:** Passed
+
+### ER-014: Lebensmittelmenge ändern
+**Voraussetzung:**
+Benutzer ist angemeldet  
+Nutrition-Seite ist erreichbar  
+Mindestens ein Lebensmittel wurde zu einer Mahlzeit hinzugefügt
+
+**Testschritte:**
+1. Gespeichertes Lebensmittel auswählen  (Bearbeiten Button)
+2. Menge ändern
+3. Änderung speichern bzw. bestätigen
+4. Nährwertangaben überprüfen
+
+**Erwartetes Ergebnis:**
+Neue Lebensmittelmenge wird übernommen  
+Kalorien und Proteine werden entsprechend der neuen Menge angepasst  
+Anzeigebalken und Info-Kreis-Details werden aktualisiert
+
+**Testergebnis:**
+Neue Lebensmittelmenge wird übernommen  
+Kalorien und Proteine werden entsprechend der neuen Menge angepasst  
+Anzeigebalken und Info-Kreis-Details werden aktualisiert
+
+**Status:** Passed
+
+### ER-015: Vergangene Tage aufrufen
+**Voraussetzung:**
+Benutzer ist angemeldet  
+Nutrition-Seite ist erreichbar  
+Für mindestens einen vergangenen Tag wurden Lebensmittel gespeichert
+
+**Testschritte:**
+1. Nutrition-Seite öffnen
+2. Einen vergangenen Tag auswählen
+3. Gespeicherte Mahlzeiten überprüfen
+
+**Erwartetes Ergebnis:**
+Vergangener Tag wird korrekt aufgerufen  
+Gespeicherte Mahlzeiten des ausgewählten Tages werden angezeigt  
+Kalorien und Proteine werden korrekt dargestellt
+
+**Testergebnis:**
+
+**Status:** Open
+
+### ER-016: Gespeicherte Mahlzeiten nach erneutem Aufruf prüfen
+**Voraussetzung:**
+Benutzer ist angemeldet  
+Nutrition-Seite ist erreichbar  
+Für den aktuellen Tag wurden bereits mehrere Lebensmittel gespeichert
+
+**Testschritte:**
+1. Mehrere Lebensmittel zu unterschiedlichen Mahlzeiten hinzufügen
+2. Nutrition-Seite verlassen
+3. Nutrition-Seite erneut öffnen
+4. Gespeicherte Mahlzeiten überprüfen
+
+**Erwartetes Ergebnis:**
+Alle zuvor gespeicherten Lebensmittel sind weiterhin vorhanden  
+Lebensmittel befinden sich in den richtigen Mahlzeiten  
+Mengen und Nährwertangaben bleiben erhalten
+
+**Testergebnis:**
+Alle zuvor gespeicherten Lebensmittel sind weiterhin vorhanden  
+Lebensmittel befinden sich in den richtigen Mahlzeiten  
+Mengen und Nährwertangaben bleiben erhalten
+
+**Status:** Passed
+
+### ER-017: Gespeicherte Lebensmittel nach erneutem Login prüfen
+**Voraussetzung:**
+Benutzer ist angemeldet  
+Mindestens ein Lebensmittel wurde gespeichert
+
+**Testschritte:**
+1. Lebensmittel zu einer Mahlzeit hinzufügen
+2. Ausloggen
+3. Erneut mit demselben Benutzerkonto einloggen
+4. Nutrition-Seite öffnen
+5. Gespeicherte Lebensmittel überprüfen
+
+**Erwartetes Ergebnis:**
+Gespeicherte Lebensmittel sind weiterhin vorhanden  
+Lebensmittel werden den richtigen Mahlzeiten zugeordnet  
+Mengen und Nährwertangaben bleiben erhalten
+
+**Testergebnis:**
+Gespeicherte Lebensmittel sind weiterhin vorhanden  
+Lebensmittel werden den richtigen Mahlzeiten zugeordnet  
+Mengen und Nährwertangaben bleiben erhalten
+
+**Status:** Passed
+
+### ER-018: Kalorien- und Proteinwerte korrekt berechnen
+**Voraussetzung:**
+Benutzer ist angemeldet  
+Nutrition-Seite ist erreichbar  
+Mindestens ein Lebensmittel mit bekannten Nährwertangaben ist vorhanden
+
+**Testschritte:**
+1. Ein Lebensmittel mit bekannten Kalorien- und Proteinwerten auswählen
+2. Eine bestimmte Menge eingeben
+3. Lebensmittel hinzufügen
+4. Angezeigte Kalorien und Proteine überprüfen
+5. Weitere Lebensmittel hinzufügen
+6. Gesamtwerte überprüfen
+
+**Erwartetes Ergebnis:**
+Kalorien werden entsprechend der eingegebenen Menge berechnet  
+Proteine werden entsprechend der eingegebenen Menge berechnet  
+Gesamtwerte berücksichtigen alle hinzugefügten Lebensmittel  
+Berechnungen und Anzeigen stimmen mit den erwarteten Werten überein
+
+**Testergebnis:**
+Kalorien werden entsprechend der eingegebenen Menge berechnet  
+Proteine werden entsprechend der eingegebenen Menge berechnet  
+Gesamtwerte berücksichtigen alle hinzugefügten Lebensmittel  
+Berechnungen und Anzeigen stimmen mit den erwarteten Werten überein
+
+**Status:** Passed
+
+### ER-019: Tagesziele und Fortschrittsanzeige prüfen
+**Voraussetzung:**
+Benutzer ist angemeldet  
+Nutrition-Seite ist erreichbar  
+Kalorienziel und Proteinziel wurden bereits festgelegt
+
+**Testschritte:**
+1. Nutrition-Seite öffnen
+2. Aktuelle Tagesziele überprüfen
+3. Lebensmittel mit bekannten Nährwertangaben hinzufügen
+4. Fortschrittsanzeigen überprüfen
+5. Weitere Lebensmittel hinzufügen und Veränderungen kontrollieren
+
+**Erwartetes Ergebnis:**
+Kalorienziel wird korrekt angezeigt  
+Proteinziel wird korrekt angezeigt  
+Fortschrittsanzeige berücksichtigt die aufgenommenen Kalorien und Proteine  
+Fortschrittsanzeige aktualisiert sich nach dem Hinzufügen weiterer Lebensmittel  
+Angezeigte Werte stimmen mit den aufgenommenen Mengen überein
+
+**Testergebnis:**
+Kalorienziel wird korrekt angezeigt  
+Proteinziel wird korrekt angezeigt  
+Fortschrittsanzeige berücksichtigt die aufgenommenen Kalorien und Proteine  
+Fortschrittsanzeige aktualisiert sich nach dem Hinzufügen weiterer Lebensmittel  
+Angezeigte Werte stimmen mit den aufgenommenen Mengen überein
+
+**Status:** Passed

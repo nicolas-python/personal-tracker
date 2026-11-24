@@ -78,17 +78,16 @@
 - [X] Lebensmittel suchen
 - [X] Lebensmittel hinzufügen
 - [X] Lebensmittel löschen
-- [ ] Eigenes Lebensmittel erstellen
-- [ ] Eigenes Lebensmittel suchen
-- [ ] Eigenes Lebensmittel hinzufügen
-- [ ] Eigenes Lebensmittel löschen
-- [ ] Lebensmittelmenge ändern
-- [ ] Mahlzeiten speichern
+- [X] Eigenes Lebensmittel erstellen
+- [X] Eigenes Lebensmittel suchen
+- [X] Eigenes Lebensmittel hinzufügen
+- [X] Eigenes Lebensmittel löschen
+- [X] Lebensmittelmenge ändern
 - [ ] Vergangene Tage aufrufen
-- [ ] Gespeicherte Mahlzeiten nach erneutem Aufruf prüfen
-- [ ] Gespeicherte Lebensmittel nach erneutem Login weiterhin vorhanden
-- [ ] Kalorien- und Proteinwerte korrekt berechnen
-- [ ] Tagesziele und Fortschrittsanzeige prüfen
+- [X] Gespeicherte Mahlzeiten nach erneutem Aufruf prüfen
+- [X] Gespeicherte Lebensmittel nach erneutem Login weiterhin vorhanden
+- [X] Kalorien- und Proteinwerte korrekt berechnen
+- [X] Tagesziele und Fortschrittsanzeige prüfen
 
 ## 7. Rezepte
 - [ ] Suche ohne Suchbegriff testen
