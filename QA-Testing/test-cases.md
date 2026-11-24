@@ -1810,3 +1810,95 @@ Fortschrittsanzeige aktualisiert sich nach dem Hinzufügen weiterer Lebensmittel
 Angezeigte Werte stimmen mit den aufgenommenen Mengen überein
 
 **Status:** Passed
+
+------------
+## Rezepte
+------------
+### RE-001:  Suche ohne Suchbegriff
+**Voraussetzung:** 
+Benutzer ist angemeldet und befindet sich im Rezeptbereich
+
+**Testschritte:**
+1. Rezeptbereich öffnen
+2. Suchfeld leer lassen
+3. Such-Button drücken
+
+**Erwartetes Ergebnis:** 
+Es wird keine Suche ausgeführt und eine entsprechende Meldung angezeigt:"Bitte gib einen Suchbegriff ein"
+
+**Testergebnis:**
+Es wird keine Suche ausgeführt und eine entsprechende Meldung angezeigt:"Bitte gib einen Suchbegriff ein"
+
+**Status:** Passed
+
+------------
+API
+-------------
+### RE-002: Rezepte suchen (API)
+**Voraussetzung:** 
+Benutzer ist angemeldet und befindet sich im Rezeptbereich
+
+**Testschritte:**
+1. Einen gültigen Suchbegriff eingeben (z. B. `Hähnchen`)
+2. Such-Button drücken
+
+**Erwartetes Ergebnis:** 
+Passende Rezepte werden über die API gesucht und in der Ergebnisliste angezeigt mit Bildern
+
+**Testergebnis:**
+Passende Rezepte werden über die API gesucht und in der Ergebnisliste angezeigt mit Bildern
+
+**Status:** Passed
+
+
+### RE-003: Rezeptdetails öffnen (API)
+**Voraussetzung:**
+Eine Rezeptsuche wurde erfolgreich durchgeführt
+
+**Testschritte:**
+1. Ein Rezept aus der Ergebnisliste auswählen
+2. Rezeptdetails öffnen
+
+**Erwartetes Ergebnis:** 
+Die Details des ausgewählten Rezepts werden geladen und angezeigt
+
+**Testergebnis:**
+Die Details des ausgewählten Rezepts werden geladen und angezeigt
+
+**Status:** Passed
+
+
+### RE-004: Zutaten und Zubereitung anzeigen (API)
+**Voraussetzung:** 
+Die Details eines Rezepts wurden geöffnet
+
+**Testschritte:**
+1. Rezeptdetails öffnen
+2. Zutatenliste und Zubereitung überprüfen
+
+**Erwartetes Ergebnis:** 
+Die Zutatenliste und die Zubereitungsanleitung des ausgewählten Rezepts werden vollständig angezeigt
+
+**Testergebnis:**
+Die Zutatenliste und die Zubereitungsanleitung des ausgewählten Rezepts werden vollständig angezeigt
+
+**Status:** Passed
+
+
+### RE-005: Zutaten und Zubereitung übersetzt anzeigen (API)
+**Voraussetzung:** Die Details eines Rezepts wurden geöffnet.
+
+**Testschritte:**
+1. Ein Rezept mit (englischen) Zutaten und Zubereitung öffnen
+
+**Erwartetes Ergebnis:**
+Zutaten und Zubereitung werden auf Deutsch übersetzt und verständlich angezeigt
+
+**Testergebnis:**
+Zutaten und Zubereitung werden auf Deutsch übersetzt und verständlich angezeigt
+
+**Status:** Passed
+
+----------
+## DB
+----------

@@ -90,17 +90,17 @@
 - [X] Tagesziele und Fortschrittsanzeige prüfen
 
 ## 7. Rezepte
-- [ ] Suche ohne Suchbegriff testen
-- [ ] Rezepte suchen (API)
-- [ ] Rezeptdetails öffnen (API)
-- [ ] Zutaten und Zubereitung anzeigen (API)
-- [ ] Zutaten und Zubereitung übersetzung anzeigen (API)
+- [X] Suche ohne Suchbegriff testen
+- [X] Rezepte suchen (API)
+- [X] Rezeptdetails öffnen (API)
+- [X] Zutaten und Zubereitung anzeigen (API)
+- [X] Zutaten und Zubereitung übersetzung anzeigen (API)
 
 - [ ] Rezepte suchen (DB)
 - [ ] Rezeptdetails öffnen (DB)
 - [ ] Zutaten und Zubereitung anzeigen (DB)
 - [ ] Zutaten und Zubereitung übersetzung anzeigen (DB)
-- 
+
 ## 8. Tanken
 - [ ] Suche mit gültiger PLZ
 - [ ] Suche mit ungültiger PLZ
