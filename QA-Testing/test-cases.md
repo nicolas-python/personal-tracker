@@ -1977,3 +1977,270 @@ Zubereitung werden übersetzt
 
 **Status:** Passed
 
+----------------
+## 8. Tanken
+----------------
+### TA-001: Suche mit gültiger PLZ
+**Voraussetzung:**
+Benutzer ist angemeldet und befindet sich im Tankbereich
+
+**Testschritte:**
+1. Eine gültige Postleitzahl eingeben (z. B. "71032")
+2. Vorausgewählten Umkreis (Standard: 25 km) überprüfen
+3. Vorausgewählte Kraftstoffart (Standard: Super E5) überprüfen
+4. Such-Button drücken
+
+**Erwartetes Ergebnis:**
+Tankstellen im Umkreis der eingegebenen Postleitzahl werden angezeigt
+
+**Testergebnis:**
+Tankstellen im Umkreis der eingegebenen Postleitzahl werden angezeigt
+
+**Status:** Passed
+
+
+### TA-002: Suche mit ungültiger PLZ
+**Voraussetzung:**
+Benutzer ist angemeldet und befindet sich im Tankbereich
+
+**Testschritte:**
+1. Eine ungültige Postleitzahl eingeben (z. B. "00000")
+2. Vorausgewählten Umkreis (Standard: 25 km) überprüfen
+3. Vorausgewählte Kraftstoffart (Standard: Super E5) überprüfen
+4. Such-Button drücken
+
+**Erwartetes Ergebnis:**
+Es werden keine Tankstellen angezeigt und eine entsprechende Fehlermeldung erscheint:"Die Tankstellensuche ist momentan nicht erreichbar"
+
+**Testergebnis:**
+Es werden keine Tankstellen angezeigt und eine entsprechende Fehlermeldung erscheint:"Die Tankstellensuche ist momentan nicht erreichbar"
+
+**Status:** Passed
+
+
+### TA-003: Kraftstoffarten wechseln
+**Voraussetzung:**
+Eine Tankstellensuche wurde erfolgreich durchgeführt.
+
+**Testschritte:**
+1. Kraftstoffart E5 auswählen
+2. Angezeigte Preise überprüfen
+
+3. Kraftstoffart E10 auswählen
+4. Angezeigte Preise überprüfen
+
+5. Kraftstoffart Diesel auswählen
+6. Angezeigte Preise überprüfen
+
+**Erwartetes Ergebnis:**
+Die Tankstellenpreise werden entsprechend der ausgewählten Kraftstoffart angezeigt
+
+**Testergebnis:**
+Die Tankstellenpreise werden entsprechend der ausgewählten Kraftstoffart angezeigt
+
+**Status:** Passed
+
+
+### TA-004: Nach Preis sortieren
+**Voraussetzung:**
+Eine Tankstellensuche wurde erfolgreich durchgeführt
+
+**Testschritte:**
+1. Sortierung nach Preis auswählen
+2. Reihenfolge der Tankstellen überprüfen
+
+**Erwartetes Ergebnis:**
+Die Tankstellen werden aufsteigend nach Kraftstoffpreis sortiert. Die günstigste Tankstelle steht an erster Stelle
+
+**Testergebnis:**
+Die Tankstellen werden aufsteigend nach Kraftstoffpreis sortiert. Die günstigste Tankstelle steht an erster Stelle
+
+**Status:** Passed
+
+
+### TA-005: Nach Entfernung sortieren
+**Voraussetzung:**
+Eine Tankstellensuche wurde erfolgreich durchgeführt
+
+**Testschritte:**
+1. Sortierung nach Entfernung auswählen
+2. Reihenfolge der Tankstellen überprüfen
+
+**Erwartetes Ergebnis:**
+Die Tankstellen werden aufsteigend nach Entfernung sortiert. 
+Die nächstgelegene Tankstelle steht an erster Stelle
+
+**Testergebnis:**
+Die Tankstellen werden aufsteigend nach Entfernung sortiert. 
+Die nächstgelegene Tankstelle steht an erster Stelle
+
+**Status:** Passed
+
+
+### TA-006: Tankstellenpreise korrekt anzeigen
+**Voraussetzung:**
+Eine Tankstellensuche wurde erfolgreich durchgeführt
+
+**Testschritte:**
+1. Angezeigte Tankstellenpreise überprüfen
+2. Preise mit den zurückgegebenen API-Daten vergleichen
+
+**Erwartetes Ergebnis:**
+Die Kraftstoffpreise werden korrekt umgerechnet und mit der richtigen Einheit angezeigt
+
+**Testergebnis:**
+Die Kraftstoffpreise werden korrekt umgerechnet und mit der richtigen Einheit angezeigt
+
+**Status:** Passed
+
+
+### TA-007: Entfernung korrekt anzeigen
+**Voraussetzung:**
+Eine Tankstellensuche wurde erfolgreich durchgeführt
+
+**Testschritte:**
+1. Angezeigte Entfernungen überprüfen
+2. Entfernungen mit den zurückgegebenen API-Daten vergleichen
+
+**Erwartetes Ergebnis:**
+Die Entfernungen werden korrekt von Metern in Kilometer umgerechnet und angezeigt
+
+**Testergebnis:**
+Die Entfernungen werden korrekt von Metern in Kilometer umgerechnet und angezeigt
+
+**Status:** Passed
+
+
+### TA-008: Rechnergebnisse auf korrekte Berechnung prüfen
+**Voraussetzung:**
+Der Spritrechner ist erreichbar
+
+**Testschritte:**
+1. Gültige Werte für Strecke, Verbrauch und Kraftstoffpreis eingeben
+2. Berechnung durchführen
+3. Angezeigtes Ergebnis überprüfen
+
+**Erwartetes Ergebnis:**
+Die Spritkosten werden anhand der eingegebenen Strecke, des Verbrauchs und des Kraftstoffpreises korrekt berechnet und angezeigt
+
+**Testergebnis:**
+Die Spritkosten werden anhand der eingegebenen Strecke, des Verbrauchs und des Kraftstoffpreises korrekt berechnet und angezeigt
+
+
+**Status:** Passed
+
+
+### TA-009: Tankstellen-Sparrechner überprüfen
+**Voraussetzung:**
+Benutzer ist angemeldet und befindet sich im Tankbereich
+
+**Testschritte:**
+1. Preis Tankstelle A eingeben (1,80 €)
+2. Preis Tankstelle B eingeben (2,00 €)
+3. Tankmenge eingeben (50 Liter)
+4. Berechnung durchführen
+
+5. Die Berechnung einmal mit Komma und einmal mit Punkt als Dezimaltrennzeichen durchführen.
+
+**Erwartetes Ergebnis:**
+Der Preisunterschied wird korrekt berechnet und als positiver Sparbetrag angezeigt (10,00 €)
+Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
+
+**Testergebnis:**
+Der Preisunterschied wird korrekt berechnet und als positiver Sparbetrag angezeigt (10,00 €)
+Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
+
+**Status:** Passed
+
+### TA-010: Spritkosten berechnen
+**Voraussetzung:**
+Benutzer ist angemeldet und befindet sich im Tankbereich
+
+**Testschritte:**
+1. Verbrauch eingeben (8 Liter / 100 km)
+2. Kraftstoffpreis eingeben (2,00 € / Liter)
+3. Strecke eingeben (100 km)
+4. Berechnung durchführen
+
+5. Die Berechnung einmal mit Komma und einmal mit Punkt als Dezimaltrennzeichen durchführen
+
+**Erwartetes Ergebnis:**
+Die Spritkosten werden korrekt berechnet und angezeigt (16,00 €)
+Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
+
+**Testergebnis:**
+Die Spritkosten werden korrekt berechnet und angezeigt (16,00 €)
+Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
+
+**Status:** Passed
+
+### TA-011: Reichweite berechnen
+**Voraussetzung:**
+Benutzer ist angemeldet und befindet sich im Tankbereich
+
+**Testschritte:**
+1. Tankinhalt eingeben (50 Liter)
+2. Verbrauch eingeben (8 Liter / 100 km)
+3. Berechnung durchführen
+4. Die Berechnung einmal mit Komma und einmal mit Punkt als Dezimaltrennzeichen durchführen
+
+**Erwartetes Ergebnis:**
+Die mögliche Reichweite wird korrekt berechnet und angezeigt (625 km)
+Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
+
+**Testergebnis:**
+Die mögliche Reichweite wird korrekt berechnet und angezeigt (625 km)
+Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
+
+**Status:** Passed
+
+### TA-012: Tankkosten in Arbeitsstunden berechnen
+**Voraussetzung:**
+Benutzer ist angemeldet und befindet sich im Tankbereich
+
+**Testschritte:**
+1. Stundenlohn eingeben (20 €)
+2. Tankinhalt eingeben (50 Liter)
+3. Kraftstoffpreis eingeben (2,00 € / Liter)
+4. Berechnung durchführen
+
+5. Die Berechnung einmal mit Komma und einmal mit Punkt als Dezimaltrennzeichen durchführen.
+
+**Erwartetes Ergebnis:**
+Die Tankkosten werden korrekt berechnet und angezeigt (100,00 €)
+Die benötigte Arbeitszeit wird korrekt angezeigt (5 Stunden und 0 Minuten)
+Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
+
+**Testergebnis:**
+Die Tankkosten werden korrekt berechnet und angezeigt (100,00 €)
+Die benötigte Arbeitszeit wird korrekt angezeigt (5 Stunden und 0 Minuten)
+Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
+
+**Status:** Passed
+
+### TA-013: Fahrtkosten und Arbeitszeit berechnen
+**Voraussetzung:**
+Benutzer ist angemeldet und befindet sich im Tankbereich
+
+**Testschritte:**
+1. Verbrauch eingeben (8 Liter / 100 km)
+2. Strecke eingeben (100 km)
+3. Kraftstoffpreis eingeben (2,00 € / Liter)  
+4. Stundenlohn eingeben (20 €)   
+5. Berechnung durchführen
+
+6. Die Berechnung einmal mit Komma und einmal mit Punkt als Dezimaltrennzeichen durchführen
+
+**Erwartetes Ergebnis:**
+Die Spritkosten werden korrekt berechnet und angezeigt (16,00 €)
+Die benötigte Arbeitszeit wird korrekt angezeigt (48 Minuten)
+Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
+
+**Testergebnis:**
+Die Spritkosten werden korrekt berechnet und angezeigt (16,00 €)
+Die benötigte Arbeitszeit wird korrekt angezeigt (48 Minuten)
+Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
+
+**Status:** Passed
+
+

@@ -101,14 +101,19 @@
 - [X] Zutaten und Zubereitung übersetzung anzeigen (DB)
 
 ## 8. Tanken
-- [ ] Suche mit gültiger PLZ
-- [ ] Suche mit ungültiger PLZ
-- [ ] Kraftstoffarten wechseln (E5, E10, Diesel)
-- [ ] Nach Preis sortieren
-- [ ] Nach Entfernung sortieren
-- [ ] Tankstellenpreise korrekt anzeigen
-- [ ] Entfernung korrekt anzeigen
-- [ ] Rechnergebnisse auf korrekte Berechnung prüfen
+- [X] Suche mit gültiger PLZ
+- [X] Suche mit ungültiger PLZ
+- [X] Kraftstoffarten wechseln (E5, E10, Diesel)
+- [X] Nach Preis sortieren
+- [X] Nach Entfernung sortieren
+- [X] Tankstellenpreise korrekt anzeigen
+- [X] Entfernung korrekt anzeigen
+- [X] Rechnergebnisse auf korrekte Berechnung prüfen
+- [X] Tankstellen-Sparrechner überprüfen
+- [X] Spritkosten berechnen
+- [X] Reichweite berechnen
+- [X] Tankkosten in Arbeitsstunden berechnen
+- [X] Fahrtkosten und Arbeitszeit berechnen
 
 ## 9. Sicherheitstests
 - [ ] Passwort-Hashing prüfen
