@@ -83,7 +83,7 @@
 - [X] Eigenes Lebensmittel hinzufügen
 - [X] Eigenes Lebensmittel löschen
 - [X] Lebensmittelmenge ändern
-- [ ] Vergangene Tage aufrufen
+- [X] Vergangene Tage aufrufen
 - [X] Gespeicherte Mahlzeiten nach erneutem Aufruf prüfen
 - [X] Gespeicherte Lebensmittel nach erneutem Login weiterhin vorhanden
 - [X] Kalorien- und Proteinwerte korrekt berechnen

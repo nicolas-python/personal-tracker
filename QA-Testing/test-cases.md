@@ -1703,8 +1703,11 @@ Gespeicherte Mahlzeiten des ausgewählten Tages werden angezeigt
 Kalorien und Proteine werden korrekt dargestellt
 
 **Testergebnis:**
+Vergangener Tag wird korrekt aufgerufen  
+Gespeicherte Mahlzeiten des ausgewählten Tages werden angezeigt  
+Kalorien und Proteine werden korrekt dargestellt
 
-**Status:** Open
+**Status:** Passed
 
 ### ER-016: Gespeicherte Mahlzeiten nach erneutem Aufruf prüfen
 **Voraussetzung:**
