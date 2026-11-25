@@ -1905,3 +1905,75 @@ Zutaten und Zubereitung werden auf Deutsch übersetzt und verständlich angezeig
 ----------
 ## DB
 ----------
+### RE-006: Rezepte suchen (DB)
+**Voraussetzung:**
+Benutzer ist angemeldet und befindet sich im Rezeptbereich  
+Die lokale Rezeptdatenbank enthält Rezepte
+
+**Testschritte:**
+1. Einen gültigen Suchbegriff eingeben (z. B. "Hähnchen")
+2. Such-Button drücken
+
+**Erwartetes Ergebnis:**
+Passende Rezepte werden aus der lokalen Datenbank gesucht 
+Und unter den Rezept API(Bilder) in der Ergebnisliste angezeigt
+
+**Testergebnis:**
+Passende Rezepte werden aus der lokalen Datenbank gesucht 
+Datenbank Rezepte werden unter den API Rezept(Bilder) in der Ergebnisliste angezeigt
+
+**Status:** Passed
+
+
+### RE-007: Rezeptdetails öffnen (DB)
+**Voraussetzung:**
+Eine Rezeptsuche wurde erfolgreich durchgeführt
+
+**Testschritte:**
+1. Ein Rezept aus der Ergebnisliste auswählen
+2. Rezeptdetails öffnen
+
+**Erwartetes Ergebnis:**
+Die Rezept-namen lassen sich auswählen
+Die Details des ausgewählten Rezepts werden aus der lokalen Datenbank geladen und angezeigt
+
+**Testergebnis:**
+Die Rezept-namen lassen sich auswählen
+Die Details des ausgewählten Rezepts werden aus der lokalen Datenbank geladen und angezeigt
+
+**Status:** Passed
+
+
+### RE-008: Zutaten und Zubereitung anzeigen (DB)
+**Voraussetzung:**
+Die Details eines Rezepts wurden geöffnet
+
+**Testschritte:**
+1. Rezeptdetails öffnen
+2. Zutatenliste und Zubereitung überprüfen
+
+**Erwartetes Ergebnis:**
+Die Zutatenliste und die Zubereitungsanleitung des ausgewählten Rezepts werden vollständig angezeigt
+
+**Testergebnis:**
+Die Zutatenliste und die Zubereitungsanleitung des ausgewählten Rezepts werden vollständig angezeigt
+
+**Status:** Passed
+
+
+### RE-009: Zutaten und Zubereitung übersetzt anzeigen (DB)
+**Voraussetzung:**
+Die Details eines Rezepts wurden geöffnet
+
+**Testschritte:**
+1. Ein Rezept aus DB auswählen
+
+**Erwartetes Ergebnis:**
+Zutaten und Zubereitung werden automatisch auf Deutsch übersetzt und verständlich angezeigt
+
+**Testergebnis:**
+Zutaten werden übersetzt
+Zubereitung werden übersetzt
+
+**Status:** Passed
+

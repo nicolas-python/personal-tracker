@@ -95,11 +95,10 @@
 - [X] Rezeptdetails öffnen (API)
 - [X] Zutaten und Zubereitung anzeigen (API)
 - [X] Zutaten und Zubereitung übersetzung anzeigen (API)
-
-- [ ] Rezepte suchen (DB)
-- [ ] Rezeptdetails öffnen (DB)
-- [ ] Zutaten und Zubereitung anzeigen (DB)
-- [ ] Zutaten und Zubereitung übersetzung anzeigen (DB)
+- [X] Rezepte suchen (DB)
+- [X] Rezeptdetails öffnen (DB)
+- [X] Zutaten und Zubereitung anzeigen (DB)
+- [X] Zutaten und Zubereitung übersetzung anzeigen (DB)
 
 ## 8. Tanken
 - [ ] Suche mit gültiger PLZ
