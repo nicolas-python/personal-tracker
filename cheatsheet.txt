@@ -378,3 +378,60 @@ md (Markdown) = ein einfaches Textformat, das besonders häufig für Dokumentati
                 - Kein zusätzliches Programm wie Word notwendig
 
 ** sind Markdown-Syntax für Fettschrift
+
+test-case.md
+Sicherheitstests: SI-001: Passwort-Hashing prüfen:
+Warum  ? :  Passwörter dürfen nicht im Klartext in der Datenbank gespeichert werden
+            Stattdessen werden sie in einen Hashwert umgewandelt
+            Dadurch können Passwörter bei einem Datenbankdiebstahl nicht einfach ausgelesen werden
+
+In der Datenbank wird ein PBKDF2-SHA256-Hash mit 1.000.000 Iterationen gespeichert
+                          -PBKDF2: Ein Verfahren, das Passwörter sicher in Hashwerte umwandelt
+                          -SHA256: Eine kryptografische Hashfunktion, die dabei verwendet wird
+                          -1.000.000 Iterationen: Das Passwort wird nicht nur einmal verarbeitet,
+                           sondern durchläuft eine Million Berechnungsschritte.
+                           Dadurch wird das Ausprobieren vieler Passwörter deutlich aufwendiger
+
+SI-002: SQL-Injection :
+Warum ? :Bei einer SQL-Injection versucht jemand, durch manipulierte Eingaben eine Datenbankabfrage zu verändern.
+         Ziel ist beispielsweise, die Login-Prüfung zu umgehen oder unberechtigt auf Daten zuzugreifen
+
+- SQL-Injection: Ein Angriffsversuch, bei dem manipulierte Eingaben dazu verwendet werden, Datenbankabfragen zu beeinflussen
+- Ziel: Die Login-Prüfung umgehen oder unberechtigt auf Daten zugreifen
+- Schutz: SQL-Abfragen mit Platzhaltern und übergebene Parameter getrennt verwenden, statt Benutzereingaben direkt in SQL-Abfragen einzubauen
+- Test: Einen manipulierten Benutzernamen eingeben und überprüfen, ob der Login abgelehnt wird
+
+SI-003: Login Rate-Limit prüfen
+Warum ? :Das Rate-Limit begrenzt die Anzahl der Login-Versuche innerhalb eines bestimmten Zeitraums.
+         Dadurch wird erschwert, Passwörter durch viele automatische Versuche herauszufinden.
+
+SI-004: Session-Sicherheit prüfen
+Warum ? :Eine Session hält den Benutzer nach dem Login angemeldet.
+         Sie muss ausreichend geschützt sein, damit andere Personen die Sitzung nicht einfach übernehmen können.
+         Dafür gibt es beispielsweise Cookie-Sicherheitseinstellungen wie HttpOnly, Secure und SameSite.
+
+       HttpOnly: JavaScript kann den Session-Cookie nicht einfach auslesen
+       Secure: Der Cookie wird nur über HTTPS übertragen
+       SameSite=Lax: Schützt vor vielen unerwünschten Cookie-Übertragungen von anderen Websites
+
+SI-005: Zugriffsschutz prüfen
+Warum ? :Geschützte Seiten dürfen nur von angemeldeten Benutzern aufgerufen werden können.
+         Ohne Anmeldung muss der Zugriff verweigert werden
+
+SI-006: CSRF-Schutz prüfen
+Warum ? :CSRF bedeutet Cross-Site Request Forgery.
+         Dabei wird versucht, einen angemeldeten Benutzer dazu zu bringen, unbeabsichtigt eine Aktion auf einer Webseite auszuführen.
+         Ein CSRF-Token schützt vor solchen manipulierten Anfragen
+
+SI-007: Zugriff auf fremde Benutzerdaten prüfen
+Warum ? :Jeder Benutzer darf nur auf seine eigenen persönlichen Daten zugreifen.
+         Dadurch wird verhindert, dass Benutzer die Daten anderer Konten ansehen oder verändern können
+
+SI-008: Maximale Anzahl aktiver Sessions prüfen
+Warum ? :Die maximale Anzahl aktiver Sessions begrenzt, wie viele gleichzeitige Anmeldungen erlaubt sind.
+
+
+SI-009: Ungültige Session-Tokens testen
+Warum ? :Ein Session-Token dient dazu, eine angemeldete Sitzung zu erkennen.
+        Ist das Token ungültig oder wurde es verändert, darf die Sitzung nicht mehr verwendet werden.
+        Der Zugriff muss verweigert werden

@@ -116,12 +116,12 @@
 - [X] Fahrtkosten und Arbeitszeit berechnen
 
 ## 9. Sicherheitstests
-- [ ] Passwort-Hashing prüfen
-- [ ] SQL-Injection testen
-- [ ] Login Rate-Limit prüfen
-- [ ] Session-Sicherheit prüfen
-- [ ] Zugriffsschutz prüfen
-- [ ] CSRF-Schutz prüfen
-- [ ] Zugriff auf fremde Benutzerdaten prüfen
-- [ ] Maximale Anzahl aktiver Sessions prüfen
+- [X] Passwort-Hashing prüfen
+- [X] SQL-Injection testen
+- [X] Login Rate-Limit prüfen
+- [X] Session-Sicherheit prüfen
+- [X] Zugriffsschutz prüfen
+- [X] CSRF-Schutz prüfen
+- [X] Zugriff auf fremde Benutzerdaten prüfen
+- [X] Maximale Anzahl aktiver Sessions prüfen
 - [ ] Ungültige Session-Tokens testen

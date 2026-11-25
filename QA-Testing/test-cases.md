@@ -2243,4 +2243,198 @@ Sowohl mit Komma als auch mit Punkt funktioniert die Eingabe
 
 **Status:** Passed
 
+--------------------
+## Sicherheitstests
+--------------------
+### SI-001: Passwort-Hashing prüfen
+**Voraussetzung:**
+Benutzer ist angemeldet oder kann einen neuen Benutzer registrieren
+Zugriff auf die Datenbank ist vorhanden
+
+**Testschritte:**
+1. Einen neuen Testbenutzer registrieren (1)
+2. Die Tabelle "users" in der Datenbank öffne
+3. Den gespeicherten Wert in "password_hash" überprüfen
+
+**Erwartetes Ergebnis:**
+Das Passwort wird nicht im Klartext gespeichert
+In der Datenbank wird ausschließlich ein Passwort-Hash gespeichert
+
+**Testergebnis:**
+Das Passwort wird nicht im Klartext gespeichert
+In der Datenbank wird ein PBKDF2-SHA256-Hash mit 1.000.000 Iterationen gespeichert
+
+**Status:** Passed
+
+### SI-002: SQL-Injection testen
+**Voraussetzung:**
+Benutzer befindet sich auf der Login-Seite (1)
+
+**Testschritte:**
+1. Als Benutzernamen ' OR '1'='1 eingeben
+2. Ein beliebiges Passwort eingeben (z. B. test123)
+3. Login versuchen
+
+**Erwartetes Ergebnis:**
+Der Login wird abgelehnt
+Es erfolgt kein unberechtigter Zugriff auf das Benutzerkonto
+
+**Testergebnis:**
+Der Login wird abgelehnt
+Es erfolgt kein unberechtigter Zugriff auf das Benutzerkonto
+
+**Status:** Passed
+
+### SI-003: Login Rate-Limit prüfen
+**Voraussetzung:**
+Benutzer befindet sich auf der Login-Seite
+
+**Testschritte:**
+1. Mehrfach innerhalb einer Minute mit falschem Passwort anmelden
+2. Den vierten Login-Versuch durchführen
+
+**Erwartetes Ergebnis:**
+Nach drei fehlgeschlagenen Login-Versuchen innerhalb einer Minute wird ein weiterer Versuch durch das Rate-Limit blockiert
+
+**Testergebnis:**
+Nach drei fehlgeschlagenen Login-Versuchen innerhalb einer Minute wird ein weiterer Versuch durch das Rate-Limit blockiert
+
+**Status:** Passed
+
+### SI-004: Session-Sicherheit prüfen
+**Voraussetzung:**
+Benutzer ist angemeldet
+
+**Testschritte:**
+1. Browser-Entwicklertools öffnen (F12)
+2. Den Bereich Application öffnen
+   (2. Oben rechts auf die drei Punkte klicken
+   - Unter „Weitere Tools“ den Bereich „Anwendung“ auswählen
+   - Links im Bereich „Speicher“ auf „Cookies“ klicken
+   - Die eigene Website auswählen
+   - In der Tabelle den Cookie mit dem Namen session suchen
+   - Die Spalten HttpOnly, Secure und SameSite überprüfen
+   )
+3. Cookies auswählen
+4. Den Session-Cookie überprüfen
+5. Die Sicherheitsattribute des Cookies kontrollieren
+
+**Erwartetes Ergebnis:**
+Der Session-Cookie besitzt die vorgesehenen Sicherheitseinstellungen :
+  - HttpOnly: JavaScript kann den Session-Cookie nicht einfach auslesen.
+  - Secure: Der Cookie wird nur über HTTPS übertragen.
+  - SameSite=Lax: Schützt vor vielen unerwünschten Cookie-Übertragungen von anderen Website
+
+**Testergebnis:**
+Der Session-Cookie besitzt einen gesetzten HttpOnly- und Secure-Haken. SameSite ist auf Lax eingestellt
+
+**Status:** Passed
+
+### SI-005: Zugriffsschutz prüfen
+**Voraussetzung:**
+Benutzer ist abgemeldet
+
+**Testschritte:**
+1. Eine geschützte Seite direkt über ihre URL aufrufen (z. B. `/selection`)
+2. Überprüfen, ob die Seite erreichbar ist
+
+**Erwartetes Ergebnis:**
+Ohne Anmeldung ist kein Zugriff auf geschützte Seiten möglich
+Der Benutzer wird zur Login-Seite weitergeleitet
+
+**Testergebnis:**
+Der Benutzer wird zur Login-Seite weitergeleitet
+
+**Status:** Passed
+
+### SI-006: CSRF-Schutz prüfen
+**Voraussetzung:**
+Benutzer ist angemeldet
+Eine Funktion mit einer POST-Anfrage ist erreichbar
+
+**Testschritte:**
+1. Die Nutrition-Seite im Browser öffnen
+2. Mit F12 die Browser-Entwicklertools öffnen
+3. Den Reiter „Konsole“ auswählen
+4. Folgenden Befehl in die Konsole eingeben: fetch("/save-custom-food", {method: "POST"})
+5. Mit Enter bestätigen
+6. Die angezeigte Serverantwort überprüfen
+
+**Erwartetes Ergebnis:**
+400 (BAD REQUEST)
+Die Anfrage ohne gültiges CSRF-Token wird abgelehnt
+Die angeforderte Aktion wird nicht ausgeführt
+
+**Testergebnis:**
+400 (BAD REQUEST)
+Die POST-Anfrage ohne CSRF-Token wurde mit Status 400 (BAD REQUEST) beantwortet
+
+**Status:** Passed
+
+### SI-007: Zugriff auf fremde Benutzerdaten prüfen
+**Voraussetzung:**
+Zwei unterschiedliche Benutzerkonten sind vorhanden
+
+**Testschritte:**
+1. Mit Benutzer A anmelden
+2. Einen gespeicherten Trainingsplan öffnen
+3. Die URL der Bearbeitungsseite kopieren (z. B. http://127.0.0.1:5001/edit-workout/1)
+4. Von Benutzer A abmelden
+5. Mit Benutzer B anmelden
+6. Die kopierte URL des Trainingsplans von Benutzer A in die Adressleiste eingeben
+7. Mit Enter bestätigen
+8. Überprüfen, ob die Bearbeitungsseite erreichbar ist
+
+**Erwartetes Ergebnis:**
+Benutzer B kann nicht auf den Trainingsplan von Benutzer A zugreifen
+Die Daten der beiden Benutzer bleiben voneinander getrennt
+Benutzer B wird zur Auswahlseite (/selection) weitergeleitet
+
+**Testergebnis:**
+Benutzer B kann nicht auf den Trainingsplan von Benutzer A zugreifen
+Die Daten der beiden Benutzer bleiben voneinander getrennt
+Benutzer B wird zur Auswahlseite (/selection) weitergeleitet
+
+**Status:** Passed
+
+### SI-008: Maximale Anzahl aktiver Sessions prüfen
+**Voraussetzung:**
+Ein Benutzerkonto ist vorhanden
+
+**Testschritte:**
+1. Überprüfen, ob maximal acht Benutzerkonten registriert werden können
+2. Überprüfen, ob ein Benutzerkonto nur eine aktive Session gleichzeitig besitzen kann
+3. Versuchen, ein weiteres Benutzerkonto zu registrieren
+
+**Erwartetes Ergebnis:**
+Es können maximal acht Benutzerkonten existieren
+Pro Benutzerkonto ist nur eine aktive Session möglich
+Eine neunte Registrierung wird abgelehnt
+
+**Testergebnis:**
+Die Registrierung ist auf acht Benutzerkonten begrenzt
+Pro Benutzerkonto ist nur eine aktive Session möglich
+Eine neunte Registrierung wird abgelehnt
+
+**Status:** Passed
+
+### SI-009: Ungültige Session-Tokens testen
+**Voraussetzung:**
+Benutzer ist angemeldet
+Eine aktive Session ist vorhanden
+
+**Testschritte:**
+1. Eine aktive Session ungültig machen, indem das zugehörige Session-Token in der Testdatenbank verändert wird
+2. Eine geschützte Seite aufrufen
+3. Überprüfen, ob der Zugriff weiterhin möglich ist
+
+**Erwartetes Ergebnis:**
+Das ungültige Session-Token wird erkannt
+Der Zugriff auf geschützte Seiten wird verweigert
+Der Benutzer wird zur Login-Seite weitergeleitet
+
+**Testergebnis:**
+
+**Status:** Open
+
 
