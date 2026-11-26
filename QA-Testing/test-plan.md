@@ -124,4 +124,4 @@
 - [X] CSRF-Schutz prüfen
 - [X] Zugriff auf fremde Benutzerdaten prüfen
 - [X] Maximale Anzahl aktiver Sessions prüfen
-- [ ] Ungültige Session-Tokens testen
+- [X] Ungültige Session-Tokens testen

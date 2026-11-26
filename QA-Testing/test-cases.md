@@ -2424,17 +2424,27 @@ Benutzer ist angemeldet
 Eine aktive Session ist vorhanden
 
 **Testschritte:**
-1. Eine aktive Session ungültig machen, indem das zugehörige Session-Token in der Testdatenbank verändert wird
-2. Eine geschützte Seite aufrufen
-3. Überprüfen, ob der Zugriff weiterhin möglich ist
+1. Die Datenbank "personal_tracker.db" in DBeaver öffnen
+2. Im Personal Tracker anmelden und die Seite "/fitness" öffnen
+3. In DBeaver unter „Tabellen“ die Tabelle "active_sessions" auswählen
+4. Die gespeicherten Session-Daten über „Daten anzeigen“ öffnen
+5. Den Eintrag des angemeldeten Benutzers suchen
+6. Den Wert in der Spalte "session_token" durch "ungueltiger-test-token" ersetzen
+7. Die Änderung in der Datenbank speichern
+8. Zurück zum Browser wechseln
+9. Die geschützte Seite "/fitness" neu laden (F5)
+10. Überprüfen, ob der Zugriff weiterhin möglich ist und welche Meldung angezeigt wird
 
 **Erwartetes Ergebnis:**
 Das ungültige Session-Token wird erkannt
-Der Zugriff auf geschützte Seiten wird verweigert
+Fehlermessage
 Der Benutzer wird zur Login-Seite weitergeleitet
 
 **Testergebnis:**
+Der veränderte Session-Token wurde als ungültig erkannt
+Fehlermessage :"Deine Sitzung ist abgelaufen oder wurde auf einem anderen Gerät ersetzt"
+Benutzer zur Login-Seite weitergeleitet
 
-**Status:** Open
+**Status:** Passed
 
 
