@@ -125,6 +125,13 @@ Die Datenbanken enthalten unter anderem:
 - Begrenzung der Anmeldeversuche (Login-Rate-Limit)
 - Serverseitige Eingabe- und Berechtigungsprüfungen
 
+## Qualitätssicherung (QA)
+- Erstellung einer dokumentierten Testsammlung
+- Durchführung von Funktionstests für die verschiedenen Anwendungsbereiche
+- Durchführung von Sicherheitstests für Login, Sessions und Zugriffsschutz
+- Überprüfung von Eingaben, Berechtigungen und Datenbankzugriffen
+- Dokumentation der Testergebnisse
+
 ## Externe APIs
 ### Open Food Facts
 
